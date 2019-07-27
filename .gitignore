@@ -46,6 +46,5 @@ HomeAssistant_File/deps
 HomeAssistant_File/extensions
 HomeAssistant_File/templates
 HomeAssistant_File/bin
-HomeAssistant_File/packages/unraid/unraid.yaml
 HomeAssistant_File/packages/unraid/broadlink.yaml
 HomeAssistant_File/packages/unraid/unraid.yaml
