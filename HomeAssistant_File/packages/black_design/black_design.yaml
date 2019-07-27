@@ -98,6 +98,15 @@ sensor:
         friendly_name: Upstairs Status
         value_template: >-
           {{ states('sensor.second_floor_temperature') | round | int }}° / {{ states('sensor.humidity_second_floor') | round | int }}% לחות
+      # familyroom_temperature:
+      #   friendly_name: Family Room Temperature
+      #   value_template: >-
+      #     {{ states('sensor.family_room_temperature') | round | int }}°
+      # diningroom_temperature:
+      #   friendly_name: Dining Room Temperature
+      #   value_template: >-
+      #     {{ states('sensor.dining_room_temperature') | round | int }}°
+
 
 
    # PRESENCE TRACKING TEMPLATES

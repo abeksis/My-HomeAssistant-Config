@@ -57,3 +57,10 @@ switch:
     payload_available: "Online"
     payload_not_available: "Offline"
     retain: true    
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################    
+# automations:

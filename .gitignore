@@ -52,3 +52,12 @@ HomeAssistant_File/custom_components/__pycache__
 HomeAssistant_File/custom_components/authenticated/__pycache__/__init__.cpython-36.pyc
 HomeAssistant_File/custom_components/authenticated/__pycache__/__init__.cpython-37.pyc
 HomeAssistant_File/custom_components/authenticated/__init__.py
+HomeAssistant_File/custom_components/authenticated/__pycache__
+HomeAssistant_File/.config.json
+HomeAssistant_File/.google.token
+HomeAssistant_File/.google_fit.token
+HomeAssistant_File/.HA_VERSION
+HomeAssistant_File/.homekit.state
+HomeAssistant_File/.ios.conf
+HomeAssistant_File/.ip_authenticated.yaml
+HomeAssistant_File/home-assistant_v2.db
