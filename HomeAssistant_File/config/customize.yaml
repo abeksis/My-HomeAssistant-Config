@@ -1,0 +1,311 @@
+  ##  כללי ##
+  sensor.date_time:
+    friendly_name: תאריך ושעה
+    homebridge_hidden: true
+    hidden: true
+
+  sensor.date:
+    friendly_name: תאריך
+    homebridge_hidden: true
+    hidden: true
+
+  sensor.time:
+    friendly_name: שעה
+    homebridge_hidden: true
+    hidden: true
+  
+  ## Geteway שיאומי ##
+  sensor.illumination_34ce008d4e2e:
+    friendly_name: עוצמת אור Geteway
+    icon: mdi:weather-sunse
+    assumed_state: false
+    hidden: true ## מאפשר הסתרה בעמוד הבית
+ 
+  ### טלוויזיה ##
+  media_player.living_room_tv:
+    friendly_name: טלוויזיה בסלון
+    assumed_state: false
+   
+   
+  ### חדר מחשבים ###
+  automation.ip_address_update:
+    friendly_name: כתובת האי פי שונתה 
+    icon: mdi:internet-explorer
+    assumed_state: false
+
+
+  automation.startup_notification:
+    friendly_name: הומאסיסטנט חזר לעבודה 
+    icon: mdi:restart
+    assumed_state: false  
+  
+
+  ## מזג האוויר ##
+  sun.sun:
+    friendly_name: מצב השמש
+    assumed_state: false
+    hidden: true 
+  
+  sensor.imsweather:
+    friendly_name: מצב הטמפ׳
+    icon: mdi:cloud
+    assumed_state: false
+    
+  sensor.outside_temp: 
+    friendly_name: תחזית הטמפ׳ בחוץ
+    icon: mdi:cloud
+    assumed_state: false
+    
+
+  group.dor_sensor:
+    friendly_name: מצב דלת
+    assumed_state: false
+    
+  ## גיבוי אוטומטי ##
+  sensor.latest_ha_backup:
+    friendly_name: גיבוי אחרון
+    assumed_state: false
+    
+  script.backup_config:
+    friendly_name: ביצוע גיבוי אוטומטי
+    icon: mdi:script
+    assumed_state: false 
+    
+    
+  automation.backup_config:
+    friendly_name: ביטול/הפעלה גיבוי אוטומטי
+    icon: mdi:harddisk
+    assumed_state: false
+
+  ## לחצנים של שיאומי ##
+  binary_sensor.switch_158d0001f36255:
+    friendly_name: לחצן לילה טוב
+    icon: mdi:shower
+    assumed_state: false
+    hidden: true
+
+  binary_sensor.switch_158d000224231e:
+    friendly_name: לחצן מרפסת שירות
+    icon: mdi:tshirt-crew
+    assumed_state: false
+    hidden: true  
+
+  binary_sensor.switch_158d0001f3ddfd:
+    friendly_name: לחצן מרפסת
+    icon: mdi:smoking
+    assumed_state: false
+    hidden: true
+
+  ## שינוי שם לחצנים של שיאומי תחת אוטומציה ##
+  automation.turn_on_lighting_on_the_main_balcony:
+    friendly_name: פעיל - לחצן הפעלה מרפסת 
+    icon: mdi:power-off
+    assumed_state: false
+     
+  automation.turn_on_lighting_on_the_service_balcony:
+    friendly_name: פעיל - לחצן במרפסת שירות
+    icon: mdi:tshirt-crew
+    assumed_state: false
+
+  automation.turn_on_lighting_on_the_shower:
+    friendly_name: פעיל - לחצן תאורה במקלחת הראשית
+    icon: mdi:shower
+    assumed_state: false
+
+  # שינוי שם של התראות #  
+  automation.notify_if_the_home_door_was_open_for_more_then_1_min:
+    friendly_name: התראה - הדלת פתוחה יותר מדקה
+    icon: mdi:door-open
+    assumed_state: false
+
+  automation.notify_if_the_balcony_in_on:
+    friendly_name: התראה - מרפסת ראשית
+    icon: mdi:smoking
+    assumed_state: false   
+
+  automation.notify_if_the_service_balcony_in_on:
+    friendly_name: התראה - תאורה מרפסת שירות
+    icon: mdi:tshirt-crew
+    assumed_state: false 
+
+  automation.notify_if_the_pc_room_on:
+    friendly_name: התראה - תאורה חדר מחשבים
+    icon: mdi:nas
+    assumed_state: false
+
+  automation.notify_if_the_light_in_room_off_liran_in_on:
+    friendly_name: התראה - תאורה חדר לירן
+    icon: mdi:human-greeting
+    assumed_state: false
+ 
+  automation.notify_if_the_showe_on:
+    friendly_name: התראה - תאורה מקלחת ראשית
+    icon: mdi:shower
+    assumed_state: false
+    
+  automation.notify_if_the_laundry_room_on:
+    friendly_name: התראה - תאורה חדר כביסה
+    icon: mdi:washing-machine
+    assumed_state: false
+
+  automation.notify_if_the_guests_bathroom_switch_on:
+    friendly_name: התראה -  שירותי אורחים דולקת
+    icon: mdi:emoticon-poop
+    assumed_state: false
+
+  automation.notify_if_the_stairs_is_on: 
+    friendly_name: התראה - תרואה בחדר מדרגות
+    icon: mdi:stairs
+    assumed_state: false
+
+  automation.notify_if_the_ac_is_on:
+    friendly_name: התראה - המזגן נכנס לעבודה
+    icon: mdi:air-conditioner
+    assumed_state: false
+
+  automation.security_warning_door_open:
+    friendly_name: התראה - דלת מרכזית נפתחה
+    icon: mdi:cctv
+    assumed_state: false
+
+  automation.notify_if_the_miklahat_is_on:
+    friendly_name: התראה - תאורה במקלחת דולקת
+    icon: mdi:shower
+    assumed_state: false
+
+  automation.notify_if_the_prozdor_bathroom_on:
+    friendly_name: התראה - התאורה דולקת בפרוזדור
+    icon: mdi:track-light
+    assumed_state: false
+
+
+  ## סוף התראות ## 
+  automation.notify_if_the_prozdor_on:
+    friendly_name: התראה - או בפרוזדור
+    icon: mdi:track-light
+    assumed_state: false 
+
+  automation.weekly_os_backup:
+    friendly_name: גיבוי שבועי למערכת
+    icon: mdi:home-assistant
+    assumed_state: false
+      
+
+  sensor.humidity_second_floor:
+    friendly_name: לחות קומה שניה
+    icon: mdi:water-percent
+
+  # sensor.second_floor_temperature:
+  #   friendly_name: טמפ קומה שניה 
+  #   icon: mdi:temperature-celsius   
+
+
+    
+   ## הסתרת אלמנטים ##   
+
+  # sensor.vacuum_battery:
+  #   hidden: true
+  # sensor.vacuum_status:
+  #   hidden: true 
+
+
+
+  ## הדלקה/ תאורה בהתאם לשמש באופן אוטומטי ##
+  automation.lighting_the_light_after_sunset_at_eleven_oclock:
+    friendly_name: הדלקת תאורה בשקיעה
+    icon: mdi:white-balance-sunny
+    homebridge_hidden: true
+  
+  automation.lights_off_after_sunset:
+    friendly_name: כיבוי תאורה בזריחה
+    icon: mdi:theme-light-dark
+    homebridge_hidden: true  
+
+
+  ## שינוי שמות לשליטה של ברודלינק ##
+  switch.tv_lg:
+    friendly_name: הדלקת טלוויזיה בסלון
+    icon: mdi:television-classic-off
+    home-assistant: true 
+
+  switch.ac_power:
+    friendly_name: הפעלת המזגן
+    icon: mdi:air-conditioner
+    home-assistant: true
+
+  switch.ac_temp_down:
+    friendly_name: הורדת טמפ
+    icon: mdi:arrow-down-bold
+    home-assistant: true
+
+  switch.ac_temp_up:
+    friendly_name: העלאת טמפ
+    icon: mdi:arrow-up-bold
+    home-assistant: true
+
+  switch.ac_timer:
+    friendly_name: טיימר
+    icon: mdi:av-timer
+    home-assistant: true
+
+  switch.ac_mode:
+    friendly_name: שינוי מצב
+    icon: mdi:crosshairs
+    home-assistant: true
+
+  switch.ac_fan_speed:
+    friendly_name: מהירות מאוורר
+    icon: mdi:fan
+    home-assistant: true
+
+  switch.lg_volume_up:
+    friendly_name: הגברת ווליום בטלוויזיה
+    icon: mdi:volume-plus
+    home-assistant: true
+
+  switch.lg_volume_down:
+    friendly_name: הורדת הווליום בטלוויזיה
+    icon: mdi:volume-minus
+    home-assistant: true
+
+  switch.info:
+    friendly_name: מידע על התוכנית המשודרת
+    icon: mdi:information-outline
+    home-assistant: true
+
+  switch.yes_mute:
+    friendly_name: השתקה
+    icon: mdi:volume-mute
+    home_assistant: true
+
+  switch.move_channels_up:
+    friendly_name: העברת ערוץ קדימה
+    icon: mdi:arrow-up-bold
+    home-assistant: true
+
+  switch.move_channels_down:
+    friendly_name: העברת ערוץ אחורה
+    icon: mdi:arrow-down-bold
+    home_assistant: true
+
+
+    
+
+ # dd-wrt device status #   
+  device_tracker.yakir:
+    friendly_name: יקיר 
+    entity_picture: /local/yakir.png
+    home_assistant: true    
+  
+  # שינוי שם לשקע של soonoff
+  switch.sh20_pow: 
+    friendly_name: שקע חשמל
+    icon: mdi:power-socket-au
+    home-assistant: true
+  
+  
+# yakir power AC
+  switch.ac_yakir:
+    friendly_name: AC ON/OFF Yakir
+    icon: mdi:power-socket-au
+    home-assistant: true   

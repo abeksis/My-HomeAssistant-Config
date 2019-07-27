@@ -1,0 +1,779 @@
+#################################################################
+#                                                               #
+#                   Packages/Things Status                      #
+#                                                               #
+#################################################################
+
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+group:
+  cameras:
+    name: Cameras
+    view: no
+    entities:
+      - sensor.front_door_camera_state
+      - binary_sensor.dahua_camera
+      - binary_sensor.building_foront_camera
+      - binary_sensor.high_quality_camera
+
+      
+  smart_home:
+    name: Smart Home
+    view: no
+    entities:
+      - binary_sensor.broadlink_remote
+      - binary_sensor.google_home_mini
+      
+  wall_switches:
+    name: Wall Switches
+    view: no
+    entities:
+      - binary_sensor.light_switch_poop
+      - binary_sensor.wall_switch_prozdor
+      - binary_sensor.wall_switch_laundry
+      - binary_sensor.wall_switch_miklahat
+      - binary_sensor.sonoff_tris    
+      
+  light_bulbs:
+    name: Light Bulbs
+    view: no
+    entities:
+      - binary_sensor.sonoff_balcony_light
+      - binary_sensor.sonoff_light_liran
+      - binary_sensor.sonoff_service_balcony_light
+      - binary_sensor.sonoff_stairs_light
+      - binary_sensor.sonoff_parents_light
+      - binary_sensor.yeelinklightcolor1_miio86767262
+      
+  fan:
+    name: Fan Sonoff
+    view: no
+    entities:
+      - binary_sensor.sonff_fan
+      
+  network_connection:
+    name: Network connections
+    view: no
+    entities:
+      - binary_sensor.unifi_access_point
+ 
+
+#################################################################
+#                                                               #
+#                       Device Tracker                          #
+#                                                               #
+#################################################################
+
+device_tracker:
+
+####################################################
+#                                                  #
+#               Device Track - Ping                #
+#                                                  #
+####################################################
+
+  - platform: ping
+    hosts:
+      dahua_6m_camera: !secret dahua_6m_camera
+      front_door_camera: !secret front_door_camera
+      high_quality_camera: !secret high_quality_camera
+      building_foront_camera: !secret building_foront_camera
+      guests_bathroom_switch: !secret guests_bathroom_switch
+      liran_light_switch: !secret liran_light_switch
+      bathroom_light_switch: !secret bathroom_light_switch
+      laundry_light_switch: !secret laundry_light_switch
+      sonff_fan: !secret sonff_fan
+      sonoff_parents_light: !secret sonoff_parents_light
+      sonoff_stairs_light: !secret sonoff_stairs_light
+      sonoff_service_balcony_light: !secret sonoff_service_balcony_light
+      sonoff_balcony_light: !secret sonoff_balcony_light
+      sonoff_tris: !secret sonoff_tris
+      yeelinklightcolor1_miio86767262: !secret yeelinklightcolor1_miio86767262
+      yeelink_light_strip1_miio98683770: !secret yeelink_light_strip1_miio98683770
+      broadlink: !secret broadlink
+      esp_electric: !secret esp_electric
+      unifi_access_point: !secret unifi_access_point
+      tami4_power: !secret tami4_power
+      s20_xiaomi: !secret s20_xiaomi
+      
+      
+      
+ 
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+
+binary_sensor:
+  - platform: template
+  
+    sensors:
+      front_door_camera:
+        friendly_name: Front Door Camera
+        device_class: connectivity
+        entity_id: device_tracker.front_door_camera
+        value_template: "{{ is_state('device_tracker.front_door_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.front_door_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+          
+      dahua_6m_camera:
+        friendly_name: Dahua 6m Camera
+        device_class: connectivity
+        entity_id: device_tracker.bedroom_camera
+        value_template: "{{ is_state('device_tracker.dahua_6m_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.dahua_6m_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+      dahua_camera:
+        friendly_name: Dahua Camera (3M)
+        device_class: connectivity
+        entity_id: device_tracker.dahua_camera
+        value_template: "{{ is_state('device_tracker.dahua_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.dahua_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+      building_foront_camera:
+        friendly_name: Building Camera
+        device_class: connectivity
+        entity_id: device_tracker.building_foront_camera
+        value_template: "{{ is_state('device_tracker.building_foront_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.building_foront_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+      high_quality_camera:
+        friendly_name: High Quality Camera
+        device_class: connectivity
+        entity_id: device_tracker.high_quality_camera
+        value_template: "{{ is_state('device_tracker.high_quality_camera', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.high_quality_camera', 'home') %}
+            mdi:cctv
+          {% else %}
+            mdi:alert
+          {% endif %}          
+
+      
+      broadlink:
+        friendly_name: Broadlink
+        device_class: connectivity
+        entity_id: device_tracker.broadlink
+        value_template: "{{ is_state('device_tracker.broadlink', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.broadlink', 'home') %}
+            mdi:remote
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+      light_switch_poop:
+        friendly_name: Light Switch Poop
+        device_class: connectivity
+        entity_id: device_tracker.light_switch_poop
+        value_template: "{{ is_state('device_tracker.light_switch_poop', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.light_switch_poop', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+ 
+
+      wall_switch_prozdor:
+        friendly_name: Light Switch Prozdor
+        device_class: connectivity
+        entity_id: device_tracker.wall_switch_prozdor
+        value_template: "{{ is_state('device_tracker.wall_switch_prozdor', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.wall_switch_prozdor', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+ 
+ 
+      wall_switch_laundry:
+        friendly_name: Wall Switch Laundry
+        device_class: connectivity
+        entity_id: device_tracker.wall_switch_laundry
+        value_template: "{{ is_state('device_tracker.wall_switch_laundry', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.wall_switch_laundry', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+      wall_switch_miklahat:
+        friendly_name: Wall Switch Miklahat
+        device_class: connectivity
+        entity_id: device_tracker.wall_switch_miklahat
+        value_template: "{{ is_state('device_tracker.wall_switch_miklahat', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.wall_switch_miklahat', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+      sonoff_tris:
+        friendly_name: Wall Switch Tris 
+        device_class: connectivity
+        entity_id: device_tracker.sonoff_tris
+        value_template: "{{ is_state('device_tracker.sonoff_tris', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.sonoff_tris', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}          
+
+
+      sonoff_balcony_light:
+        friendly_name: Sonoff Light Balcony
+        device_class: connectivity
+        entity_id: device_tracker.sonoff_balcony_light
+        value_template: "{{ is_state('device_tracker.sonoff_balcony_light', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.sonoff_balcony_light', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+      sonoff_light_liran:
+        friendly_name: Liran Sonoff Light
+        device_class: connectivity
+        entity_id: device_tracker.sonoff_light_liran
+        value_template: "{{ is_state('device_tracker.sonoff_light_liran', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.sonoff_light_liran', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+          
+      sonoff_service_balcony_light:
+        friendly_name: Light Service Balcony
+        device_class: connectivity
+        entity_id: device_tracker.sonoff_service_balcony_light
+        value_template: "{{ is_state('device_tracker.sonoff_service_balcony_light', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.sonoff_service_balcony_light', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+      sonoff_stairs_light:
+        friendly_name: Stairs Sonoff Light
+        device_class: connectivity
+        entity_id: device_tracker.sonoff_stairs_light
+        value_template: "{{ is_state('device_tracker.sonoff_stairs_light', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.sonoff_stairs_light', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+ 
+      sonoff_parents_light:
+        friendly_name: Parents Sonoff
+        device_class: connectivity
+        entity_id: device_tracker.sonoff_parents_light
+        value_template: "{{ is_state('device_tracker.sonoff_parents_light', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.sonoff_parents_light', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+      yeelinklightcolor1_miio86767262:
+        friendly_name: Yeelink Light Color
+        device_class: connectivity
+        entity_id: device_tracker.yeelinklightcolor1_miio86767262
+        value_template: "{{ is_state('device_tracker.yeelinklightcolor1_miio86767262', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.yeelinklightcolor1_miio86767262', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}  
+
+
+      yeelink_light_strip1_miio98683770:
+        friendly_name: Yeelight Strip
+        device_class: connectivity
+        entity_id: device_tracker.yeelink_light_strip1_miio98683770
+        value_template: "{{ is_state('device_tracker.yeelink_light_strip1_miio98683770', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.yeelink_light_strip1_miio98683770', 'home') %}
+            mdi:lightbulb
+          {% else %}
+            mdi:alert
+          {% endif %}
+          
+
+      unifi_access_point:
+        friendly_name: Unifi Access Point
+        device_class: connectivity
+        entity_id: device_tracker.unifi_access_point
+        value_template: "{{ is_state('device_tracker.unifi_access_point', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.unifi_access_point', 'home') %}
+            mdi:access-point-network
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+      esp_electric:
+        friendly_name: Electric ESP
+        device_class: connectivity
+        entity_id: device_tracker.esp_electric
+        value_template: "{{ is_state('device_tracker.esp_electric', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.esp_electric', 'home') %}
+            mdi:garage
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+ 
+      tami4_power:
+        friendly_name: BlitzWolf Tami4
+        device_class: connectivity
+        entity_id: device_tracker.tami4_power
+        value_template: "{{ is_state('device_tracker.tami4_power', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.tami4_power', 'home') %}
+            mdi:garage
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+      s20_xiaomi:
+        friendly_name: Xiaomi on/off
+        device_class: connectivity
+        entity_id: device_tracker.s20_xiaomi
+        value_template: "{{ is_state('device_tracker.s20_xiaomi', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.s20_xiaomi', 'home') %}
+            mdi:garage
+          {% else %}
+            mdi:alert
+          {% endif %}          
+
+      sonff_fan:
+        friendly_name: Fan Sonff
+        device_class: connectivity
+        entity_id: device_tracker.sonff_fan
+        value_template: "{{ is_state('device_tracker.sonff_fan', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.sonff_fan', 'home') %}
+            mdi:toggle-switch
+          {% else %}
+            mdi:alert
+          {% endif %}
+
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                 Sensor - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+    
+      sensor_count:
+        friendly_name: 'Number of Sensors'
+        value_template: >
+          {%- set domains = ['sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      automation_count:
+        friendly_name: 'Number of Automations'
+        value_template: >
+          {%- set domains = ['automation'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      script_count:
+        friendly_name: 'Number of Scripts'
+        value_template: >
+          {%- set domains = ['script'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      switch_count:
+        friendly_name: 'Number of Switches'
+        value_template: >
+          {%- set domains = ['switch'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      binary_sensor_count:
+        friendly_name: 'Number of Binary Sensors'
+        value_template: >
+          {%- set domains = ['binary_sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      lights_count:
+        friendly_name: 'Number of Lights'
+        value_template: >
+          {%- set domains = ['light'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      tracker_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['device_tracker'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      camera_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['camera'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      fan_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['fan'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      media_player_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['media_player'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+          
+      plant_count:
+        friendly_name: 'Number of Devices'
+        value_template: >
+          {%- set domains = ['plant'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+
+      dahua_6m_camera_state:
+        friendly_name: Dahua 6m
+        entity_id: device_tracker.dahua_6m_camera
+        value_template: >-
+          {% if is_state('device_tracker.dahua_6m_camera', 'home') %}
+            100
+          {% elif is_state('device_tracker.dahua_6m_camera', 'not_home') %}
+            0
+          {% endif %} 
+          
+      front_door_camera_state:
+        friendly_name: Front Door Camera
+        entity_id: device_tracker.front_door_camera
+        value_template: >-
+          {% if is_state('device_tracker.front_door_camera', 'home') %}
+            100
+          {% elif is_state('device_tracker.front_door_camera', 'not_home') %}
+            0
+          {% endif %}    
+
+      high_quality_camera_state:
+        friendly_name: High Qualit Camera
+        entity_id: device_tracker.high_quality_camera
+        value_template: >-
+          {% if is_state('device_tracker.high_quality_camera', 'home') %}
+            100
+          {% elif is_state('device_tracker.high_quality_camera', 'not_home') %}
+            0
+          {% endif %} 
+
+      building_foront_camera_state:
+        friendly_name: Front Building Camera
+        entity_id: device_tracker.building_foront_camera
+        value_template: >-
+          {% if is_state('device_tracker.building_foront_camera', 'home') %}
+            100
+          {% elif is_state('device_tracker.building_foront_camera', 'not_home') %}
+            0
+          {% endif %}      
+          
+          
+      guests_bathroom_switch:
+        friendly_name: Guests Bathroom Switch
+        entity_id: device_tracker.guests_bathroom_switch
+        value_template: >-
+          {% if is_state('device_tracker.guests_bathroom_switch', 'home') %}
+            100
+          {% elif is_state('device_tracker.guests_bathroom_switch', 'not_home') %}
+            0
+          {% endif %}
+
+      liran_light_switch_state:
+        friendly_name: Liran Light Switch
+        entity_id: device_tracker.liran_light_switch
+        value_template: >-
+          {% if is_state('device_tracker.liran_light_switch', 'home') %}
+            100
+          {% elif is_state('device_tracker.liran_light_switch', 'not_home') %}
+            0
+          {% endif %} 
+
+      bathroom_light_switch_state:
+        friendly_name: Bathroom Light Switch
+        entity_id: device_tracker.bathroom_light_switch_switch
+        value_template: >-
+          {% if is_state('device_tracker.bathroom_light_switch', 'home') %}
+            100
+          {% elif is_state('device_tracker.bathroom_light_switch', 'not_home') %}
+            0
+          {% endif %}
+
+
+      laundry_light_switch_state:
+        friendly_name: Laundry Light Switch
+        entity_id: device_tracker.laundry_light_switch_switch
+        value_template: >-
+          {% if is_state('device_tracker.laundry_light_switch', 'home') %}
+            100
+          {% elif is_state('device_tracker.laundry_light_switch', 'not_home') %}
+            0
+          {% endif %}   
+
+      broadlink_state:
+        friendly_name: Broadlink State
+        entity_id: device_tracker.broadlink
+        value_template: >-
+          {% if is_state('device_tracker.broadlink', 'home') %}
+            100
+          {% elif is_state('device_tracker.broadlink', 'not_home') %}
+            0
+          {% endif %} 
+          
+
+      sonff_fan_state:
+        friendly_name: Fan State
+        entity_id: device_tracker.sonff_fan
+        value_template: >-
+          {% if is_state('device_tracker.sonff_fan', 'home') %}
+            100
+          {% elif is_state('device_tracker.sonff_fan', 'not_home') %}
+            0
+          {% endif %}          
+
+
+      sonoff_parents_light_state:
+        friendly_name: Parents Light
+        entity_id: device_tracker.sonoff_parents_light
+        value_template: >-
+          {% if is_state('device_tracker.sonoff_parents_light', 'home') %}
+            100
+          {% elif is_state('device_tracker.sonoff_parents_light', 'not_home') %}
+            0
+          {% endif %}
+          
+
+      sonoff_stairs_light_state:
+        friendly_name: Stairs Light
+        entity_id: device_tracker.sonoff_stairs_light
+        value_template: >-
+          {% if is_state('device_tracker.sonoff_stairs_light', 'home') %}
+            100
+          {% elif is_state('device_tracker.sonoff_stairs_light', 'not_home') %}
+            0
+          {% endif %}          
+          
+
+      sonoff_service_balcony_light_state:
+        friendly_name: Service Balcony Light
+        entity_id: device_tracker.sonoff_service_balcony_light
+        value_template: >-
+          {% if is_state('device_tracker.sonoff_service_balcony_light', 'home') %}
+            100
+          {% elif is_state('device_tracker.sonoff_service_balcony_light', 'not_home') %}
+            0
+          {% endif %}  
+
+      sonoff_balcony_light_state:
+        friendly_name: Service Balcony Light
+        entity_id: device_tracker.sonoff_balcony_light
+        value_template: >-
+          {% if is_state('device_tracker.sonoff_balcony_light', 'home') %}
+            100
+          {% elif is_state('device_tracker.sonoff_balcony_light', 'not_home') %}
+            0
+          {% endif %}                      
+
+
+      sonoff_tris_state:
+        friendly_name: Tris on off
+        entity_id: device_tracker.sonoff_tris
+        value_template: >-
+          {% if is_state('device_tracker.sonoff_tris', 'home') %}
+            100
+          {% elif is_state('device_tracker.sonoff_tris', 'not_home') %}
+            0
+          {% endif %} 
+          
+      yeelinklightcolor1_miio86767262_state:
+        friendly_name: Yeelink Light Color
+        entity_id: device_tracker.yeelinklightcolor1_miio86767262
+        value_template: >-
+          {% if is_state('device_tracker.yeelinklightcolor1_miio86767262', 'home') %}
+            100
+          {% elif is_state('device_tracker.yeelinklightcolor1_miio86767262', 'not_home') %}
+            0
+          {% endif %}
+          
+
+      yeelink_light_strip1_miio98683770_state:
+        friendly_name: Yeelight Strip
+        entity_id: device_tracker.yeelink_light_strip1_miio98683770
+        value_template: >-
+          {% if is_state('device_tracker.yeelink_light_strip1_miio98683770', 'home') %}
+            100
+          {% elif is_state('device_tracker.yeelink_light_strip1_miio98683770', 'not_home') %}
+            0
+          {% endif %}
+
+      esp_electric_state:
+        friendly_name: Electric ESP
+        entity_id: device_tracker.esp_electric
+        value_template: >-
+          {% if is_state('device_tracker.esp_electric', 'home') %}
+            100
+          {% elif is_state('device_tracker.esp_electric', 'not_home') %}
+            0
+          {% endif %}          
+
+
+      unifi_access_point_state:
+        friendly_name: Unifi Access Point
+        entity_id: device_tracker.unifi_access_point
+        value_template: >-
+          {% if is_state('device_tracker.unifi_access_point', 'home') %}
+            100
+          {% elif is_state('device_tracker.unifi_access_point', 'not_home') %}
+            0
+          {% endif %}           
+
+      tami4_power_state:
+        friendly_name: Tami4 Power
+        entity_id: device_tracker.tami4_power4
+        value_template: >-
+          {% if is_state('device_tracker.tami4_power', 'home') %}
+            100
+          {% elif is_state('device_tracker.tami4_power', 'not_home') %}
+            0
+          {% endif %}
+
+
+      s20_xiaomi_state:
+        friendly_name: Xiaomi on/off
+        entity_id: device_tracker.s20_xiaomi
+        value_template: >-
+          {% if is_state('device_tracker.s20_xiaomi', 'home') %}
+            100
+          {% elif is_state('device_tracker.s20_xiaomi', 'not_home') %}
+            0
+          {% endif %}

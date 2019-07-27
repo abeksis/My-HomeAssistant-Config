@@ -1,0 +1,59 @@
+#################################################################
+#                                                               #
+#                      Packages/weather                         #
+#                                                               #
+#################################################################
+
+      
+      
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+################################################################# 
+sensor:
+  - platform: mqtt
+    name: "Washing Machine energy today"
+    state_topic: "tele/washing-machine/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Washing Machine yesterday"
+    state_topic: "tele/washing-machine/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Washing Machine total"
+    state_topic: "tele/washing-machine/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Total"] }}'
+    unit_of_measurement: "kWh"
+  - platform: mqtt
+    name: "Washing Machine Power"
+    state_topic: "tele/washing-machine/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"    
+  - platform: mqtt
+    name: "Washing Machine total cost"
+    state_topic: "tele/washing-machine/SENSOR"
+    value_template: '{{ (value_json["ENERGY"]["Total"] * 0.5404) | round(3) }}'
+    #ILS OR USD (Depends on local currency) Just change the value of "0.5404" to your local elctricity price
+    unit_of_measurement: "₪" # USD / Other local currency 
+
+
+#################################################################
+#                                                               #
+#                          swithcs                              #
+#                                                               #
+#################################################################
+switch:
+  - platform: mqtt
+    name: "Washing Machine"
+    state_topic: "stat/washing-machine/POWER"
+    command_topic: "cmnd/washing-machine/POWER"
+    availability_topic: "tele/washing-machine/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true    

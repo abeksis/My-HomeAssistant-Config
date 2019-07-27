@@ -1,0 +1,183 @@
+#################################################################
+#                                                               #
+#                     Packages/Appliances                       #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.robovac_cleaning_time:
+      icon: mdi:clock-outline
+    sensor.robovac_main_brush:
+      icon: mdi:blender
+    sensor.robovac_side_brush:
+      icon: mdi:blender
+    sensor.robovac_filter:
+      icon: mdi:filter
+    sensor.robovac_cleaning_count:
+      icon: mdi:counter
+      
+#################################################################
+#                                                               #
+#                            Groups                             #
+#                                                               #
+#################################################################      
+      
+group:
+
+  robovac:
+    name: Robovac
+    view: no
+    control: hidden 
+    entities:
+      - vacuum.robovac  
+      - sensor.robovac_status 
+      - sensor.robovac_battery
+      - sensor.robovac_cleaning_time
+      - sensor.robovac_main_brush
+      - sensor.robovac_side_brush
+      - sensor.robovac_filter
+      - sensor.robovac_cleaning_count      
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################  
+
+sensor:
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+
+## Robovac Things
+      robovac_status:
+        friendly_name: "Status"
+        value_template: "{{ states.vacuum.robovac.attributes.status }}"
+        icon_template: >-
+          {% if is_state('sensor.robovac_status', 'Cleaning') %}
+            mdi:robot-vacuum
+          {% elif is_state('sensor.robovac_status', 'Returning home') %}
+            mdi:home
+          {% elif is_state('sensor.robovac_status', 'Charging') %}
+            mdi:battery-charging-wireless
+          {% elif is_state('sensor.robovac_status', 'Idle') %}
+            mdi:sleep
+          {% elif is_state('sensor.robovac_status', 'Error') %}
+            mdi:alert
+          {% elif is_state('sensor.robovac_status', 'Charger disconnected') %}
+            mdi:power-plug-off
+          {% else %}
+            mdi:help-circle
+          {% endif %}
+      robovac_battery:
+        friendly_name: "Battery"
+        unit_of_measurement: "%"
+        device_class: battery
+        value_template: "{{ states.vacuum.robovac.attributes.battery_level }}"
+      robovac_cleaning_time:
+        friendly_name: "Cleaning Time"
+        unit_of_measurement: "Mins"
+        value_template: "{{ states.vacuum.robovac.attributes.cleaning_time }}"
+      robovac_main_brush:
+        friendly_name: "Main Brush Left"
+        unit_of_measurement: "Hrs"
+        value_template: "{{ states.vacuum.robovac.attributes.main_brush_left }}"
+      robovac_side_brush:
+        friendly_name: "Side Brush Left"
+        unit_of_measurement: "Hrs"
+        value_template: "{{ states.vacuum.robovac.attributes.side_brush_left }}"
+      robovac_filter:
+        friendly_name: "Filter Left"
+        unit_of_measurement: "Hrs"
+        value_template: "{{ states.vacuum.robovac.attributes.filter_left }}"
+      robovac_cleaning_count:
+        friendly_name: "Cleaning Count"
+        value_template: "{{ states.vacuum.robovac.attributes.cleaning_count }}"
+      robovac_cleaned_area:
+        friendly_name: "Cleaned Area"
+        value_template: "{{ states.vacuum.robovac.attributes.cleaned_area }}"
+      robovac_total_clean_time:
+        friendly_name: "Total Clean Time"
+        unit_of_measurement: "Mins"
+        value_template: "{{ states.vacuum.robovac.attributes.total_cleaning_time }}"
+      robovac_sensor_dirty:
+        friendly_name: "Dirty Sensor"
+        unit_of_measurement: "Hrs"
+        value_template: "{{ states.vacuum.robovac.attributes.sensor_dirty_left }}"
+
+        
+
+    
+#################################################################
+#                                                               #
+#                           Vacuums                             #
+#                                                               #
+#################################################################
+
+vacuum:
+
+####################################################
+#                                                  #
+#                 Vacuums - Xiaomi                 #
+#                                                  #
+####################################################
+
+  - platform: xiaomi_miio
+    host: !secret xiaomi_vacuum_ip
+    token: !secret xiaomi_vacuum_token
+    name: RoboVac
+
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+# automation:
+
+# ## Charge Appliances overnight
+#   - alias: Appliance Charging after Daily Clean
+#     trigger:
+#     - platform: state
+#       entity_id: sensor.robovac_status
+#       to: Returning home
+#     action:
+#     - service: switch.turn_on
+#       data:
+#         entity_id: switch.plug_158d00022ae22d
+
+# ## Turn off Appliance Charging
+#   - alias: Turn off Appliance Charging after RoboVac Battery reaches 100%
+#     trigger:
+#     - platform: state
+#       entity_id: sensor.robovac_battery
+#       to: '100'
+#     action:
+#     - service: switch.turn_off
+#       data:
+#         entity_id: switch.plug_158d00022ae22d
+        
+# ## Robovac Error Notification
+#   - alias: Robovac Error Notification
+#     trigger:
+#       platform: state
+#       entity_id: sensor.robovac_status
+#       to: Error
+#     action:
+#       - service: notify.pushbullet
+#         data:
+#           message: 'Attention - Robovac has got himself into a situation again'

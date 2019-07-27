@@ -1,0 +1,789 @@
+#################################################################
+#                                                               #
+#                     Packages/Harmony                          #
+#                                                               #
+#################################################################
+ 
+
+
+#################################################################
+#                                                               #
+#                          Remote                               #
+#                                                               #
+################################################################# 
+remote:
+  - platform: harmony
+    name: Living room
+    host: !secret harmony_living_room_host
+    port: 8088
+    
+
+
+#################################################################
+#                                                               #
+#                          switches                             #
+#                                                               #
+################################################################# 
+
+switch:
+  - platform: template
+    switches:
+      lg_tv_button:
+        friendly_name: LG TV
+        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'LG TV') }}"
+        turn_on:
+            service: remote.turn_on
+            data:
+                entity_id: remote.living_room
+                activity: 'LG TV'
+        turn_off:
+            service: remote.turn_on
+            data:
+                entity_id: remote.living_room
+                activity: 'PowerOff'
+
+      whizz_button:
+        friendly_name: Xtreamer Whizz
+        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Whizz') }}"
+        turn_on:
+            service: remote.turn_on
+            data:
+                entity_id: remote.living_room
+                activity: 'Whizz'
+        turn_off:
+            service: remote.turn_on
+            data:
+                entity_id: remote.living_room
+                activity: 'PowerOff'
+                
+                
+      yes_dvr_button:
+        friendly_name: Yes
+        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'YES') }}"
+        turn_on:
+            service: remote.turn_on
+            data:
+                entity_id: remote.living_room
+                activity: 'YES'
+        turn_off:
+            service: remote.turn_on
+            data:
+                entity_id: remote.living_room
+                activity: 'PowerOff'                
+
+
+
+# #################################################################
+# #                                                               #
+# #                          script                               #
+# #                                                               #
+# ################################################################# 
+
+# script:
+
+# ################################################################# 
+# #                          LG TV                                #
+# #                                                               #
+# ################################################################# 
+#     lg_tv_poweron:
+#         alias: Power On
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - PowerOn
+#                 device: LG TV                
+
+#     lg_tv_poweroff:
+#         alias: Power Off
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - PowerOff
+#                 device: LG TV
+
+#     lg_tv_volume_down:
+#         alias: Volume Down
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6  
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - VolumeDown
+#                 device: LG TV
+
+#     lg_tv_volume_up:
+#         alias: Volume UP
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6  
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - VolumeUp
+#                 device: LG TV
+                
+#     lg_tv_mute:
+#         alias: Mute
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Mute
+#                 device: LG TV                
+                
+#     lg_tv_channel_up:
+#         alias: Channel Up
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - ChannelUp
+#                 device: LG TV   
+
+                
+#     lg_tv_channel_down:
+#         alias: Channel Down
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - ChannelDown
+#                 device: LG TV    
+                
+
+#     lg_tv_input_hdmi_1:
+#         alias: HDMI 1
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - InputHdmi1
+#                 device: LG TV 
+                
+#     lg_tv_input_hdmi_2:
+#         alias: HDMI 2
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - InputHdmi2
+#                 device: LG TV
+
+#     lg_tv_input_hdmi_3:
+#         alias: HDMI 3
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - InputHdmi3
+#                 device: LG TV
+                
+#     lg_tv_input_hdmi_4:
+#         alias: HDMI 4
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - InputHdmi4
+#                 device: LG TV                
+
+#     lg_tv_direction_down:
+#         alias: Direction Down
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionDown
+#                 device: LG TV                 
+
+#     lg_tv_direction_up:
+#         alias: Direction up
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionUp
+#                 device: LG TV
+                
+#     lg_tv_direction_right:
+#         alias: Direction Right
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionRight
+#                 device: LG TV                 
+
+#     lg_tv_direction_left:
+#         alias: Direction Left
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionLeft
+#                 device: LG TV                  
+
+#     lg_tv_ok:
+#         alias: OK
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - OK
+#                 device: LG TV                 
+ 
+#     lg_tv_settings:
+#         alias: OK
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Settings
+#                 device: LG TV                
+
+#     lg_tv_exit:
+#         alias: Exit
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Exit
+#                 device: LG TV  
+
+
+
+# ################################################################# 
+# #                          kodi                                 #
+# #                                                               #
+# ################################################################# 
+
+#     kodi_powertoggle:
+#         alias: Power Toggle
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - PowerToggle
+#                 device: Xtreamer Media Player
+
+#     kodi_mute:
+#         alias: Mute
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Mute
+#                 device: Xtreamer Media Player                
+
+#     kodi_volumedown:
+#         alias: Volume Down
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - VolumeDown
+#                 device: Xtreamer Media Player                
+
+#     kodi_volumeup:
+#         alias: Volume Up
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - VolumeUp
+#                 device: Xtreamer Media Player                 
+
+#     kodi_directiondown:
+#         alias: Direction Down
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionDown
+#                 device: Xtreamer Media Player 
+
+#     kodi_directionleft:
+#         alias: Direction Left
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionLeft
+#                 device: Xtreamer Media Player
+                
+#     kodi_directionright:
+#         alias: Direction Right
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionRight
+#                 device: Xtreamer Media Player                 
+
+#     kodi_directionup:
+#         alias: Direction Up
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionUp
+#                 device: Xtreamer Media Player 
+
+#     kodi_ok:
+#         alias: Direction OK
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - OK
+#                 device: Xtreamer Media Player 
+
+
+#     kodi_menu:
+#         alias: Menu
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Menu
+#                 device: Xtreamer Media Player 
+                
+#     kodi_back:
+#         alias: Back
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Back
+#                 device: Xtreamer Media Player                 
+
+#     kodi_home:
+#         alias: Home
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Home
+#                 device: Xtreamer Media Player
+
+#     kodi_mouse:
+#         alias: Mouse
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Mouse
+#                 device: Xtreamer Media Player
+
+#     kodi_options:
+#         alias: Options
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Options
+#                 device: Xtreamer Media Player
+
+
+
+# ################################################################# 
+# #                          yes                                  #
+# #                                                               #
+# ################################################################# 
+
+#     yes_powertoggle:
+#         alias: Options
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - PowerToggle
+#                 device: Yes DVR
+
+#     yes_button_0:
+#         alias: Button 0
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 0
+#                 device: Yes DVR                
+
+#     yes_button_1:
+#         alias: Button 1
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 1
+#                 device: Yes DVR                
+
+#     yes_button_2:
+#         alias: Button 2
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 2
+#                 device: Yes DVR
+
+#     yes_button_3:
+#         alias: Button 3
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 3
+#                 device: Yes DVR
+
+#     yes_button_4:
+#         alias: Button 4
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 4
+#                 device: Yes DVR
+
+#     yes_button_5:
+#         alias: Button 5
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 5
+#                 device: Yes DVR
+
+#     yes_button_6:
+#         alias: Button 6
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 6
+#                 device: Yes DVR                
+
+#     yes_button_7:
+#         alias: Button 7
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 7
+#                 device: Yes DVR  
+
+#     yes_button_8:
+#         alias: Button 8
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 8
+#                 device: Yes DVR 
+
+
+#     yes_button_9:
+#         alias: Button 9
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - 9
+#                 device: Yes DVR
+                
+#     yes_mute:
+#         alias: Yes Mute
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Mute
+#                 device: Yes DVR                
+
+#     yes_volume_down:
+#         alias: Yes Volume Down
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - VolumeDown
+#                 device: Yes DVR
+
+#     yes_volume_up:
+#         alias: Yes Volume Up
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - VolumeUp
+#                 device: Yes DVR
+
+#     yes_channel_prev:
+#         alias: Yes Channel Prev
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - ChannelPrev
+#                 device: Yes DVR
+ 
+#     yes_channel_down:
+#         alias: Yes Channel Down
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - ChannelDown
+#                 device: Yes DVR 
+
+#     yes_channel_up:
+#         alias: Yes Channel Up
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - ChannelUp
+#                 device: Yes DVR 
+
+#     yes_direction_down:
+#         alias: Yes Direction Down
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionDown
+#                 device: Yes DVR 
+
+#     yes_direction_left:
+#         alias: Yes Direction Left
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionLeft
+#                 device: Yes DVR 
+
+
+#     yes_direction_right:
+#         alias: Yes Direction Right
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionRight
+#                 device: Yes DVR  
+
+#     yes_direction_up:
+#         alias: Yes Direction Up
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - DirectionUp
+#                 device: Yes DVR   
+
+#     yes_select:
+#         alias: Yes Select
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Select
+#                 device: Yes DVR                 
+
+#     yes_stop:
+#         alias: Yes Stop
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Stop
+#                 device: Yes DVR
+
+#     yes_vod:
+#         alias: Yes VOD
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - VOD
+#                 device: Yes DVR 
+
+#     yes_exit:
+#         alias: Yes Exit
+#         sequence:
+#             - delay:
+#                 milliseconds: 0.6    
+#             - service: remote.send_command
+#               data:
+#                 entity_id: remote.living_room
+#                 command:
+#                     - Exit
+#                 device: Yes DVR                 

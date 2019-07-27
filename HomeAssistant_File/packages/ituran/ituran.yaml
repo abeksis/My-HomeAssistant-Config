@@ -1,0 +1,115 @@
+#################################################################
+#                                                               #
+#                    Packages/ituran 
+#  https://github.com/dimagoltsman/ha-custom-component-ituran   #
+#                                                               #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+homeassistant:
+  customize:
+    ituran.skodakodiak:
+      friendly_name: איתוראן
+      icon: mdi:car-connected
+      assumed_state: false
+
+    sensor.iturn_address:
+      friendly_name: Address
+      icon: fas:map-marked
+
+    sensor.iturn_name:
+      friendly_name: Name
+      icon: mdi:car-key
+
+    sensor.iturn_milage:
+      friendly_name: Milage     
+      icon: fas:car
+
+    sensor.iturn_lat:
+      friendly_name: lat     
+      icon: fas:location-arrow      
+
+    sensor.iturn_lon:
+      friendly_name: lon     
+      icon: fas:location-arrow  
+      
+    sensor.iturn_plate:
+      friendly_name: car number   
+      icon: mdi:car    
+      
+      
+ 
+
+#################################################################
+#                                                               #
+#                          frontend                             #
+#                                                               #
+#################################################################
+frontend:
+  extra_html_url:
+   - /local/custom_ui/state-card-ituran.html
+
+
+####################################################
+#                                                  #
+#                      ituran                      #
+#                                                  #
+####################################################
+ituran:
+  skodakodiak:
+    name: Skoda
+    username: !secret skodakodiaq_username
+    password: !secret skodakodiaq_password
+
+
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+################################################################# 
+
+sensor:
+  - platform: template
+    sensors:
+      iturn_milage:
+        value_template: '{{ states.ituran.skodakodiak.attributes.milage }}'    
+        
+      iturn_name:
+        value_template: '{{ states.ituran.skodakodiak.attributes.name }}'
+
+      iturn_address:
+        value_template: '{{ states.ituran.skodakodiak.attributes.address }}' 
+        
+      iturn_plate:
+        value_template: '{{ states.ituran.skodakodiak.attributes.plate }}' 
+
+      iturn_lat:
+        value_template: '{{ states.ituran.skodakodiak.attributes.lat }}' 
+        
+      iturn_lon:
+        value_template: '{{ states.ituran.skodakodiak.attributes.lon }}' 
+
+         
+#################################################################
+#                                                               #
+#                           Groups                              #
+#                                                               #
+#################################################################
+group:
+  skoda ituran:
+    name: ituran
+    view: no
+    entities:
+      - ituran.skodakodiak
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+# automation:

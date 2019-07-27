@@ -1,0 +1,136 @@
+#################################################################
+#                                                               #
+#                   Packages/Tami4  Power socket                #
+#                                                               #
+#################################################################
+
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    automation.auto_off_tami_4_in_night:
+      friendly_name: כיבוי תמי 4 בלילה
+      icon: mdi:cup-water
+      home-assistant: true
+
+    automation.turn_on_tami_4_in_mornning:
+      friendly_name: הפעלת תמי 4 בבוקר
+      icon: mdi:cup-water
+      home-assistant: true 
+    
+    
+    switch.tami_4_power:
+      friendly_name: הפעלת תמי 4
+      icon: mdi:power-plug
+      home-assistant: true 
+
+
+#################################################################
+#                                                               #
+#                          switch                               #
+#                                                               #
+#################################################################
+switch:
+
+  - platform: mqtt
+    name: "Tami 4 Power"
+    state_topic: "stat/tami4_power/POWER"
+    command_topic: "cmnd/tami4_power/POWER"
+    availability_topic: "tele/tami4_power/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true   
+
+    
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+automation:
+
+  - id: Turn_off_Tami_4_in_Night
+    initial_state: 'on'  
+    alias: 'Turn Off Tami 4 In Night'
+    trigger:
+      platform: time
+      at: '22:00:00'
+    condition:
+    action:
+    - data:
+        entity_id: switch.tami_4_power
+      service: switch.turn_off
+      
+  - id: Turn_on_Tami_4_in_Mornning
+    initial_state: 'on'  
+    alias: 'Turn On Tami 4 In Mornning'
+    trigger:
+      platform: time
+      at: '05:45:00'
+    condition:
+    action:
+    - data:
+        entity_id: switch.tami_4_power
+      service: switch.turn_on
+
+
+
+  # - id: Auto_off_Tami_4_in_Night
+  #   initial_state: 'on'  
+  #   alias: 'Auto Off Tami 4 In Night'
+  #   trigger:
+  #     - entity_id: switch.service_out_light
+  #       from: 'off'
+  #       platform: state
+  #       to: 'on'
+  #   condition:
+  #     condition: time
+  #     after: '00:00:00'
+  #     before: '05:00:00'
+  #   action:
+  #   - service: timer.start
+  #     entity_id: timer.tami4
+      
+  # - alias: Tami_4_Timerstop
+  #   initial_state: 'on'  
+  #   id: 'Tami 4 Timerstop'
+  #   trigger: 
+  #   - platform: event
+  #     event_type: timer.finished
+  #     event_data: 
+  #       entity_id: timer.tami4
+  #   action:
+  #   - data:
+  #       entity_id: switch.tami_4_power
+  #     service: switch.turn_off    
+      
+# ##############################################################################   
+# #
+# # HA Startup up and running Notification דוגמא של אלירן
+# #
+# ##############################################################################   
+# - alias: 'Startup Notification'
+#   initial_state: 'on'
+#   hide_entity: true
+#   trigger:
+#     platform: homeassistant
+#     event: start
+#   action:
+#     - service: mqtt.publish 
+#       data:
+#         topic: "cmnd/tami4_power/state" #Update the power state of all the sonoffs
+#         payload: ""

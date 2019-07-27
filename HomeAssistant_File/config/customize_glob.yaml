@@ -1,0 +1,16 @@
+#CUI - for more info please read https://github.com/andrey-git/home-assistant-custom-ui/blob/master/docs/features.md
+"*.*": #make change on everyting
+  custom_ui_state_card: state-card-custom-ui
+  templates:
+    theme: if (state =='on') return 'alert_gold'; else if (state =='unavailable') return 'alert_steel';  #else -regular
+
+
+      
+group.*:
+  custom_ui_state_card: state-card-custom-ui
+  templates:
+    theme: if (state =='on') return 'alert_gold';
+    icon_color: if (state =='on') return 'gold';
+
+light.*:
+  state_card_mode: single-line #or "break-slider"

@@ -1,0 +1,63 @@
+#################################################################
+#                                                               #
+#                      Packages/Google Assistant                #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+# homeassistant:
+#   customize:      
+
+
+
+#################################################################
+#                                                               #
+#                          Google Assistant                     #
+#                                                               #
+#################################################################
+
+
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  api_key: !secret google_assistant_api_key
+  exposed_domains:
+    - light
+    - switch
+    - vacuum
+    - script
+    - media_player    
+
+
+#################################################################
+#                                                               #
+#                         Entity Config                         #
+#                                                               #
+#################################################################
+
+  entity_config:
+
+    light.guests_bathroom_switch:
+      name: Light Guests Bathroom Switch
+      room: שירותים
+      
+    light.miklahat:
+      name: Miklahat
+      room: שירותים
+
+    light.balcony:
+      name: Balcony
+      room: מרפסת
+      
+    light.service_balcony:
+      name: Service Balcony
+      room: מרפסת      
+
+    
+      
+
+    

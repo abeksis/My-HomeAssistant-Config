@@ -1,0 +1,53 @@
+#################################################################
+#                                                               #
+#                     Packages/Info Sensors                     #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.aftership_intransit:
+      icon: mdi:truck-delivery
+    sensor.aftership_delivered:
+      icon: mdi:package-variant  
+
+
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+################################################################# 
+
+sensor: 
+
+####################################################
+#                                                  #
+#               Sensors - Aftership                #
+#                                                  #
+#################################################### 
+
+  - platform: aftership
+    api_key: !secret aftership_key
+    
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+        
+  - platform: template
+    sensors:
+      aftership_delivered:
+        friendly_name: "Delivered Packages"
+        value_template: "{{states.sensor.aftership.attributes.delivered}}"
+        
+      aftership_intransit:
+        friendly_name: "In Transit Packages"
+        value_template: "{{states.sensor.aftership.attributes.intransit}}"

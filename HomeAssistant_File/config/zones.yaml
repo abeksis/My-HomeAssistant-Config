@@ -1,0 +1,56 @@
+#################################################################
+#                                                               #
+#                            Zones                              #
+#                                                               #
+#################################################################
+
+- name: בבית
+  latitude: !secret avi_home_latitude
+  longitude: !secret avi_home_longitude  
+  radius: 150
+  icon: mdi:account-multiple
+
+- name: בעבודה
+  latitude: !secret avi_work_latitude
+  longitude: !secret avi_work_longitude 
+  radius: 150
+  icon: mdi:factory
+
+- name: בסנוקר
+  latitude: !secret avi_snooker_latitude
+  longitude: !secret avi_snooker_longitude 
+  radius: 150
+  icon: mdi:billiards-rack
+
+  
+- name: עבודה
+  latitude: !secret nurit_work_latitude
+  longitude: !secret nurit_work_longitude 
+  radius: 150
+  icon: mdi:human-female 
+  
+  
+- name: בבית
+  latitude: !secret nurit_home_latitude
+  longitude: !secret nurit_home_longitude  
+  radius: 150
+  icon: mdi:account-multiple
+ 
+- name: רופא שיניים
+  latitude: !secret nurit_dentist_latitude
+  longitude: !secret nurit_dentist_longitude  
+  radius: 150
+  icon: mdi:tooth-outline  
+
+  
+- name: מרכז ביג
+  latitude: !secret shopping_mall_latitude
+  longitude: !secret shopping_mall_longitude
+  radius: 150
+  icon: mdi:shopping
+
+- name: מחסני השוק
+  latitude: !secret warehousing_market_latitud
+  longitude: !secret warehousing_market_longitude
+  radius: 150
+  icon: mdi:shopping  

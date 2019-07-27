@@ -1,0 +1,161 @@
+#################################################################
+#                                                               #
+#                    Packages/Alarm System                      #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+
+    sensor.illumination_158d0002047c5a:
+      friendly_name: Main shower light intensity 
+
+    sensor.illumination_158d000204bfcb:
+      friendly_name: Light intensity Shower Parents
+      
+    sensor.temperature_158d00022ece24:
+      friendly_name: Temp in the living Room
+      icon: mdi:sofa
+
+    sensor.humidity_158d00022ece24:
+      friendly_name: Humidity in the living Room
+      icon: mdi:water-percent
+  
+    binary_sensor.door_window_sensor_158d0001ef3425:
+      friendly_name: Front Door Sensor
+      device_class: door
+      icon: fas:door-closed
+
+    binary_sensor.door_window_sensor_158d00027a59c6:
+      friendly_name: Balcony Door Sensor
+      device_class: door 
+      icon: fas:door-closed
+
+    binary_sensor.motion_sensor_158d0002047c5a:
+      friendly_name: Motion sensor Main Shower
+
+    binary_sensor.motion_sensor_158d000204bfcb: 
+      friendly_name: חיישן תנועה מקלחת הורים
+
+    binary_sensor.motion_sensor_158d0002b42fa3:
+      friendly_name: Guest Services Motion Sensor
+
+    binary_sensor.motion_sensor_158d00024e7972:
+      friendly_name: חיישן תנועה חדר כביסה 
+
+    binary_sensor.motion_sensor_158d000272bc63:
+      friendly_name: חיישן תנועה חדר מחשבים
+
+    binary_sensor.smoke_sensor_158d00028ee7fb:
+      friendly_name: Smoke sensor kitchen
+      device_class: smoke  
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  security:
+    name: Security
+    icon: mdi:security-home
+    view: yes
+    entities:
+      - group.alarms
+      - group.motion      
+      - group.doors
+      
+  alarms:
+    name: Alarms
+    icon: mdi:security
+    view: no
+    entities:
+      - binary_sensor.smoke_sensor_158d00028ee7fb # חיישן עשן 
+      
+  motion:
+    name: Motion
+    icon: mdi:walk
+    view: no
+    entities:
+      - binary_sensor.motion_sensor_158d0002047c5a # חיישן מקלחת ראשית
+      - binary_sensor.motion_sensor_158d000204bfcb # חיישן תנועה מקלחת הורים
+      - binary_sensor.motion_sensor_158d0002b42fa3 # חיישן תנועה שירותי אורחים
+      - binary_sensor.motion_sensor_158d00024e7972 # חיישן תנועה חדר כביסה
+      - binary_sensor.motion_sensor_158d000272bc63 # חיישן תנועה חדר מחשבים
+      
+  doors:
+    name: Doors
+    icon: mdi:door
+    view: no
+    entities:
+      - binary_sensor.door_window_sensor_158d0001ef3425 # חיישן דלת כניסה
+      - binary_sensor.door_window_sensor_158d00027a59c6 # חיישן מרפסת
+      
+      
+
+    
+#################################################################
+#                                                               #
+#                      Template Sensors                         #
+#                                                               #
+#################################################################
+
+sensor:
+  - platform: template
+    sensors:
+      door_count:
+        value_template: >-
+           {{ states.binary_sensor | selectattr('state', 'eq', 'on') | selectattr('attributes.device_class', 'eq', 'door') | list | count | int }}
+
+
+####################################################
+#                                                  #
+#                   Sensor - Mold                  #
+#                                                  #
+####################################################
+
+  - platform: mold_indicator
+    name: Living room Mold
+    indoor_temp_sensor: sensor.temperature_158d00022ece24
+    indoor_humidity_sensor: sensor.humidity_158d00022ece24
+    outdoor_temp_sensor: sensor.dark_sky_apparent_temperature
+    calibration_factor: 2.0
+
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+
+### For Lovelace UI ###
+
+####################################################
+#                                                  #
+#             Binary Sensor - Template             #
+#                                                  #
+####################################################
+           
+binary_sensor:
+  - platform: template
+    sensors:
+## Door Sensors
+      doors:
+        friendly_name: Doors
+        device_class: door
+        entity_id: group.doors
+        value_template: "{{ is_state('group.doors', 'on') }}"
+        icon_template: >-
+          {% if is_state('group.doors', 'on') %}
+            fas:door-open
+          {% elif is_state('group.doors', 'off') %}
+            fas:door-closed         
+          {% else %}
+            mdi:alert
+          {% endif %}

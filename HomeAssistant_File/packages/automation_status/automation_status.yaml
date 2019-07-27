@@ -1,0 +1,69 @@
+#################################################################
+#                                                               #
+#                   Packages/automation Status                  #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+# homeassistant:
+#   customize:
+
+  
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  notify:
+    name: Notify
+    view: no
+    entities:
+      - automation.notify_if_the_ac_is_on
+      - automation.notify_if_the_balcony_in_on
+      - automation.notify_if_the_guests_bathroom_on
+      - automation.notify_if_the_home_door_was_open_for_more_then_1_min
+      - automation.notify_if_the_laundry_room_on
+      - automation.notify_if_the_light_in_room_off_liran_in_on
+      - automation.notify_if_the_miklahat_is_on
+      - automation.notify_if_the_prozdor_bathroom_on
+      - automation.notify_if_the_service_balcony_in_on
+      - automation.notify_if_the_stairs_is_on
+  
+  turn_off:
+    name: Turn off
+    view: no
+    entities:      
+      - automation.turn_off_lights_miklahat_based_on_montion
+      - automation.turn_off_lights_parents_based_on_montion
+      - automation.turn_off_tami_4_in_night
+      - automation.turn_off_xiaomi_dafang_camera_if_morning_and_we_are_at_home
+      - automation.turn_off_xiaomi_dafang_camera_if_nurit_at_home
+
+  turn_on:
+    name: Turn on
+    view: no
+    entities:
+      - automation.turn_on_cctv_cameras_if_late_night
+      - automation.turn_on_lighting_on_the_main_balcony
+      - automation.turn_on_lighting_on_the_service_balcony
+      - automation.turn_on_lights_miklahat_based_on_montion
+      - automation.turn_on_lights_parents_based_on_montion
+      - automation.turn_on_tami_4_in_mornning
+      - automation.turn_on_xiaomi_dafang_camera_if_nurit_and_avi_not_at_home
+      - automation.lights_off_after_sunset
+
+
+  homeassistant:
+    name: Homeassistant Maintenance
+    view: no
+    entities:
+      - automation.set_theme_to_midnight
+      - automation.startup_notification
+      - automation.lighting_the_light_after_sunset_at_eleven_oclock

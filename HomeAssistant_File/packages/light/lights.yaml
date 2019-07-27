@@ -1,0 +1,581 @@
+#################################################################
+#                                                               #
+#                      Packages/Lighting                        #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+homeassistant:
+  customize:
+    light.prozdor:
+      friendly_name: תאורה בפרוזדור
+      assumed_state: false 
+
+    light.parents: 
+      friendly_name: תאורה מקלחת הורים
+      icon: mdi:human-male-female
+      assumed_state: false    
+
+    Light.service_balcony:
+      friendly_name: מרפסת שירות
+      icon: mdi:tshirt-crew
+      assumed_state: false
+  
+    Light.balcony:
+      friendly_name: מרפסת
+      icon: fas:smoking
+      assumed_state: false 
+    
+    light.liran_room:
+      friendly_name: החדר של לירן
+      icon: mdi:human-greeting
+      assumed_state: false 
+
+    light.gateway_light_34ce008d4e2e:
+      friendly_name: תאורת חירום שיאומי
+      entity_picture: /local/known_devices/Gateway.png
+      assumed_state: false
+
+    light.server_room_fan:
+      friendly_name: מאוורר בחדר מחשבים
+      icon: mdi:fan
+      assumed_state: false
+
+    light.stairs:
+      friendly_name: תאורה במדרגות
+      icon: mdi:stairs
+      assumed_state: false
+
+    light.miklahat:
+      friendly_name: תאורה במקלחת
+      icon: mdi:shower
+      assumed_state: false 
+
+#################################################################
+#                 Automation - שינוי שם לאוטומציה                    #
+#################################################################  
+    automation.turn_on_lights_parents_based_on_montion:
+      friendly_name: תאורה אוטומטית - הורים
+      icon: fas:restroom
+      assumed_state: false 
+      
+    automation.turn_on_lights_miklahat_based_on_montion:  
+      friendly_name: תאורה אוטומטית - מקלחת
+      icon: mdi:light-switch
+      assumed_state: false
+
+    automation.turn_off_lights_pc_room_based_on_montion:     
+      friendly_name: תאורה אוטונטית - חדר מחשבים
+      icon: mdi:light-switch
+      assumed_state: false 
+
+
+#################################################################
+#                                                               #
+#                          mqtt - light                         #
+#                                                               #
+#################################################################
+light:
+  - platform: mqtt  
+    name: "laundry"
+    command_topic: "cmnd/laundry/POWER"
+    state_topic: "stat/laundry/POWER"
+    availability_topic: "tele/laundry/LWT"   
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"  
+    retain: true       
+ 
+  - platform: mqtt  
+    name: "parents"
+    state_topic: "stat/parents/POWER"
+    command_topic: "cmnd/parents/POWER"
+    availability_topic: "tele/parents/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+  - platform: mqtt  
+    name: "prozdor"
+    command_topic: "cmnd/prozdor/POWER"
+    state_topic: "stat/prozdor/POWER"
+    availability_topic: "tele/prozdor/LWT"   
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"  
+    retain: true    
+
+  - platform: mqtt  
+    name: "Balcony"
+    command_topic: "cmnd/balcony/POWER"
+    state_topic: "stat/balcony/POWER"
+    availability_topic: "tele/balcony/LWT"   
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"  
+    retain: true
+
+  - platform: mqtt  
+    name: "Service Balcony"
+    state_topic: "stat/service_balcony/POWER"
+    command_topic: "cmnd/service_balcony/POWER"
+    availability_topic: "tele/service_balcony/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+  - platform: mqtt  
+    name: "Liran Room"
+    state_topic: "stat/liran_room/POWER"
+    command_topic: "cmnd/liran_room/POWER"
+    availability_topic: "tele/liran_room/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+  - platform: mqtt  
+    name: "Miklahat"
+    state_topic: "stat/miklahat/POWER"
+    command_topic: "cmnd/miklahat/POWER"
+    availability_topic: "tele/miklahat/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+  - platform: mqtt  
+    name: "Server Room Fan"
+    state_topic: "stat/fan/POWER"
+    command_topic: "cmnd/fan/POWER"
+    availability_topic: "tele/fan/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true 
+
+  - platform: mqtt  
+    name: "stairs"
+    state_topic: "stat/stairs/POWER"
+    command_topic: "cmnd/stairs/POWER"
+    availability_topic: "tele/stairs/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+
+script:
+  lights_off:
+      alias: Lights OFF
+      sequence:
+          - delay:
+              milliseconds: 100
+          - service: light.turn_off
+            data:
+              entity_id: 
+                  - light.living_room
+                  - light.prozdor
+                  - light.miklahat
+                  - light.laundry
+                  - light.yeelight_poop
+                  # - light.liran_room
+                  - light.balcony
+                  - light.service_balcony
+                  - light.kitchen_strip_lamp
+                  # - light.gateway_light_34ce008d4e2e
+                  # - light.stairs
+                  - light.server_room_fan
+                  - light.parents
+                  - light.computer_room                
+      
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  downstairs lights:
+    name: Downstairs Lights
+    view: no
+    entities:
+      - light.guests_bathroom_switch
+      - light.prozdor
+      - light.miklahat
+      - light.laundry
+      - light.liran_room
+      - light.balcony
+      - light.service_balcony
+      - light.kitchen_strip_lamp
+      - light.gateway_light_34ce008d4e2e
+      
+  upstairs lights:
+    name: Upstairs Lights
+    view: no
+    entities:
+      - light.stairs
+      - light.server_room_fan
+      - light.parents
+      - light.computer_room
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+
+#################################################################
+#                    חיישן תנועה מקלחת שלי                           #
+#################################################################
+  - alias: Turn on lights parents based on montion
+    initial_state: 'on'
+    trigger:
+    - entity_id: binary_sensor.motion_sensor_158d000204bfcb
+      platform: state
+      to: 'on'
+    action:
+    - service: light.turn_on
+      entity_id: light.parents
+
+  - alias: Turn off lights parents based on montion
+    initial_state: 'on'  
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d000204bfcb
+      to: 'off'
+      for:
+        seconds: 30
+    action:
+    - service: light.turn_off
+      entity_id: light.parents
+
+#################################################################
+#                    חיישן תנועה מקלחת ראשית                    #
+#################################################################
+
+  - alias: Turn on lights miklahat based on montion
+    initial_state: 'on'  
+    trigger:
+    - entity_id: binary_sensor.motion_sensor_158d0002047c5a
+      platform: state
+      to: 'on'
+    action:
+    - service: light.turn_on
+      entity_id: light.miklahat
+
+  - alias: Turn off lights miklahat based on montion
+    initial_state: 'on'  
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0002047c5a
+      to: 'off'
+      for:
+        minutes: 2
+    action:
+    - service: light.turn_off
+      entity_id: light.miklahat
+
+      
+
+#################################################################
+#            הדלקה/כיבוי תאורה במדרגות בהתאם לשקיעה וזריחת השמש          #
+#################################################################
+
+  - alias: Lighting the light after sunset at eleven oclock
+    initial_state: 'on'  
+    trigger:
+      platform: time
+      at: '22:00:00'
+    action:
+    - service: light.turn_on
+      data_template:
+        entity_id: 
+        - light.stairs
+
+  - alias: Lights off after sunset
+    initial_state: 'on'  
+    trigger:
+      platform: time
+      at: '05:45:00'
+    action:
+    - service: light.turn_off
+      data_template:
+        entity_id: 
+        - light.stairs
+
+#################################################################
+#                     Sensor Xiaom                              #
+#################################################################
+  ## לחצן הפעלה במרפסת ##
+  - alias: Turn on lighting on the main balcony
+    initial_state: 'on'  
+    trigger:
+      platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d0001f3ddfd
+        click_type: single
+    action:
+    - service: light.toggle
+      entity_id: light.balcony
+
+  ## לחצן הפעלה מרפסת שירות ##
+  - alias: Turn on lighting on the Service balcony
+    initial_state: 'on'  
+    trigger:
+      platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.switch_158d000224231e
+        click_type: single
+    action:
+    - service: light.toggle
+      entity_id: light.service_balcony 
+      
+
+
+#################################################################
+#                     Good night                                #
+#################################################################
+      ##### הקוד עבר לשליטה על הזמגן המרכזי ###
+
+  # - alias: turn off lights on long press before sleep
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: event
+  #     event_type: xiaomi_aqara.click
+  #     event_data:
+  #       entity_id: binary_sensor.switch_158d0001f36255
+  #       click_type: long_click_press
+  #   action:
+  #     service: light.turn_off
+  #     entity_id: 
+  #       - light.guests_bathroom_switch
+  #       - light.prozdor
+  #       - light.miklahat
+  #       - light.laundry
+  #       - light.balcony
+  #       - light.service_balcony
+  #       - light.kitchen_strip_lamp
+ 
+ 
+
+#################################################################
+#                     turn on with a single click               #
+#################################################################
+      ##### הקוד עבר לשליטה על הזמגן המרכזי #####
+
+  # - alias: turn on lights on single press
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: event
+  #     event_type: xiaomi_aqara.click
+  #     event_data:
+  #       entity_id: binary_sensor.switch_158d0001f36255
+  #       click_type: single
+  #   action:
+  #     service: light.turn_on
+  #     entity_id:
+  #       - light.guests_bathroom_switch
+  #       - light.prozdor
+  #       - light.miklahat
+  #       - light.laundry
+  #       - light.balcony
+  #       - light.service_balcony
+  #       - light.kitchen_strip_lamp
+
+#################################################################
+#          Turn off Air-Conditioner on double pres              #
+#################################################################
+
+      ##### הקוד עבר לשליטה על הזמגן המרכזי #####
+
+  # - alias: turn off ac on double press
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: event
+  #     event_type: xiaomi_aqara.click
+  #     event_data:
+  #       entity_id: binary_sensor.switch_158d0001f36255
+  #       click_type: double
+  #   action:
+  #   - service: switch.turn_off 
+  #     entity_id: 
+  #       - switch.ac_yakir
+        
+
+
+# #################################################################
+# #           הדלקת תאורה בזמן חופשה                                  #
+# #################################################################
+
+
+# ############      balcony        ##############################
+#   - alias: lighting on during vacation balcony
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '17:45:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.balcony
+
+#   - alias: lighting off during vacation balcony
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '17:52:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.balcony
+
+
+# ############      laundry        ##############################
+#   - alias: lighting on during vacation laundry
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:15:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.laundry
+
+#   - alias: lighting off during vacation laundry
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:20:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.laundry
+
+
+# ############      poop        ##############################
+#   - alias: lighting on during vacation poop
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:25:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.poop
+
+#   - alias: lighting off during vacation poop
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:28:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.poop
+
+
+# ############      miklahat        ##############################
+#   - alias: lighting on during vacation miklahat
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '19:35:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.miklahat
+
+#   - alias: lighting off during vacation miklahat
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '19:40:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.miklahat
+    
+
+# ############      strip        ##############################
+#   - alias: lighting on during vacation strip
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '19:35:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.light.yeelight_strip_7c49ebadb95c
+
+#   - alias: lighting off during vacation strip
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '22:28:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.light.yeelight_strip_7c49ebadb95c
+
+
+# ############      tv        ##############################
+#   - alias: tv on during vacation tv
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:35:00'
+#     action:
+#     - service: switch.turn_on
+#       data_template:
+#         entity_id: 
+#         - switch.tv_lg
+
+#   - alias: tv off during vacation tv
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '22:30:00'
+#     action:
+#     - service: switch.turn_off
+#       data_template:
+#         entity_id: 
+#         - switch.tv_lg

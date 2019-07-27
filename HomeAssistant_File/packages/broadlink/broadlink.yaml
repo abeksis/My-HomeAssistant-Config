@@ -1,0 +1,575 @@
+
+# #################################################################
+# #                                                               #
+# #                    Packages/Broadlink                         #
+# #                                                               #
+# #                                                               #
+# #                                                               #
+# #################################################################
+
+
+# #################################################################
+# #                                                               #
+# #                         switch                                #
+# #                                                               #
+# #################################################################
+# switch:
+# #################################################################
+# #                  Air-Conditioner Broadlink                    #
+# #################################################################
+#   - platform: broadlink
+#     timeout: 15
+#     host: !secret blink_host
+#     mac: !secret blink_mac
+#     switches:
+#       ac_power:
+#         friendly_name: "AC Power"
+#         command_on: 'JgC4AGWDPiEgQCAhPiIeIR8hHyAgQD8iHiEgQD8hICAfIR8hICAfIR8hHiIeIh4hHyIeIh8hHiAgICAiHUI/IGKBQCAgQR8gPyIeIh4iHiEfQT8hHyEeQT8hICEeIh4iHyAfIR8hHyAfIh8iHSEgIB8hICEeIh4iH0A+IWGDQCAfQR8iPSMeICAhHiMdQj4iHiIeQT8hIB8fIR8hHyIeIh8iHSEgHyAiHSEgIh0hICAfIx0iHkE/IYAADQU='
+#         command_off: 'JgC4AGWDPiEgQB8hPyEeIh4iHyEeQj4hIB8gQD8hHyMdIh4jHSEgIB8iHiAgIB8iHiEgIB8iHiEfIR8iHj9AIWGDPyEfQR8iPiEfIR4iHyAgQT4hICEeQEAgICAfIR8iHiIeIh4hHyEgHyAgICEeISAgICEeIh4hH0E/ImCDPyEeQR8iPyAfICAhHyAgQT4hHyEgQT8gHyAgIR4hHyIeISAhHiIfIR4hICAgHyAhHyEeIh8hHkE/IoIADQU='
+ 
+#       ac_temp_up:
+#         friendly_name: "AC Temp Up"
+#         command_on: 'JgC+AGNjHyEeIR9CHyA/ISAgHyIfIR5BPiIeQT8hICEfIB8hHyEfICAiHSEgICAhHyAgIB8hHyAgICAgICEfQEAgYWMgIB8hH0EeIUAhHiEfIh4hID8/Ih9APyIfIB8hHyEgICAhHiEfICAhHyAfIR8hHyEfISAgICIdISA/PyFhZB4iHiIeQSAgPiEgIR8hHyAgQD8iHz8/Ix4hHiEfIx4hHiIeIh8gHyEfICAgICAgIR8gHyEgIB8hH0BAIYAADQUAAAAAAAAAAAAA'
+ 
+#       ac_temp_down:
+#         friendly_name: "AC Temp Down"
+#         command_on: 'JgC+AGVjHiIfIh1BHyI+Ix0hHyIfIR8/QCAgIB9BPyIeIR8hICAfICAgHyIfIR4hICEeISAgHyEfISAgHyEeQT8hYWQeISAhHkAgIUAgHyEeIh4hH0FAIB8gIEE+IR8hHyEgIR4iHiEgIB8hHyAfIR8hICAfISAgICEeIh5BPyFgZB4iHiEfQR8hQCAeIR8hHyEfQj8gHyIeQT4hICEeIR8iHiMeIB8jHSIeIR8hHyAgIh4gICIeIR8gIEBAIYEADQUAAAAAAAAAAAAA'
+ 
+#       ac_mode:
+#         friendly_name: "AC Mode"
+#         command_on: 'JgC+AGViHyIeQj4iHiEgIB8gICAgIR5BHyFAICBBPiIeISAgHyEeIR8iHiIfICAgHyEfIR8gIR8fISAgICAfQT8hYmEgICBAQCEeIh4iHyEeIh4hH0EfIT8gH0FAIh0iHyAgICAgHyAgIB8iHiEfIR8iIB8fIx0hHyEgHx9CPiJhYh8hIT5AIB8hICAfIR4iHyEfQR8iPiIeQT4hHyEfIR8iHiIfIR8fICEfICAhHiEfIR8iHiIeIh8hHkFAIIEADQUAAAAAAAAAAAAA'
+
+# #################################################################
+# #                         AC Mode                               #
+# #################################################################
+
+#       ac_auto:
+#         friendly_name: "AC Auto"
+#         command_on: 'JgDEAGNiHyAfQiAiICEhIUAgHyEgIB8gHyAfQiAhQCAfIh8gHyAfICAfICAfIB8gICEfIB8gHyAgHyAgHyAfIB9DQCFjYh8gH0IgIiAhISFAIB8hICAfIB8gH0IgIj8gHyIfIB8gHyAgHyAgHyAfIB8iHyAfIB8gIB8gIB8gHyAfQ0AhY2IfICBBICIgISEhQCAfISAgHyAgHx9CICFAICAhIB8fICAfIR4hHyAfIB8fIiAfIB8gHyEfIB8gHyAfIUFBH4QADQUAAAAA'
+
+#       ac_fan:
+#         friendly_name: "AC Fan"
+#         command_on: 'JgC4AGNiH0I/QiAhQCAfICAhHyAgHyBBQCAfQUAhIB8gIB8gHyAfICAfICAfISAfICAfIB8gHyAgHyEfH0M/IWVgIEFBQCEhQR4hHyAgIR8gHyBAQR8gQUAhIB8gHyAfIR8gHyAfIB8hICAfIB8hHiEeIR8gHyAfIEJBIGRhIEFAQSAhQCAfICEgIB8fICBBPyAgQUAhHyAgHyAgHyAfIB8gIB8gIR8gICAfIB8gHyAgHyAgH0M/IYIADQU='
+        
+#       ac_heat:    
+#         friendly_name: "AC Heat"
+#         command_on: 'JgC+AGVgIR4hQEEeIR8gHyAfISAhHiEeIUBBHyBAQSAhHiEfIB8hHiEeIR4hHyAgIR4hHyAfIB8hHiEeIR8gQkAgZWAiHiBAQR8hHiEeIh0hICEfIR4hP0EfIT9CHyIeIR4hHiIdIR4iHiEeIR8iHiEeIR4iHSIeIR4hHiJAQh5mYCEeIj9BHiIdIh4hHiEgIR4hHiI/QR4iP0IfIR4hHiIdIh4hHiEeIh0iHyEeIh0iHSIeIR4hHiIdIkBCHoQADQUAAAAAAAAAAAAA'
+        
+#       ac_cold:    
+#         friendly_name: "AC Cold"
+#         command_on: 'JgC+AGVhIB8hHiFAISBBHyEeISAhHiEeIUBBHyBAQSAhHiEfIB8gHyEeIR4hHyAgIR4hHyAfIB8hHiEfIB8gQkAgZWAhHyAfIEEhIEEfIB8hICAfIR4hQEEeIUBBICEeIR4hHyAfIB8hHiEfICAhHiEfIB8gHyEeIR4hHyBCQCBlYCEfIB8gQCIgQR8gHyEgIB8hHiFAQB8hP0IgIR4hHiEfIB8gHyEeIR4hICEeIR4hHyAfIR4hHiEeIUFBH4QADQUAAAAAAAAAAAAA'
+        
+
+# #################################################################
+# #                         AC Functions                          #
+# #################################################################                                             
+                      
+#       ac_ifeel:    
+#         friendly_name: "AC ifeel"
+#         command_on: 'JgC4AGRhHyAgHyBBISE/Qj8iH0IgIUBBISFAIB8hICAfIB8gHyAgHyAgHyAfISAgHyAfIB8gIB8gIB8gH0M/IWRiHyAfICBBICI/QUAiH0EhIUBBISE/ICAhHyAgHyAgHyAfIB8gIB8gIR8gIB8gIB8gHyAfICAfIEM/IWRhIB8gIB9BISFAQUAhIEEgIj9CICFAIB8iHyAfIB8gIB8gIB8gHyAfIh8gHyAfICEeICAfICEeIEJAIIMADQU='
+               
+#       ac_sleep:    
+#         friendly_name: "AC Sleep"
+#         command_on: 'JgC+AGRiHyAfICBBICI/IB8gICEfICAfIEFAIB9BISFBIB8gIB8gIB8gHyAfICAhHyAgHyAgHyAfIB8gIB8gQkAhZGEgHyAgH0EhIUEfHyAhIB8gIR4fQj8gIUAgIkIfHyAhHh8gIB8gIB8gHyEgIB8gHyAfICAfICAfIB9DPyFkYh8gHyAfQiAhQCAfICAhHyAgHyBBQCAfQSEhQSAfICAfICAfIB8gHyAhIB8gHyAgHyAgHyAfIB8gIEJAIIMADQUAAAAAAAAAAAAA'
+                      
+#       ac_timer:
+#         friendly_name: "AC Timer"
+#         command_on: 'JgB4AAABJZEUNhMRFBETERQRExEUERM2ExEUNRQ1FBETEhM2EzYTERQ1FDUUNRQ1FDUUERMRFDUUERQRExEUERMRFDUUNRQREwAFZQABJUgUAAw8AAEmSRMADD0AASZJEwAMPQABJkgUAAw9AAElSRMADD4AASVIFAANBQ=='
+                      
+#       ac_fan_speed:
+#         friendly_name: "AC Fan Speed"
+#         command_on: 'JgC4AGRjHyAgISBAPkI+ISAgHyIfQD4hIEA/ISAiHSEfIR8iHyAfICAgICEeIh4hHyIfIB8hICEeIh8gH0A/IWJiIR8fISBAQD9AICAgICAfQUAhH0E/Hx8hICEeIh4iHiEgIR4hHyIeIR8gICEfICEhHiAfIR8jHUE/IWBkHiIgHyBAP0E+ISAgHyEgQT4iH0A/ISAgIB8fIR8hICEfICAhHyEfIR8gHyEfIh8hHSEgIB8iH0A/IoEADQU='
+ 
+ 
+                       
+# #################################################################
+# #                         AC UP temp                            #
+# #################################################################                       
+
+#       ac_up_16:    
+#         friendly_name: "AC UP 16"
+#         command_on: 'JgDEAGNiHyAfICBBPyAiHiEeHyIfICEeHyAhHiAgH0FAISAfICAfIB8gHyAgIB8gHyEgHyAgHyAfICAfICAfIB9DPyFkYh8gHyAgQT8gIB8gICAgIR8gHyAfHyAhHiBBQSAgHyAfIR8gHx8gHyAgHyAhHyAgIB8gHyAgHyAfIR8fQz8hZGEgIB8gH0FBHyAfIB8gISAfICAfIB8gIB8gQUAhIB8gHyAfICAfICAfHyAhICAfIB8hHiAgHyAfICAfIEJAIIMADQUAAAAA'
+            
+#       ac_up_17:    
+#         friendly_name: "AC UP 17"
+#         command_on: 'JgDEAGNiHyAfICBBPyAgIB8gHyIfIB8gHyAgHyBBQCAfISAfICAfIB8gIB8gIB8gHyEgIB8gHyAfICAfICAfIB9DPyFkYCEgHyAfQj8gIB8gIB8hICAfIB8gHyAgQT8gICEfICAfICAfIB8gHyAgHyAhHyAgHyAgHyAfICAfICAfQz8hZGEgHyAgH0FAIB8gIB8gISAfICAfIB8gH0I/ICAhHyAfICAfICAfIB8gHyAgIR8gHyAgHyAgHyAfIB8gIEJAIIMADQUAAAAA'
+                                      
+#       ac_up_18:    
+#         friendly_name: "AC UP 18"
+#         command_on: 'JgDEAGVgIR8gHyBBQB8hHiEeISAhHiEfIB8hHiFAISFAICEfIB8gHyEeIR8gHyAfICAhHyAfIB8gHyAgHyAfIB9DQCFjYh8gHyAgQT8gICAfIB8iHyAfIB8gIB8gQSEhPyIfIB8gIB8gIB8gHyAfICAhHyAfICAfICAfIB8gHyAgQkAhZGEfICAgH0FAIB8gHyAgIR8gIB8gIB8gH0EhIUAhIR4gICEeHyAfICAfIR8hHyEeIR8fIB8gHyAhHiAgH0NBH4IADQUAAAAA'
+
+#       ac_up_19:    
+#         friendly_name: "AC UP 19"
+#         command_on: 'JgDEAGNiHyAgHyBBQCAfIB8gHyIfIB8gIB8gQUAgHyAfISAgIB8gHyAfIR4hHyAfICAhHyAfIB8hHiEeIR8gHyBCQSBkYSAfIR4hQEAfIR4hHyAgIR8gHyAfIUBAHyEeISAgHyEfHyAfIB8gIB8gIB8hIB8gIB8gHyAfICAfICAfQz8hZGEgIB8gH0FAIB8gIB8gISAfICAfIB9BQCAfICAhHyAfICAfICAfIB8gIB8gIR8gIB8gIB8gHyAfICAfIEJAIIMADQUAAAAA'
+ 
+#       ac_up_20:    
+#         friendly_name: "AC UP 20"
+#         command_on: 'JgC+AGRhICAfIB9BQCAfICAfICEgHyAgHyAfQUBBQCEhHx8gHyAfICAfICAfICAgIR8fICAfHyAgHyEfIB8gQkAhY2IfIB8gIEFAHyEfHyAgIR8gHyAfICBBP0I/Ih8gIB8gHyAgHyAgHx8gICEfIB8gIB8hHx8gIB8fICBCQCFkYR8gIB8gQUEfIB8fIB8iHyAgHyAfIEFAQUAhIB8hHiAgHyAfIB8gIR4hICAfIR8fIB8gHyAgHyAgH0M/IYIADQUAAAAAAAAAAAAA'
+                
+#       ac_up_21:    
+#         friendly_name: "AC UP 21"
+#         command_on: 'JgDEAGNiHyAgHyFAQR8gHx8gICEgHx8gIB8gQSIgQB8hIB8gIB8hHyAfHyAfICEeICEfICAfICAfIB8gHyAgHyBCQSBkYSEeIR8gQEAgHyAfICAhHyAgHyAgH0EiIEAgHyEgHyEfHyAgHyAfIB8gIB8hIR4hHx8gIB8gHyEfIB8fQ0AgZWEfICAfIEFAHyAfIR8fISEfIB8fICBBISBBHx8iHyAgHyAfIB8gIB8gIB8gISAfIB8fICAfICAgHyAfH0NAIIMADQUAAAAA'
+
+#       ac_up_22:    
+#         friendly_name: "AC UP 22"
+#         command_on: 'JgDEAGRiHyAfIB9CPyAhHiAgHyEgICAfIB8fQiEhISBAISAfICAfICAfIB8hHiAgHyEgHyAgHyAfICAfIR4gIB9DPyFkYSEfHyAfQkAfIB8gICAgIR8gHx8gH0IgISIgQCEfICEfHyAgHyAfIR4gIB8hIR4gIB8gIB8fICEeIR8gQkAgZGEgIB8gH0FAIB8gIR4gISAfIR8fICBBISAhIUAhHyAgHyAgIB8fICAfIR4gIR8gIB8gIB8gHyAfICAfIUJAIIIADQUAAAAA'
+        
+#       ac_up_23:    
+#         friendly_name: "AC UP 23"
+#         command_on: 'JgDEAGRhHyAhHiBBQCAgHx8gICEgHyAfIUBAHyAgIB8gIR8gIB8fICAfICAfIB8gICEfIB8gHyAgHyAgHyAfIB9DQCFkYR8gHyAgQT8gICAfIB8iHyAgHyBBPyAgHyAgHyEhHiAgHyAfICEeIB8gIB8hICAfICAfHyAgHyEfHyAgQj8hZWEgHyAfH0I/ICEeICAgICAgIB8fQUAgIB8gHyEgHyAhHiEfHyAgHyAfIB8gISEeIB8hHx8gIB8gHyEfH0M/IIQADQUAAAAA'
+
+#       ac_up_24:    
+#         friendly_name: "AC UP 24"
+#         command_on: 'JgC+AGVhIB8gHyFAQB8hHiEfICAhHyAfIEBBHyFAQCEgHyAfIR4hHiEfIB8gHyEgIB8gHyEeIR4hHyAfIB8hQUEgZGEgHyEeIUBBHiEfIB8gISAfIB8hQEAfIUBBICAfIR4hHiAgHyAfICAfICEfICAfICAfIB8gHyAgHyBCQCFkYSAfICAfQUAgHyAfICAhHyAgHyBBQCAfQUAhIB8gIB8gHyAfICAfICAfISAfICAfIB8gHyAgHyAgH0M/IYIADQUAAAAAAAAAAAAA'
+
+#       ac_up_25:    
+#         friendly_name: "AC UP 25"
+#         command_on: 'JgC+AGRhIB8hHiFAQR4hHyAfICEgHyAfIUBAQUAfISAgHyEeIR4hHyAfIB8hHiEgIB8hHiEeIR8gHyAfIR4hQUEgZWAhHiEfIEBBHyAfIB8hICAfIR4hQEFAQR8gICEeIR8gHyAfIB8hHiEfICAhHiEfIB8gHyEeIR4hHyBCQCBlYCEfIB8gQUAfIR4hHiEgIR4hHyBAQUBAIB8hICAgHx8gHyAgHyAgHyAfISAgHyAfICAfICAfIB8gH0NAIIMADQUAAAAAAAAAAAAA'
+  
+#       ac_up_26:    
+#         friendly_name: "AC UP 26"
+#         command_on: 'JgC+AGVgIR4hHyBAQR8gHyEeISAhHiEeIUBBQCIgQCEgHyEeIR4hHyAfIB8hHiEgIB8hHiEeIR8gHyAfIR4hQUAhZGEfICAfIEFAIB8gHyAgIR8gIB8gQUBBICI/Ih8gHyAgHyAgHyAfIB8gICEfIB8gIB8gIB8gHyAfICBCQCFjYh8gIR4gQUEfIR4fICEgIR4fICBBP0IgIj8iHyAfIB8gIB8gIB8gHyAfIh8gHyAfICAfICAfIB8gIEJAIIMADQUAAAAAAAAAAAAA'
+        
+#       ac_up_27:    
+#         friendly_name: "AC UP 27"
+#         command_on: 'JgDEAGNiHyAfICBBPyAgIB8gHyIfIB8gH0IgIUAgHyAgIR8gHyAgHyAgHyAfIB8gICEfIB8gIB8gIB8gHyAfICBCQCFkYR8gIB8gQUAgHyAfICEgIR4gHyFAICI/ICAfICEfICAgHyAfIB8gIB8gIB8hIB8gIB8gHyAfICAfICAfQz8hZGEgIB8gH0I/IB8gIB8gISAfICAfQSEhQCAfIB8hICAfIB8gHyAgHyAgHyAfISAgHyAfICAfIR4gIB8gIEJAIIMADQUAAAAA'
+
+#       ac_up_28:    
+#         friendly_name: "AC UP 28"
+#         command_on: 'JgC+AGNiHyAgHyBBQCAfIB8gHyIfIB8gIEEgIj9CPyIfIB8gHyAgHyAgHyAfIB8iHyAfIB8gIB8gIB8gHyAfQ0AhY2IfIB8gIEE/ICAgHyAfIh8gHyAgQSAiP0I/ISAgHyAfIB8gIB8gIB8gHyEgIB8gHyAgHyAfICAfIB9DQCFjYh8gHyAgQT8gICAfIB8iHyAfIB9CICFAQUAhICAfIB8gHyAgHyAgHyAfISAgHyAfIB8gIB8gIB8gH0M/IYMADQUAAAAAAAAAAAAA'
+
+#       ac_up_29:    
+#         friendly_name: "AC UP 29"
+#         command_on: 'JgDEAGNiHyAfICBBPyAgIB8gHyIfIB8gH0IgISEhQCAfISAgHyAfIB8gIB8gIB8gHyEgIB8gHyAfICAfICAfIB9DPyJjYh8gHyAgQT8gICAfIB8hICAfIB9CICEhIUAgHyEgHyAgHyAfICAfICAfIB8hICAfIB8gHyAgHyAgHyAfQz8hZGIfIB8gH0I/ICAfICAfISAgHyAfQSEhISFAIB8hIB8gIB8gHyAfICAfICAfISAfICAfIB8gHyAgIB8gH0M/IYIADQUAAAAA'
+
+#       ac_up_30:    
+#         friendly_name: "AC UP 30"
+#         command_on: 'JgDEAGRgISAfIB9CPyAgHyAgHyEgHyAgH0EhISEhICI/Ih8gHyAfICAfICAfIB8gICEfIB8gIB8gIB8gHyAfICBCQCFjYh8gIB8gQUAgHyAfIB8iHyAfICBBICIgISEhQCEgHyAgHyAfIB8gIB8gIB8hIB8gIB8gHyAfICAfICAfQz8hZGEgIB8gH0FBHx8gIR4hICEeIR8gQCEhISEhIT8iHyAfIB8gIB8gIB8gHyAfIh8gHyAfICAfICAfIB8gIEJAIIMADQUAAAAA'
+                                           
+
+# #################################################################
+# #                         AC down temp                          #
+# #################################################################                                            
+                                           
+
+#       ac_down_29:    
+#         friendly_name: "AC Down 29"
+#         command_on: 'JgDEAGVhHyAfICBBQB8hHiAgICAgICAfH0IgISEhQCAgICAfIR8gHyAfIB8gICAfHyEhHyAfIB8fICAfIR8gHx9DQCBkYiEeIB8fQj8gIB8hHx8hIR8fIB9BISEiIEEfICAgHyAgHyAfICAfIB8gIB8hIB8hHx8gHyAgHyEeICAfQ0AgZGEgICAfH0FBHyAfIB8hICAfIR8fQSEhISE/ICAhHyAgHyAgHyAfICAfICAfISAfICAfIB8gHyAgHyEfIEI/IYIADQUAAAAA'
+                                                 
+#       ac_down_28:    
+#         friendly_name: "AC Down 28"
+#         command_on: 'JgC+AGRiHyAfICBBPyAgICAfHyEgICAfH0IgIUBBQCEgHyAgHyAfICAfICAfIB8hIR8fICAfIB8gHyAgHyAfQ0AgZWEfICAfIEE/ICEeICAfISAgHyAgQCIgQEFBICAfICAfICAfIB8gHyAgICAhHiAgHyAgHyAfIB8gIB9DPyFlYCEfHyAfQkAfIR4gICAgIB8gIB9BISFAQUAhIB8hHx8gHyAfICAfIR8gICAfICAgHyEeIB8hHiAgIEI/IYMADQUAAAAAAAAAAAAA'
+
+#       ac_down_27:    
+#         friendly_name: "AC Down 27"
+#         command_on: 'JgDEAGNiHyAfICBBQCAgHx8gICEgHyAfH0IgIj8gIB8gIR8gHyAgICAfHyAfICAfICEfICAfICAgHx8gHyAgHyBCQSBlYCAfIR8fQUEfHyAgHyEgHyAgHyFAISE/ICAgHyEgHyAgHyAfIB8gIR4gIB8hIR4gIB8gHyAfICEeICAgQj8hZGIfICAfIEE/ICAfICAfISAgIB8fQSEhQCAfIB8hICAgHyAfHyAgIB8gHyAfIiAfHyAfICAfICAgHx8gIEJBH4MADQUAAAAA'
+
+#       ac_down_26:    
+#         friendly_name: "AC Down 26"
+#         command_on: 'JgC+AGRhICAgHyBAQR8gHyEeISAhHiEfH0FAQSIgQSAfICEeICAfIB8gHyAgHyEgHyAgHyEfIB8gHx8gIR8gQkAgZWAgHyAgIEBBHyAfHyAhIB8gICAfQUFAIiBAIR8gHyAgHyEfIB8fICAfISAfICAfIR8gHyAfHyAgHyBCQSBkYSAfICAfQUAgHyAfICAhHyAhHiBBQEEgIj8iHyAfICAfICAfIB8gIB8gIR8gIB8hHiAgIB8fICAfIUFBH4MADQUAAAAAAAAAAAAA'
+
+#       ac_down_25:    
+#         friendly_name: "AC Down 25"
+#         command_on: 'JgC+AGVgHyAhHiFAQR4gIB8gHyIfIB8gIEFBQD8gICEfICEeIB8gIB8gHyAgHyAhHyAgHyAgHyAfIB8gIB8gQkAhZGEgHyAgH0FAIB8gHyAgIR8gIB8gQUBBQCAfISAfICAfIB8gHyAgHyAgHyEgHyAgHyAfIB8gIB8gIB9DPyFkYSAgHyAfQj8gIB8gIB8hICAfIB9BQEFAIB8hICAfIB8gIB8gIB8gHyAfIh8gHyAfICAfICAfIB8gH0NAIIMADQUAAAAAAAAAAAAA'
+
+#       ac_down_24:    
+#         friendly_name: "AC Down 24"
+#         command_on: 'JgC+AGVgHyAgHyBBQCAfICEeHyIhHh8gIEE/ICI/QSAhHiEeIR8hHiEeHyAhHiAhHyAhHiIeHyAfICEeIB8gQkIfZGEhHiAgH0FAICEeIR4gIR8gIR4gQUEfH0FAISEeICAhHh8gIB8hHyEeHyEhHyEeIR4fICAfIh4hHh9DQR9kYh8gHyAhQEEeIB8gIB8hICAhHiE/Qh4fQj8iHyAhHh8gIB8iHiEeHyAfIiEeHyAhHiEeICAhHiAfIUFAIIQADQUAAAAAAAAAAAAA'
+
+#       ac_down_23:    
+#         friendly_name: "AC Down 23"
+#         command_on: 'JgDEAGNiHyAfICBBPyAgIB8gHyIfIB8gH0I/ICAfICAfISAfICAfIB8gHyAgHyAgHyEgHyAgHyAfICAfICAfIB9DPyFkYh8gHyAfQj8gIB8gIB8hICAfIB9BQCAfICAfICEfICAfICAfIB8gHyAhHiAhIR4gHyAgHyAfICEeIB8gQ0EfZGEgHyIeH0FCHiEeIR4hICAfIB8gQUAgHyAfICAhHyAfICAfICAfIB8gHyAgIR8gHyAgHyAgHyAfIB8gIEJAIIMADQUAAAAA'
+
+#       ac_down_22:    
+#         friendly_name: "AC Down 22"
+#         command_on: 'JgDEAGVgICAfICBAQCAfIB8gICEfICAgHyAfQSEhISFAISAfIB8gIB8gHyAfICAfICEfIB8gICAfIB8gHyAgHyBCQCFkYSAfICAfQUAgHyAfICAhHyAgHyAgH0EhISEhPyIfIB8gIB8gIB8gHyAfICAhHyAfICAfICAfIB8gIB8gQkAhY2IfICAfIEFAIB8gHyAfIh8gHyAgHyBBISEgIj8iHyAfIB8gIB8gIB8gHyAfIh8gIB8fICEeICAfIB8gIEJAIIMADQUAAAAA'
+
+#       ac_down_21:    
+#         friendly_name: "AC Down 21"
+#         command_on: 'JgDEAGRhICAhHh9BQh4gHyAfICEgHyAgHyAfQSMfQh4fIh8gIR4fIB8gIB8iHh8gIR8iHh8gIR4fICAfIh4hHh9DQCFjYh8gIR4gQT8gIR8fICEgIR4fIB8gIUAgIj8gISAhHiEeIR4iHiEeIR4hHiEgIR4hHiAfIh4hHh8gIR4gQkAhY2IfICAfIEFBHyEeHyAhIB8gHyAgHyBBISE/ICAhHyAgHyAgHyAfIB8gIB8gISAfICAfIB8gHyAgHyAgH0M/IYIADQUAAAAA'
+
+#       ac_down_20:    
+#         friendly_name: "AC Down 20"
+#         command_on: 'JgC+AGRhICAfIB9CPyAfICAgICAgHyAgHyAfQj9CPyEgIB8gHyAfICAgHyAfIB8hICAfIB8gIB8gIB8gHyAfQ0AhY2IfIB8gIEE/ICAgHyAfIh8gHyAfICBBP0I/Ih8gHyAgHyAgHyAfIB8gICEfIB8gIB8gIB8gHyAfICBCQCFkYR8gIB8gQUAgHyAfICAhHyAfICAgH0FAQUAhHyAgHyAgHyAfICAfICAfISAfICAfIB8gHyAgHyEfIEJAIIIADQUAAAAAAAAAAAAA'
+                
+#       ac_down_19:    
+#         friendly_name: "AC Down 19"
+#         command_on: 'JgDCAB8gIB8fQj8gIB8gIB8hICAgHx8gH0JAHyAfICEfICAfIR8gHyAfIR4hHiEgHyAgHyEfHyAgHyAfIR8gQj8hZGEhHx8gIEBBHyAfIB8gISAfIR8gHyBAQCAfICAhIB8fICEeICAfIB8gIB8gISAfHyAhHiAgHyAgHx8gIENAIGRhHyAgHyBBQR8gHx8gISAgHyAfICAfQUAgIB8gICEfHyAfICAfIR8fIB8gICEfICAfIB8gHyAgHyAfICBCQCCDAA0FAAAAAAAA'
+              
+#       ac_down_18:    
+#         friendly_name: "AC Down 18"
+#         command_on: 'JgDEAGRiHyAfICBBPyAgIB8gHyIfIB8gHyAgHyBBISE/Ih8gHyAgHyAgHyAfIB8gICEfIB8gIB8gIB8gHyAfICBCQCFkYR8gIB8gQUAgHyAfICAhHyAgHyAfICAfQSEhQCEfICAfICAfIB8gIB8gHyAhIB8gIB8gHyAfICAfICAfQz8hZGEgIB8gH0FAIB8gIB8gISAfICAfIB8gH0IgIUAhICAfIB8gHyAgHyAgHyAfISAgHyAfIB8gIB8iHh8gH0M/IYQADQUAAAAA'
+
+#       ac_down_17:    
+#         friendly_name: "AC Down 17"
+#         command_on: 'JgDEAGRiHyAfIB9CPyAgHyAgHyIfIB8gHyAfICBBPyEfISAfICAhHiEeHyAhHiEeIh8gHyAfIh4fIB8gIR4gIB9DPyFkYSAgHyAfQUAgIR4gHyAhIB8gIB8gHyAfQj8gICEfIB8gIB8gIB8gHyAfICAhHyAfICAfICAfIB8gIB8gQkAhZGEgHyAfIEFAIB8gHyAgIR8gIB8gIB8gH0FAIB8hICAfIB8gIB8gIB8gHyAfIh8gHyAfICAfICAfIB8gH0NAIIMADQUAAAAA'
+
+#       ac_down_16:    
+#         friendly_name: "AC Down 16"
+#         command_on: 'JgDEAGNiHyAfICBBPyAiHiEeHyIfICEeHyAhHiAgH0FAISAfICAfIB8gHyAgIB8gHyEgHyAgHyAfICAfICAfIB9DPyFkYh8gHyAgQT8gIB8gICAgIR8gHyAfHyAhHiBBQSAgHyAfIR8gHx8gHyAgHyAhHyAgIB8gHyAgHyAfIR8fQz8hZGEgIB8gH0FBHyAfIB8gISAfICAfIB8gIB8gQUAhIB8gHyAfICAfICAfHyAhICAfIB8hHiAgHyAfICAfIEJAIIMADQUAAAAA'
+                                    
+
+# #################################################################
+# #                         AC Speed                              #
+# #################################################################                                                                                                                                 
+
+#       ac_speed_low:    
+#         friendly_name: "AC Speed low"
+#         command_on: 'JgDEAGNiHyAfICBBPyAgIB8gHyIfIB8gHyAgHyAgH0FAISAfICAfIB8gIB8gIB8gHyEgIB8gHyAfICAfICAfIB9DPyFkYh8gHyAgQUAfIR4gICAgIR8gHyAfIR4hHiFAQSAhHiEeIR8gHyAfIR4hHiEgIR4hHiEfIB8gHyEeIR8gQkAgZWAhHyAfIEBBHyAfIR4hICEeIR8gHyAfIR4hQEEgIB8gHyEeIR8gHyAfIR4hICAfIR4hHiEfIB8fICEeIUFBH4QADQUAAAAA'
+
+#       ac_speed_medium:    
+#         friendly_name: "AC Speed Medium"
+#         command_on: 'JgC+AGRiHyAfIB9CP0JAHyEgHyAgHyEfHyAgHx9CPyIfIB8gIB8hHiAgHyAfICAhIB8gHyAfIR8fIB8gIB8gQkAhZGEfICAfIUBBQEAgHyEgIB8gIB8gHyAfIUBBIB8gIR4hHyAfHyAfICAfISAgHyEeICAgHx8gHyAgIB9DPyFlYCAfICAgQEFAQR8fIh8gHyAgHyEfHyAgQEEgIB8gICAfIB8hHiEfHyAgICIeHyAgHyAfIB8gIB8gIEI/IYMADQUAAAAAAAAAAAAA'
+                                     
+#       ac_speed_high:    
+#         friendly_name: "AC Speed High"
+#         command_on: 'JgDEAGVgHyAfICBBICI/ICAfICEgHyAgHyAfIB8gIEE/Ih8gHyAgHyAgHyAfICAfISAfICAfICAfICAfHyAgHyFBQCFkYSAfICAfQSEhQCAfICAhHyAfIB8gIB8gIB9BQCEgHyAgIB8gHyAfIR4gIB8hIB8gIB8gIB8gHyEeIR8fQ0AgZGEhHx8gIEEhIEAgHyAfIh8gIB8gIB8gIB8gQUAhIB8fICAfIR4hHyAfHyAgIR8gHyAgHyAfICAfICAfIEJBH4MADQUAAAAA'
+
+#       ac_speed_auto:    
+#         friendly_name: "AC Speed Auto"
+#         command_on: 'JgDEAGVgICAfIB9BISEhIUAgHyEgHyEfHyAfIB8gIEFBIB8gIB8hHyAfHyAgHyAfICEgHyAfIR8fIB8gHyAhHiBCQSBkYSEeIR8gQCIgICJAHyAhIR4hHyAfIB8gHyBBPyIfIB8gIR4gIB8gHyAgHyAhIB8fICAgHyAgHx8gHyAhQUEgZWAgHyEfIEAhISEhPyAhIB8gIB8hHx8gIB8hQEAhIB8gHyAfICAgHyAfHyAgIR8gIB8gHyAgHyAfIB8gIEJBH4MADQUAAAAA'
+        
+
+# #################################################################
+# #                         LG Tv Broadlink                       #
+# #################################################################
+
+#   - platform: broadlink
+#     host: !secret blink_host
+#     mac: !secret blink_mac
+#     timeout: 15
+#     switches: 
+#       tv_lg:
+#         friendly_name: "LG Tv"
+#         command_on: 'JgBYAAABKpIVEBURFDUWEBQRFBETEhURFDUVNRUQFTUVNRQ2FDUTNxQTExEUEhE3ExQTERMSFRITNRU1FDYUEhI3FDUVNRM3FQAFMwABKEoWAAxMAAEqSBUADQU='
+#         command_off: 'JgBYAAABKpIUERURFDUVERQRFBEVEBURFDUVNRUQFTUVNRQ2FDUVNRQTERMUERQ1FRIRExQRFREUNRU1FDYUERM3FDUVNRU1EgAFNQABKkgVAAyAAAEoShQADQU='
+#       lg_volume_up:
+#         friendly_name: "LG TV Volume up"
+#         command_on: 'JgBQAAABJZMTEhITETgSExEUERMSExITETgSOBITETgSNxM3ETgSOBEUETgRFBETEhMSExEUERMTNxISEzcROBM3ETgSOBI3EwAFGQABJkoSAA0FAAAAAAAAAAA='
+#       lg_volume_down:
+#         friendly_name: "Lg TV Volume Down"
+#         command_on: 'JgBYAAABJpMSExEUETgSExEUERMSExEUETgSOBMREjgROBI4ETgSNxI4EjgRExITERQRExITEhMRFBETEjgROBI4ETgSOBE4EQAFGwABJkoSAAxFAAEmShIADQU=' 
+
+
+#   - platform: broadlink
+#     timeout: 15
+#     host: !secret blink_host
+#     mac: !secret blink_mac
+#     switches:
+#       yes_mute:
+#         friendly_name: "Yes Mute"
+#         command_on: 'JgBYAAABJ5MSExEUEjcSExEUERQRExEUETgSNhMTEjgROBI4ETgSOBE4EhMRFBE4ExIRExITEhMRFBE4ETgSExI4ETgRORE4EQAFGwABJUsRAAxGAAEmShIADQU='
+
+#       move_channels_up:
+#         friendly_name: "Move channels up"
+#         command_on: 'JgBQAAABJZMSExEUETgSExEUERMSExE5ERMSExE4EjgROBI4ExIRExI4EhISOBEUETgROBITEhMRFBE4ERQROBITERQROBE5EQAFZAABJUsRAA0FAAAAAAAAAAA='
+
+#       move_channels_down:
+#         friendly_name: "Move channels down"
+#         command_on: 'JgBQAAABJZQRExITEjcSExITERQRExI4ERMSExI4ETgRORE4ERQRExI4ETgSOBISEjgROBITERQRFBETEhMROBITERQROBI4EQAFZAABJkoSAA0FAAAAAAAAAAA='
+        
+#       info:
+#         friendly_name: "info"
+#         command_on: 'JgBQAAABJZQRExITETkRExITERQRExI4ERMSExI4ETgRORE4ERQRExITERQROBI4ERMSOBEUERMSOBE4EhMRFBE4ERQROBI4EQAFZAABJkoSAA0FAAAAAAAAAAA='  
+
+
+
+  
+    
+# ####################################################
+# #                                                  #
+# #                      LG TV Broadlink             #
+# #                                                  #
+# ####################################################
+# media_player:
+# #################################################################
+# #                         LG Tv Broadlink                       #
+# #################################################################
+#   - platform: webostv
+#     host: !secret lg_tv_host
+#     name: Living Room TV  
+#     timeout: 5
+#     filename: webostv.conf
+#     turn_on_action:
+#       service: wake_on_lan.send_magic_packet
+#       data:
+#         mac: !secret webostv
+
+
+
+
+# #################################################################
+# #                                                               #
+# #                         scripts                               #
+# #                                                               #
+# #################################################################
+
+# script:
+# #################################################################
+# #                         LG Tv Broadlink                       #
+# #################################################################
+#       # Channel 0
+#       channel_0:
+#         alias: 'TV - channel 0'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJ5MSExETEjgSExITERMSExI4ERMSExM3EjcTNxI3EhMTEhE4EjgSExEUETgSOBEUEhISExITEjcSOBITEhITNxI4EgAFZQABJ0oRAA0FAAAAAAAAAAA="
+      
+#       # NED 1
+#       channel_1:
+#         alias: 'TV - channel 1'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBYAAABJpMSExITEjgSEhIUEBQRFBI3ExIRFBE4EjgSNxM3EhMSExETEhMSExEUETgSOBISExITNxI3EjgROBMSEhMRORI3EgAFZgABJkoTAAxJAAEmSxIADQU="
+      
+#       # NED 2
+#       channel_2:
+#         alias: 'TV - channel 2'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZQSExETEzcSFBETEhISExI4ERMTEhI4ETgTNxE4ExISExE5ERMSExI4FBASOBEUEhISExI4ETgRFBI4ERMSNxI5EQAFZgABJksRAA0FAAAAAAAAAAA="
+      
+#       # NED 3
+#       channel_3:
+#         alias: 'TV - channel 3'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBYAAABJ5MRFBETEjgRFBETExISExE4ExISExE5ETgSOBI3EhMSExE4EhMSExI3EjgSOBISEhMRFBM2EzcSExEUERMSOBI3EwAFZQABJkoTAAxJAAEnShIADQU="
+      
+#       # RTL 4
+#       channel_4:
+#         alias: 'TV - channel 4'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJpMSExEUETgSExEUERMSExI4ERMSExI4EjcSOBI4EhISExEUEhMRExM3EhMROBITERQSNxI4EjcTEhI4EhMROBI0FQAFZgABJksSAA0FAAAAAAAAAAA="
+      
+#       # RTL 5
+#       channel_5:
+#         alias: 'TV - channel 5'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJpMSExEUETgSExEUERMSExI4ERMSExI4EjcSOBI4EhISExEUEhMRExM3EhMROBITERQSNxI4EjcTEhI4EhMROBI0FQAFZgABJksSAA0FAAAAAAAAAAA="
+      
+#       # SBS 6
+#       channel_6:
+#         alias: 'TV - channel 6'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBYAAABJ5MSEhITEjgTEhETEhMSExI4ERMSExE4EzgROBI3EhMRFBEUERQRExE5EjgROBITEhISOBI3EjcSFBITEhIRORE4EwAFZQABJkoTAAxJAAEnShEADQU="
+      
+#       # RTL 7
+#       channel_7:
+#         alias: 'TV - channel 7'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZQRFRAUETgSExEUERQRExE5EhMRFBA5EjcSOBI3EhMSExITEjgQFBEUEjgSNxEUEhMSNxEUETgSOBMSERMSOBE5EQAFZgABJksRAA0FAAAAAAAAAAA="
+      
+#       # RTL 8
+#       channel_8:
+#         alias: 'TV - channel 8'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJpQSExETETkRFBISEhQQFRE4EhISExI4EjcSOBE4EhMSExEUETgSExE5ERMRORETEhMSOBEUEjcTEhI3EhQQORE4EgAFZgABJkoSAA0FAAAAAAAAAAA="
+      
+#       # NET 5
+#       channel_9:
+#         alias: 'TV - channel 9'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJpMSExEUETgSExEVERMRExI4FBERFBE4ETkSNxI4ERQSEhIUEDkSEhIUEBUQORISERUQORETEjgSNxM3ERURNxM3EQAFZgABJ0sQAA0FAAAAAAAAAAA="
+
+
+#       # Settings
+#       settings:
+#         alias: 'TV - Settings'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZQSExAVETkQFBEUEhMQFBIUETgROBEUETgSOBE5ETkQORM2EToTERI3EhQRExEUEBURExEUEjcRFBE5EjgQORE5EQAFHAABJUwSAA0FAAAAAAAAAAA="
+
+
+
+#       # HDMI2
+#       hdmi2:
+#         alias: 'TV - HDMI2'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZQRFBEUETgSExEUERMSExITEjgROBITEjcSOBE5ETgSOBE4EzcRFBE4EhMRFBEUERMSExITEjcSExE5EjcSOBI3EwAFGwABJksSAA0FAAAAAAAAAAA="
+
+#       # HDMI3
+#       hdmi3:
+#         alias: 'TV - HDMI3'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZUSExITEDkTEhETERQSFBAUEjcRORITETkQORE4ETkROBI4ETgSFBE3EhQRFBAVERQQFBETEjgRFBI4ETgROBM4EAAFHQABJkoTAA0FAAAAAAAAAAA="
+                
+
+
+#       # MUTE
+#       mute:
+#         alias: 'TV - MUTE'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZUSEhITEjcSFBISEhMRFBEUEjcSOBETEjgSOBE4EjgROBI4EhMRExM3EhMRFBETEhMRFBE4EjgRFBI3EjgSNxI4EgAFHAABJUsSAA0FAAAAAAAAAAA="
+                
+ 
+ 
+#       # Volume
+#       volume_up:
+#         alias: 'TV - Volume UP'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZQTEhIUEDkRExITEhMRFBISEjgSOBETEjgRORI3EjcSOBITEjcSFBETEhMRExITExIRORETEjgSOBI3ETkQORE5EQAFHgABJUoSAA0FAAAAAAAAAAA=="
+  
+#     # Volume
+#       volume_down:
+#         alias: 'TV - Volume Down'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZURExITETkRFBISEhMRFRAUETgSOBETEzUTORI3EjgRORE4EjcSFBETEhQPFBITEhMSExEUETgSOBE4ETkROBI4EQAFHQABJ0oSAA0FAAAAAAAAAAA=="              
+                
+                
+
+#     # Channel up
+#       channel_up:
+#         alias: 'TV - Channel up'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJpMSExITETkRExITERQSExI3EhMQFRI3EjgROBI4EhMRFBI3ERQSNxMSEzcROBITERQRFBE4EhMSNxQREhMRORE4EwAFZQABJkoSAA0FAAAAAAAAAAA="              
+                
+
+#     # Channel Down
+#       channel_down:
+#         alias: 'TV - Channel Down'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJ5IUEhISEjkPFRISExIRFRE3ExISFBA5EjcSOBE4EhMRFBE4EjgTNxETEjgROBQSERMRFRAUEhISOBITEhMRORA5EgAFZQABJksRAA0FAAAAAAAAAAA="
+                
+
+
+
+#       back:
+#         alias: 'TV - Back'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJpQTERETEjkQFRETEhISFBA5EhIRFRA5EjcSOBE4EhMRFRAUETkSExA5EzcQOREUERMSOBITEjcRFBITEhITNxI4EgAFZQABJkwRAA0FAAAAAAAAAAA="
+                
+
+
+#       left:
+#         alias: 'TV - left'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJZQSFBETEjcSExEUEhITEhI4FQ8TEhI4ETgTNxI3ExISFBAUERQROBEVEDgSOBITERQROBE5EhITNxITERMSOBI4EQAFZgABJ0oSAA0FAAAAAAAAAAA="
+ 
+ 
+
+#       right:
+#         alias: 'TV - right'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJ5ITEhEVDzkTEhIUEBUQFBE4FBESExE4EjgROBI4EhMRExI4EzYTEhI4EjcSOBEUEhMRExIUETgRExITERQSNxI4EQAFZgABJ0oRAA0FAAAAAAAAAAA="
+                
+            
+#       up:
+#         alias: 'TV - up'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJ5MRFBITEjcRFBITERQRFBA5EhISExE4EjgRORE4ERURExE4EjgSExE4ERUQOBMTEBUQFBISEzgQFBI3EhQQORE4EQAFZwABJksRAA0FAAAAAAAAAAA="
+
+
+#       down:
+#         alias: 'TV - down'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBQAAABJpQRExITETgSFBAUEhITEhI4EhMRExI4EjgROBE5EhMRFBAVDxURORAVEBQRORETERUROBA5EhMROBI4ERQROBE5EgAFZQABJksSAA0FAAAAAAAAAAA="
+                                
+
+#       ok:
+#         alias: 'TV - ok'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBIAAABJpQSExEUEjcRFBITExESFBE4ERMSFBA5EzYSOBE4EhMSFBA4EjgRFBETEhQROBEUEhISExITETgTNxI3EhMSOBE4EwANBQ="
+                
+                
+#       tv_on:
+#         alias: 'TV - on'
+#         sequence:
+#           - service: broadlink.send
+#             data:
+#               host: !secret blink_host
+#               packet:
+#                 - "JgBYAAABKpIVEBURFDUWEBQRFBETEhURFDUVNRUQFTUVNRQ2FDUTNxQTExEUEhE3ExQTERMSFRITNRU1FDYUEhI3FDUVNRM3FQAFMwABKEoWAAxMAAEqSBUADQU"
+                
+                    

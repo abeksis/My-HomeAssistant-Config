@@ -1,0 +1,44 @@
+#################################################################
+#                                                               #
+#              Packages/Greetet Card - ברוך הבא                 #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                           sensor                              # 
+#                                                               #
+#################################################################
+sensor:
+
+  - platform: time_date
+    display_options:
+      - 'time'
+
+  - platform: template
+    sensors:
+      time_of_day:
+        value_template: >
+          {% set current_hour = strptime(states('sensor.time'), "%H:%M").hour %}
+          {% if current_hour < 12 %}
+            Good Morning, Avi
+          {% elif 12 <= current_hour < 18 %}
+            Good Afternoon, Avi
+          {% elif 18 <= current_hour < 23 %}
+            Good Evening, Avi
+          {% else %}
+            Good Night, Avi
+          {% endif %}
+
+  - platform: template
+    sensors:
+      greeter_card_info:
+        value_template: > 
+          פרטי:
+          האירוע הבא {{ as_timestamp(states.calendar.avi_abeksis.attributes.start_time) | timestamp_custom('- %d/%m/%Y בשעה %H:%M')  }}
+  - platform: template
+    sensors:
+      greeter_card_info_2:
+        value_template: > 
+          עבודה:
+          האירוע הבא {{ as_timestamp(states.calendar.work.attributes.start_time) | timestamp_custom('- %d/%m/%Y בשעה %H:%M')  }}

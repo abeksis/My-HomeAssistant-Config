@@ -1,0 +1,71 @@
+#################################################################
+#                                                               #
+#                    Packages/Backup                            #  
+#                                                               # 
+#                                                               #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    script.backup_ha_and_move_backup_to_unraid:
+      friendly_name: Backup and move to another server
+      icon: mdi:backup-restore
+      assumed_state: false      
+    
+      
+#################################################################
+#                                                               #
+#                           script                              #
+#                                                               #
+#################################################################
+script:
+
+  backup_ha_and_move_backup_to_unraid:
+     alias: 'Backup All HA and Move To Unraid HP'
+     sequence:
+       - service: shell_command.backup_ha_and_move_backup_to_unraid
+
+      
+
+
+#################################################################
+#                                                               #
+#                           sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+  - platform: command_line
+    command: "bash /config/bin/latest_Hass_backup.py"
+    name: 'Latest HA Backup'
+    scan_interval: 43200 #12 Hours
+
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+
+  - alias: 'Daily home_assistant Backup'
+    initial_state: 'on'
+    trigger:
+      platform: time
+      at: '02:00:00'
+    action:
+      - service: script.turn_on
+        entity_id: script.backup_ha_and_move_backup_to_unraid
+      - service: notify.avitelegram
+        data:
+          title: 'הודעת גיבוי'
+          message: 'הגיבוי השבועי בוצע, בדוק תקינות הקבצים בשרת הנפרד.'

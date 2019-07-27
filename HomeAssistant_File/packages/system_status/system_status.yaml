@@ -1,0 +1,624 @@
+#################################################################
+#                                                               #
+#                    Packages/Core Network                      #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  core network:
+    name: Core Network
+    view: no
+    entities:
+      - binary_sensor.switch
+
+      
+  core devices:
+    name: Core Devices
+    view: no
+    entities:
+      - binary_sensor.nas_movies
+      - binary_sensor.xtreamer_whizz
+      - binary_sensor.unriad
+      - binary_sensor.gateway_v3_xiaomi
+      - binary_sensor.google_home_mini
+      - binary_sensor.windows_10_vm
+      - binary_sensor.windows_liran
+      - binary_sensor.desktop_4fdcngh
+      
+  ha devices:
+    name: HA Devices
+    view: no
+    entities:
+      - binary_sensor.ipad
+
+  media devices:
+    name: Media Devices
+    view: no
+    entities:
+      - binary_sensor.media_tv
+
+
+#################################################################
+#                                                               #
+#                       Device Tracker                          #
+#                                                               #
+#################################################################
+
+device_tracker:
+
+  - platform: luci
+    host: 192.168.1.1
+    track_new_devices: true
+    interval_seconds: 15     
+    username: !secret openwrt_username
+    password: !secret openwrt_password 
+
+  - platform: unifi_direct
+    host: 192.168.1.14
+    username: !secret unifi_username
+    password: !secret unifi_password
+
+
+
+####################################################
+#                                                  #
+#               Device Track - Ping                #
+#                                                  #
+####################################################
+  - platform: ping
+    hosts:
+      core_router: !secret core_router
+      nas_movies: !secret nas_movies
+      xtreamer_whizz: !secret xtreamer_whizz
+      unriad: !secret unriad
+      broadlink_remote: !secret broadlink_remote
+      gateway_v3_xiaomi: !secret gateway_v3_xiaomi
+      switch: !secret switch
+      unifi_docker: !secret unifi_docker
+      google_home_mini: !secret google_home_mini
+      media_tv: !secret media_tv
+      ipad: !secret ipad
+      windows_10_vm: !secret windows_10_vm
+      desktop_4fdcngh: !secret desktop_4fdcngh
+      windows_liran: !secret windows_liran
+
+      
+####################################################
+#                                                  #
+#               Device Track - NMAP                #
+#                                                  #
+####################################################
+
+
+  - platform: nmap_tracker
+    hosts:
+      - 192.168.1.1
+      - 192.168.1.14
+      
+
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+
+binary_sensor:
+
+####################################################
+#                                                  #
+#            Binary Sensor - Template              #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      router:
+        friendly_name: Router
+        device_class: connectivity
+        entity_id: device_tracker.core_router
+        value_template: "{{ is_state('device_tracker.core_router', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.core_router', 'home') %}
+            mdi:router-wireless
+          {% else %}
+            mdi:router-wireless
+          {% endif %}
+          
+          
+      unifi_docker:
+        friendly_name: UniFi
+        device_class: connectivity
+        entity_id: device_tracker.unifi_docker
+        value_template: "{{ is_state('device_tracker.unifi_docker', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.unifi_docker', 'home') %}
+            mdi:access-point
+          {% else %}
+            mdi:access-point
+          {% endif %}
+          
+          
+      switch:
+        friendly_name: HP Switch
+        device_class: connectivity
+        entity_id: device_tracker.switch
+        value_template: "{{ is_state('device_tracker.switch', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.switch', 'home') %}
+            mdi:switch
+          {% else %}
+            mdi:switch
+          {% endif %}
+          
+          
+      nas_movies:
+        friendly_name: NAS Movies
+        device_class: connectivity
+        entity_id: device_tracker.nas_movies
+        value_template: "{{ is_state('device_tracker.nas_movies', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.nas_movies', 'home') %}
+            mdi:harddisk
+          {% else %}
+            mdi:harddisk
+          {% endif %}
+          
+      xtreamer_whizz:
+        friendly_name: Xtreamer Whizz Shows
+        device_class: connectivity
+        entity_id: device_tracker.xtreamer_whizz
+        value_template: "{{ is_state('device_tracker.xtreamer_whizz', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.xtreamer_whizz', 'home') %}
+            fas:film
+          {% else %}
+            fas:film
+          {% endif %}
+          
+      unriad:
+        friendly_name: Unriad Man
+        device_class: connectivity
+        entity_id: device_tracker.unriad
+        value_template: "{{ is_state('device_tracker.unriad', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.unriad', 'home') %}
+            fas:server
+          {% else %}
+            fas:server
+          {% endif %}
+          
+          
+      google_home_mini:
+        friendly_name: Alexa
+        device_class: connectivity
+        entity_id: device_tracker.google_home_mini
+        value_template: "{{ is_state('device_tracker.google_home_mini', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.google_home_mini', 'home') %}
+            mdi:voice
+          {% else %}
+            mdi:voice
+          {% endif %}
+          
+          
+      windows_10_vm:
+        friendly_name: windows 10 VM
+        device_class: connectivity
+        entity_id: device_tracker.windows_10_vm
+        value_template: "{{ is_state('device_tracker.windows_10_vm', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.windows_10_vm', 'home') %}
+            mdi:windows
+          {% else %}
+            mdi:windows
+          {% endif %}
+          
+          
+      windows_liran:
+        friendly_name: windows 10 Liran
+        device_class: connectivity
+        entity_id: device_tracker.windows_10_vm
+        value_template: "{{ is_state('device_tracker.windows_liran', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.windows_liran', 'home') %}
+            mdi:windows
+          {% else %}
+            mdi:windows
+          {% endif %}  
+          
+          
+      desktop_4fdcngh:
+        friendly_name: desktop_4fdcngh
+        device_class: connectivity
+        entity_id: device_tracker.desktop_4fdcngh
+        value_template: "{{ is_state('device_tracker.desktop_4fdcngh', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.desktop_4fdcngh', 'home') %}
+            mdi:windows
+          {% else %}
+            mdi:windows
+          {% endif %}
+          
+          
+      gateway_v3_xiaomi:
+        friendly_name: Xiaomi Gateway
+        device_class: connectivity
+        entity_id: device_tracker.gateway_v3_xiaomi
+        value_template: "{{ is_state('device_tracker.gateway_v3_xiaomi', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.gateway_v3_xiaomi', 'home') %}
+            mdi:server
+          {% else %}
+            mdi:server
+          {% endif %}
+          
+          
+      ipad:
+        friendly_name: HA Automation Server
+        device_class: connectivity
+        entity_id: device_tracker.ipad
+        value_template: "{{ is_state('device_tracker.ipad', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.ipad', 'home') %}
+            fas:tablet-alt
+          {% else %}
+            fas:tablet-alt
+          {% endif %} 
+          
+          
+      media_tv:
+        friendly_name: Media 4K TV
+        device_class: connectivity
+        entity_id: device_tracker.media_tv
+        value_template: "{{ is_state('device_tracker.media_tv', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.media_tv', 'home') %}
+            mdi:television
+          {% else %}
+            mdi:television
+          {% endif %}  
+
+
+      broadlink_remote:
+        friendly_name: Broadlink Remote
+        device_class: connectivity
+        entity_id: device_tracker.broadlink_remote
+        value_template: "{{ is_state('device_tracker.broadlink_remote', 'home') }}"
+        icon_template: >-
+          {% if is_state('device_tracker.broadlink_remote', 'home') %}
+            mdi:remote
+          {% else %}
+            mdi:remote
+          {% endif %}        
+
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+  - platform: snmp
+    host: 192.168.1.1
+    baseoid: 1.3.6.1.2.1.1.3.0
+    name: linksys Uptime
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}
+
+#################################################################
+#                                                               #
+#                       Template Sensors                        #
+#                                                               #
+################################################################# 
+   
+  - platform: template
+    sensors:
+        
+      core_router_state:
+        friendly_name: Router
+        entity_id: device_tracker.core_router
+        value_template: >-
+          {% if is_state('device_tracker.core_router', 'home') %}
+            100
+          {% elif is_state('device_tracker.core_router', 'not_home') %}
+            0
+          {% endif %}
+          
+      unifi_docker:
+        friendly_name: UniFi
+        entity_id: device_tracker.unifi_docker
+        value_template: >-
+          {% if is_state('device_tracker.unifi_docker', 'home') %}
+            100
+          {% elif is_state('device_tracker.unifi_docker', 'not_home') %}
+            0
+          {% endif %}
+          
+      switch:
+        friendly_name: HPE Switch
+        entity_id: device_tracker.switch
+        value_template: >-
+          {% if is_state('device_tracker.switch', 'home') %}
+            100
+          {% elif is_state('device_tracker.switch', 'not_home') %}
+            0
+          {% endif %}
+
+      broadlink_remote:
+        friendly_name: Broadlink Remote
+        entity_id: device_tracker.broadlink_remote
+        value_template: >-
+          {% if is_state('device_tracker.broadlink_remote', 'home') %}
+            100
+          {% elif is_state('device_tracker.broadlink_remote', 'not_home') %}
+            0
+          {% endif %}
+
+      nas_movies:
+        friendly_name: NAS Movies
+        entity_id: device_tracker.nas_movies
+        value_template: >-
+          {% if is_state('device_tracker.nas_movies', 'home') %}
+            100
+          {% elif is_state('device_tracker.nas_movies', 'not_home') %}
+            0
+          {% endif %}
+
+
+      xtreamer_whizz:
+        friendly_name: Xtreamer Whizz Shows
+        entity_id: device_tracker.xtreamer_whizz
+        value_template: >-
+          {% if is_state('device_tracker.xtreamer_whizz', 'home') %}
+            100
+          {% elif is_state('device_tracker.xtreamer_whizz', 'not_home') %}
+            0
+          {% endif %}
+
+
+      unriad:
+        friendly_name: Unriad Man
+        entity_id: device_tracker.unriad
+        value_template: >-
+          {% if is_state('device_tracker.unriad', 'home') %}
+            100
+          {% elif is_state('device_tracker.unriad', 'not_home') %}
+            0
+          {% endif %}
+
+
+      google_home_mini:
+        friendly_name: Google Home mini
+        entity_id: device_tracker.google_home_mini
+        value_template: >-
+          {% if is_state('device_tracker.google_home_mini', 'home') %}
+            100
+          {% elif is_state('device_tracker.google_home_mini', 'not_home') %}
+            0
+          {% endif %}
+
+
+      gateway_v3_xiaomi:
+        friendly_name: Xiaomi Gateway
+        entity_id: device_tracker.gateway_v3_xiaomi
+        value_template: >-
+          {% if is_state('device_tracker.gateway_v3_xiaomi', 'home') %}
+            100
+          {% elif is_state('device_tracker.gateway_v3_xiaomi', 'not_home') %}
+            0
+          {% endif %}
+
+
+      main_capacity:
+        friendly_name: Main Capacitiy
+        entity_id: sensor.bh_main_capacity
+        value_template: '{{ (states.sensor.bh_main_capacity.state|int /1000) }}'
+        unit_of_measurement: 'Mbps'
+
+
+####################################################
+#                                                  #
+#                  Sensor - SNMP                   #
+#                                                  #
+#################################################### 
+
+
+      
+  - platform: snmp
+    scan_interval: 60
+    name: "OpenWrt Uptime"
+    host: 192.168.1.1
+    baseoid: 1.3.6.1.2.1.25.1.1.0
+    value_template: >-
+        {% set timetick = value | int %}
+        {% set minutes = ((timetick % 360000) / 6000) | int%}
+        {% set hours = ((timetick % 8640000) / 360000) | int %}
+        {% set days = (timetick / 8640000) | int %}
+        {%- if timetick < 6000 -%}
+          Less than a minute
+        {%- else -%}
+          {%- if days > 0 -%}
+            {%- if days == 1 -%}
+              1 day
+            {%- else -%}
+              {{ days }} days
+            {%- endif -%}
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ', ' }}
+            {%- endif -%}
+            {%- if hours == 1 -%}
+              1 hr
+            {%- else -%}
+              {{ hours }} hrs
+            {%- endif -%}
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ', ' }}
+            {%- endif -%}
+            {%- if minutes == 1 -%}
+              1 min
+            {%- else -%}
+              {{ minutes }} min
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+
+ ## OpenWrt ##
+  - platform: snmp
+    host: 192.168.1.1
+    baseoid: 1.3.6.1.2.1.2.2.1.10.3
+    name: 'OpenWrt lan'
+
+
+  - platform: snmp
+    host: 192.168.1.1
+    baseoid: 1.3.6.1.4.1.2021.11.52.0
+    name: 'OpenWrt CPU > system'
+
+  - platform: snmp
+    host: 192.168.1.1
+    baseoid: 1.3.6.1.4.1.2021.10.1.5.1
+    name: 'OpenWrt Load Average'
+
+ 
+ ## Unifi ##
+  - platform: snmp
+    host: 192.168.1.14
+    baseoid: 1.3.6.1.2.1.1.5.0
+    name: 'UniFi Name'
+
+  - platform: snmp
+    host: 192.168.1.14
+    baseoid: 1.3.6.1.4.1.41112.1.6.1.2.1.8.3
+    name: 'UniFi Number connected 5G'
+
+
+  - platform: snmp
+    host: 192.168.1.14
+    baseoid: 1.3.6.1.4.1.41112.1.6.1.2.1.8.1
+    name: 'UniFi Number connected 2G'  
+
+
+  - platform: snmp
+    host: 192.168.1.14
+    baseoid: 1.3.6.1.4.1.10002.1.1.1.4.2.1.3.1
+    name: 'UniFi CPU usage 1M'   
+
+
+    ## Work No numbers  
+  - platform: snmp
+    host: 192.168.1.14
+    baseoid: 1.3.6.1.4.1.41112.1.6.3.3.0
+    name: 'UniFi Model'
+
+
+  
+  - platform: snmp
+    host: 192.168.1.14
+    baseoid: 1.3.6.1.2.1.1.3.0
+    name: 'UniFi Uptime'
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}  
+        
+
+#################################################################
+#                                                               #
+#                          Automations                          #
+#                                                               #
+################################################################# 
+
+automation:
+# ## Notify if CPU Temperature is High
+  - alias: CPU Temp Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.cpu_temp
+      above: 40
+    action:
+      - service: notify.avitelegram
+        data:
+          title: 'Home Assistant CPU Temp Server'
+          message: 'Warning - HA Server CPU Temp Above 40c'
+          
+## Notify if ISP Download Speed has dropped
+  - alias: Internet Download Speed Drop
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.speedtest_download
+      below: 90
+    action:
+      - service: notify.avitelegram
+        data:
+          title: 'Home Assistant Unraid Server'
+          message: 'Warning - ISP Download Speed is lower then 90Mbps'
+          
+
+## Notify if the database is High
+  - alias: Database Use Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.home_assistant_v2_db
+      above: 800
+    action:
+      - service: notify.avitelegram
+        data:
+          title: 'Home Assistant Database'
+          message: 'Warning - Database is Use is above 800mb'
