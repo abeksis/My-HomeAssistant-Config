@@ -61,7 +61,7 @@ The project presented - is my smart home project. Where I sat for hours and was 
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/00.Home_01.jpg" style="max-width:100%;"></a></td>
+<td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/new/lovelace-11.jpg" style="max-width:100%;"></a></td>
 </tr></tbody></table>
 
 <table>
