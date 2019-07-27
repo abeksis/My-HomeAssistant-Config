@@ -147,9 +147,6 @@ vacuum:
 #                                                               #
 #################################################################
 
-automation:
-
-          
 
 # ## Charge Appliances overnight
 #   - alias: Appliance Charging after Daily Clean
