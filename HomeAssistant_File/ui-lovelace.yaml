@@ -5337,362 +5337,360 @@ views:
                           action: call-service
                           service: switch.lg_tv_button                         
 
-          - type: custom:vertical-stack-in-card
-            cards: 
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:settings
+                  name: "Settings"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - Settings
+                      device: 63672918
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:power-standby
+                  name: "TV ON"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - PowerOn
+                      device: 63672918
+
+                  
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:arrow-up-bold
+                  name: "UP"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - DirectionUp
+                      device: 63672918
+
+                  
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:power-standby
+                  name: "TV OFF"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - PowerOff
+                      device: 63672918
+               
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - border: solid 1px rgba(40,40,40,1)
+                name: "VOLUME"
+                icon: mdi:volume-plus
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.living_room
+                    command:
+                        - VolumeUp
+                    device: 63672918
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:arrow-left-bold
+                  name: "LEFT"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - DirectionLeft
+                      device: 63672918
+
+
+ 
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:camera-control
+                  name: "ENTER"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - OK
+                      device: 63672918
+
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                
+                  icon: mdi:arrow-right-bold
+                  name: "RIGHT"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - DirectionRight
+                      device: 63672918
+
+
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - border: solid 1px rgba(40,40,40,1)              
+                icon: mdi:volume-minus
+                name: "volume up"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.living_room
+                    command:
+                        - VolumeDown
+                    device: 63672918
+
+
+
+              - type: custom:button-card
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - border: solid 1px rgba(40,40,40,1)              
+                icon: mdi:minus
+                name: "CHANNEL"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.living_room
+                    command:
+                        - ChannelUp
+                    device: 63672918
+
+
+
+              - type: custom:button-card
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - border: solid 1px rgba(40,40,40,1)              
+                icon: mdi:arrow-down-bold
+                name: "DOWN"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.living_room
+                    command:
+                        - ChannelDown
+                    device: 63672918
+
+              - type: custom:button-card
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - border: solid 1px rgba(40,40,40,1)              
+                icon: mdi:plus
+                name: "CHANNEL"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.living_room
+                    command:
+                        - ChannelUp
+                    device: 63672918
+
+
+
+
+          - type: horizontal-stack
+            cards:
               - type: horizontal-stack
                 cards:
-                  - type: custom:card-modder
+                - type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:settings
-                      name: "Settings"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - Settings
-                          device: 63672918
-    
-    
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                
+                  icon: mdi:volume-mute
+                  name: "Mute"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - Mute
+                      device: 63672918
+
+              - type: custom:button-card
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - border: solid 1px rgba(40,40,40,1)              
+                icon: mdi:backup-restore
+                name: "Exit"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.living_room
+                    command:
+                        - Exit
+                    device: 63672918
+
+              - type: custom:gap-card
+                height: 50
+                width: 50
+
+              - type: custom:gap-card
+                height: 50
+                width: 50
+
+
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:power-standby
-                      name: "TV ON"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - PowerOn
-                          device: 63672918
-    
-                      
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:gamepad-variant
+                  name: "HDMI 1"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - InputHdmi1
+                      device: 63672918
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:arrow-up-bold
-                      name: "UP"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - DirectionUp
-                          device: 63672918
-    
-                      
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:laptop-mac
+                  name: "HDMI 2"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - InputHdmi2
+                      device: 63672918
+
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:power-standby
-                      name: "TV OFF"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - PowerOff
-                          device: 63672918
-                   
-    
-              - type: horizontal-stack
-                cards:
-                  - type: custom:button-card
-                    styles:
-                      card:
-                        - border-radius: 5px
-                        - border: solid 1px rgba(40,40,40,1)
-                    name: "VOLUME"
-                    icon: mdi:volume-plus
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.living_room
-                        command:
-                            - VolumeUp
-                        device: 63672918
-    
-    
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:kodi
+                  name: "HDMI 3"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - InputHdmi3
+                      device: 63672918
+                
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:arrow-left-bold
-                      name: "LEFT"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - DirectionLeft
-                          device: 63672918
-    
-    
-     
-                  - type: custom:card-modder
-                    card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:camera-control
-                      name: "ENTER"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - OK
-                          device: 63672918
-    
-    
-    
-                  - type: custom:card-modder
-                    card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                
-                      icon: mdi:arrow-right-bold
-                      name: "RIGHT"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - DirectionRight
-                          device: 63672918
-    
-    
-    
-              - type: horizontal-stack
-                cards:
-                  - type: custom:button-card
-                    styles:
-                      card:
-                        - border-radius: 5px
-                        - border: solid 1px rgba(40,40,40,1)              
-                    icon: mdi:volume-minus
-                    name: "volume up"
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.living_room
-                        command:
-                            - VolumeDown
-                        device: 63672918
-    
-    
-    
-                  - type: custom:button-card
-                    styles:
-                      card:
-                        - border-radius: 5px
-                        - border: solid 1px rgba(40,40,40,1)              
-                    icon: mdi:minus
-                    name: "CHANNEL"
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.living_room
-                        command:
-                            - ChannelUp
-                        device: 63672918
-    
-    
-    
-                  - type: custom:button-card
-                    styles:
-                      card:
-                        - border-radius: 5px
-                        - border: solid 1px rgba(40,40,40,1)              
-                    icon: mdi:arrow-down-bold
-                    name: "DOWN"
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.living_room
-                        command:
-                            - ChannelDown
-                        device: 63672918
-    
-                  - type: custom:button-card
-                    styles:
-                      card:
-                        - border-radius: 5px
-                        - border: solid 1px rgba(40,40,40,1)              
-                    icon: mdi:plus
-                    name: "CHANNEL"
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.living_room
-                        command:
-                            - ChannelUp
-                        device: 63672918
-    
-    
-    
-    
-              - type: horizontal-stack
-                cards:
-                  - type: horizontal-stack
-                    cards:
-                    - type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                
-                      icon: mdi:volume-mute
-                      name: "Mute"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - Mute
-                          device: 63672918
-    
-                  - type: custom:button-card
-                    styles:
-                      card:
-                        - border-radius: 5px
-                        - border: solid 1px rgba(40,40,40,1)              
-                    icon: mdi:backup-restore
-                    name: "Exit"
-                    tap_action:
-                      action: call-service
-                      service: remote.send_command
-                      service_data:
-                        entity_id: remote.living_room
-                        command:
-                            - Exit
-                        device: 63672918
-    
-                  - type: custom:gap-card
-                    height: 50
-                    width: 50
-    
-                  - type: custom:gap-card
-                    height: 50
-                    width: 50
-    
-    
-    
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
-                    card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:gamepad-variant
-                      name: "HDMI 1"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - InputHdmi1
-                          device: 63672918
-    
-    
-                  - type: custom:card-modder
-                    card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:laptop-mac
-                      name: "HDMI 2"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - InputHdmi2
-                          device: 63672918
-    
-    
-    
-                  - type: custom:card-modder
-                    card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:kodi
-                      name: "HDMI 3"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - InputHdmi3
-                          device: 63672918
-                    
-    
-    
-                  - type: custom:card-modder
-                    card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:android
-                      name: "HDMI 4"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - InputHdmi4
-                          device: 63672918
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:android
+                  name: "HDMI 4"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - InputHdmi4
+                      device: 63672918
 
 
 
@@ -5729,242 +5727,240 @@ views:
                           action: call-service
                           service: switch.whizz_button                    
 
-          - type: custom:vertical-stack-in-card
-            cards:     
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:power
-                      name: "ON"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - PowerToggle
-                          device: 63674584
-                          
-                  - type: custom:card-modder
-                    card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:arrow-up-bold
-                      name: "UP"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - DirectionUp
-                          device: 63674584
-    
-    
-                  - type: custom:card-modder
-                    card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:youtube
-                      name: "Options"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - Options
-                          device: 63674584                
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:power
+                  name: "ON"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - PowerToggle
+                      device: 63674584
                       
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:arrow-left-bold
-                      name: "LEFT"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - DirectionLeft
-                          device: 63674584
-    
-    
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:arrow-up-bold
+                  name: "UP"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - DirectionUp
+                      device: 63674584
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:camera-control
-                      name: "ENTER"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - OK
-                          device: 63674584
-    
-    
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:youtube
+                  name: "Options"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - Options
+                      device: 63674584                
+                  
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:arrow-right-bold
-                      name: "RIGHT"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - DirectionRight
-                          device: 63674584                
-    
-    
-    
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:arrow-left-bold
+                  name: "LEFT"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - DirectionLeft
+                      device: 63674584
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:backburger
-                      name: "BACK"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - Back
-                          device: 63674584 
-    
-                      
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:camera-control
+                  name: "ENTER"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - OK
+                      device: 63674584
+
+
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:arrow-down-bold
-                      name: "DOWN"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - DirectionDown
-                          device: 63674584 
-    
-                      
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:arrow-right-bold
+                  name: "RIGHT"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - DirectionRight
+                      device: 63674584                
+
+
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:home-circle
-                      name: "HOME"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - Home
-                          device: 63674584                
-    
-                      
-    
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:backburger
+                  name: "BACK"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - Back
+                      device: 63674584 
+
+                  
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:mouse
-                      name: "Mouse"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - Mouse
-                          device: 63674584 
-                      
-                      
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:arrow-down-bold
+                  name: "DOWN"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - DirectionDown
+                      device: 63674584 
+
+                  
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:volume-mute
-                      name: "Mute"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - Mute
-                          device: 63674584 
-    
-                      
-                  - type: custom:card-modder
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:home-circle
+                  name: "HOME"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - Home
+                      device: 63674584                
+
+                  
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
                     card:
-                      type: custom:button-card
-                      styles:
-                        card:
-                          - border-radius: 5px
-                          - border: solid 1px rgba(40,40,40,1)                  
-                      icon: mdi:menu
-                      name: "Menu"
-                      tap_action:
-                        action: call-service
-                        service: remote.send_command
-                        service_data:
-                          entity_id: remote.living_room
-                          command:
-                              - Menu
-                          device: 63674584 
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:mouse
+                  name: "Mouse"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - Mouse
+                      device: 63674584 
+                  
+                  
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:volume-mute
+                  name: "Mute"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - Mute
+                      device: 63674584 
+
+                  
+              - type: custom:card-modder
+                card:
+                  type: custom:button-card
+                  styles:
+                    card:
+                      - border-radius: 5px
+                      - border: solid 1px rgba(40,40,40,1)                  
+                  icon: mdi:menu
+                  name: "Menu"
+                  tap_action:
+                    action: call-service
+                    service: remote.send_command
+                    service_data:
+                      entity_id: remote.living_room
+                      command:
+                          - Menu
+                      device: 63674584 
                  
 
 #################################################################
@@ -6001,8 +5997,6 @@ views:
                           action: call-service
                           service: switch.yes_dvr_button
         
-          # - type: custom:vertical-stack-in-card
-          #   cards:          
           - type: horizontal-stack
             cards:
               - type: custom:card-modder
@@ -6013,7 +6007,6 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px 
                   icon: mdi:numeric-1-box
                   name: "ONE"
                   tap_action:
@@ -6034,7 +6027,6 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px
                   icon: mdi:numeric-2-box
                   name: "Two"
                   tap_action:
@@ -6054,7 +6046,6 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px
                   icon: mdi:numeric-3-box
                   name: "Three"
                   tap_action:
@@ -6076,7 +6067,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px     
+                          
                   icon: mdi:numeric-4-box
                   name: "Four"
                   tap_action:
@@ -6096,7 +6087,6 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px                          
                   icon: mdi:numeric-5-box
                   name: "Five"
                   tap_action:
@@ -6116,7 +6106,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px                          
+                                               
                   icon: mdi:numeric-6-box
                   name: "Six"
                   tap_action:
@@ -6139,7 +6129,6 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px   
                   icon: mdi:numeric-7-box
                   name: "Seven"
                   tap_action:
@@ -6159,7 +6148,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1)  
                       - font-size: 16px
-                      # - width: 130px                          
+                                               
                   icon: mdi:numeric-8-box
                   name: "Eight"
                   tap_action:
@@ -6179,7 +6168,6 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px                          
                   icon: mdi:numeric-9-box
                   name: "Nine"
                   tap_action:
@@ -6202,7 +6190,6 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      # - width: 130px   
                   icon: mdi:youtube
                   name: "Vod"
                   tap_action:
@@ -6223,7 +6210,6 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1)  
                       - font-size: 16px
-                      # - width: 130px                          
                   icon: mdi:numeric-0-box
                   name: "Zero"
                   tap_action:
