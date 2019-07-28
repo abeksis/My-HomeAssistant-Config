@@ -1,5 +1,6 @@
 
 HomeAssistant_File/.gitattributes
+HomeAssistant_File/.gitignore
 *.sh
 *.py
 *.__pycache__
