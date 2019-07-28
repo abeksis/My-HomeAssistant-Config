@@ -6013,7 +6013,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px 
+                      # - width: 130px 
                   icon: mdi:numeric-1-box
                   name: "ONE"
                   tap_action:
@@ -6034,7 +6034,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px
+                      # - width: 130px
                   icon: mdi:numeric-2-box
                   name: "Two"
                   tap_action:
@@ -6054,7 +6054,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px
+                      # - width: 130px
                   icon: mdi:numeric-3-box
                   name: "Three"
                   tap_action:
@@ -6076,7 +6076,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px     
+                      # - width: 130px     
                   icon: mdi:numeric-4-box
                   name: "Four"
                   tap_action:
@@ -6096,7 +6096,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px                          
+                      # - width: 130px                          
                   icon: mdi:numeric-5-box
                   name: "Five"
                   tap_action:
@@ -6116,7 +6116,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px                          
+                      # - width: 130px                          
                   icon: mdi:numeric-6-box
                   name: "Six"
                   tap_action:
@@ -6139,7 +6139,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px   
+                      # - width: 130px   
                   icon: mdi:numeric-7-box
                   name: "Seven"
                   tap_action:
@@ -6159,7 +6159,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1)  
                       - font-size: 16px
-                      - width: 130px                          
+                      # - width: 130px                          
                   icon: mdi:numeric-8-box
                   name: "Eight"
                   tap_action:
@@ -6179,7 +6179,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px                          
+                      # - width: 130px                          
                   icon: mdi:numeric-9-box
                   name: "Nine"
                   tap_action:
@@ -6202,7 +6202,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1) 
                       - font-size: 16px
-                      - width: 130px   
+                      # - width: 130px   
                   icon: mdi:youtube
                   name: "Vod"
                   tap_action:
@@ -6223,7 +6223,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1)  
                       - font-size: 16px
-                      - width: 130px                          
+                      # - width: 130px                          
                   icon: mdi:numeric-0-box
                   name: "Zero"
                   tap_action:
@@ -6243,7 +6243,7 @@ views:
                       - border-radius: 5px
                       - border: solid 1px rgba(40,40,40,1)   
                       - font-size: 16px
-                      - width: 130px
+                      # - width: 130px
                   icon: mdi:backspace
                   name: "Exit"
                   tap_action:
