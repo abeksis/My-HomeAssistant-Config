@@ -1,5 +1,7 @@
 
 HomeAssistant_File/.gitattributes
+My-HomeAssistant-Config/.gitignore
+.gitignore
 *.sh
 *.py
 *.__pycache__
@@ -60,5 +62,4 @@ HomeAssistant_File/.HA_VERSION
 HomeAssistant_File/.homekit.state
 HomeAssistant_File/.ios.conf
 HomeAssistant_File/.ip_authenticated.yaml
-HomeAssistant_File/.gitignore
 HomeAssistant_File/home-assistant_v2.db
