@@ -10,7 +10,7 @@
   radius: 150
   icon: mdi:account-multiple
 
-- name: עבודה אבי
+- name: עבודה
   latitude: !secret avi_work_latitude
   longitude: !secret avi_work_longitude 
   radius: 150
@@ -23,7 +23,7 @@
   icon: mdi:billiards-rack
 
   
-- name: עבודה נורית
+- name: עבודה
   latitude: !secret nurit_work_latitude
   longitude: !secret nurit_work_longitude 
   radius: 150

@@ -5315,7 +5315,7 @@ views:
             show_header_toggle: off
             entities:
               - type: section
-                label: Remote LG TV
+                # label: Remote LG TV
               - type: custom:vertical-stack-in-card
                 cards:
                   - type: horizontal-stack
@@ -5337,6 +5337,9 @@ views:
                           action: call-service
                           service: switch.lg_tv_button                         
 
+
+          - type: 'custom:text-divider-row'
+            text: LG Remote
           - type: horizontal-stack
             cards:
               - type: custom:card-modder
@@ -5705,7 +5708,7 @@ views:
             show_header_toggle: off
             entities:
               - type: section
-                label: Remote Kodi
+                # label: Remote Kodi
               - type: custom:vertical-stack-in-card
                 cards:
                   - type: horizontal-stack
@@ -5727,6 +5730,9 @@ views:
                           action: call-service
                           service: switch.whizz_button                    
 
+          - type: 'custom:text-divider-row'
+            text: Kodi Remote
+            
           - type: horizontal-stack
             cards:
               - type: custom:card-modder
@@ -5975,7 +5981,7 @@ views:
             show_header_toggle: off
             entities:
               - type: section
-                label: Remote Yes
+                # label: Remote Yes
               - type: custom:vertical-stack-in-card
                 cards:
                   - type: horizontal-stack
@@ -5996,7 +6002,10 @@ views:
                         toggle:
                           action: call-service
                           service: switch.yes_dvr_button
-        
+
+          - type: 'custom:text-divider-row'
+            text: Yes Remote
+            
           - type: horizontal-stack
             cards:
               - type: custom:card-modder
@@ -7657,3 +7666,4 @@ views:
                       - value: 100
                         color: '#40bf40'                  
                     unit_of_measurement: '%'
+        

@@ -293,8 +293,7 @@
 
  # dd-wrt device status #   
   device_tracker.yakir:
-    friendly_name: יקיר 
-    entity_picture: /local/yakir.png
+    friendly_name: יקיר
     home_assistant: true    
   
   # שינוי שם לשקע של soonoff

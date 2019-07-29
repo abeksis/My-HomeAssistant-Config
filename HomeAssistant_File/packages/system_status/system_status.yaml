@@ -611,14 +611,14 @@ automation:
           
 
 ## Notify if the database is High
-  - alias: Database Use Alarm
-    initial_state: 'on'
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.home_assistant_v2_db
-      above: 800
-    action:
-      - service: notify.avitelegram
-        data:
-          title: 'Home Assistant Database'
-          message: 'Warning - Database is Use is above 800mb'
+  # - alias: Database Use Alarm
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: numeric_state
+  #     entity_id: sensor.home_assistant_v2_db
+  #     above: 800
+  #   action:
+  #     - service: notify.avitelegram
+  #       data:
+  #         title: 'Home Assistant Database'
+  #         message: 'Warning - Database is Use is above 800mb'
