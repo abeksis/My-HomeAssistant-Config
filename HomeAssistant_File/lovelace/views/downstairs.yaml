@@ -1,0 +1,1116 @@
+title: Downstairs
+icon: fas:couch
+cards:
+#################################################################
+#                                                               #
+#                 Downstairs - Temperature Graph Card           #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities: 
+          - sensor.temperature_158d00022ece24
+        height: 65
+        line_width: 2
+        font_size: 70
+        hours_to_show: 168
+        points_per_hour: 1
+        show:
+          #extrema: true
+          fill: true
+          #graph: bar
+        color_thresholds:
+          - value: 28
+            color: "#e74c3c"
+          - value: 15
+            color: "#1db954"
+          - value: 0
+            color: "#3498db"
+
+#################################################################
+#                                                               #
+#                   Downstairs - Electric shutter Graph Card    #
+#                                                               #
+#################################################################
+
+
+      - type: entities
+        title: Electric shutter
+        show_header_toggle: off
+        entities:
+          - cover.wbed_blinds
+
+#################################################################
+#                     Switches Status - SH20 Pow Switch Card    #
+#################################################################
+
+      - type: picture-glance
+        title: SH20 Pow Switch (Camera)
+        tap_action: toggle
+        entities:
+          - switch.sh20_pow
+        image: /local/lovelace/switch/SH20.jpg
+
+#################################################################
+#                                                               #
+#                   Downstairs - Kodi                           #
+#                                                               #
+#################################################################
+
+      - type: custom:card-modder
+        card:
+          type: custom:mini-media-player
+          entity: media_player.kodi
+          artwork: cover
+          power_color: true
+          show_source: true
+          show_progress: true
+          group: true
+        style:                 
+          background-image: url("/local/lovelace/background/cardbackK.png")
+          background-repeat: no-repeat
+          background-color: rgba(50,50,50,0.3)
+          background-size: 100%  
+
+      #  Air-conditioned  אלירן מזגן
+      # - type: custom:thermostat-card
+      #   title: Air-conditioned living room
+      #   entity: climate.living_room
+      #   step: 1
+      #   chevron_size: 20
+
+
+          
+      # - type: entities
+      #   show_header_toggle: false
+      #   entities:
+      #     - climate.living_room
+        
+
+
+
+
+#################################################################
+#                                                               #
+#                  Downstairs - Humidity Graph Card             #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:
+      ###  DO NOT Delete ###
+      # - type: custom:mini-graph-card
+      #   entities: 
+      #   - sensor.living_room_mold
+      #   height: 85
+      #   line_width: 2
+      #   font_size: 70
+      #   hours_to_show: 168
+      #   points_per_hour: 1
+      #   show:
+      #     extrema: true
+      #     fill: true
+      #     graph: bar
+      #   color_thresholds:
+      #     - value: 80
+      #       color: "#e74c3c"
+      #     - value: 0
+      #       color: "#1db954"        
+  
+
+#################################################################
+#                                                               #
+#                   Air-conditioned Card                        #
+#                                                               #
+#################################################################
+
+
+      - type: entities
+        show_header_toggle: off
+        entities:
+          - type: section
+            label: Air-conditioned Living Room
+          - type: custom:vertical-stack-in-card
+            cards:
+              # - type: horizontal-stack
+              #   cards:
+              #     - type: custom:card-modder
+              #       card:
+              #         type: picture
+              #         image: /local/lovelace/settings/Air-conditioner.jpg
+              #       style:                 
+              #         border-radius: 5px
+
+              - type: picture-elements
+                image: /local/lovelace/settings/Air-Conditioner_01.jpg
+                elements:
+                  - type: image
+                    entity: switch.sensibo_living_room
+                    image: /local/lovelace/settings/Air-Conditioner_01.jpg
+                    state_image:
+                      "off": /local/lovelace/settings/Air-Conditioner_01.jpg
+                    style:
+                      top: 50%
+                      left: 50%
+                      width: 100%
+                  - type: state-label
+                    entity: sensor.sensibo_temp
+                    style:
+                      top: 85%
+                      left: 85%
+                      font-size: 24px
+                      color: "#FFFFFF"
+
+#################################################################
+#                    Air-conditioned  Cool Mode                 #
+#################################################################
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.sensibo_living_room_operation
+                        state: 'cool'
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: icon
+                        icon: mdi:snowflake
+                        tap_action:
+                          action: none
+                        style:
+                          top: 85%
+                          left: 10%
+                          color: "#FFFFFF"
+
+
+
+#################################################################
+#                    Air-conditioned  Heat Mode                 #
+#################################################################
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.sensibo_living_room_operation
+                        state: 'heat'
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: icon
+                        icon: mdi:fire
+                        tap_action:
+                          action: none
+                        style:
+                          top: 85%
+                          left: 10%
+                          color: "#FFFFFF"
+
+#################################################################
+#                    Air-conditioned  Heat Mode                 #
+#################################################################
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.sensibo_living_room_operation
+                        state: 'fan'
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: icon
+                        icon: mdi:fan
+                        tap_action:
+                          action: none
+                        style:
+                          top: 85%
+                          left: 10%
+                          color: "#FFFFFF"
+
+
+#################################################################
+#                    Air-conditioned  Heat Mode                 #
+#################################################################
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.sensibo_living_room_operation
+                        state: 'auto'
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: icon
+                        icon: mdi:brightness-auto
+                        tap_action:
+                          action: none
+                        style:
+                          top: 85%
+                          left: 10%
+                          color: "#FFFFFF"
+
+#################################################################
+#                    Air-conditioned  Low Fan                   #
+#################################################################
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.sensibo_living_room_fan
+                        state: 'low'
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: icon
+                        icon: mdi:signal-cellular-1
+                        tap_action:
+                          action: none
+                        style:
+                          top: 85%
+                          left: 19%
+                          color: "#FFFFFF"
+
+#################################################################
+#                    Air-conditioned  Medium Fan                #
+#################################################################
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.sensibo_living_room_fan
+                        state: 'medium'
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: icon
+                        icon: mdi:signal-cellular-2
+                        tap_action:
+                          action: none
+                        style:
+                          top: 85%
+                          left: 19%
+                          color: "#FFFFFF"
+
+#################################################################
+#                    Air-conditioned  High Fan                  #
+################################################################# 
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.sensibo_living_room_fan
+                        state: 'high'
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: icon
+                        icon: mdi:signal-cellular-3
+                        tap_action:
+                          action: none
+                        style:
+                          top: 85%
+                          left: 19%
+                          color: "#FFFFFF"
+
+
+#################################################################
+#                    Air-conditioned  Auto Fan                  #
+################################################################# 
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.sensibo_living_room_fan
+                        state: 'auto'
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: icon
+                        icon: mdi:signal-cellular-3
+                        tap_action:
+                          action: none
+                        style:
+                          top: 85%
+                          left: 19%
+                          color: "#FFFFFF"
+
+#################################################################
+#                    Air-conditioned  ON                        #
+################################################################# 
+
+                  - type: conditional
+                    conditions:
+                      - entity: switch.sensibo_living_room
+                        state: 'on'
+                    elements:
+                      - type: state-label
+                        entity: sensor.sensibo_target_temp
+                        style:
+                          top: 85%
+                          left: 33%
+                          font-size: 24px
+                          color: "#FFFFFF"
+
+#################################################################
+#                  Air-conditioned  Monitor Temp                #
+#################################################################
+       ##### Displays the temperature in graph format #####
+          # - type: custom:bar-card
+          #   columns: 
+          #   max: 30
+          #   show_icon: true
+          #   card_style: 
+          #     border-radius: 5px
+          #   entities:
+          #     - entity: sensor.sensibo_temp
+          #       title: Temp in the home
+          #       severity:
+          #       - value: 22
+          #         color: '#1db954'
+          #       - value: 25
+          #         color: '#bf9540'
+          #       - value: 30
+          #         color: '#bf4040'
+          #       unit_of_measurement: '°C'
+
+#################################################################
+#                  Air-conditioned  Control buttons             #
+################################################################# 
+
+      - type: 'custom:text-divider-row'
+        text: Control Buttons AC
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:                          
+              - type: 'custom:card-modder'
+                style:
+                  border-radius: 5px   
+                  box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                  height: 50px 
+                  padding: 1%
+                  font-size: 13px             
+                card:
+                  name: 'Minus'
+                  type: entity-button
+                  icon: 'mdi:minus'
+                  tap_action:
+                    action: toggle
+                  entity: script.sensibo_decrease_target_temp
+
+#################################################################
+#                  Air-conditioned  Target                      #
+#################################################################
+
+              - type: 'custom:card-modder'
+                style:
+                  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)'
+                  box-shadow: 2px 2px rgba(0,0,0,0.0) 
+                  padding: 5px 0px
+                  #border: solid 1px rgba(100,100,100,0.3)
+                  border-radius: 5px
+                card:    
+                  type: custom:bignumber-card
+                  title: Target
+                  entity: sensor.sensibo_target_temp
+                  scale: 24px  
+
+#################################################################
+#                  Air-conditioned  Plus                        #
+#################################################################
+
+              - type: 'custom:card-modder'
+                style:
+                  border-radius: 5px   
+                  box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                  height: 50px 
+                  padding: 1%
+                  font-size: 13px             
+                card:
+                  name: 'Plus'
+                  type: entity-button
+                  icon: 'mdi:plus'
+                  tap_action:
+                    action: toggle
+                  entity: script.sensibo_increase_target_temp
+
+
+
+#################################################################
+#                  Air-conditioned  ON/OFF                      #
+#################################################################                     
+                   
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: climate.living_room
+                name: Power
+                icon: mdi:power-standby
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: true
+                show_name: true
+                size: 18px
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 13px                          
+                layout: vertical
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  name:
+                    - color: var(--primary-text-color)
+                  img_cell:
+                    - color: var(--primary-text-color)
+                state:
+                  - value: "cool"
+                    styles:
+                      card:
+                        - background-color: rgb(82, 148, 226)
+
+                  - value: "heat"
+                    styles:
+                      card:
+                        - background-color: rgb(228, 94, 101)
+
+                  - value: "fan_only"
+                    styles:
+                      card:
+                        - background-color: rgb(0, 128, 0)
+
+                  - value: "auto"
+                    styles:
+                      card:
+                        - background-color: rgba(193, 3, 241, 0.81)
+
+                        
+                  - value: "off"
+                    styles:
+                      card:
+                        #- background-color: var(--button-color-green)                                    
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+
+#################################################################
+#                  Air-conditioned  Cool Operation Mode         #
+#################################################################                     
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: switch.sensibo_living_room_cool
+                name: Cool
+                icon: mdi:snowflake
+                size: 30px
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 10px                          
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: true
+                show_name: true
+                layout: vertical
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  name:
+                    - font-size: 24px
+                    - color: var(--primary-text-color)
+                  img_cell:
+                    - color: var(--primary-text-color)
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background-color: 'rgb(82, 148, 226)'
+
+
+#################################################################
+#                  Air-conditioned  Heat Operation Mode         #
+#################################################################                                     
+
+              - type: custom:button-card
+                entity: switch.sensibo_living_room_heat
+                name: Heat
+                icon: mdi:fire
+                size: 30px
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 10px                          
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: true
+                show_name: true
+                layout: vertical
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  name:
+                    - font-size: 24px
+                    - color: var(--primary-text-color)
+                  img_cell:
+                    - color: var(--primary-text-color)
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background-color: 'rgb(228, 94, 101)'
+
+#################################################################
+#                  Air-conditioned fan_only Operation Mode      #
+#################################################################                                     
+
+              - type: custom:button-card
+                entity: switch.sensibo_living_room_fan_only
+                name: Fan
+                icon: mdi:fan
+                size: 30px 
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 10px  
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: true
+                show_name: true
+                layout: vertical
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  name:
+                    - font-size: 24px
+                    - color: var(--primary-text-color)
+                  img_cell:
+                    - color: var(--primary-text-color)
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background-color: 'rgb(0, 128, 0)'
+
+
+#################################################################
+#                  Air-conditioned  Auto Operation Mode         #
+#################################################################                                     
+
+              - type: custom:button-card
+                entity: switch.sensibo_living_room_heat_cool
+                name: Auto
+                icon: mdi:brightness-auto
+                size: 30px  
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 10px                     
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: true
+                show_name: true
+                layout: vertical
+                styles:
+                  card:
+                    - border-radius: 5px
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  name:
+                    - font-size: 24px
+                    - color: var(--primary-text-color)
+                  img_cell:
+                    - color: var(--primary-text-color)
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background-color: 'rgba(193, 3, 241, 0.81)'
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: input_select.sensibo_living_room_fan
+                name: Low
+                size: 30px  
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 10px                     
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: false
+                show_name: true
+                layout: vertical
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.sensibo_living_room_fan
+                    option: "low"
+                state:
+                  - value: "low"
+                    styles:
+                      card:
+                        - background-color: rgb(45, 45, 45)                            
+                styles:
+                  card:
+                    - border-radius: 0px
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  grid:
+                    - grid-template-areas: '"n"'
+                    - grid-template-columns: 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  name:
+                    - font-size: 20px
+                    - color: var(--primary-text-color)
+
+
+#################################################################
+#                  Air-conditioned Med Fan                      #
+#################################################################
+
+              - type: custom:button-card
+                entity: input_select.sensibo_living_room_fan
+                name: Medium
+                size: 30px  
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 10px                     
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: false
+                show_name: true
+                layout: vertical
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.sensibo_living_room_fan
+                    option: "medium"
+                state:
+                  - value: "medium"
+                    styles:
+                      card:
+                        - background-color: rgb(45, 45, 45)                            
+                styles:
+                  card:
+                    - border-radius: 0px
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  grid:
+                    - grid-template-areas: '"n"'
+                    - grid-template-columns: 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  name:
+                    - font-size: 20px
+                    - color: var(--primary-text-color)
+
+
+#################################################################
+#                  Air-conditioned High Fan                     #
+#################################################################
+
+              - type: custom:button-card
+                entity: input_select.sensibo_living_room_fan
+                name: High
+                size: 30px  
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 10px                     
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: false
+                show_name: true
+                layout: vertical
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.sensibo_living_room_fan
+                    option: "high"
+                state:
+                  - value: "high"
+                    styles:
+                      card:
+                        - background-color: rgb(45, 45, 45)                            
+                styles:
+                  card:
+                    - border-radius: 0px
+                    # - border: solid 1px rgba(100,100,100,0.3)
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  grid:
+                    - grid-template-areas: '"n"'
+                    - grid-template-columns: 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  name:
+                    - font-size: 20px
+                    - color: var(--primary-text-color)
+
+
+#################################################################
+#                  Air-conditioned auto Fan                     #
+#################################################################
+
+              - type: custom:button-card
+                entity: input_select.sensibo_living_room_fan
+                name: Auto
+                size: 30px  
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 50px 
+                padding: 1%
+                font-size: 10px                     
+                color_type: card
+                show_state: false
+                show_label: false
+                show_icon: false
+                show_name: true
+                layout: vertical
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.sensibo_living_room_fan
+                    option: "auto"
+                state:
+                  - value: "auto"
+                    styles:
+                      card:
+                        - background-color: rgb(45, 45, 45)                            
+                styles:
+                  card:
+                    - border-radius: 0px
+                    # - border: solid 1px rgba(100,100,100,0.3)
+                    - box-shadow: 1px 1px rgba(0,0,0,0.4)
+                    - background-color: var(--paper-card-background-color)
+                  grid:
+                    - grid-template-areas: '"n"'
+                    - grid-template-columns: 1fr
+                    - grid-template-rows: 1fr min-content min-content
+                  name:
+                    - font-size: 20px
+                    - color: var(--primary-text-color)
+
+
+#################################################################
+#                                                               #
+#                   Downstairs - TV Card                        #
+#                                                               #
+#################################################################
+          
+      - type: custom:mini-media-player
+        entity: media_player.living_room_tv
+        artwork_border: true
+        power_color: true
+        show_source: true
+        background: /local/lovelace/tv/salontv.jpg
+
+
+# #################################################################
+# #                                                               #
+# #                   Downstairs - Media Player Card              #
+# #                שייך לברודלינק - שליטה על הטלוויזיה לא למחוק             #
+# #################################################################
+
+#           - type: vertical-stack
+#             cards:
+#               - type: custom:card-modder
+#                 style:
+#                   text-align: center
+#                   --glance-column-width: 16%
+#                 card:
+#                   type: glance
+#                   entities:
+#                     - type: entity-button
+#                       entity: script.back
+#                       icon: mdi:backup-restore
+#                       name: Back
+#                       tap_action:
+#                         action: toggle  
+  
+#                     - type: entity-button
+#                       entity: script.mute
+#                       icon: mdi:volume-mute
+#                       name: Mute
+#                       tap_action:
+#                         action: toggle  
+   
+#                     - type: entity-button
+#                       entity: script.volume_down
+#                       icon: mdi:volume-minus
+#                       name: V - Down
+#                       tap_action:
+#                         action: toggle  
+  
+#                     - type: entity-button
+#                       entity: script.volume_up
+#                       icon: mdi:volume-plus
+#                       name: V - UP
+#                       tap_action:
+#                         action: toggle  
+  
+#                     - type: entity-button
+#                       entity: script.channel_down
+#                       icon: mdi:chevron-down
+#                       name: Down
+#                       tap_action:
+#                         action: toggle
+
+#                     - type: entity-button
+#                       entity: script.channel_up
+#                       icon: mdi:chevron-up
+#                       name: Up
+#                       tap_action:
+#                         action: toggle
+ 
+#               - type: horizontal-stack
+#                 cards:
+#                   - type: vertical-stack
+#                     cards:
+#                       - type: glance
+#                         title: 
+#                         column_width: calc(100% / 3)
+#                         show_name: false
+#                         show_state: false
+#                         entities:
+                    
+#                           - type: entity-button
+#                             entity: script.up
+#                             icon: mdi:arrow-up-bold-circle
+#                             name: up
+#                             tap_action:
+#                               action: toggle
+
+
+#                           - type: entity-button
+#                             entity: script.left
+#                             icon: mdi:arrow-left-bold-circle
+#                             name: left
+#                             tap_action:
+#                               action: toggle
+
+#                           - type: entity-button
+#                             entity: script.ok
+#                             icon: mdi:pokeball
+#                             name: ok
+#                             tap_action:
+#                               action: toggle
+
+
+#                           - type: entity-button
+#                             entity: script.right
+#                             icon: mdi:arrow-right-bold-circle
+#                             name: right
+#                             tap_action:
+#                               action: toggle
+
+
+#                           - type: entity-button
+#                             entity: script.down
+#                             icon: mdi:arrow-down-bold-circle
+#                             name: down
+#                             tap_action:
+#                               action: toggle
+
+
+#                           - type: entity-button
+#                             entity: script.back
+#                             icon: mdi:keyboard-backspace
+#                             name: back
+#                             tap_action:
+#                               action: toggle
+
+#                           - type: entity-button
+#                             entity: script.settings
+#                             icon: mdi:settings
+#                             name: settings
+#                             tap_action:
+#                               action: toggle
+
+#                           - type: entity-button
+#                             entity: script.tv_on
+#                             icon: mdi:power
+#                             name: on
+#                             tap_action:
+#                               action: toggle
+
+#                   - type: vertical-stack
+#                     cards:
+#                       - type: glance
+#                         title: 
+#                         column_width: calc(100% / 3)
+#                         show_name: false
+#                         show_state: false
+#                         entities:
+#                           - type: entity-button
+#                             entity: script.channel_1
+#                             icon: mdi:numeric-1-box-outline
+#                             name: channel 1
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_1
+
+#                           - type: entity-button
+#                             entity: script.channel_2
+#                             icon: mdi:numeric-2-box-outline
+#                             name: channel 2
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_2
+
+#                           - type: entity-button
+#                             entity: script.channel_3
+#                             icon: mdi:numeric-3-box-outline
+#                             name: channel 3
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_3
+  
+#                           - type: entity-button
+#                             entity: script.channel_4
+#                             icon: mdi:numeric-4-box-outline
+#                             name: channel 4
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_4
+ 
+#                           - type: entity-button
+#                             entity: script.channel_5
+#                             icon: mdi:numeric-5-box-outline
+#                             name: channel 5
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_5
+  
+#                           - type: entity-button
+#                             entity: script.channel_6
+#                             icon: mdi:numeric-6-box-outline
+#                             name: channel 6
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_6
+ 
+#                           - type: entity-button
+#                             entity: script.channel_7
+#                             icon: mdi:numeric-7-box-outline
+#                             name: channel 7
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_7
+  
+#                           - type: entity-button
+#                             entity: script.channel_8
+#                             icon: mdi:numeric-8-box-outline
+#                             name: channel 8
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_8
+ 
+#                           - type: entity-button
+#                             entity: script.channel_9
+#                             icon: mdi:numeric-9-box-outline
+#                             name: channel 5
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_9
+ 
+#                           - type: entity-button
+#                             entity: script.channel_0
+#                             icon: mdi:numeric-0-box-outline
+#                             name: Kanaal 0
+#                             tap_action:
+#                               action: call-service
+#                               service: script.turn_on
+#                               service_data:
+#                                 entity_id: script.channel_0
+
+
+
+#################################################################
+#                                                               #
+#                  Downstairs - Living Room Mold                #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities: 
+          - sensor.humidity_158d00022ece24
+        height: 65
+        line_width: 2
+        font_size: 70
+        hours_to_show: 168
+        points_per_hour: 1
+        show:
+          fill: true
+        color_thresholds:
+          - value: 70
+            color: "#e74c3c"
+          - value: 40
+            color: "#1db954"
+          - value: 0
+            color: "#3498db"
+            
+#################################################################
+#                                                               #
+#                    Downstairs - Door Status Card              #
+#                                                               #
+#################################################################
+
+
+      - type: entities
+        title: Door Status
+        show_header_toggle: off
+        entities:
+          - binary_sensor.door_window_sensor_158d0001ef3425
+
+
+      - type: picture-glance
+        title: Tami 4 Power
+        tap_action: toggle
+        entities:
+          - switch.tami_4_power
+        image: /local/lovelace/switch/tami4_tami.png
+

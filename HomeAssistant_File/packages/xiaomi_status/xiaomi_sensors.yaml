@@ -59,7 +59,6 @@ group:
     view: no
     entities:
       - sensor.temperature_158d00022ece24
-      # - sensor.second_floor_temperature
 
       
 #################################################################

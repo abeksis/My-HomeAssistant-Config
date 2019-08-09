@@ -1,0 +1,6 @@
+  lovelace_robovac_cleaner_avi:
+    initial: off
+
+  dummy1:  # It is just a dummy button 
+    initial: off    
+                           

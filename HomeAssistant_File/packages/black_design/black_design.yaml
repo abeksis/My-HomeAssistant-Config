@@ -144,5 +144,7 @@ sensor:
         value_template: "מזגן מרכזי"         
       text_prozdor:
         value_template: "פרוזדור"
+      text_kitchen:
+        value_template: "מטבח"        
       text_good_night:
         value_template: "לילה טוב"

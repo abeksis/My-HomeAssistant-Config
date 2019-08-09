@@ -1,0 +1,47 @@
+title: Location
+path:  location
+cards:    
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button_2
+        variables:
+          - name1: Currently On
+          - icon1: power
+          - path1: currently-on
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '## Location'
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Map'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: map
+            style: |
+              ha-card {
+                background: var(--homekit-card-off);
+                --paper-item-icon-color: var(--icon-color-off);
+                color: var(--name-color-off);
+                border-radius: var(--border-radius);
+                font-family: Helvetica;
+                font-size: 12px;
+                opacity: 0.8;
+                overflow: hidden;
+              }
+            aspect_ratio: 4x6
+            default_zoom: 15
+            entities:
+              - zone.bsnvqr
+              - zone.bvdh
+              - zone.bvdh_2
+              - zone.byt
+              - zone.byt_2
+              - zone.home
+              - zone.mkhsny_hshvq
+              - zone.mrkz_byg
+              - zone.rvp_shynyym
+          - !include ../decluttering_templates/blank-card.yaml

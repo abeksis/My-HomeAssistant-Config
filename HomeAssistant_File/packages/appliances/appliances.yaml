@@ -45,6 +45,8 @@ group:
       - sensor.robovac_filter
       - sensor.robovac_cleaning_count      
 
+
+
 #################################################################
 #                                                               #
 #                           Sensors                             #
@@ -118,7 +120,23 @@ sensor:
         unit_of_measurement: "Hrs"
         value_template: "{{ states.vacuum.robovac.attributes.sensor_dirty_left }}"
 
-        
+  - platform: template
+    sensors:
+      vacuum_cleaner_error_sensor:
+        friendly_name: Vacuum Cleaner Error Sensor
+        value_template: >-
+          {% if states.vacuum.robovac.attributes.error is defined %}
+            {{states.vacuum.robovac.attributes.error}}
+          {% else %}
+            No Error
+          {% endif %}
+          
+  - platform: template
+    sensors:
+      vacuum_cleaner_status_sensor:
+        friendly_name: Vacuum Cleaner Status Sensor
+        value_template: >-
+          {{ states.vacuum.robovac.attributes.status }}
 
     
 #################################################################
@@ -140,12 +158,366 @@ vacuum:
     token: !secret xiaomi_vacuum_token
     name: RoboVac
 
+####################################################
+#                                                  #
+#                 Vacuums - input_select           #
+#                                                  #
+####################################################
+
+input_select:
+  xiaomi_vacuum:
+    name: Xiaomi Vacuum
+    options:
+      - Quiet
+      - Balanced
+      - Turbo
+      - Max
+      - Mop
 
 #################################################################
 #                                                               #
 #                         Automations                           #
 #                                                               #
 #################################################################
+
+automation:
+  - id: vacuum_fan_speed_quiet
+    alias: Vacuum Fan Speed Quiet
+    trigger:
+      - platform: state
+        entity_id: input_select.xiaomi_vacuum
+        to: 'Quiet'
+    action:
+     - service: vacuum.set_fan_speed
+       data:
+         entity_id: vacuum.robovac
+         fan_speed: 20
+  
+  - id: vacuum_fan_speed_balanced
+    alias: Vacuum Fan Speed Balanced
+    trigger:
+      - platform: state
+        entity_id: input_select.xiaomi_vacuum
+        to: 'Balanced'
+    action:
+     - service: vacuum.set_fan_speed
+       data:
+         entity_id: vacuum.robovac
+         fan_speed: 50
+  
+  - id: vacuum_fan_speed_turbo
+    alias: Vacuum Fan Speed Turbo
+    trigger:
+      - platform: state
+        entity_id: input_select.xiaomi_vacuum
+        to: 'Turbo'
+    action:
+     - service: vacuum.set_fan_speed
+       data:
+         entity_id: vacuum.robovac
+         fan_speed: 80
+  
+  - id: vacuum_fan_speed_max
+    alias: Vacuum Fan Speed Max
+    trigger:
+      - platform: state
+        entity_id: input_select.xiaomi_vacuum
+        to: 'Max'
+    action:
+     - service: vacuum.set_fan_speed
+       data:
+         entity_id: vacuum.robovac
+         fan_speed: 100
+
+
+# Set theme on startup
+
+  
+  - alias: 'Set theme light at startup'
+    initial_state: 'true'
+    trigger:
+      - platform: homeassistant
+        event: start
+    condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    action:
+      service: frontend.set_theme
+      data:
+        name: Homekit Gray Light
+  
+  - alias: 'Set theme dark at startup'
+    initial_state: 'true'
+    trigger:
+      - platform: homeassistant
+        event: start
+    condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Dark
+ 
+# Theme Selector Automations
+
+  - alias: 'theme selector input_select 1'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Gray Light'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Light
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 2'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Gray Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 3'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Blue Light'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Blue Light
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 4'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Blue Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Blue Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 5'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Blue Light'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Blue Light
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 6'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Blue Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Blue Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 7'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Automatic (default)'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 8'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Gray Light'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Gray Light
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 9'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Gray Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Gray Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 10'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Orange'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Orange
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 11'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Orange'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Orange
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+
+  - alias: 'theme selector input_select 12'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Midnight'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Midnight
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector   
+
+  - alias: 'theme selector input_select 13'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Google Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Google Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector             
+
+# Theme Day/Night Cycle
+
+  - alias: 'Set dark theme for the night'
+    initial_state: true
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: '+00:00:00'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Dark
+
+  - alias: 'Set light theme for the day'
+    initial_state: true
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: '+00:00:00'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Light
+
+  # Vacuum avitelegram
+  - id: vacuum_cleaner_error
+    alias: Vacuum Cleaner Error
+    trigger:
+      - platform: state
+        entity_id: vacuum.robovac
+        to: 'Error'
+      - platform: state
+        entity_id: vacuum.robovac
+        to: 'In Error'
+      - platform: state
+        entity_id: vacuum.robovac
+        to: 'Charging Error'
+    action:
+      - service: notify.avitelegram
+        data:
+          title: 'Roborock S55'
+          message: >-
+            {% if is_state('sensor.vacuum_cleaner_error_sensor', 'No Error')  %}
+              {{states.sensor.vacuum_cleaner_status_sensor.state}}
+            {% else %}
+              {{states.sensor.vacuum_cleaner_error_sensor.state}}
+            {% endif %}
+
+  ## Vacuum step
+  - id: vacuum_cleaner_started
+    alias: Vacuum Cleaner Started
+    trigger:
+      - platform: state
+        entity_id: vacuum.robovac
+        to: 'cleaning'
+      - platform: state
+        entity_id: vacuum.robovac
+        to: 'returning'
+      - platform: state
+        entity_id: vacuum.robovac
+        to: 'docked'
+      - platform: state
+        entity_id: vacuum.robovac
+        to: 'paused'
+      - platform: state
+        entity_id: vacuum.robovac
+        to: 'idle'
+    action:
+      - service: notify.avitelegram
+        data:
+          title: 'Roborock S55'
+          message: >-
+            {{states.sensor.vacuum_cleaner_status_sensor.state}}
 
 
 # ## Charge Appliances overnight

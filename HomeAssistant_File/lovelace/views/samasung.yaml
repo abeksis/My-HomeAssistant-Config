@@ -1,0 +1,294 @@
+title: samasung
+path: samasung
+icon: mdi:home
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+                
+          #################################################
+          #                     Weather                   #
+          #################################################            
+          - type: custom:simple-weather-card
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                opacity: 0.8;
+                font-size: 12px;
+                font-family: Helvetica;
+                font-weight: bold;
+              }
+                    
+            entity: weather.dark_sky
+            name: "Beer Sheva"
+            backdrop:
+              fade: true
+              day: "var(--homekit-card-on)"
+              night: "var(--homekit-card-off)"
+              text: "var(--weather-color)"
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+
+      - type: horizontal-stack
+        cards:
+          ### Space icon ##
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+  #################################################################
+  #                                                               #
+  #                     Samaung - Avi Card                        #
+  #                                                               #
+  #################################################################
+  
+          - type: conditional
+            conditions:
+              - entity: device_tracker.life360_avi_abeksis
+                state_not: "בית"
+            card:
+              type: custom:decluttering-card
+              template: person_elements
+              variables:
+                - name: life360_avi_abeksis
+                - direction: left
+                - image: '/local/lovelace/avi_nurit/avi_small_off.jpg'
+                - battery: sensor.life360_avi_battery
+                - icon: home
+  
+  
+          - type: conditional
+            conditions:
+              - entity: device_tracker.life360_avi_abeksis
+                state: "בית"
+            card:
+              type: custom:decluttering-card
+              template: person_elements
+              variables:
+                - name: life360_avi_abeksis
+                - direction: left
+                - image: '/local/lovelace/avi_nurit/avi_small_on.jpg'
+                - battery: sensor.life360_avi_battery
+                - icon: home
+  
+  
+  
+  #################################################################
+  #                                                               #
+  #                     Samaung - Nurit Card                      #
+  #                                                               #
+  #################################################################
+  
+          - type: conditional
+            conditions:
+              - entity: device_tracker.life360_nurit
+                state_not: "בית"
+            card:
+              type: custom:decluttering-card
+              template: person_elements
+              variables:
+                - name: life360_nurit
+                - direction: right
+                - image: '/local/lovelace/avi_nurit/nurit_small_off.jpg'
+                - battery: sensor.life360_nurit_battery
+                - icon: home
+  
+          - type: conditional
+            conditions:
+              - entity: device_tracker.life360_nurit
+                state: "בית"
+            card:
+              type: custom:decluttering-card
+              template: person_elements
+              variables:
+                - name: life360_nurit
+                - direction: right
+                - image: '/local/lovelace/avi_nurit/nurit_small_on.jpg'
+                - battery: sensor.life360_nurit_battery
+                - icon: home
+  
+          ### Space icon ##
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+#################################################
+#                                               #
+#                 Links to icons                #
+#                                               #
+#################################################
+
+      - type: horizontal-stack
+        cards:
+          ### Space icon ##
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+  
+#################################################
+#                     Menu - icon               #
+#################################################
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Menu
+              - label: All Options
+              - icon: menu
+              - show_state: false
+              - tap_action: 
+                  action: navigate
+                  navigation_path: /lovelace/menu
+                  haptic: light
+              - hold_action: 
+                  action: navigate
+                  navigation_path: /lovelace/menu
+                  haptic: light
+              - entity: input_boolean.dummy1
+              - margin-right: 40px
+              - opacity: 0.8
+
+  #################################################
+  #                     Vacuum - icon             #
+  #################################################   
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Vacuum
+              - label: Johnny S55
+              - icon: robot-vacuum
+              - show_state: false
+              - tap_action: 
+                  action: navigate
+                  navigation_path: /lovelace/vacuum
+                  haptic: light
+              - hold_action: 
+                  action: navigate
+                  navigation_path: /lovelace/vacuum
+                  haptic: light
+              - entity: input_boolean.dummy1
+              - margin-right: 40px
+              - opacity: 0.8
+  
+  #################################################
+  #                     Security - icon           #
+  #################################################   
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Security
+              - label: Panel
+              - icon: cctv
+              - show_state: false
+              - tap_action: 
+                  action: navigate
+                  navigation_path: /lovelace/security
+                  haptic: light
+              - hold_action: 
+                  action: navigate
+                  navigation_path: /lovelace/security
+                  haptic: light
+              - entity: input_boolean.dummy1
+              - margin-right: 40px
+              - opacity: 0.8
+          - !include ../decluttering_templates/blank-card.yaml
+          
+      - type: horizontal-stack
+        cards:
+          ### Space icon ##
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+  #################################################
+  #                     Energy - icon             #
+  #################################################
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Energy
+              - label: Panel
+              - icon: flash
+              - show_state: false
+              - tap_action: 
+                  action: navigate
+                  navigation_path: /lovelace/energy
+                  haptic: light
+              - hold_action: 
+                  action: navigate
+                  navigation_path: /lovelace/energy
+                  haptic: light
+              - entity: input_boolean.dummy1
+              - margin-right: 40px
+              - opacity: 0.8  
+
+  #################################################
+  #                     Control - icon            #
+  #################################################
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - name: Light
+              - label: Control
+              - icon: floor-lamp
+              - show_state: false
+              - tap_action: 
+                  action: navigate
+                  navigation_path: /lovelace/lights
+                  haptic: light
+              - hold_action: 
+                  action: navigate
+                  navigation_path: /lovelace/lights
+                  haptic: light
+              - entity: input_boolean.dummy1
+              - margin-right: 40px
+              - opacity: 0.8                 
+
+  #################################################
+  #                     Climate - icon            #
+  #################################################
+          # - type: custom:button-card
+          #   color_type: blank-card
+          #   aspect_ratio: 1/1
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.dummy1
+              - name: Devices
+              - label: All Devices
+              - icon: power-plug
+              - show_state: false
+              - opacity: 0.8
+              - tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/devices
+                  haptic: light
+              - hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/devices
+                  haptic: light
+
+          - !include ../decluttering_templates/blank-card.yaml
+
+      - type: horizontal-stack
+        cards:
+          - !include samasung_notifications.yaml

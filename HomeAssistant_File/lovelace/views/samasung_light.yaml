@@ -1,0 +1,196 @@
+title: Lights
+path:  lights
+popup_cards:
+  !include ../popup-cards/light-popup.yaml
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button
+        variables:
+          - title: Lights
+          - name: Floor below
+
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.yeelight_poop
+              - name: Guests Bathroom
+              - icon: ceiling-light
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.eettafel_lamp
+              - name: Living room
+              - icon: ceiling-light
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.tafel_lamp
+              - name: Seating Area
+              - icon: sofa
+          - !include ../decluttering_templates/blank-card.yaml
+
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.prozdor
+              - name: Prozdor
+              - icon: wall-sconce-flat
+ 
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.miklahat
+              - name: Shower
+              - icon: shower
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.laundry_room_lighting
+              - name: Laundry
+              - icon: ceiling-light
+          - !include ../decluttering_templates/blank-card.yaml
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Room area'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.liran_room
+              - name: Liran
+              - icon: wall-sconce-flat
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.kitchen_strip_lamp
+              - name: Xiaomi LED
+              - icon: led-strip
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.kitchen
+              - name: kitchen
+              - icon: fridge-outline
+          - !include ../decluttering_templates/blank-card.yaml
+ 
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Balcony'
+
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.balcony
+              - name: Smoking
+              - icon: wall-sconce-flat
+
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - size: 25%
+              - entity: light.service_balcony
+              - name: Service
+              - icon: wall-sconce-flat
+
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - !include ../decluttering_templates/blank-card.yaml
+
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Stairs'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: light_button_card
+            variables:
+              - entity: light.stairs
+              - name: Stairs
+              - icon: wall-sconce-variant
+
+          #### Space
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+            
+          #### Space
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 10px
+
+          - !include ../decluttering_templates/blank-card.yaml
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Second Floor'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: light.computer_room
+              - name: Computer Server
+              - icon: ceiling-light
+              - size: 30%
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: light.parents
+              - name: Parents
+              - icon: ceiling-light
+              - size: 30%
+ 
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - !include ../decluttering_templates/blank-card.yaml
+ 
+      - type: 'custom:button-card'
+        color_type: blank-card
+        styles:
+          card:
+            - height: 10px    

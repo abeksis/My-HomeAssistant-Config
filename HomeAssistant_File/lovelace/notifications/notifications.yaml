@@ -1,0 +1,67 @@
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: header_text
+    variables:
+      - content: '##### Notifications and Events'
+
+  - type: conditional
+    conditions:
+      - entity: sensor.robovac_status
+        state: "Charging"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(157, 0, 255, 0.5)
+        - icon: check-box-outline
+        - content: Everything is quiet, there are no reports
+
+
+  - type: conditional
+    conditions:
+      - entity: vacuum.robovac
+        state: cleaning
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(56, 43, 230, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner is switched on
+
+  - type: conditional
+    conditions:
+      - entity: vacuum.robovac
+        state: idle
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(56, 43, 230, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner is stationary
+
+  - type: conditional
+    conditions:
+      - entity: vacuum.robovac
+        state: paused
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(56, 43, 230, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner is paused
+
+  - type: conditional
+    conditions:
+      - entity: vacuum.robovac
+        state: returning
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(56, 43, 230, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner returns

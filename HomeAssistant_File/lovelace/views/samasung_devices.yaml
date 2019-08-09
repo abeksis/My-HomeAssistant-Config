@@ -1,0 +1,162 @@
+title: Devices
+path: devices
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button
+        variables:
+          - title: Devices
+          - name: Living room
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: sensor.sonff_fan_state
+              - name: Pc Room
+              - icon: fan
+              - color: DodgerBlue
+              - spin: true
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: switch.receiver
+              - name: Receiver
+              - icon: set-top-box
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: switch.lg_tv_button
+              - name: TV
+              - icon: television
+          - !include ../decluttering_templates/blank-card.yaml
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Bedroom'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: switch.ventilator
+              - name: Fan
+              - icon: fan
+              - color: DodgerBlue
+              - spin: true
+              - lock: true
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: switch.receiver_slaapkamer
+              - name: Receiver
+              - icon: set-top-box
+              - lock: true
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: switch.tradfri_outlet_2
+              - name: TV
+              - icon: television
+              - lock: true
+          - !include ../decluttering_templates/blank-card.yaml
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Small room'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: switch.printer
+              - name: Printer
+              - icon: printer-wireless
+              
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: switch.xbox_one
+              - name: Xbox
+              - icon: xbox
+              - lock: true
+              - color: green
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            aspect_ratio: 1/1
+              
+          - !include ../decluttering_templates/blank-card.yaml
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### kitchen'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: sensor.tami4_power_state
+              - name: Tami 4
+              - icon: cup-water
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: sensor.yeelink_light_strip1_miio98683770_state
+              - name: Strip
+              - icon: led-strip
+              - color: DodgerBlue
+              - spin: true
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            aspect_ratio: 1/1
+            
+          - !include ../decluttering_templates/blank-card.yaml
+
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Scullery'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: sensor.washing_machine_status
+              - name: Wasmachine
+              - icon: washing-machine
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: sensor.laundry_dryer_status
+              - name: Dryer
+              - icon: tumble-dryer
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - !include ../decluttering_templates/blank-card.yaml
+ 
+      - type: 'custom:button-card'
+        color_type: blank-card
+        styles:
+          card:
+            - height: 10px
+  
+  

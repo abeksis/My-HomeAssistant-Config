@@ -12,10 +12,10 @@
 
 homeassistant:
   customize:
-    sensor.aftership_intransit:
-      icon: mdi:truck-delivery
-    sensor.aftership_delivered:
-      icon: mdi:package-variant  
+    # sensor.aftership_intransit:
+    #   icon: mdi:truck-delivery
+    # sensor.aftership_delivered:
+    #   icon: mdi:package-variant  
 
 
 #################################################################
@@ -26,14 +26,14 @@ homeassistant:
 
 sensor: 
 
-####################################################
-#                                                  #
-#               Sensors - Aftership                #
-#                                                  #
-#################################################### 
+# ####################################################
+# #                                                  #
+# #               Sensors - Aftership                #
+# #                                                  #
+# #################################################### 
 
-  - platform: aftership
-    api_key: !secret aftership_key
+#   - platform: aftership
+#     api_key: !secret aftership_key
     
 
 ####################################################

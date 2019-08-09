@@ -1,0 +1,74 @@
+title: Camera
+icon: mdi:cctv    
+cards:
+
+#################################################################
+#                                                               #
+#                     Camera - Front Door Camera Card           #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:
+
+      - type: picture-entity
+        entity: camera.front_door
+        # camera_view: live
+
+
+      - type: picture-entity
+        entity: camera.right_side_balcony
+        # camera_view: live
+
+#################################################################
+#                                                               #
+#                 Camera - Camera Status Card                   #
+#                                                               #
+#################################################################   
+
+  - type: vertical-stack
+    cards:
+      - type: custom:card-modder
+        card:
+          type: entity-filter
+          entities:
+            - camera.entrance_to_the_building
+            - camera.right_side_balcony
+            - camera.center_6mp
+            - camera.front_door
+          state_filter:
+            - 'off'
+          card:
+            type: picture-glance
+            title: Cameras
+            image: /local/lovelace/security/cameras.jpg
+        style:                 
+          border-radius: 20px
+          border: solid 1px rgba(100,100,100,0.3)
+          box-shadow: 3px 3px rgba(0,0,0,0.4)    
+          overflow: hidden        
+
+
+
+      - type: picture-entity
+        entity: camera.xiaomi_dafang 
+        # camera_view: live  
+
+
+                      
+
+#################################################################
+#                                                               #
+#                 Camera - Entrance To The Building Card        #
+#                                                               #
+#################################################################
+          
+  - type: vertical-stack
+    cards:
+      - type: picture-entity
+        entity: camera.entrance_to_the_building
+        # camera_view: live
+
+      - type: picture-entity
+        entity: camera.center_6mp
+        # camera_view: live

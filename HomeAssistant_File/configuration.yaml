@@ -34,6 +34,25 @@ homeassistant:
 lovelace:
   mode: yaml
 
+
+
+####################################################
+#                                                  #
+#                     iFrame                       #
+#                                                  #
+####################################################
+
+panel_iframe:
+  node_red:
+   title: Node Red
+   icon: mdi:file-plus
+   url: !secret node_red
+
+  unraid:
+   title: Unraid
+   icon: mdi:desktop-tower
+   url: !secret unraid
+
 ####################################################
 #                                                  #
 #                     Enables                      #
@@ -56,8 +75,6 @@ http:
   - 172.18.0.2 #letsencryot 
   - 172.17.0.3 #mariadb
 
-  
-  
 
 updater:
 discovery:
@@ -81,8 +98,7 @@ sun:
       - https://raw.githubusercontent.com/ljmerza/waze-card/master/updater.json
       - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
       - https://raw.githubusercontent.com/iammexx/home-assistant-config/master/ui/darksky/version.json
-#ios:
-#homekit:
+      
 tts:
   - platform: google_translate
     service_name: google_say
@@ -97,17 +113,17 @@ tts:
 #customizer:
 #  custom_ui: local
 
+
 frontend:
-  javascript_version: latest
+  themes: !include configuration/themes.yaml #For Samsung Notte design / עיצוב סמסונג נוט
+  javascript_version: auto
   extra_html_url:
     - /local/custom_ui/fontawesome/hass-fontawesome-solid.html
     - /local/custom_ui/fontawesome/hass-fontawesome-regular.html
     - /local/custom_ui/fontawesome/hass-fontawesome-brands.html  
-   # - /local/custom_ui/state-card-custom-ui.html
     - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui.html
   extra_html_url_es5:
     - /local/custom_ui/state-card-custom-ui-es5.html
-   # - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui-es5.html
 
 ####################################################
 #                                                  #
@@ -183,6 +199,12 @@ telegram_bot:
 
 
 
+## Weather Dark Sky
+weather:
+  - platform: darksky
+    mode: daily
+    api_key: !secret darksky_api
+
 ####################################################
 #                                                  #
 #                    Switcher V2                   #
@@ -212,3 +234,6 @@ cloudflare: !include config/cloudflare.yaml
 zone: !include config/zones.yaml
 timer: !include config/timer.yaml
 input_datetime: !include config/input_datetime.yaml
+input_boolean: !include configuration/input_boolean.yaml #For Samsung Notte design / עיצוב סמסונג 
+automation: !include configuration/automations.yaml #For Samsung Notte design / עיצוב סמס
+input_select: !include configuration/input_select.yaml #For Samsung Notte design / עיצוב סמס

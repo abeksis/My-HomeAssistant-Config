@@ -1,0 +1,117 @@
+title: Currently On
+path:  currently-on
+cards:    
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button_2
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '## Device Events'
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Currently ON'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml 
+          - type: entity-filter
+            card:
+              type: glance
+              style: |
+                ha-card {
+                  background: var(--homekit-card-off);
+                  color: var(--name-color-off);
+                  border-radius: var(--border-radius);
+                  font-size: 12px;
+                  font-family: Helvetica;
+                }
+            show_empty: true
+            columns: 4
+            entities:
+              - entity: binary_sensor.motion_sensor_158d0002b42fa3
+                name: Guest
+
+              - entity: binary_sensor.motion_sensor_158d000272bc63
+                name: Pc Room
+
+              - entity: binary_sensor.motion_sensor_158d000204bfcb
+                name: laundry
+                
+              - entity: binary_sensor.motion_sensor_158d00024e7972
+                name: Toilet
+                
+              - entity: binary_sensor.motion_sensor_158d000204bfcb
+                name: Parents
+
+              - entity: binary_sensor.motion_sensor_158d0002047c5a
+                name: Shower
+                
+              - entity: binary_sensor.door_window_sensor_158d0002ea9896
+                icon: 'mdi:tumble-dryer'
+                name: Laundry Dryer
+
+              - entity: binary_sensor.door_window_sensor_158d0002ea0754
+                icon: 'mdi:washing-machine'
+                name: Washing Machine
+
+              - entity: binary_sensor.door_window_sensor_158d00027a59c6
+                icon: 'mdi:door'
+                name: Balcony
+
+              - entity: binary_sensor.door_window_sensor_158d0001ef3425
+                icon: 'mdi:door'
+                name: Front Door
+
+              - entity: light.parents
+                icon: 'mdi:ceiling-light'
+                name: Parents
+
+              - entity: light.computer_room
+                icon: 'mdi:ceiling-light'
+                name: Computer Room
+
+              - entity: light.liran_room
+                icon: 'mdi:ceiling-light'
+                name: Liran
+
+              - entity: light.balcony
+                icon: 'mdi:ceiling-light'
+                name: Balcony
+
+              - entity: light.liran_room
+                icon: 'mdi:ceiling-light'
+                name: Liran
+
+              - entity: light.miklahat
+                icon: 'mdi:ceiling-light'
+                name: Shower
+
+              - entity: light.service_balcony
+                icon: 'mdi:ceiling-light'
+                name: Balcony
+                
+              - entity: light.yeelight_poop
+                icon: 'mdi:ceiling-light'
+                name: Toilet
+
+              - entity: light.kitchen
+                icon: 'mdi:ceiling-light'
+                name: kitchen
+
+              - entity: vacuum.robovac
+                icon: 'mdi:robot-vacuum'
+                name: Roborock S55
+                
+              - entity: switch.ac_yakir
+                icon: 'mdi:power-socket-au'
+                name: Yakir Electrical                
+            state_filter:
+              - 'on'
+          - !include ../decluttering_templates/blank-card.yaml
+      - type: 'custom:button-card'
+        color_type: blank-card
+        styles:
+          card:
+            - height: 50px

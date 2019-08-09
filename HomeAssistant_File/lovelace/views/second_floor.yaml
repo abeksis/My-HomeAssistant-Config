@@ -1,0 +1,184 @@
+title: Second Floor
+icon: mdi:home-modern
+cards:
+
+
+#################################################################
+#                                                               #
+#                 Second Floor - Motion Sensor Card             #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities: 
+          - entity: sensor.humidity_second_floor
+            name: Humidity
+            color: "#e74c3c"
+            unit: RH
+          - entity: sensor.second_floor_temperature
+            name: Temp Second Floor
+            unit: °C
+            color: '#5294E2'
+            show_state: false
+        name: Temperatures
+        icon: mdi:water-percent
+        line_width: 2
+        height: 53
+        hours_to_show: 72
+        points_per_hour: 1
+        show:
+          extrema: true
+          fill: true
+          #graph: bar
+
+#################################################################
+#                                                               #
+#                 Second Floor - Light Parents Card             #
+#                                                               #
+#################################################################
+
+
+      - type: picture-entity
+        entity: light.parents
+        name: Light Parents
+        tap_action: 
+          action: toggle
+        image: /local/lovelace/parents/parents.jpg
+
+
+
+
+#################################################################
+#                                                               #
+#                   Second Floor - Switcher Card                #
+#                                                               #
+#################################################################
+  - type: vertical-stack
+    cards:
+      - type: picture-elements
+        image: /local/lovelace/electricity/switcher3.jpg
+        elements:
+          - type: icon
+            icon: mdi:clock-outline
+            entity: group.switcher_aio_v2_create_schedule
+            style: {color: white, left: 80%, top: 9%}
+
+          - type: icon
+            icon: mdi:google-circles-communities
+            entity: group.switcher_aio_v2_configuration
+            style: {color: white, left: 60%, top: 9%, --paper-item-icon-color: rgb(115,122, 130)}
+
+          - type: icon
+            icon: mdi:stop
+            tap_action: call-service
+            entity: switcher_aio.control_device_switch
+            service: switcher_aio.turn_off
+            style: {color: white, left: 40%, top: 9%, --paper-item-icon-color: rgb(115,122, 130)}
+
+          - type: icon
+            icon: mdi:thermostat-box
+            entity: switcher_aio.control_device_switch
+            style: {color: white, left: 20%, top: 9%, --paper-item-icon-color: rgb(115,122,130)}
+
+          - type: icon
+            icon: mdi:timelapse
+            entity: switcher_aio.time_left_sensor
+            style: {color: white, left: 5%, top: 91%}
+
+          - type: state-label
+            entity: switcher_aio.time_left_sensor
+            style: {color: white, left: 13%, top: 91%}
+
+          - type: icon
+            icon: mdi:timer
+            entity: switcher_aio.auto_off_sensor
+            style: {color: white, left: 25%, top: 91%, --paper-item-icon-color: rgb(115,122, 130)}
+
+          - type: state-label
+            entity: switcher_aio.auto_off_sensor
+            style: {color: white, left: 34%, top: 92%}
+
+          - type: icon
+            icon: mdi:format-list-bulleted
+            entity: switcher_aio.timer_minutes_input_select
+            style: {color: white, left: 48%, top: 91%, --paper-item-icon-color: rgb(115,122, 130)}
+
+          - type: state-label
+            entity: switcher_aio.timer_minutes_input_select
+            style: {color: white, left: 54%, top: 92%}
+
+          - type: icon
+            icon: mdi:power
+            entity: switcher_aio.send_auto_off_script
+            style: {color: white, left: 65%, top: 91%, --paper-item-icon-color: rgb(115,122, 130)}
+
+          - type: state-label
+            entity: switcher_aio.send_auto_off_script
+            style: {color: white, left: 72%, top: 92%}
+
+          - type: icon
+            icon: mdi:flash-circle
+            entity: switcher_aio.electric_current_sensor
+            style: {color: white, left: 85%, top: 91%, --paper-item-icon-color: rgb(115,122, 130)}
+
+          - type: state-label
+            entity: switcher_aio.electric_current_sensor
+            style: {color: white, left: 91%, top: 92%}
+
+
+
+#################################################################
+#                                                               #
+#                   Second Floor - Light Stairs Card            #
+#                                                               #
+#################################################################
+
+      - type: picture-entity
+        entity: light.stairs
+        name: Light Stairs
+        tap_action: 
+          action: toggle
+        image: /local/lovelace/home/stairs.jpg
+         
+
+#################################################################
+#                                                               #
+#                 Second Floor - Shower light intensity Card    #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-graph-card
+        entities: 
+          - sensor.illumination_158d000204bfcb
+        height: 165
+        line_width: 2
+        font_size: 70
+        hours_to_show: 168
+        points_per_hour: 1
+        show:
+          #extrema: true
+          fill: true
+          #graph: bar
+        color_thresholds:
+          - value: 50
+            color: "#FFFF00"
+          - value: 0
+            color: "#3498db"          
+
+#################################################################
+#                                                               #
+#                 Second Floor - Laundry Light Card             #
+#                                                               #
+#################################################################
+
+
+      - type: picture-entity
+        entity: light.server_room_fan
+        name: Server Fan
+        tap_action: 
+          action: toggle
+        image: /local/lovelace/server/fan_02.jpg

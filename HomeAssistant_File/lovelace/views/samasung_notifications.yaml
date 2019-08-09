@@ -1,0 +1,271 @@
+type: vertical-stack
+cards:
+  - type: custom:decluttering-card
+    template: header_text
+    variables:
+      - content: '##### Notifications and Events'
+ 
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.door_window_sensor_158d0001ef3425 
+        state: "off"
+      - entity: binary_sensor.door_window_sensor_158d00027a59c6
+        state: "off"
+      - entity: binary_sensor.door_window_sensor_158d0002ea0754
+        state: "off"
+      - entity: binary_sensor.door_window_sensor_158d0002ea866a
+        state: "off"
+      - entity: binary_sensor.door_window_sensor_158d0002ea9896
+        state: "off"        
+      - entity: binary_sensor.motion_sensor_158d0002047c5a
+        state: "off"
+      - entity: binary_sensor.motion_sensor_158d000204bfcb
+        state: "off"
+      - entity: binary_sensor.motion_sensor_158d00024e7972
+        state: "off"
+      - entity: binary_sensor.motion_sensor_158d000272bc63
+        state: "off"
+      - entity: binary_sensor.motion_sensor_158d0002b42fa3
+        state: "off"        
+      - entity: binary_sensor.dafang_motion_sensor
+        state: "off"
+      - entity: vacuum.robovac
+        state: "docked"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(157, 0, 255, 0.5)
+        - icon: check-box-outline
+        - content: Everything is quiet, there are no notifications
+
+
+    ## Door Window Sensor
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.door_window_sensor_158d0002ea9896
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(150, 77, 77, 0.5)
+        - icon: door-open
+        - content: The Laundry Dryer door is open
+
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.door_window_sensor_158d0002ea866a
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(150, 77, 77, 0.5)
+        - icon: door-open
+        - content: The Ac front door is open
+
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.door_window_sensor_158d0002ea0754 
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(150, 77, 77, 0.5)
+        - icon: door-open
+        - content: The Washing Machine door is open
+
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.door_window_sensor_158d00027a59c6
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(13, 266, 20, 0.5)
+        - icon: door-open
+        - content: The balcony door is open
+
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.door_window_sensor_158d0001ef3425
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(247, 239, 0, 0.5)
+        - icon: door-open
+        - content: The front door is open
+
+  ## Motion 
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.motion_sensor_158d000272bc63 
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(161, 255, 0, 0.5)
+        - icon: motion-sensor
+        - content: There is movement in the pc room
+  
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.motion_sensor_158d00024e7972 
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(161, 255, 0, 0.5)
+        - icon: motion-sensor
+        - content: There is movement in the laundry room
+
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.motion_sensor_158d0002047c5a
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(193, 0, 29, 0.5)
+        - icon: motion-sensor
+        - content: There is movement in the shower
+
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.motion_sensor_158d0002b42fa3
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(0, 221, 255, 0.5)
+        - icon: motion-sensor
+        - content: There is movement on the toilet
+
+  ## Amoke Alarm
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.smoke_sensor_158d00028ee7fb
+        state: "on"
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(255, 0, 0, 0.5)
+        - icon: smoke-detector
+        - content: The smoke alarm went off !! Take action !!
+
+  ## Dishwasher
+  - type: conditional
+    conditions:
+      - entity: input_select.dishwasher_status
+        state: Clean
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(9, 195, 242, 0.5)
+        - icon: dishwasher
+        - content: The dishwasher is ready
+
+  ## Washing Machine
+  - type: conditional
+    conditions:
+      - entity: input_select.washing_machine_status
+        state: Clean
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(216, 32, 164, 0.5)
+        - icon: washing-machine
+        - content: The washing machine is ready
+
+  ## Dryer
+  - type: conditional
+    conditions:
+      - entity: input_select.dryer_status
+        state: Clean
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(176, 66, 44, 0.5)
+        - icon: tumble-dryer
+        - content: The dryer is ready
+
+  ## Robovac ##
+  - type: conditional
+    conditions:
+      - entity: vacuum.robovac
+        state: cleaning
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(56, 43, 230, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner is switched on
+
+  - type: conditional
+    conditions:
+      - entity: vacuum.robovac
+        state: idle
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(56, 43, 230, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner is stationary
+
+  - type: conditional
+    conditions:
+      - entity: vacuum.robovac
+        state: paused
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(56, 43, 230, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner is paused
+
+  - type: conditional
+    conditions:
+      - entity: vacuum.robovac
+        state: returning
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(56, 43, 230, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner returns
+
+  - type: conditional
+    conditions:
+      - entity: sensor.vacuum_cleaner_error_sensor
+        state_not: 'No Error'
+    card:
+      type: custom:decluttering-card
+      template: notification_card
+      variables:
+        - color: rgba(255, 255, 0, 0.5)
+        - icon: robot-vacuum
+        - content: The robot vacuum cleaner is stuck
+
+
+  - type: custom:button-card
+    color_type: blank-card
+    styles:
+      card:
+        - height: 50px

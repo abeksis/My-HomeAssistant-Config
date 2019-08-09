@@ -4,7 +4,7 @@
 #                                                               #
 #################################################################
 
-- name: בבית
+- name: בית
   latitude: !secret avi_home_latitude
   longitude: !secret avi_home_longitude  
   radius: 150
@@ -30,7 +30,7 @@
   icon: mdi:human-female 
   
   
-- name: בבית
+- name: בית
   latitude: !secret nurit_home_latitude
   longitude: !secret nurit_home_longitude  
   radius: 150

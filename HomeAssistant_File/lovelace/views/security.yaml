@@ -1,0 +1,218 @@
+icon: mdi:shield-home
+title: Security
+cards:
+
+#################################################################
+#                                                               #
+#                     Security - Smoke Alarm Card               #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:
+      - type: entities
+        #title: Smoke Detectors
+        show_header_toggle: false
+        entities:
+          - type: divider
+          - type: 'custom:text-divider-row'
+            text: Smoke Detectors
+          - type: divider
+          - binary_sensor.smoke_sensor_158d00028ee7fb        
+
+
+#################################################################
+#                                                               #
+#                   Security - Washer and Dryer Card            #
+#                                                               #
+#################################################################
+
+
+      - type: entities
+        show_header_toggle: off
+        entities:
+          - type: 'custom:text-divider-row'
+            text: Laundry
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:card-modder
+                    card:
+                      type: "custom:button-card"
+                      entity: binary_sensor.door_window_sensor_158d0002ea0754
+                      name: Washer
+                      tap_action:
+                        action: toggle
+                      size: '20%'
+                      style:
+                        - font-size: 14px
+                    style:                 
+                      border-radius: 8px
+                      
+                  - type: "custom:button-card"
+                    color_type: blank-card
+  
+                  - type: custom:card-modder
+                    card:
+                      type: "custom:button-card"
+                      entity: binary_sensor.door_window_sensor_158d0002ea9896
+                      name: Dryer
+                      tap_action:
+                        action: toggle
+                      size: '20%'
+                      style:
+                        - font-size: 14px
+                    style:                 
+                      border-radius: 8px
+                      
+
+          - type: custom:bar-card
+            title_position: off
+            align: center
+            padding: 4px
+            card_style: 
+              border-radius: 5px
+            columns: 2
+            color: '#1db954'
+            entities:
+              - entity: sensor.washing_machine_status
+                title: Door
+              - entity: sensor.laundry_dryer_status
+                title: Door
+
+          - type: custom:mini-graph-card
+            name: Consumption
+            entities: 
+              - entity: sensor.washing_machine_power
+                name: Washer
+                show_state: true
+                unit: 'W'
+              - entity: sensor.washing_machine_power
+                name: Dryer
+                show_state: true
+                unit: 'W'
+            icon: mdi:flash
+            height: 40
+            line_color: '#3498db'
+            line_width: 2
+            font_size: 70
+            hours_to_show: 72
+            points_per_hour: 1
+            show:
+              extrema: true
+              fill: true
+
+#################################################################
+#                                                               #
+#                  Security - Door Status Card                  #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:
+      - type: entities
+        #title: Doors
+        show_header_toggle: false
+        entities:
+          - type: divider
+          - type: 'custom:text-divider-row'
+            text: Doors
+          - type: divider
+          - binary_sensor.door_window_sensor_158d0001ef3425
+          - binary_sensor.door_window_sensor_158d00027a59c6
+
+          
+      - type: custom:gap-card
+        height: 3
+        size:
+
+
+#################################################################
+#                                                               #
+#                  Security - Door Air Conditioner              #
+#                                                               #
+#################################################################
+
+        
+      - type: entities
+        #title: Doors Air Conditioner
+        show_header_toggle: false
+        entities:
+          - type: divider
+          - type: 'custom:text-divider-row'
+            text: Air Conditioner
+          - type: divider
+          - binary_sensor.door_window_sensor_158d0002ea866a
+
+      - type: picture-glance
+        title: Air Conditioner Yakir
+        tap_action: toggle
+        entities:
+          - switch.ac_yakir
+        image: /local/lovelace/switch/Air-Conditioner-yakri.jpg
+
+#################################################################
+#                                                               #
+#                     Home - Dog walk Card                      #
+#                                                               #
+#################################################################
+
+
+      - type: entities
+        entities:
+          - timer.dogwalk
+        state_filter:
+          - 'active'
+
+#################################################################
+#                                                               #
+#                 Security - Motion Sensor Card                 #
+#                                                               #
+#################################################################
+
+
+  - type: vertical-stack
+    cards:
+      - type: entities
+        #title: Motion Sensors
+        show_header_toggle: false
+        entities:
+          - type: divider
+          - type: 'custom:text-divider-row'
+            text: Motion Sensors
+          - type: divider
+          - binary_sensor.motion_sensor_158d0002047c5a
+          - binary_sensor.motion_sensor_158d000204bfcb
+          - binary_sensor.motion_sensor_158d0002b42fa3
+          - binary_sensor.motion_sensor_158d00024e7972
+          - binary_sensor.motion_sensor_158d000272bc63
+
+#################################################################
+#                                                               #
+#                 Security- Last IP Login Card                  #
+#                                                               #
+#################################################################
+
+      - type: entities
+        show_header_toggle: off
+        entities:
+          - type: 'custom:text-divider-row'
+            text: Last IP Login
+          - type: section 
+            label: IP Login
+          - entity: sensor.myip
+            name: My IP address is
+            icon: mdi:ip-network
+          - type: custom:bar-card
+            title_position: inside
+            align: center
+            padding: 4px
+            card_style: 
+              border-radius: 5px
+            columns: 2
+            entities:
+              - entity: sensor.last_successful_authentication
+                title: Last successful
+              - entity: sensor.authentication_known_ip_info
+                title: Known iP info              

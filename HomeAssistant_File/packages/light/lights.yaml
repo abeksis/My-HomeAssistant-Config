@@ -188,6 +188,18 @@ light:
     payload_not_available: "Offline"
     retain: true
 
+  - platform: mqtt  
+    name: "kitchen"
+    state_topic: "stat/kitchen/POWER"
+    command_topic: "cmnd/kitchen/POWER"
+    availability_topic: "tele/kitchen/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true    
+
 
 script:
   lights_off:
@@ -203,6 +215,7 @@ script:
                   - light.miklahat
                   - light.laundry
                   - light.yeelight_poop
+                  - light.kitchen
                   # - light.liran_room
                   - light.balcony
                   - light.service_balcony

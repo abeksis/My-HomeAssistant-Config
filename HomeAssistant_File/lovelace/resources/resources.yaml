@@ -1,0 +1,184 @@
+#################################################################
+#                             JS                                #
+#################################################################  
+  - url: /local/content-card-example.js
+    type: js
+
+  ## https://github.com/ciotlosm/custom-lovelace/tree/master/group-card ##
+  - url: /community_plugin/group-card/group-card.js
+    type: js
+
+
+  ## https://github.com/custom-cards/state-attribute-element ## 
+  - url: /community_plugin/state-attribute-element/state-attribute-element.js
+    type: js
+    
+  ## https://github.com/custom-cards/text-element ##   
+  - url: /community_plugin/text-element/text-element.js
+    type: js
+
+
+  ## https://community.home-assistant.io/t/lovelace-column-card/62039 ##
+  - url: /community_plugin/lovelace-column-card/column-card.js
+    type: js
+
+
+   ## https://github.com/thomasloven/lovelace-layout-card ##
+  - url: /community_plugin/lovelace-layout-card/layout-card.js
+    type: js
+    
+   ## https://github.com/thomasloven/lovelace-card-tools ##
+  - url: /community_plugin/lovelace-card-tools/card-tools.js
+    type: js
+    
+  ## https://github.com/ciotlosm/custom-lovelace/tree/master/monster-card
+  - url: /community_plugin/monster-card/monster-card.js
+    type: js  
+
+
+  ## For Xiaomi-Vacuum 
+  - url: /local/entity-attributes-card.js?v=0.1.1
+    type: js 
+  
+  ## https://github.com/custom-cards/vertical-stack-in-card
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+    type: js
+  
+ 
+  ## https://github.com/custom-cards/bar-card
+  - url: /community_plugin/bar-card/bar-card.js
+    type: js   
+
+  ## https://github.com/thomasloven/lovelace-gap-card
+  - url: /community_plugin/lovelace-gap-card/gap-card.js
+    type: js  
+ 
+
+  ## https://github.com/thomasloven/lovelace-fold-entity-row  
+  - url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
+    type: js
+ 
+  ## https://github.com/thomasloven/lovelace-slider-entity-row  
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: js
+   
+  ##https://github.com/ljmerza/calendar-card  
+  - url: /community_plugin/calendar-card/calendar-card.js
+    type: js   
+  
+  ## 26/5/19
+  ## https://github.com/thomasloven/lovelace-popup-card
+  - url: /community_plugin/lovelace-popup-card/popup-card.js
+    type: js
+
+  ## https://github.com/dimagoltsman/ha-custom-component-ituran ##  
+  - url: /local/content-card-ituran.js
+    type: js
+  
+  - url: /local/card-loader.js
+    type: js
+    
+  - url: /community_plugin/bignumber-card/bignumber-card.js
+    type: js
+
+
+  - url: /community_plugin/lovelace-home-feed-card/home-feed-card.js
+    type: js
+
+  - url: /community_plugin/light-entity-card/light-entity-card.js
+    type: js
+
+  - url: 'https://fonts.googleapis.com/css?family=Quicksand:300,400'
+    type: css
+
+
+
+#################################################################
+#                          Module                               #
+#################################################################
+
+  - url: /local/wired-cards.js
+    type: module
+
+  - url: /local/custom_cards/canvas-gauge-card.js
+    type: module
+
+  # ## https://github.com/kalkih/mini-media-player ##
+  - url: /community_plugin/mini-media-player/mini-media-player.js
+    type: module
+
+  ## https://github.com/thomasloven/lovelace-card-modder ##
+  - url: /community_plugin/lovelace-card-modder/card-modder.js
+    type: module
+
+  ## https://github.com/custom-cards/surveillance-card ##
+  - url: /community_plugin/surveillance-card/surveillance-card.js
+    type: module
+
+  ## https://github.com/kalkih/mini-graph-card
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+    type: module
+  
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
+
+  - url: /community_plugin/circle-sensor-card/circle-sensor-card.js
+    type: module
+
+  ## https://github.com/custom-cards/text-divider-row
+  - url: /community_plugin/text-divider-row/text-divider-row.js
+    type: module
+    
+  # ## https://github.com/custom-cards/aftership-card
+  # - url: /community_plugin/aftership-card/aftership-card.js
+  #   type: module
+ 
+  ## https://github.com/custom-cards/button-card
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+  
+  ## https://github.com/custom-cards/config-template-card
+  - url: /community_plugin/config-template-card/config-template-card.js
+    type: module
+
+  ## https://github.com/iammexx/home-assistant-config/tree/master/ui/darksky ##    
+  - url: /local/custom_ui/dark-sky-weather-card.js?v=7.1
+    type: module
+    
+  ## https://github.com/ciotlosm/custom-lovelace/tree/master/thermostat-card    
+  - url: /local/custom_ui/thermostat-card/thermostat-card.js
+    type: module   
+
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+    type: module
+
+
+  - url: /community_plugin/decluttering-card/decluttering-card.js
+    type: module
+
+  - url: /community_plugin/simple-weather-card/simple-weather-card.js
+    type: module
+
+  - url: /community_plugin/lovelace-card-mod/card-mod.js
+    type: module
+
+  - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
+    type: module
+
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+
+  - url: /community_plugin/sun-card/sun-card.js
+    type: module    
+ 
+  - url: /community_plugin/swipe-card/swipe-card.js
+    type: module
+    
+  - url: /community_plugin/lovelace-state-switch/state-switch.js
+    type: module
+
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+    type: module    
+
+  - url: /community_plugin/thermostat-card/thermostat-card.js
+    type: module    
