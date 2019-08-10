@@ -445,29 +445,41 @@ automation:
         data:
           entity_id: group.theme_selector             
 
-# Theme Day/Night Cycle
+  # Theme Day/Night Cycle
+  # - alias: 'Set dark theme for the night'
+  #   initial_state: true
+  #   trigger:
+  #     - platform: sun
+  #       event: sunset
+  #       offset: '+00:00:00'
+  #   action:
+  #     - service: frontend.set_theme
+  #       data:
+  #         name: Homekit Gray Dark
 
-  - alias: 'Set dark theme for the night'
-    initial_state: true
+  # - alias: 'Set light theme for the day'
+  #   initial_state: true
+  #   trigger:
+  #     - platform: sun
+  #       event: sunrise
+  #       offset: '+00:00:00'
+  #   action:
+  #     - service: frontend.set_theme
+  #       data:
+  #         name: Homekit Gray Light
+
+  # Theme on Startup
+  
+  - alias: 'Set Theme on Startup'
+    initial_state: 'true'
     trigger:
-      - platform: sun
-        event: sunset
-        offset: '+00:00:00'
+      - platform: homeassistant
+        event: start
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Gray Dark
+          name: "Midnight"
 
-  - alias: 'Set light theme for the day'
-    initial_state: true
-    trigger:
-      - platform: sun
-        event: sunrise
-        offset: '+00:00:00'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Gray Light
 
   # Vacuum avitelegram
   - id: vacuum_cleaner_error

@@ -1,8 +1,17 @@
 # Background image
   background-image: 'center / cover no-repeat url("/local/lovelace/background/background_my.png") fixed'
   
+
+# This is My Styles 
+  miklahat-color-avi-nurit: '#ffffff'
+  my-divider-color-avi-is-the-king: 'yellow'  
+  next-bus-color: '#yellow'
+  next-bus-left: '59px' 
+  next-bus-top:  '22px' 
+  
+  
 # Main colors
-  primary-color: '#5294E2'                                                        # Header
+  primary-color: '#58A0EE'                                                        # Header
   accent-color: '#E45E65'                                                         # Accent color
   dark-primary-color: 'var(--accent-color)'                                       # Hyperlinks                                         
   light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
@@ -14,7 +23,8 @@
 # Text colors                                                                  
   primary-text-color: '#FFFFFF'                                                   # Primary text colour, here is referencing dark-primary-color
   text-primary-color: 'var(--primary-text-color)'                                 # Primary text colour
-  secondary-text-color: '#5294E2'                                                 # For secondary titles in more info boxes etc.
+  secondary-text-color: '#5995d8'                                                 # For secondary titles in more info boxes etc.
+  
   disabled-text-color: '#7F848E'                                                  # Disabled text colour
   label-badge-border-color: 'green'                                               # Label badge border, just a reference value   
 
@@ -38,7 +48,7 @@
   paper-card-background-color: 'rgba(150, 150, 150, 0.1)'                         # Card background colour
   paper-dialog-background-color: '#434954'                                        # Card dialog background colour
   paper-item-icon-color: 'var(--primary-text-color)'                              # Icon color
-  paper-item-icon-active-color: '#5294E2'                                         # Icon color active
+  paper-item-icon-active-color: '#5995d8'                                         # Icon color active
   paper-item-icon_-_color: 'green'           
   paper-item-selected_-_background-color: '#434954'                               # Popup item select                      
   paper-tabs-selection-bar-color: 'green'
@@ -70,6 +80,3 @@
 # Google colors
   google-red-500: '#E45E65'
   google-green-500: '#39E949'
-
-# This is my own styling  
-  miklahat-color-avi-nurit: '#ffffff'

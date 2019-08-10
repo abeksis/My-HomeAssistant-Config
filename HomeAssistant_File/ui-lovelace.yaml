@@ -24,7 +24,7 @@ cch:
   menu: show
   options: show
   voice: hide
-  hide_tabs: '14 to 25'
+  hide_tabs: '14 to 27'
   notifications: clock
   clock_format: '24'
   clock_date: true
@@ -67,13 +67,13 @@ cch:
  
 background: var(--background-image)
 views:
-  - !include lovelace/views/main_view.yaml
+  - !include lovelace/views/home.yaml
   - !include lovelace/views/security.yaml
   - !include lovelace/views/downstairs.yaml
   - !include lovelace/views/electricity.yaml
-  - !include lovelace/views/general.yaml
+  - !include lovelace/views/car.yaml
   - !include lovelace/views/second_floor.yaml 
-  - !include lovelace/views/system_status.yaml 
+  - !include lovelace/views/server.yaml 
   - !include lovelace/views/things_status.yaml
   - !include lovelace/views/camera.yaml 
   - !include lovelace/views/windows.yaml

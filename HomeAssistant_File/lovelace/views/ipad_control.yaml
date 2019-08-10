@@ -1,5 +1,6 @@
-title: home
+title: ipad
 icon: 'mdi:tablet-ipad'
+path: ipad
 panel: true
 cards:
   - type: custom:layout-card

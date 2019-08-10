@@ -64,6 +64,6 @@ group:
     name: Homeassistant Maintenance
     view: no
     entities:
-      - automation.set_theme_to_midnight
+      # - automation.set_theme_to_midnight
       - automation.startup_notification
       - automation.lighting_the_light_after_sunset_at_eleven_oclock

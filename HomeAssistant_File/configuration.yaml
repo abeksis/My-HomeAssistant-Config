@@ -115,7 +115,7 @@ tts:
 
 
 frontend:
-  themes: !include configuration/themes.yaml #For Samsung Notte design / עיצוב סמסונג נוט
+  themes: !include configuration/themes.yaml #For Samsung Notte design
   javascript_version: auto
   extra_html_url:
     - /local/custom_ui/fontawesome/hass-fontawesome-solid.html
