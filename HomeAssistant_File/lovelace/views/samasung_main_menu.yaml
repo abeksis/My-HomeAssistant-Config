@@ -4,7 +4,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button_3
+        template: back_button
       - type: custom:decluttering-card
         template: header_text
         variables:
@@ -188,6 +188,52 @@ cards:
                   navigation_path: /lovelace/remote
                   haptic: light
           - !include ../decluttering_templates/blank-card.yaml             
+
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.dummy1
+              - name: Home Assistant
+              - label: Statistics              
+              - icon: home-assistant
+              - show_state: false
+              - opacity: 0.8
+              - tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/statistics
+                  haptic: light
+              - hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/statistics
+                  haptic: light
+
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.dummy1
+              - name: Car
+              - label: Skoda Kodiaq
+              - icon: car-connected
+              - show_state: false
+              - opacity: 0.8
+              - tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/skoda
+                  haptic: light
+              - hold_action:
+                  action: navigate
+                  navigation_path: /lovelace/skoda
+                  haptic: light
+                  
+          #### Space
+          - type: custom:button-card
+            color_type: blank-card
+            aspect_ratio: 1/1
+          - !include ../decluttering_templates/blank-card.yaml 
+
 
   - type: vertical-stack
     cards:

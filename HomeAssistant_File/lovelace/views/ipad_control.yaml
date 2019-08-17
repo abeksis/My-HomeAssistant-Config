@@ -546,7 +546,31 @@ cards:
                 style:
                   top: 89%
                   left: 63.9%
-                  width: 4%                     
+                  width: 4%  
+
+              - type: image
+                tap_action: 
+                  action: toggle
+                entity: light.living_room
+                state_image:
+                  "off": /local/lovelace/images/assets/lights/dark_off.svg
+                  "on": /local/lovelace/images/assets/lights/dark_on.svg
+                style:
+                  top: 89%
+                  left: 71.9%
+                  width: 4%  
+                  
+              - type: image
+                tap_action: 
+                  action: toggle
+                entity: light.seating_area
+                state_image:
+                  "off": /local/lovelace/images/assets/lights/dark_off.svg
+                  "on": /local/lovelace/images/assets/lights/dark_on.svg
+                style:
+                  top: 89%
+                  left: 77.9%
+                  width: 4%                    
 
       #################################################################
       #     Room Temperatures                                         #
@@ -752,6 +776,22 @@ cards:
                   color: "#A1A1A1"
                   font-family: Quicksand
                   font-size: 12px
+              - type: state-label
+                entity: sensor.text_living_room
+                style:
+                  top: 98%
+                  left: 71.9%
+                  color: "#A1A1A1"
+                  font-family: Quicksand
+                  font-size: 12px
+              - type: state-label
+                entity: sensor.text_seating_area
+                style:
+                  top: 97.9%
+                  left: 77.9%
+                  color: "#A1A1A1"
+                  font-family: Quicksand
+                  font-size: 12px                  
 
 #################################################################
 #                                                               #

@@ -125,7 +125,7 @@ sensor:
       text_stairs:
         value_template: "מדרגות"
       text_guests_bathroom:
-        value_template: "מקלחת / שירותים"
+        value_template: "מקלחת-שירותים"
       text_laundry:
         value_template: "חדר כביסה"
       text_balcony:
@@ -148,3 +148,7 @@ sensor:
         value_template: "מטבח"        
       text_good_night:
         value_template: "לילה טוב"
+      text_living_room:
+        value_template: "סלון"
+      text_seating_area:
+        value_template: "פינת ישיבה"        

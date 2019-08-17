@@ -94,7 +94,15 @@ sensor:
       iturn_lon:
         value_template: '{{ states.ituran.skodakodiak.attributes.lon }}' 
 
-         
+      ituran_google_map:
+        value_template: '{{ states.ituran.skodakodiak.attributes.google_map }}'
+
+      ituran_map_still:
+        value_template: '{{ states.ituran.skodakodiak.attributes.map_still }}'
+
+      ituran_google_embedded:
+        value_template: '{{ states.ituran.skodakodiak.attributes.google_embedded }}'
+
 #################################################################
 #                                                               #
 #                           Groups                              #

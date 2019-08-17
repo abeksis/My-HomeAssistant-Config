@@ -152,23 +152,19 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: custom:mini-graph-card
-        entities: 
-          - sensor.illumination_158d000204bfcb
-        height: 165
-        line_width: 2
-        font_size: 70
-        hours_to_show: 168
-        points_per_hour: 1
-        show:
-          #extrema: true
-          fill: true
-          #graph: bar
-        color_thresholds:
-          - value: 50
-            color: "#FFFF00"
-          - value: 0
-            color: "#3498db"          
+      - type: custom:decluttering-card
+        template: graph
+        variables:
+            - entity: sensor.illumination_158d000204bfcb
+            - name: Light intensity Shower Parents
+            - height: 165
+            - line_width: 2
+            - font_size: 70
+            - color: yellow
+            - show_extrema: true
+            - show_fill: true 
+            - hours_to_show: 168
+            - points_per_hour: 1
 
 #################################################################
 #                                                               #

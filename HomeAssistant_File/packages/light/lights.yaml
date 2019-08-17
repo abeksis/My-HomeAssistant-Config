@@ -198,7 +198,31 @@ light:
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"
-    retain: true    
+    retain: true   
+
+  - platform: mqtt  
+    name: "Living Room"
+    state_topic: "stat/Living_Room/POWER1"
+    command_topic: "cmnd/Living_Room/POWER1"
+    availability_topic: "tele/Living_Room/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true   
+
+  - platform: mqtt  
+    name: "Seating Area"
+    state_topic: "stat/Living_Room/POWER2"
+    command_topic: "cmnd/Living_Room/POWER2"
+    availability_topic: "tele/Living_Room/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
 
 
 script:

@@ -52,6 +52,16 @@ panel_iframe:
    title: Unraid
    icon: mdi:desktop-tower
    url: !secret unraid
+   
+  cloud9: 
+   title: ide
+   icon: mdi:cloud-upload-outline
+   url: !secret cloud9  
+   
+  tasmoadmin: 
+   title: TasmoAdmin
+   icon: mdi:omega
+   url: !secret tasmoadmin
 
 ####################################################
 #                                                  #

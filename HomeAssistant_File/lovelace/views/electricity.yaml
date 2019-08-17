@@ -61,7 +61,6 @@ cards:
               color: '#bf4040'
 
           - type: custom:bar-card
-            #title_position: inside
             align: center
             padding: 5px
             card_style: 
@@ -79,34 +78,33 @@ cards:
               color: '#1db954'
             - value: 3500
               color: '#bf4040'
-                          
-          - type: custom:mini-graph-card
-            entities: 
-              - sensor.phaze_1_power
-            icon: mdi:flash
-            height: 40
-            line_color: '#3498db'
-            line_width: 2
-            font_size: 70
-            hours_to_show: 168
-            points_per_hour: 1
-            show:
-              extrema: true
-              fill: true
 
-          - type: custom:mini-graph-card
-            entities: 
-              - sensor.phaze_1_apparent_power
-            icon: mdi:flash
-            height: 40
-            line_color: '#ff9800'
-            line_width: 2
-            font_size: 70
-            hours_to_show: 168
-            points_per_hour: 1
-            show:
-              extrema: true
-              fill: true                  
+          - type: custom:decluttering-card
+            template: graph
+            variables:
+                - entity: sensor.phaze_1_power
+                - name: Electric power
+                - icon: mdi:flash 
+                - height: 40
+                - line_width: 2
+                - show_extrema: true
+                - show_fill: true  
+                - hours_to_show: 168
+                - points_per_hour: 1
+
+          - type: custom:decluttering-card
+            template: graph
+            variables:
+                - entity: sensor.phaze_1_apparent_power
+                - name: צריכה הסתברותית
+                - icon: mdi:flash 
+                - height: 40
+                - line_width: 2
+                - color: green
+                - show_extrema: true
+                - show_fill: true 
+                - hours_to_show: 168
+                - points_per_hour: 1
 
 #################################################################
 #                                                               #
@@ -279,8 +277,6 @@ cards:
             cards:
               - type: horizontal-stack
                 cards:
-                  #- type: "custom:button-card"
-                  #  color_type: blank-card
                   - type: custom:card-modder
                     card:
                       type: "custom:button-card"
@@ -294,24 +290,21 @@ cards:
                         - font-size: 14px
                     style:                 
                       border-radius: 8px
-                    
-                  #- type: "custom:button-card"
-                  #  color_type: blank-card
                       
 
-          - type: custom:mini-graph-card
-            entities: 
-              - sensor.phaze_1_current
-            icon: mdi:chart-line-variant
-            height: 40
-            line_color: '#1cb954'
-            line_width: 2
-            font_size: 70
-            hours_to_show: 168
-            points_per_hour: 1
-            show:
-              extrema: true
-              fill: true
+          - type: custom:decluttering-card
+            template: graph
+            variables:
+                - entity: sensor.phaze_1_current
+                - name: Ampre
+                - height: 40
+                - line_width: 2
+                - font_size: 70
+                - color: yellow
+                - show_extrema: true
+                - show_fill: true 
+                - hours_to_show: 168
+                - points_per_hour: 1
 
 #################################################################
 #                                                               #

@@ -1,4 +1,5 @@
-# dima cange
+# Belongs to the cellular display / שייך לתצוגה על הסלולרי
+
 default:
   - tap_action:
       action: more-info

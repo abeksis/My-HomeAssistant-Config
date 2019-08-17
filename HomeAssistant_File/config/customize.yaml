@@ -195,20 +195,6 @@
     friendly_name: לחות קומה שניה
     icon: mdi:water-percent
 
-  # sensor.second_floor_temperature:
-  #   friendly_name: טמפ קומה שניה 
-  #   icon: mdi:temperature-celsius   
-
-
-    
-   ## הסתרת אלמנטים ##   
-
-  # sensor.vacuum_battery:
-  #   hidden: true
-  # sensor.vacuum_status:
-  #   hidden: true 
-
-
 
   ## הדלקה/ תאורה בהתאם לשמש באופן אוטומטי ##
   automation.lighting_the_light_after_sunset_at_eleven_oclock:

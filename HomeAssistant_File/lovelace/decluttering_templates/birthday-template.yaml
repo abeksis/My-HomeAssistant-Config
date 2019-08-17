@@ -1,0 +1,97 @@
+default:
+    - text_color: var(--picture-elements-text-color)
+    - prefix: ""    
+card:
+    type: picture-elements
+    image: '[[image]]'
+    elements:
+        - type: state-icon
+          entity: input_label.[[name1]]
+          style:
+              left: 10%
+              top: 14%
+
+        - type: state-label
+          prefix: '[[prefix1]]'
+          entity: input_label.[[name1]]
+          image: '[[image]]'
+          style: 
+              color: '[[text_color]]' 
+              top: 4%
+              left: 52px
+              transform: none
+              font-size: 90%
+              font-weight: bold
+              pointer-events: none
+              width: 263px
+              padding: 5px
+              border-top-right-radius: 5px
+
+
+        - type: state-icon
+          entity: input_label.[[name2]]
+          style:
+              left: 41.3px
+              top: 60px
+    
+        - type: state-label
+          prefix: '[[prefix2]]'
+          entity: input_label.[[name2]]
+          image: '[[image]]'
+          style:
+              color: '[[text_color]]'            
+              top: 31%
+              left: 52px
+              transform: none
+              font-size: 90%
+              font-weight: bold
+              pointer-events: none
+              width: 263px
+              padding: 5px
+              border-top-right-radius: 5px
+              
+
+        - type: state-icon
+          entity: input_label.[[name3]]
+          style:
+              left: 41px
+              top: 93px
+
+        - type: state-label
+          prefix: '[[prefix3]]'
+          entity: input_label.[[name3]]
+          image: '[[image]]'
+          style:
+              color: '[[text_color]]'            
+              top: 53%
+              left: 52px
+              transform: none
+              font-size: 90%
+              font-weight: bold
+              pointer-events: none
+              width: 263px
+              padding: 5px
+              border-top-right-radius: 5px               
+              
+
+
+        - type: state-icon
+          entity: input_label.[[name4]]
+          style:
+              left: 9.9%
+              top: 87%
+        
+        - type: state-label
+          prefix: '[[prefix4]]'
+          entity: input_label.[[name4]]
+          style:
+              color: '[[text_color]]'
+              left: 12.2%
+              top: 76%             
+              transform: none
+              font-size: 90%
+              font-weight: bold
+              pointer-events: none
+              width: 263px
+              padding: 5px
+              border-top-right-radius: 5px              

@@ -1,0 +1,13 @@
+default:
+    - text_color: var(--picture-elements-text-color)
+    
+card:
+    type: picture-elements
+    image: '[[image]]'
+    elements:
+        - type: state-label
+          entity: device_tracker.[[name]]
+          style: 
+              color: '[[text_color]]'
+              left: 50%
+              top: 92%

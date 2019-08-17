@@ -41,7 +41,7 @@ cards:
         title: Electric shutter
         show_header_toggle: off
         entities:
-          - cover.wbed_blinds
+          - cover.living_room_shutters
 
 #################################################################
 #                     Switches Status - SH20 Pow Switch Card    #
@@ -73,23 +73,7 @@ cards:
           background-image: url("/local/lovelace/background/cardbackK.png")
           background-repeat: no-repeat
           background-color: rgba(50,50,50,0.3)
-          background-size: 100%  
-
-      #  Air-conditioned  אלירן מזגן
-      # - type: custom:thermostat-card
-      #   title: Air-conditioned living room
-      #   entity: climate.living_room
-      #   step: 1
-      #   chevron_size: 20
-
-
-          
-      # - type: entities
-      #   show_header_toggle: false
-      #   entities:
-      #     - climate.living_room
-        
-
+          background-size: 100% 
 
 
 
@@ -1066,33 +1050,9 @@ cards:
 #                               service_data:
 #                                 entity_id: script.channel_0
 
-
-
-#################################################################
-#                                                               #
-#                  Downstairs - Living Room Mold                #
-#                                                               #
-#################################################################
-
   - type: vertical-stack
     cards:
-      - type: custom:mini-graph-card
-        entities: 
-          - sensor.humidity_158d00022ece24
-        height: 65
-        line_width: 2
-        font_size: 70
-        hours_to_show: 168
-        points_per_hour: 1
-        show:
-          fill: true
-        color_thresholds:
-          - value: 70
-            color: "#e74c3c"
-          - value: 40
-            color: "#1db954"
-          - value: 0
-            color: "#3498db"
+
             
 #################################################################
 #                                                               #

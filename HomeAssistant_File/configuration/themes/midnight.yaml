@@ -3,12 +3,26 @@
   
 
 # This is My Styles 
-  miklahat-color-avi-nurit: '#ffffff'
-  my-divider-color-avi-is-the-king: 'yellow'  
-  next-bus-color: '#yellow'
-  next-bus-left: '59px' 
-  next-bus-top:  '22px' 
+  picture-elements-text-color: '#ffffff'  
   
+  button-card-border-radius: 'var(--border-radius)'                               # Button Card corners radius
+  button-card-background-color: 'var(--paper-card-background-color)'              # Button Card background color
+  button-card-icon-color: 'var(--paper-item-icon-color)'                          # Button Card icon color
+  button-card-text-color: 'var(--primary-text-color)'                             # Button Card text color
+  button-card-corner-text-color: 'var(--secondary-text-color)'                    # Button card corner field text color
+  button-card-cust-1-text-color: 'var(--secondary-text-color)'                    # Button Card cust_1 field text color
+  button-card-cust-2-text-color: 'var(--secondary-text-color)'                    # Button Card cust_2 field text color
+  button-card-disabled-text-color: 'var(--disabled-text-color)'                   # Button Card disabled text color
+  button-card-input-select-background: 'var(--button-card-on-background)'         # Button Card selected item color
+  button-card-on-background: '#5252521a'                                          # Button Card ON color
+  button-color-green: 'rgba(117,189,111,1)'                                       # Button Card green background (ON mode)
+  title-button-background: 'var(--paper-card-header-color)'                       # Title button background color
+  title-button-text-color: 'var(--primary-text-color)'                            # Title button text color
+  remote-button-background: 'var(--paper-card-background-color)'                  # Remote button background color
+  remote-button-alt-background: 'var(--disabled-text-color)'                      # Remote button alternative background color
+  remote-button-icon: 'var(--primary-text-color)'                                 # Remote button icon color
+  remote-button-border-radius: '5px'    
+
   
 # Main colors
   primary-color: '#58A0EE'                                                        # Header
@@ -17,7 +31,7 @@
   light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
   ha-card-border-radius: '13px'   
   ha-card-background: 'rgba(150, 150, 150, 0.1)'
-  button-color-green: 'rgba(117,189,111,1.0)'                                     # ADD by me for Air-conditioned
+  graph-border-radius: '15px'                                                      # Mini Graph Card
       
       
 # Text colors                                                                  

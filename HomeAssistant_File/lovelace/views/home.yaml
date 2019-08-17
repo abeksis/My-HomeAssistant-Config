@@ -3,127 +3,75 @@ path: home
 icon: mdi:home-assistant
 cards:
 
-    #################################################################
-    #                                                               #
-    #                     Home - Avi nurit Card                     #
-    #                                                               #
-    ################################################################# 
+#################################################################
+#                                                               #
+#                     Home - Avi nurit Card                     #
+#                                                               #
+################################################################# 
 
     - type: vertical-stack
       cards:
         - type: horizontal-stack
           cards:
-            - type: picture-elements
-              image: /local/lovelace/avi_nurit/avi_black.jpg
-              elements:
-                - type: state-label
-                  entity: device_tracker.life360_avi_abeksis #device_tracker.avi_avi_2
-                  prefix: 'Avi -- '
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)"
-                   left: 30%
-                   top: 90%
-                - type: state-icon
-                  entity: sensor.life360_avi_battery #sensor.avi_battery
-                  tap_action: more_info
-                  style:
-                   color: "var(--miklahat-color-avi-nurit)"
-                   left: 73%
-                   top: 90% 
-                - type: state-label
-                  entity: sensor.life360_avi_battery #sensor.avi_battery
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)" 
-                   left: 87%
-                   top: 91%
-                - type: state-icon
-                  entity: ituran.skodakodiak
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)"
-                   left: 92% 
-                   top: 15%
-                - type: state-icon
-                  entity: sensor.abeksis_gmail_com
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)"
-                   left: 92% 
-                   top: 32%
-                - type: state-label
-                  entity: sensor.abeksis_gmail_com
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)"
-                   left: 92%
-                   top: 45%                     
+            - type: custom:decluttering-card
+              template: parent_person
+              variables:
+                - name: life360_avi_abeksis
+                - image: /local/lovelace/avi_nurit/avi_black.jpg
+                - prefix: 'Avi -- '
+                - battery_sensor: sensor.life360_avi_battery
+                - ituran: ituran.skodakodiak
+                - mail_sensor: sensor.abeksis_gmail_com
 
 
 #################################################################
 #                                                               #
-#                     Home - Liran Rotam Yakir Card             #
+#                     Home - Nuri nurit Card                    #
 #                                                               #
 #################################################################
 
-      
-            - type: picture-elements
-              image: /local/lovelace/avi_nurit/unrit_black.jpg
-              elements:
-                - type: state-label
-                  entity: device_tracker.life360_nurit #device_tracker.nurit_iphone_2
-                  prefix: 'Nurit -- '
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)"
-                   left: 30%
-                   top: 90%
-                - type: state-icon
-                  entity: sensor.life360_nurit_battery #sensor.nurit_battery_level
-                  tap_action: more_info
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)"
-                   left: 73%
-                   top: 90%
-                - type: state-label
-                  entity: sensor.life360_nurit_battery #sensor.nurit_battery_level 
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)"
-                   left: 87% 
-                   top: 91%
-                - type: state-icon
-                  entity: ituran.skodakodiak
-                  style: 
-                   color: "var(--miklahat-color-avi-nurit)" 
-                   left: 92%
-                   top: 15%                     
+            - type: custom:decluttering-card
+              template: parent_person
+              variables:
+                - name: life360_nurit
+                - image: /local/lovelace/avi_nurit/unrit_black.jpg
+                - prefix: 'Nurit -- '
+                - battery_sensor: sensor.life360_nurit_battery
+                - ituran: ituran.skodakodiak
+                - mail_sensor: sensor.abeksis_gmail_com
 
 
+#################################################################
+#                                                               #
+#                     Home - kids Card                          #
+#                                                               #
+#################################################################
+         
         - type: horizontal-stack
           cards:
-            - type: picture-elements
-              image: /local/lovelace/avi_nurit/liran_black.jpg
-              elements:
-                - type: state-label
-                  entity: device_tracker.life360_liran #device_tracker.liran_note_phone
-                  style: {top: 92%, left: 50%, color: white}
+            - type: custom:decluttering-card
+              template: child_person
+              variables:
+                - name: life360_liran
+                - image: /local/lovelace/avi_nurit/liran_black.jpg
 
-            - type: picture-elements
-              image: /local/lovelace/avi_nurit/rotam_black.jpg
-              elements:
-                - type: state-label
-                  entity: device_tracker.rotam_iphone
-                  style: {top: 92%, left: 50%, color: white}
+            - type: custom:decluttering-card
+              template: child_person
+              variables:
+                - name: rotam_iphone
+                - image: /local/lovelace/avi_nurit/rotam_black.jpg
 
-            - type: picture-elements
-              image: /local/lovelace/avi_nurit/yakir_black.jpg
-              elements:
-                - type: state-label
-                  entity: device_tracker.life360_yakir #device_tracker.yakir
-                  style: {top: 92%, left: 50%, color: white}
-
+            - type: custom:decluttering-card
+              template: child_person
+              variables:
+                - name: life360_yakir
+                - image: /local/lovelace/avi_nurit/yakir_black.jpg                
 
 #################################################################
 #                                                               #
 #                     Home - Birthday Card                      #
 #                                                               #
 #################################################################
-
 
         - type: vertical-stack
           cards:
@@ -134,68 +82,28 @@ cards:
                   text: Birthday
                 - type: custom:card-modder
                   card:
-                    type: picture-elements
-                    image: /local/lovelace/home/Birthday.png
-                    elements:
-                      - type: state-icon
-                        entity: input_label.nurit_birthday_days2go
-                        style: {color: white, left: 30px, top: 31px}
-                      - type: state-label
-                        prefix: 'Nurit -- '
-                        entity: input_label.nurit_birthday_days2go
-                        style:
-                          top: 8%
-                          left: 52px
-                          transform: none
-                          color: rgb(255, 255, 255)
-                          font-size: 90%
-                          font-weight: bold
-                          pointer-events: none
-                          width: 263px
-                          padding: 5px
-                          border-top-right-radius: 5px
-                      - type: state-icon
-                        entity: input_label.rotam_birthday_days2go
-                        style: {color: white, left: 29px, top: 82px}
-                      - type: state-label
-                        prefix: 'Rotam -- '
-                        entity: input_label.rotam_birthday_days2go
-                        style:
-                          top: 42%
-                          left: 52px
-                          transform: none
-                          color: rgb(255, 255, 255)
-                          font-size: 90%
-                          font-weight: bold
-                          pointer-events: none
-                          width: 263px
-                          padding: 5px
-                          border-top-right-radius: 5px
-                      - type: state-icon
-                        entity: input_label.liran_birthday_days2go
-                        style: {color: white, left: 30px, top: 129px}
-                      - type: state-label
-                        prefix: 'Liran -- '
-                        entity: input_label.liran_birthday_days2go
-                        style:
-                          top: 72%
-                          left: 52px
-                          transform: none
-                          color: rgb(255, 255, 255)
-                          font-size: 90%
-                          font-weight: bold
-                          pointer-events: none
-                          width: 263px
-                          padding: 5px
-                          border-top-right-radius: 5px   
-                      - type: state-icon
-                        entity: input_label.yakir_birthday_days2go
-                        style: {color: white, left: 80%, top: 51%}
-                      - type: state-label
-                        prefix: 'Yakir '
-                        entity: input_label.yakir_birthday_days2go
-                        style: {color: white, left: 90%, top: 53%}                    
+                    type: custom:decluttering-card
+                    template: birthday-template
+                    variables:
+                      - name1: nurit_birthday_days2go
+                      - prefix1: 'Nurit -- '
+                      - name1: nurit_birthday_days2go                      
+                      - image: /local/lovelace/home/Birthday.png 
 
+                      - name2: rotam_birthday_days2go
+                      - prefix2: 'Room -- '
+                      - name2: rotam_birthday_days2go                      
+                      - image: /local/lovelace/home/Birthday.png                       
+
+                      - name3: liran_birthday_days2go
+                      - prefix3: 'Liran -- '
+                      - name3: liran_birthday_days2go                     
+                      - image: /local/lovelace/home/Birthday.png
+                      
+                      - name3: yakir_birthday_days2go
+                      - prefix4: 'Yakir -- '
+                      - name4: yakir_birthday_days2go                     
+                      - image: /local/lovelace/home/Birthday.png  
 
 #################################################################
 #                                                               #
@@ -205,608 +113,93 @@ cards:
 
             - type: vertical-stack
               cards:              
-                - type: entities
-                  show_header_toggle: off
-                  entities:
-                    - type: 'custom:text-divider-row'
-                      text: Lighting Mode
-                    - type: custom:vertical-stack-in-card
-                      cards:
-                        - type: horizontal-stack
-                          cards:
-                            - type: custom:button-card
-                              entity: light.yeelight_poop
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Bathroom
-                              icon: mdi:toilet
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 13px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey                      
-          
-        
-        
-                            - type: custom:button-card
-                              entity: light.prozdor 
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Prozdor
-                              icon: mdi:lightbulb-on
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey                      
-        
-        
-        
-                            - type: custom:button-card
-                              entity: light.miklahat
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Miklahat
-                              icon: mdi:shower
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey                      
-                                            
-        
-        
-                            - type: custom:button-card
-                              entity: light.laundry_room_lighting
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Laundry
-                              icon: mdi:washing-machine
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey                      
+                - type: horizontal-stack
+                  cards:
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.kitchen
+                        - name: Kitchen 
+                        - icon: mdi:fridge-outline
+                      
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.prozdor
+                        - name: Prozdor
 
-                        - type: horizontal-stack
-                          cards:
-                            - type: custom:button-card
-                              entity: light.liran_room
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Liran
-                              icon: mdi:human-greeting
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey
-              
-        
-              
-                            - type: custom:button-card
-                              entity: light.balcony
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Balcony
-                              icon: mdi:smoking
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey
-        
-                              
-                            - type: custom:button-card
-                              entity: light.stairs
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Stairs
-                              icon: mdi:stairs
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey
-        
-                            - type: custom:button-card
-                              entity: light.parents
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Parents
-                              icon: mdi:account-supervisor-circle
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey                       
-  
-  
-                        - type: horizontal-stack
-                          cards:
-                            - type: custom:button-card
-                              entity: light.computer_room
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: PC Room
-                              icon: mdi:ceiling-light
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 13px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey      
-        
-        
-                            - type: custom:button-card
-                              entity: light.service_balcony
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Service Balcony
-                              icon: mdi:white-balance-sunny
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey
-                              
-        
-              
-                            - type: custom:button-card
-                              entity: light.kitchen_strip_lamp
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Strip Lamp
-                              icon: mdi:fridge-outline
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey 
-                              
-        
-                            - type: custom:button-card
-                              entity: light.server_room_fan
-                              color_type: icon
-                              color: auto
-                              show_label: true
-                              show_state: true
-                              name: Fan
-                              icon: mdi:fan
-                              show_last_changed: true
-                              size: 35px
-                              hold_action:
-                                action: more-info
-                              styles:
-                                card:
-                                  - border-radius: 10px
-                                  - height: 70px
-                                label:
-                                  - color: gray
-                                  - font-size: 9px
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                name:
-                                  - justify-self: start
-                                  - padding: 0px 5px
-                                  - font-size: 15px
-                                state:
-                                  - justify-self: start
-                                  - font-size: 12px
-                                  - padding: 0px 5px
-                                grid:
-                                  - grid-template-areas: '"n i" "s i" "l i"'
-                                  - grid-gap: 0px 5px
-                                  - grid-template-columns: 1fr 40%
-                                  - grid-template-rows: auto auto auto auto 
-                              state:
-                                - value: 'on'
-                                  styles:
-                                    state:
-                                      - color: green
-                                - value: 'off'
-                                  styles:
-                                    state:
-                                      - color: white
-                                    card:
-                                      - filter: brightness(50%)
-                                    icon:
-                                      - color: grey                      
+                    - type: custom:decluttering-card 
+                      template: light_button
+                      variables:
+                        - entity: light.miklahat
+                        - name: Shower
+                        - icon: mdi:shower-head
+
+                    - type: custom:decluttering-card 
+                      template: light_button
+                      variables:
+                        - entity: light.laundry_room_lighting
+                        - name: Laundry
+                        - icon: mdi:washing-machine
+
+                - type: horizontal-stack
+                  cards:
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.liran_room
+                        - name: Liran
+                        - icon: mdi:bed-empty
+      
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.service_balcony
+                        - name: Balcony 
+
+
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.parents
+                        - name: Parents
+                        - icon: mdi:human-male-female
+
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.living_room
+                        - name: Living Room
+                        - icon: mdi:sofa
+                      
+                - type: horizontal-stack
+                  cards:
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.computer_room
+                        - name: PC Room 
+                        - icon: mdi:server
+
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.balcony
+                        - name: Smoking
+                        - icon: mdi:smoking
+
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.kitchen_strip_lamp
+                        - name: Strip Lamp
+                        - icon: mdi:led-strip
+ 
+                    - type: custom:decluttering-card
+                      template: light_button
+                      variables:
+                        - entity: light.yeelight_poop
+                        - name: Bathroom
 
 
 #################################################################
@@ -950,10 +343,6 @@ cards:
           show_header_toggle: false
           entities:
             - type: 'custom:text-divider-row'
-              style: |
-                ha-card { 
-                  color: var(--my-divider-color-avi-is-the-king);
-                }
               text: Next Bus
             - entity: sensor.next_bus
               style: {color: white, left: 59px, top: 22px}

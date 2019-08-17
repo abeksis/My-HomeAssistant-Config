@@ -24,7 +24,7 @@ cch:
   menu: show
   options: show
   voice: hide
-  hide_tabs: '14 to 27'
+  hide_tabs: '14 to 30'
   notifications: clock
   clock_format: '24'
   clock_date: true
@@ -34,7 +34,7 @@ cch:
     - conditions:
         user: ipad
       config: 
-        hide_tabs: '0 to 25'
+        hide_tabs: '0 to 30'
         default_tab: '11'
         disable_sidebar: false
         voice: hide
@@ -62,7 +62,26 @@ cch:
         notify_indicator_color: "#e80000"
         clock_format: '24'
         default_tab: 'samasung'
-        hide_tabs: '0 to 25'
+        hide_tabs: '0 to 30'
+    - conditions:
+        user: nurit
+        media_query: "(max-width: 600px)"
+      config:
+        options: clock
+        voice: hide
+        menu: hide
+        notifications: hide
+        header: false
+        chevrons: false        
+        swipe: true
+        swipe_wrap: true
+        swipe_animate: swipe
+        swipe_prevent_default: true
+        swipe_amount: '20'
+        notify_indicator_color: "#e80000"
+        clock_format: '24'
+        default_tab: 'samasung'
+        hide_tabs: '0 to 30'
 
  
 background: var(--background-image)
@@ -93,4 +112,6 @@ views:
   - !include lovelace/views/samasung_location.yaml 
   - !include lovelace/views/samasung_remote.yaml
   - !include lovelace/views/samasung_devices.yaml
+  - !include lovelace/views/samasung_ha_statistics.yaml
+  - !include lovelace/views/samasung_car.yaml
   

@@ -1,0 +1,9 @@
+default:
+  - text: '[[text]]'
+
+card:
+  type: entities
+  show_header_toggle: off
+  entities:
+    - type: 'custom:text-divider-row'    
+      text: '[[text]]'

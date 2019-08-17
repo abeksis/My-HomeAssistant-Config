@@ -25,7 +25,7 @@ cards:
           - type: custom:decluttering-card
             template: light_button_card
             variables:
-              - entity: light.eettafel_lamp
+              - entity: light.living_room
               - name: Living room
               - icon: ceiling-light
 
@@ -33,7 +33,7 @@ cards:
             template: light_button_card
             variables:
               - size: 25%
-              - entity: light.tafel_lamp
+              - entity: light.seating_area
               - name: Seating Area
               - icon: sofa
           - !include ../decluttering_templates/blank-card.yaml

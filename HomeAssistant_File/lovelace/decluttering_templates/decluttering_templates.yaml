@@ -1,4 +1,3 @@
-#For Samsung Notte design / עיצוב סמסונג 
 frontpage_template:
   !include frontpage-template.yaml 
 header_text:
@@ -13,11 +12,23 @@ switch_button_card:
   !include switch-template.yaml
 back_button:
   !include back-button.yaml  
-back_button_2:
-  !include back-button2.yaml  
-back_button_3:
-  !include back-button3.yaml  
 mini-graph-card:
   !include mini-graph-template.yaml
 light_popup_card:
   !include light-popup.yaml
+child_person:
+  !include child_person_template.yaml
+parent_person:
+  !include parent_person_template.yaml
+birthday-template:
+  !include birthday-template.yaml
+light_button:
+  !include light_button_template.yaml  
+title_template:
+  !include title_template.yaml
+button:
+  !include button_template.yaml
+graph:
+  !include graph.yaml
+database_graph:
+  !include database_graph.yaml  

@@ -13,28 +13,8 @@
     payload_not_available: "Offline"
     retain: true
 
-    ##############
-    ## לתריס החשמלי
-    ###############
-  - platform: mqtt
-    name: "tris up"
-    state_topic: "stat/tris/POWER1"
-    command_topic: "cmnd/tris/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: false  
-    
-  - platform: mqtt
-    name: "tris down"
-    state_topic: "stat/tris/POWER2"
-    command_topic: "cmnd/tris/POWER2"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: false
 
-    
+
     ##############
     ## ac yakir
     ###############

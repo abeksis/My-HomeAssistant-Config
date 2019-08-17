@@ -6,112 +6,25 @@
 
 #################################################################
 #                                                               #
-#                          Customize                            #
-#                                                               #
-#################################################################
-homeassistant:
-  customize:
-    script.blinds_down:
-      friendly_name: תריס - למטה
-      icon: mdi:transfer-down
-      home-assistant: true
-  
-    script.blinds_up:
-      friendly_name: תריס - למעלה
-      icon: mdi:transfer-up
-      home-assistant: true
-  
-    script.blinds_stop:
-      friendly_name: תריס - לעצור
-      icon: mdi:stop
-      home-assistant: true
-
-
-    switch.tris_down:
-      friendly_name: הורדת התריס למטה
-      icon: mdi:page-layout-footer
-      home-assistant: true
-  
-    switch.tris_up:
-      friendly_name: העלאת התריס למעלה
-      icon: mdi:page-layout-header
-      home-assistant: true 
-
-
-#################################################################
-#                                                               #
-#                           Group                               #
-#                                                               #
-#################################################################
-
-group:
-
-  tris:
-    name: Tris
-    view: no
-    entities:
-      - switch.tris_down
-      - switch.tris_up
-
-
-
-#################################################################
-#                                                               #
 #                          cover                                #
 #                                                               #
 #################################################################
 
 cover:
-  - platform: template
-    covers:
-      wbed_blinds:
-        friendly_name: "תריס חשמלי בסלון"
-        open_cover:
-          service: script.blinds_up
-        close_cover:
-          service: script.blinds_down
-        stop_cover:
-          service: script.blinds_stop
-          
-          
-
-#################################################################
-#                                                               #
-#                           script                              #
-#                                                               #
-#################################################################
-script:          
-
-  blinds_up:
-    alias: blinds up
-    sequence:
-    - service: switch.turn_off
-      data:  
-        entity_id: switch.tris_down
-    - delay:
-        milliseconds: 250
-    - service: switch.turn_on
-      data:
-        entity_id: switch.tris_up
-        
-  blinds_down:
-    alias: blinds down
-    sequence:
-    - service: switch.turn_off
-      data:  
-        entity_id: switch.tris_up
-    - delay:
-        milliseconds: 250
-    - service: switch.turn_on
-      data:
-        entity_id: switch.tris_down
-
-  blinds_stop:
-    alias: blinds stop
-    sequence:
-    - service: switch.turn_off
-      data:  
-        entity_id: switch.tris_down
-    - service: switch.turn_off
-      data:
-        entity_id: switch.tris_up
+  - platform: mqtt
+    name: "Living Room Shutters"
+    availability_topic: "tele/shutters/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    position_topic: "stat/shutters/SHUTTER1"
+    position_open: 100
+    position_closed: 0
+    set_position_topic: "cmnd/shutters/shutterposition"
+    command_topic: "cmnd/shutters/backlog"
+    payload_open: "SHUTTEROPEN"
+    payload_close: "SHUTTERCLOSE"
+    payload_stop: "SHUTTERSTOP"
+    state_topic: "stat/shutters/RESULT"    
+    retain: false
+    optimistic: false
+    qos: 1

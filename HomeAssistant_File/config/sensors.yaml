@@ -7,7 +7,7 @@
     display_options:
       - 'date_time'
       - 'time_date'
-      - 'time_utc' #For Samsung Notte design / עיצוב סמסונג נוט
+      - 'time_utc'
       - 'time'
       - 'date' 
     

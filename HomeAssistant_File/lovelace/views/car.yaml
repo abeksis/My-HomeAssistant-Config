@@ -9,46 +9,44 @@ cards:
 #                                                               #
 ################################################################# 
 
-  - type: horizontal-stack
+  # - type: horizontal-stack
+  #   cards:
+  - type: vertical-stack
     cards:
-      # - type: entities
-      #   show_header_toggle: off
-      #   entities:
-      #     - type: 'custom:text-divider-row'
-      #       text: Packages
-      #     - type: custom:bar-card
-      #       title_position: inside
-      #       align: split
-      #       show_icon: true
-      #       padding: 4px
-      #       card_style: 
-      #         border-radius: 5px
-      #       columns: 1
-      #       max: 3
-      #       entities:
-      #         - entity: sensor.aftership
-      #           title: Aftership
-                
-      #     - type: custom:bar-card
-      #       title_position: inside
-      #       align: split
-      #       show_icon: true
-      #       padding: 4px
-      #       card_style: 
-      #         border-radius: 5px
-      #       columns: 2
-      #       max: 3
-      #       entities:
-      #         - entity: sensor.aftership_intransit
-      #           title: In Transit
-      #           color: '#bf9540'
-      #         - entity: sensor.aftership_delivered
-      #           title: Delivered
-      #           color: '#40bf40' 
-
-      # - type: custom:button-card
-      #   color_type: blank-card
-      #   aspect_ratio: 1/1
+    
+    ############################################################################
+    #                                                                          #
+    #   Title                                                                  #
+    #                                                                          #
+    ############################################################################
+    
+      - type: horizontal-stack
+        cards:
+        
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - text: Themes select
+    
+    ############################################################################
+    #                                                                          #
+    #   Themes dropdown                                                        #
+    #                                                                          #
+    ############################################################################
+    
+      - type: horizontal-stack
+        cards:
+    
+          - type: entities
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                overflow: hidden;            
+              }
+            show_header_toggle: false
+            title: 
+            entities:
+              - input_select.theme_selector
 
 #################################################################
 #                                                               #

@@ -12,59 +12,60 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: custom:mini-graph-card
-        entities: 
-          - sensor.speedtest_ping
-        height: 20
-        line_width: 2
-        font_size: 70
-        hours_to_show: 168
-        points_per_hour: 1
-        show:
-          #extrema: true
-          fill: true
-          graph: bar
-        color_thresholds:
-          - value: 25
-            color: "#FFFF00"
-          - value: 0
-            color: "#3498db"
+      - type: custom:decluttering-card
+        template: graph
+        variables:
+            - entity: sensor.speedtest_ping
+            - name: Ping
+            - height: 20
+            - line_width: 2
+            - font_size: 70
+            - hours_to_show: 168
+            - points_per_hour: 1            
+            - show_extrema: true
+            - show_fill: true 
+            - graph: bar
+            - value: 25
+            - color: "#FFFF00"
+            - value: 0
+            - color: "#3498db"
         
       - type: horizontal-stack
         cards:
-          - type: custom:mini-graph-card
-            entities: 
-              - sensor.speedtest_download
-            height: 50
-            line_width: 2
-            font_size: 70
-            hours_to_show: 168
-            points_per_hour: 1
-            show:
-              extrema: true
-              fill: true
-            color_thresholds:
-              - value: 0
-                color: "#FFFF00"
-              - value: 40
-                color: "#3498db"
-                
-          - type: custom:mini-graph-card
-            entities: 
-              - sensor.speedtest_upload
-            height: 50
-            line_width: 2
-            font_size: 70
-            hours_to_show: 168
-            points_per_hour: 1
-            show:
-              extrema: true
-              fill: true
-            color_thresholds:
-              - value: 0
-                color: "#FFFF00"
-              - value: 13
-                color: "#3498db"
+          - type: custom:decluttering-card
+            template: graph
+            variables:
+                - entity: sensor.speedtest_download
+                - name: Download
+                - height: 50
+                - line_width: 2
+                - font_size: 70
+                - hours_to_show: 168
+                - points_per_hour: 1                  
+                - show_extrema: true
+                - show_fill: true
+                - value_1: 0
+                  color_value_1: "#FFFF00"
+                - value_2: 40
+                  color_value_2: "#3498db"                
+
+          - type: custom:decluttering-card
+            template: graph
+            variables:
+                - entity: sensor.speedtest_upload
+                - name: Upload
+                - height: 50
+                - line_width: 2
+                - font_size: 70
+                - hours_to_show: 168
+                - points_per_hour: 1                  
+                - show_extrema: true
+                - show_fill: true 
+                - value_1: 0
+                  color_value_1: #FFFF00 
+                - value_2: 13
+                  color_value_2: #3498db                 
+
 
 #################################################################
 #                                                               #
@@ -219,23 +220,6 @@ cards:
             
               - type: horizontal-stack
                 cards:          
-                  # - type: custom:bar-card
-                  #   title: Fans
-                  #   entity: sensor.fan_count
-                  #   title_position: inside
-                  #   align: center
-                  #   padding: 4px
-                  #   card_style: 
-                  #     border-radius: 5px
-                  #   max: 6
-                  #   severity:
-                  #   - value: 4
-                  #     color: '#bf4040'
-                  #   - value: 5
-                  #     color: '#1db954'
-                  #   - value: 10
-                  #     color: '#bf9540'
-                
                   - type: custom:bar-card
                     title: Lights
                     entity: sensor.lights_count
@@ -288,23 +272,7 @@ cards:
                       color: '#1db954'
                     - value: 20
                       color: '#bf9540'
-                
-                  # - type: custom:bar-card
-                  #   title: Plants
-                  #   entity: sensor.plant_count
-                  #   title_position: inside
-                  #   align: center
-                  #   padding: 4px
-                  #   card_style: 
-                  #     border-radius: 5px
-                  #   max: 17
-                  #   severity:
-                  #   - value: 15
-                  #     color: '#bf4040'
-                  #   - value: 16
-                  #     color: '#1db954'
-                  #   - value: 30
-                  #     color: '#bf9540'
+
             
                   - type: custom:bar-card
                     title: Scripts
@@ -362,53 +330,47 @@ cards:
                       color: '#1db954'
                     - value: 75
                       color: '#bf9540'
-                      
-              - type: custom:bar-card
-                title: HA Database
-                entity: sensor.home_assistant_v2_db
-                icon: mdi:database
-                #title_position: inside
-                align: split
-                show_icon: true
-                padding: 4px
-                card_style: 
-                  border-radius: 5px
-                max: 12000
-                severity:
-                - value: 3000
-                  color: '#1db954'
-                - value: 8000
-                  color: '#bf9540'
-                - value: 13000
-                  color: '#bf4040'
 
-#################################################################
-#                                                               #
-#                          System Backup                        #
-#                                                               #
-#################################################################
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: 'custom:text-divider-row'
-            text: Home Assistant Backup
-          - type: section 
-            label: Home Assistant Backup
-          - entity: automation.daily_home_assistant_backup
-            name: System Backup
-            icon: mdi:cloud-upload-outline
-          - type: custom:bar-card
-            title_position: inside
-            align: center
-            padding: 4px
-            card_style: 
-              border-radius: 5px
-            columns: 2
-            entities:
-              - entity: script.backup_ha_and_move_backup_to_unraid
-                title: Manual Backup                
-              - entity: sensor.latest_ha_backup
-                title: Last HA Backup
+
+
+    ############################################################################
+    #                                                                          #
+    #   Sensors                                                                #
+    #                                                                          #
+    ############################################################################
+    
+      - type: horizontal-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:decluttering-card
+                template: database_graph
+                variables:
+                    - entity: sensor.events_size
+                    - name: Events
+                    - icon: mdi:database  
+                    - color: orange
+                            
+              - type: custom:decluttering-card
+                template: database_graph
+                variables:
+                    - entity: sensor.states_size
+                    - name: States
+                    - icon: mdi:database
+                    - color: green
+        
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: database_graph
+            variables:
+                - entity: sensor.db_size
+                - name: Full DB
+                - icon: mdi:database  
+                    
+          - type: "custom:button-card"
+            color_type: blank-card   
+
 
 #################################################################
 #                                                               #
@@ -565,7 +527,38 @@ cards:
               - entity: sensor.hdd_sdc_temp
                 title: Disk 4
                 icon: mdi:harddisk                     
-            
+
+#################################################################
+#                                                               #
+#                          System Backup                        #
+#                                                               #
+#################################################################
+      - type: entities
+        show_header_toggle: off
+        entities:
+          - type: 'custom:text-divider-row'
+            text: Home Assistant Backup
+
+          - type: section 
+            label: Home Assistant Backup
+
+          - entity: automation.daily_home_assistant_backup
+            name: System Backup
+            icon: mdi:cloud-upload-outline
+
+          - type: custom:bar-card
+            title_position: inside
+            align: center
+            padding: 4px
+            card_style: 
+              border-radius: 5px
+            columns: 2
+            entities:
+              - entity: script.backup_ha_and_move_backup_to_unraid
+                title: Manual Backup                
+ 
+              - entity: sensor.latest_ha_backup
+                title: Last HA Backup            
 
 
 #################################################################

@@ -13,5 +13,5 @@
       - Standard Orange
       - Midnight
       - Google Dark
-      - Automatic (default)
-    initial: Automatic (default)
+      # - Automatic (default)
+    # initial: Automatic (default)

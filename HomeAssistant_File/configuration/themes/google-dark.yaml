@@ -1,5 +1,5 @@
 # Background
-  #background-image: 'center / cover no-repeat url("/local/lovelace/background/background_my.png") fixed'
+  background-image: 'center / cover no-repeat url("/local/lovelace/background/background_my.png") fixed'
 
 # My Styles
   border-radius: 8px
@@ -19,8 +19,7 @@
   button-card-cust-1-text-color: 'var(--secondary-text-color)'                    # Button Card cust_1 field text color
   button-card-cust-2-text-color: 'var(--secondary-text-color)'                    # Button Card cust_2 field text color
   button-card-disabled-text-color: 'var(--disabled-text-color)'                   # Button Card disabled text color
-  button-card-input-select-background: 'var(--button-card-on-background)'         # Button Card selected item color
-  button-card-on-background: 'var(--disabled-text-color)'                         # Button Card ON color
+  button-card-input-select-background: 'var(--disabled-text-color)'               # Button Card selected item color
   button-color-green: 'rgba(117,189,111,1)'                                       # Button Card green background (ON mode)
   title-button-background: 'rgb(255, 129, 0)'                                     # Title button background color
   title-button-text-color: 'var(--primary-text-color)'                            # Title button text color
@@ -38,6 +37,7 @@
   paper-font-headline_-_font-family: "var(--primary-font-family)"
   paper-font-caption_-_font-family: "var(--primary-font-family)"
   paper-font-title_-_font-family: "var(--primary-font-family)"
+
   ha-card-border-radius: "0px"
   ha-card-header-color: "#d7d7d7"
   ha-card-box-shadow: "0px 0px 1px #000000"
@@ -48,23 +48,11 @@
   primary-background-color: "#000000"
   secondary-background-color: "#2b2b2b"
   divider-color: "#2b2b2b"
-  
-  #Add By Me
-  accent-color: '#E45E65'                                                         # Accent color  
-  primary-background-color: '#ef8008'                                             # Settings background
-  background-color: '#000000' 
-  color: '#ffffff'
-  paper-item-icon-color: '#ef8008'                                                # Icon color
-  paper-item-icon-active-color: '#ef8008' 
-
-  
   ### Text ###
   primary-text-color: "#ffffff"
-  secondary-text-color: "#d89659"
+  secondary-text-color: "#d7d7d7"
   text-primary-color: "#ffffff"
   disabled-text-color: "#a1a1a1"
-  
-  
   ### Sidebar Menu ###
   sidebar-background-color: "#000000"
   sidebar-icon-color: "#ffffff"
@@ -72,12 +60,10 @@
   sidebar-selected-background-color: var(--primary-background-color)
   sidebar-selected-icon-color: "#4284F4"
   sidebar-selected-text-color: var(--sidebar-selected-icon-color)
- 
   ### States and Badges ### 
   state-icon-color: "#ffffff"
   state-icon-active-color: "#ffb750"
   state-icon-unavailable-color: var(--disabled-text-color)
-  
   ### Sliders ###
   paper-slider-knob-color: "#4284F4"
   paper-slider-knob-start-color: "#8eb8ff"
@@ -85,16 +71,13 @@
   paper-slider-active-color: "#8eb8ff"
   paper-slider-secondary-color: var(--light-primary-color)
   paper-slider-container-color: "#a1a1a1"
-  
   ### Labels ###
   label-badge-background-color: "#252B36"
   label-badge-text-color: "#F1F1F1"
   label-badge-red: "#6C7B9B"
-  
   ### Cards ###
   paper-card-background-color: "#2b2b2b"
   paper-listbox-background-color: "#000000"
-  
   ### Toggles ###
   paper-toggle-button-checked-button-color: "#4284F4"
   paper-toggle-button-checked-bar-color: "#4284F4"
