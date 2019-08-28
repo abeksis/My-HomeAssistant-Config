@@ -5,92 +5,49 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Security - Smoke Alarm Card               #
+#   Smoke Alarm                                                 #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Smoke Detectors"
+ 
       - type: entities
-        #title: Smoke Detectors
-        show_header_toggle: false
         entities:
-          - type: divider
-          - type: 'custom:text-divider-row'
-            text: Smoke Detectors
-          - type: divider
-          - binary_sensor.smoke_sensor_158d00028ee7fb        
-
+          - binary_sensor.smoke_sensor_158d00028ee7fb 
 
 #################################################################
 #                                                               #
-#                   Security - Washer and Dryer Card            #
+#   Washer and Dryer                                            #
 #                                                               #
 #################################################################
 
-
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: 'custom:text-divider-row'
-            text: Laundry
-          - type: custom:vertical-stack-in-card
+      - type: vertical-stack
+        cards:
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Laundry"     
+          - type: horizontal-stack
             cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
-                    card:
-                      type: "custom:button-card"
-                      entity: binary_sensor.door_window_sensor_158d0002ea0754
-                      name: Washer
-                      tap_action:
-                        action: toggle
-                      size: '20%'
-                      style:
-                        - font-size: 14px
-                    style:                 
-                      border-radius: 8px
-                      
-                  - type: "custom:button-card"
-                    color_type: blank-card
-  
-                  - type: custom:card-modder
-                    card:
-                      type: "custom:button-card"
-                      entity: binary_sensor.door_window_sensor_158d0002ea9896
-                      name: Dryer
-                      tap_action:
-                        action: toggle
-                      size: '20%'
-                      style:
-                        - font-size: 14px
-                    style:                 
-                      border-radius: 8px
-                      
-
-          - type: custom:bar-card
-            title_position: off
-            align: center
-            padding: 4px
-            card_style: 
-              border-radius: 5px
-            columns: 2
-            color: '#1db954'
-            entities:
-              - entity: sensor.washing_machine_status
-                title: Door
-              - entity: sensor.laundry_dryer_status
-                title: Door
+              - type: 'custom:decluttering-card'
+                template: laundry 
+                variables:
+                  - image: washingmachine.jpg
+                  - entity_status: washing_machine_state
+                  - entity: washing_machine
+                  - entity_energy: washing_machine_power
+                  - entity_energy_today: washing_machine_yesterday
 
           - type: custom:mini-graph-card
-            name: Consumption
+            name: Washing Machine Consumption
             entities: 
               - entity: sensor.washing_machine_power
                 name: Washer
-                show_state: true
-                unit: 'W'
-              - entity: sensor.washing_machine_power
-                name: Dryer
                 show_state: true
                 unit: 'W'
             icon: mdi:flash
@@ -106,45 +63,37 @@ cards:
 
 #################################################################
 #                                                               #
-#                  Security - Door Status Card                  #
+#   Door Status                                                 #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Door"
+
       - type: entities
-        #title: Doors
-        show_header_toggle: false
         entities:
-          - type: divider
-          - type: 'custom:text-divider-row'
-            text: Doors
-          - type: divider
           - binary_sensor.door_window_sensor_158d0001ef3425
           - binary_sensor.door_window_sensor_158d00027a59c6
 
-          
-      - type: custom:gap-card
-        height: 3
-        size:
-
 
 #################################################################
 #                                                               #
-#                  Security - Door Air Conditioner              #
+#    Door Air Conditioner                                       #
 #                                                               #
 #################################################################
 
-        
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Air Conditioner"
+
       - type: entities
-        #title: Doors Air Conditioner
-        show_header_toggle: false
         entities:
-          - type: divider
-          - type: 'custom:text-divider-row'
-            text: Air Conditioner
-          - type: divider
-          - binary_sensor.door_window_sensor_158d0002ea866a
+            - binary_sensor.door_window_sensor_158d0002ea866a
 
       - type: picture-glance
         title: Air Conditioner Yakir
@@ -155,7 +104,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Home - Dog walk Card                      #
+#   Dog Walk                                                    #
 #                                                               #
 #################################################################
 
@@ -168,21 +117,21 @@ cards:
 
 #################################################################
 #                                                               #
-#                 Security - Motion Sensor Card                 #
+#   Motion Sensor                                               #
 #                                                               #
 #################################################################
 
-
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Motion Sensors"
+ 
   - type: vertical-stack
     cards:
       - type: entities
-        #title: Motion Sensors
-        show_header_toggle: false
         entities:
-          - type: divider
-          - type: 'custom:text-divider-row'
-            text: Motion Sensors
-          - type: divider
           - binary_sensor.motion_sensor_158d0002047c5a
           - binary_sensor.motion_sensor_158d000204bfcb
           - binary_sensor.motion_sensor_158d0002b42fa3
@@ -191,20 +140,23 @@ cards:
 
 #################################################################
 #                                                               #
-#                 Security- Last IP Login Card                  #
+#   Last IP Login                                               #
 #                                                               #
 #################################################################
 
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "IP Address Tracking"
+
       - type: entities
-        show_header_toggle: off
         entities:
-          - type: 'custom:text-divider-row'
-            text: Last IP Login
-          - type: section 
-            label: IP Login
           - entity: sensor.myip
             name: My IP address is
             icon: mdi:ip-network
+        
+      - type: entities
+        entities:
           - type: custom:bar-card
             title_position: inside
             align: center

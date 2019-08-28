@@ -275,18 +275,16 @@
     home_assistant: true
 
 
-    
-
  # dd-wrt device status #   
   device_tracker.yakir:
     friendly_name: יקיר
     home_assistant: true    
   
-  # שינוי שם לשקע של soonoff
-  switch.sh20_pow: 
-    friendly_name: שקע חשמל
-    icon: mdi:power-socket-au
-    home-assistant: true
+  # # שינוי שם לשקע של soonoff
+  # switch.sh20_pow: 
+  #   friendly_name: שקע חשמל
+  #   icon: mdi:power-socket-au
+  #   home-assistant: true
   
   
 # yakir power AC

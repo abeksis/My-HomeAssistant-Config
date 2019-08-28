@@ -4,9 +4,9 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Remote Control'
       - type: custom:swipe-card
@@ -22,14 +22,14 @@ cards:
           - type: vertical-stack
             cards:
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '#### Living Room - LG >'
               - type: horizontal-stack
                 cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Volume
@@ -52,7 +52,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Volume
@@ -75,7 +75,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Volume
@@ -98,7 +98,7 @@ cards:
                           haptic: light
                           
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: switch.samsung_tv
                       - name: TV
@@ -125,7 +125,7 @@ cards:
                 cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Plex
@@ -146,7 +146,7 @@ cards:
                     color_type: blank-card
                     aspect_ratio: 1/1
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: media_player.woonkamer_apple_tv
                       - name: ' '
@@ -175,7 +175,7 @@ cards:
                 cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.lovelace_maintenance
                       - name: Netflix
@@ -193,7 +193,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: media_player.woonkamer_apple_tv
                       - name: ' '
@@ -214,7 +214,7 @@ cards:
                             haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: media_player.woonkamer_apple_tv
                       - name: ' '
@@ -235,7 +235,7 @@ cards:
                             haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: media_player.woonkamer_apple_tv
                       - name: ' '
@@ -260,7 +260,7 @@ cards:
                 cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.lovelace_maintenance
                       - name: Exit
@@ -286,7 +286,7 @@ cards:
                     aspect_ratio: 1/1
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: media_player.woonkamer_apple_tv
                       - name: ' '
@@ -334,14 +334,14 @@ cards:
           - type: vertical-stack
             cards:
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '#### < Yes Remote'
               - type: horizontal-stack
                 cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Power
@@ -364,7 +364,7 @@ cards:
  
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -387,7 +387,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -410,7 +410,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -437,7 +437,7 @@ cards:
                 cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Mute
@@ -461,7 +461,7 @@ cards:
 
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -485,7 +485,7 @@ cards:
 
  
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -508,7 +508,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -536,7 +536,7 @@ cards:
                 cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.lovelace_maintenance
                       - name: Menu
@@ -559,7 +559,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -582,7 +582,7 @@ cards:
                           haptic: light
  
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -605,7 +605,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -633,7 +633,7 @@ cards:
                 cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: info
@@ -656,7 +656,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Yes
@@ -679,7 +679,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Number
@@ -702,7 +702,7 @@ cards:
                           haptic: light
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Back

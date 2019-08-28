@@ -1,6 +1,21 @@
-  lovelace_robovac_cleaner_avi:
-    initial: off
+  # lovelace_robovac_cleaner_avi:
+  #   initial: off
 
   dummy1:  # It is just a dummy button 
     initial: off    
                            
+# Notification input_booleans
+  notification_vacuum:
+  notification_smoke_detector:
+  notification_motion_camera_6m:
+  notification_motion_toilet:
+  notification_motion_shower:
+  notification_motion_laundry_room:
+  notification_motion_pc_room:
+  notification_motion_parents_shower:
+  notification_front_door:
+  notification_balcony_door:
+  notification_washing_machine:
+  notification_laundry_machine:
+  notification_ac_front_door:
+  notification_birthday:

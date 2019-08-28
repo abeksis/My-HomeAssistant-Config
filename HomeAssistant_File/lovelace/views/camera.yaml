@@ -5,7 +5,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Camera - Front Door Camera Card           #
+#  Front Door                                                   #
 #                                                               #
 #################################################################
 
@@ -14,16 +14,15 @@ cards:
 
       - type: picture-entity
         entity: camera.front_door
-        # camera_view: live
 
 
       - type: picture-entity
         entity: camera.right_side_balcony
-        # camera_view: live
+
 
 #################################################################
 #                                                               #
-#                 Camera - Camera Status Card                   #
+#  Camera Status                                                #
 #                                                               #
 #################################################################   
 
@@ -49,18 +48,13 @@ cards:
           box-shadow: 3px 3px rgba(0,0,0,0.4)    
           overflow: hidden        
 
-
-
       - type: picture-entity
         entity: camera.xiaomi_dafang 
-        # camera_view: live  
-
-
-                      
-
+     
+     
 #################################################################
 #                                                               #
-#                 Camera - Entrance To The Building Card        #
+#   Entrance To The Building                                    #
 #                                                               #
 #################################################################
           
@@ -68,8 +62,7 @@ cards:
     cards:
       - type: picture-entity
         entity: camera.entrance_to_the_building
-        # camera_view: live
 
       - type: picture-entity
         entity: camera.center_6mp
-        # camera_view: live
+

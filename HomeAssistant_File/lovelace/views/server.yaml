@@ -6,12 +6,16 @@ cards:
     
 #################################################################
 #                                                               #
-#                  System Status - Internet Card                #
+#   Internet Card                                               #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Internet Status"    
       - type: custom:decluttering-card
         template: graph
         variables:
@@ -69,483 +73,277 @@ cards:
 
 #################################################################
 #                                                               #
-#                    System Status - NAS Card                   #
+#   Unraid                                                      #
 #                                                               #
 #################################################################
 
       - type: horizontal-stack
         cards:
-          - type: entities
-            show_header_toggle: off
-            entities:
-              - type: section
-                label: Unraid 2 - MOVIES - 4Tb
-              - type: custom:vertical-stack-in-card
-                cards:
-                  - type: horizontal-stack
-                    cards:
-                      - type: custom:card-modder
-                        card: 
-                          type: picture
-                          image: /local/lovelace/server/hp.png
-                        style:                 
-                          border-radius: 5px
-
-                      - type: vertical-stack
-                        cards:
-                          - type: custom:circle-sensor-card
-                            entity: sensor.disk1_hp_server
-                            max: 100
-                            min: 0
-                            stroke_width: 15
-                            gradient: true
-                            fill: '#383C45'
-                            name: Used
-                            units: '%'
-                            color_stops:
-                              80: '#09C7E8'
-                              100: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
-                            
-                          - type: custom:gap-card
-                            height:
-                            size:
-                            
-          - type: entities
-            show_header_toggle: off
-            entities:
-              - type: section
-                label: Unraid 2 - TV SHOWS - 4Tb
-              - type: custom:vertical-stack-in-card
-                cards:
-                  - type: horizontal-stack
-                    cards:
-                      - type: custom:card-modder
-                        card: 
-                          type: picture
-                          image: /local/lovelace/server/hp.png
-                        style:                 
-                          border-radius: 5px
-                          
-                      - type: vertical-stack
-                        cards:
-                          - type: custom:circle-sensor-card
-                            entity: sensor.disk2_hp_server
-                            max: 100
-                            min: 0
-                            stroke_width: 15
-                            gradient: true
-                            fill: '#383C45'
-                            name: Used
-                            units: '%'
-                            color_stops:
-                              80: '#09C7E8'
-                              100: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
-                            
-                          - type: custom:gap-card
-                            height:
-                            size:
-            
-#################################################################
-#                                                               #
-#                System Status - Statistics Card                #
-#                                                               #
-#################################################################
-
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section
-            label: HOME ASSISTANT STATISTICS
-          - type: custom:vertical-stack-in-card
-            cards:
-              #- type: 'custom:text-divider-row'
-              #  text: Statistics
-           
-              - type: horizontal-stack
-                cards:          
-                  - type: custom:bar-card
-                    title: Automations
-                    entity: sensor.automation_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 65
-                    severity:
-                    - value: 30
-                      color: '#bf4040'
-                    - value: 40
-                      color: '#1db954'
-                    - value: 65
-                      color: '#bf9540'
-                
-                  - type: custom:bar-card
-                    title: Binary Sensors
-                    entity: sensor.binary_sensor_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 200
-                    severity:
-                    - value: 130
-                      color: '#bf4040'
-                    - value: 168
-                      color: '#1db954'
-                    - value: 200
-                      color: '#bf9540'
-            
-                  - type: custom:bar-card
-                    title: Cameras
-                    entity: sensor.camera_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 9
-                    severity:
-                    - value: 4
-                      color: '#bf4040'
-                    - value: 6
-                      color: '#1db954'
-                    - value: 9
-                      color: '#bf9540'
-            
-              - type: horizontal-stack
-                cards:          
-                  - type: custom:bar-card
-                    title: Lights
-                    entity: sensor.lights_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 20
-                    severity:
-                    - value: 11
-                      color: '#bf4040'
-                    - value: 15
-                      color: '#1db954'
-                    - value: 18
-                      color: '#bf9540'
-            
-                  - type: custom:bar-card
-                    title: Tracked Devices
-                    entity: sensor.tracker_count
-                    title_position: inside
-                    align: center 
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 83
-                    severity:
-                    - value: 81
-                      color: '#bf4040'
-                    - value: 82
-                      color: '#1db954'
-                    - value: 100
-                      color: '#bf9540'
-             
-              - type: horizontal-stack
-                cards:          
-                  - type: custom:bar-card
-                    title: Media Players
-                    entity: sensor.media_player_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 11
-                    severity:
-                    - value: 9
-                      color: '#bf4040'
-                    - value: 10
-                      color: '#1db954'
-                    - value: 20
-                      color: '#bf9540'
-
-            
-                  - type: custom:bar-card
-                    title: Scripts
-                    entity: sensor.script_count
-                    title_position: inside
-                    align: center 
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 61
-                    severity:
-                    - value: 20
-                      color: '#bf4040'
-                    - value: 40
-                      color: '#1db954'
-                    - value: 61
-                      color: '#bf9540'
-            
-              - type: horizontal-stack
-                cards:          
-                  - type: custom:bar-card
-                    title: Sensors
-                    entity: sensor.sensor_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 755
-                    severity:
-                    - value: 753
-                      color: '#bf4040'
-                    - value: 754
-                      color: '#1db954'
-                    - value: 800
-                      color: '#bf9540'
-                
-                  - type: custom:gap-card
-                    height: 
-                    size:
-            
-                  - type: custom:bar-card
-                    title: Switches
-                    entity: sensor.switch_count
-                    title_position: inside
-                    align: center 
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 75
-                    severity:
-                    - value: 34
-                      color: '#bf4040'
-                    - value: 54
-                      color: '#1db954'
-                    - value: 75
-                      color: '#bf9540'
-
-
-
-    ############################################################################
-    #                                                                          #
-    #   Sensors                                                                #
-    #                                                                          #
-    ############################################################################
-    
-      - type: horizontal-stack
-        cards:
-          - type: horizontal-stack
+          - type: vertical-stack
             cards:
               - type: custom:decluttering-card
-                template: database_graph
+                template: title_template
                 variables:
-                    - entity: sensor.events_size
-                    - name: Events
-                    - icon: mdi:database  
-                    - color: orange
-                            
-              - type: custom:decluttering-card
-                template: database_graph
-                variables:
-                    - entity: sensor.states_size
-                    - name: States
-                    - icon: mdi:database
-                    - color: green
-        
-      - type: horizontal-stack
-        cards:
-          - type: custom:decluttering-card
-            template: database_graph
-            variables:
-                - entity: sensor.db_size
-                - name: Full DB
-                - icon: mdi:database  
-                    
-          - type: "custom:button-card"
-            color_type: blank-card   
+                  - name: "Unraid Man"
 
-
-#################################################################
-#                                                               #
-#               System Status - Unraid Resources Card           #
-#                                                               #
-#################################################################
-
-  - type: vertical-stack
-    cards:    
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section
-            label: Unraid Server -------- AMD Ryzen 7 --------  32 GiB -------- Version 6.7.0
-          - type: custom:vertical-stack-in-card
-            cards:
               - type: horizontal-stack
                 cards:
+                  - type: custom:card-modder
+                    card: 
+                      type: picture
+                      image: /local/lovelace/server/hp.png
+                    style:                 
+                      border-radius: 5px
+  
                   - type: vertical-stack
                     cards:
-                      - type: custom:card-modder
-                        card: 
-                          type: picture
-                          image: /local/lovelace/server/server_new.png
-                        style:                 
-                          border-radius: 5px
-                          display: block
-                          margin-left: auto
-                          margin-right: auto
-                          width: 130px
-                 
-                      - type: custom:bar-card
-                        title_position: inside
-                        entity: sensor.uptime_unraid
-                        title: Uptime
-                        align: center
-                        padding: 5px
-                        max: 60
-                        card_style: 
-                          border-radius: 5px
+                      - type: custom:circle-sensor-card
+                        entity: sensor.disk1_hp_server
+                        max: 100
+                        min: 0
+                        stroke_width: 10
+                        gradient: true
+                        fill: '#383C45'
+                        name: Used
+                        units: '%'
+                        color_stops:
+                          80: '#09C7E8'
+                          100: '#5294E2'
+                        font_style:
+                          font-size: 1.1em
+                          font-color: white
+                          text-shadow: '2px 2px black'
+                        style:
+                          top: 5%, 
+                          left: 80%, 
+                          width: 6em, 
+                          height: 6em, 
+                          transform: none
+                            
+          - type: vertical-stack
+            cards:
+              - type: custom:decluttering-card
+                template: title_template
+                variables:
+                  - name: "Unraid HP"
+                  
+              - type: horizontal-stack
+                cards:
+                  - type: custom:card-modder
+                    card: 
+                      type: picture
+                      image: /local/lovelace/server/hp.png
+                    style:                 
+                      border-radius: 5px
+                      
+                  - type: vertical-stack
+                    cards:
+                      - type: custom:circle-sensor-card
+                        entity: sensor.disk2_hp_server
+                        max: 100
+                        min: 0
+                        stroke_width: 10
+                        gradient: true
+                        fill: '#383C45'
+                        name: Used
+                        units: '%'
+                        color_stops:
+                          80: '#09C7E8'
+                          100: '#5294E2'
+                        font_style:
+                          font-size: 1.1em
+                          font-color: white
+                          text-shadow: '2px 2px black'
+                        style:
+                          top: 5%
+                          left: 80%
+                          width: 6em
+                          height: 6em
+                          transform: none
 
-                      - type: custom:bar-card
-                        title_position: inside
-                        entity: sensor.time_online
-                        title: Time Online home-assistant
-                        align: center
-                        padding: 5px
-                        max: 168
-                        card_style: 
-                          border-radius: 5px
+            
+#################################################################
+#                                                               #
+#   System Status                                               #
+#                                                               #
+#################################################################
 
-       
-          - type: custom:bar-card
-            align: split
-            show_icon: true
-            padding: 4px
-            columns: 2
-            card_style: 
-              border-radius: 5px
-            entities:
-              - entity: sensor.ssd_usage
-                title: Disk
-              - entity: sensor.memory_use_percent
-                title: RAM
-
-          - type: custom:bar-card
-            align: split
-            show_icon: true
-            padding: 4px
-            columns: 2
-            card_style: 
-              border-radius: 5px
-            entities:
-              - entity: sensor.processor_use
-                title: CPU
-              - entity: sensor.cpu_temp
-                title: Temp  
-                icon: mdi:thermometer
-                
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section 
-            label: Docker Containers
-          - type: custom:bar-card
-            align: split
-            show_icon: true
-            padding: 4px
-            max: 1800
-            columns: 2
-            card_style: 
-              border-radius: 5px
-            entities:
-              - entity: sensor.docker_containers_active
-                title: Active
-              - entity: sensor.docker_containers_cpu_used
-                title: CPU Used  
-                icon: mdi:thermometer 
-                severity:                  
-                  - value: 600
-                    color: '#1db954'
-                  - value: 800
-                    color: '#bf9540'
-                  - value: 1400
-                    color: '#bf4040'                      
-              - entity: sensor.docker_containers_ram_used
-                title: Ram Used
-                icon: mdi:thermometer 
+      - type: vertical-stack
+        cards:
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Home Assistant Statistics"
+          - type: horizontal-stack
+            cards:          
+              - type: custom:bar-card
+                title: Automations
+                entity: sensor.automation_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 65
                 severity:
-                  - value: 800
-                    color: '#1db954'
-                  - value: 1200
-                    color: '#bf9540'
-                  - value: 1600
-                    color: '#bf4040'                     
+                - value: 20
+                  color: '#bf4040'
+                - value: 40
+                  color: '#1db954'
+                - value: 65
+                  color: '#bf9540'
+            
+              - type: custom:bar-card
+                title: Binary Sensors
+                entity: sensor.binary_sensor_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 200
+                severity:
+                - value: 130
+                  color: '#bf4040'
+                - value: 168
+                  color: '#1db954'
+                - value: 200
+                  color: '#bf9540'
+        
+              - type: custom:bar-card
+                title: Cameras
+                entity: sensor.camera_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 9
+                severity:
+                - value: 4
+                  color: '#bf4040'
+                - value: 6
+                  color: '#1db954'
+                - value: 9
+                  color: '#bf9540'
+        
+          - type: horizontal-stack
+            cards:          
+              - type: custom:bar-card
+                title: Lights
+                entity: sensor.lights_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 20
+                severity:
+                - value: 11
+                  color: '#bf4040'
+                - value: 15
+                  color: '#1db954'
+                - value: 18
+                  color: '#bf9540'
+        
+              - type: custom:bar-card
+                title: Tracked Devices
+                entity: sensor.tracker_count
+                title_position: inside
+                align: center 
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 83
+                severity:
+                - value: 81
+                  color: '#bf4040'
+                - value: 82
+                  color: '#1db954'
+                - value: 100
+                  color: '#bf9540'
+         
+          - type: horizontal-stack
+            cards:          
+              - type: custom:bar-card
+                title: Media P
+                entity: sensor.media_player_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 11
+                severity:
+                - value: 9
+                  color: '#bf4040'
+                - value: 10
+                  color: '#1db954'
+                - value: 20
+                  color: '#bf9540'
 
+        
+              - type: custom:bar-card
+                title: Scripts
+                entity: sensor.script_count
+                title_position: inside
+                align: center 
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 61
+                severity:
+                - value: 20
+                  color: '#bf4040'
+                - value: 40
+                  color: '#1db954'
+                - value: 61
+                  color: '#bf9540'
+          
+              - type: custom:bar-card
+                title: Sensors
+                entity: sensor.sensor_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 755
+                severity:
+                - value: 753
+                  color: '#bf4040'
+                - value: 754
+                  color: '#1db954'
+                - value: 800
+                  color: '#bf9540'
+        
+              - type: custom:bar-card
+                title: Switches
+                entity: sensor.switch_count
+                title_position: inside
+                align: center 
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: 75
+                severity:
+                - value: 34
+                  color: '#bf4040'
+                - value: 54
+                  color: '#1db954'
+                - value: 75
+                  color: '#bf9540'
 
 #################################################################
 #                                                               #
-#                           Hard Disk Temp                      #
+#   System Backup                                               #
 #                                                               #
 #################################################################
-
-          - type: section 
-            label: Hard Disk Temp
-          - type: custom:bar-card
-            #title_position: inside
-            align: split
-            show_icon: true
-            padding: 1px
-            columns: 2
-            card_style: 
-              border-radius: 5px
-            entities:
-              - entity: sensor.hdd_sde_temp
-                title: Parity
-                min: 25
-                max: 40
-                icon: mdi:harddisk
-              - entity: sensor.hdd_sdg_temp
-                title: Cache
-                min: 20
-                max: 45
-                icon: mdi:harddisk  
-              - entity: sensor.hdd_sdd_temp
-                title: Disk 1
-                icon: mdi:harddisk  
-              - entity: sensor.hdd_sdh_temp
-                title: Disk 2
-                icon: mdi:harddisk   
-              - entity: sensor.hdd_sdb_temp
-                title: Disk 3
-                icon: mdi:harddisk 
-              - entity: sensor.hdd_sdc_temp
-                title: Disk 4
-                icon: mdi:harddisk                     
-
-#################################################################
-#                                                               #
-#                          System Backup                        #
-#                                                               #
-#################################################################
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: 'custom:text-divider-row'
-            text: Home Assistant Backup
-
-          - type: section 
-            label: Home Assistant Backup
-
-          - entity: automation.daily_home_assistant_backup
-            name: System Backup
-            icon: mdi:cloud-upload-outline
-
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Home Assistant Backup"
+              
           - type: custom:bar-card
             title_position: inside
             align: center
@@ -563,45 +361,294 @@ cards:
 
 #################################################################
 #                                                               #
-#              System Status - HP Server Status Card            #
+#   Unraid Resources Card                                       #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:    
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section 
-            label: HP Serve
-          - type: custom:vertical-stack-in-card
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Unraid Server AMD Ryzen 7"
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
             cards:
+              - type: custom:card-modder
+                card: 
+                  type: picture
+                  image: /local/lovelace/server/server_room.jpg
+                style:                 
+                  border-radius: 5px
+                  display: block
+                  margin-left: auto
+                  margin-right: auto
+                  width: 100%
+                  
+              - type: custom:bar-card
+                title_position: inside
+                entity: sensor.uptime_unraid
+                title: Uptime
+                align: center
+                padding: 5px
+                max: 60
+                card_style: 
+                  border-radius: 5px
+
+              - type: custom:bar-card
+                title_position: inside
+                entity: sensor.time_online
+                title: Time Online home-assistant
+                align: center
+                padding: 5px
+                max: 168
+                card_style: 
+                  border-radius: 5px
+
+      - type: vertical-stack
+        cards:
+          - type: custom:bar-card
+            align: split
+            show_icon: true
+            padding: 4px
+            columns: 2
+            card_style: 
+              border-radius: 5px
+            entities:
+              - entity: sensor.ssd_usage
+                title: Disk
+                value: 33
+                color: '#bf4040'
+                value: 66
+                color: '#bf9540'
+                value: 100
+                color: '#40bf40'                
+              - entity: sensor.memory_use_percent
+                title: RAM
+                value: 33
+                color: '#bf4040'
+                value: 66
+                color: '#bf9540'
+                value: 100
+                color: '#40bf40'                    
+
+          - type: custom:bar-card
+            align: split
+            show_icon: true
+            padding: 4px
+            columns: 2
+            card_style: 
+              border-radius: 5px
+            entities:
+              - entity: sensor.processor_use
+                title: CPU
+                value: 100
+                color: '#40bf40'                    
+              - entity: sensor.cpu_temp
+                title: Temp  
+                value: 100
+                color: '#40bf40'                    
+                icon: mdi:thermometer
+
+
+
+
+
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Docker Containers"
+
+          - type: custom:bar-card
+            align: split
+            show_icon: true
+            padding: 4px
+            max: 8000
+            columns: 2
+            card_style: 
+              border-radius: 5px
+            entities:
+              - entity: sensor.docker_containers_active
+                title: Active
+
+              - entity: sensor.docker_containers_cpu_used
+                title: CPU Used  
+                icon: mdi:thermometer 
+                severity:                  
+                  - value: 600
+                    color: '#1db954'
+                  - value: 800
+                    color: '#bf9540'
+                  - value: 1400
+                    color: '#bf4040'                      
+
+              - entity: sensor.docker_containers_ram_used
+                title: Ram Used
+                icon: mdi:thermometer 
+                severity:
+                  - value: 1200
+                    color: '#1db954'
+                  - value: 3200
+                    color: '#bf9540'
+                  - value: 6600
+                    color: '#bf4040'                     
+
+
+#################################################################
+#                                                               #
+#   Hard Disk Temp                                              #
+#                                                               #
+#################################################################
+
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Hard Disk Temp"            
+          - type: custom:bar-card
+            align: split
+            show_icon: true
+            padding: 1px
+            columns: 2
+            card_style: 
+              border-radius: 5px
+            entities:
+              - entity: sensor.hdd_sde_temp
+                title: Parity
+                min: 0
+                max: 40
+                value: 0
+                vale: 40
+                color: '#bf4046'                
+                icon: mdi:harddisk
+              - entity: sensor.hdd_sdd_temp
+                title: Disk 1
+                min: 0
+                max: 40                
+                value: 0
+                vale: 40
+                color: '#bf4046'
+                icon: mdi:harddisk  
+              - entity: sensor.hdd_sdh_temp
+                title: Disk 2
+                min: 0
+                max: 40                
+                value: 0
+                vale: 40
+                color: '#bf4046'                
+                icon: mdi:harddisk   
+              - entity: sensor.hdd_sdb_temp
+                title: Disk 3
+                min: 0
+                max: 40                
+                value: 0
+                vale: 40
+                color: '#bf4046'                
+                icon: mdi:harddisk 
+
+              - entity: sensor.hdd_sdc_temp
+                title: Disk 4
+                min: 0
+                max: 40                
+                value: 0
+                vale: 40
+                color: '#bf4046'              
+                icon: mdi:harddisk                     
+
+############################################################################
+#                                                                          #
+#   Database                                                               #
+#                                                                          #
+############################################################################
+
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:decluttering-card
+                template: title_template
+                variables:
+                  - name: "Database iNFO"
+
               - type: horizontal-stack
                 cards:
-                  - type: custom:card-modder
-                    card:
-                      type: picture
-                      image: /local/lovelace/server/hp.png
-                    style:                 
-                      border-radius: 5px
-                      display: block
-                      margin-left: auto
-                      margin-right: auto
-                      width: 130px
-                      
-                  - type: custom:bar-card
-                    title_position: inside
-                    #show_icon: true
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    columns: 1
-                    entities:
-                      - entity: sensor.hp_server_uptime
-                        title: Uptime
-                        icon: mdi:clock
-                        
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:decluttering-card
+                        template: database_graph
+                        variables:
+                            - entity: sensor.events_size
+                            - name: Events
+                            - icon: mdi:database  
+                            - color: orange
+                                    
+                      - type: custom:decluttering-card
+                        template: database_graph
+                        variables:
+                            - entity: sensor.states_size
+                            - name: States
+                            - icon: mdi:database
+                            - color: green
+                
+              - type: horizontal-stack
+                cards:
+                  - type: custom:decluttering-card
+                    template: database_graph
+                    variables:
+                        - entity: sensor.db_size
+                        - name: Full DB
+                        - icon: mdi:database  
+                            
+                  # - type: "custom:button-card"
+                  #   color_type: blank-card   
+           
+
+
+#################################################################
+#                                                               #
+#   HP Server                                                   #
+#                                                               #
+#################################################################
+
+  - type: vertical-stack
+    cards:    
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Hp Server"
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:card-modder
+            card:
+              type: picture
+              image: /local/lovelace/server/hp.png
+              style:
+                .: |
+                  ha-card {
+                    border-radius: 5px;
+                    overflow: hidden;
+                    width: 100%;
+                    height: 112px;
+                    margin: 0 auto;
+                    padding-top: 0px;
+                  }
+              
+          - type: custom:bar-card
+            title_position: inside
+            #show_icon: true
+            align: center
+            padding: 24px
+            card_style: 
+              border-radius: 5px
+            columns: 1
+            entities:
+              - entity: sensor.hp_server_uptime
+                title: Uptime
+                icon: mdi:clock
+
+      - type: horizontal-stack
+        cards:                
           - type: custom:bar-card
             title_position: inside
             show_icon: true
@@ -623,9 +670,19 @@ cards:
                 - value: 20
                   color: '#bf4040'
               - entity: sensor.hp_ssd_usage
-                title: SSD Disk Used
+                title: SSD Disk Used              
                 icon: mdi:harddisk
+                unit_of_measurement: '%'                
+                severity:                
+                - value: 33
+                  color: '#bf4040'
+                - value: 66
+                  color: '#bf9540'
+                - value: 100
+                  color: '#40bf40'    
 
+      - type: horizontal-stack
+        cards:        
           - type: custom:bar-card
             title_position: inside
             show_icon: true
@@ -647,11 +704,23 @@ cards:
                 - value: 20
                   color: '#bf4040'
               - entity: sensor.hp_server_mem_used
+                icon: mdi:power-plug              
                 title: mem used
-                icon: mdi:power-plug
+                unit_of_measurement: '%'
+                severity:                
+                - value: 33
+                  color: '#bf4040'
+                - value: 66
+                  color: '#bf9540'
+                - value: 100
+                  color: '#40bf40'                    
 
-          - type: section 
-            label: NETWORK STATUS
+      - type: vertical-stack
+        cards:    
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "NETWORK STATUS"
           - type: custom:bar-card
             title_position: inside
             show_value: false
@@ -693,20 +762,20 @@ cards:
 
 #################################################################
 #                                                               #
-#                        UniFi Access Point                     #
+#    UniFi Access Point                                         #
 #                                                               #
 #################################################################
 
           
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: 'custom:text-divider-row'
-            text: Access Point
-          - type: section 
-            label: UniFi Access Point
-          - type: custom:vertical-stack-in-card
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
             cards:
+              - type: custom:decluttering-card
+                template: title_template
+                variables:
+                  - name: "UniFi Access Point"
+                  
               - type: horizontal-stack
                 cards:
                   - type: vertical-stack
@@ -729,133 +798,137 @@ cards:
                         entities:
                           - entity: sensor.unifi_model
                             title: Model
-                      
-                  - type: custom:vertical-stack-in-card
+
+                  - type: vertical-stack
                     cards:
-                      - type: vertical-stack
-                        cards:
-                          - type: custom:bar-card
-                            title_position: inside
-                            align: center
-                            padding: 0px
-                            card_style: 
-                              border-radius: 5px
-                            columns: 1
-                            max: 20
-                            entities:
-                              - entity: sensor.unifi_cpu_usage_1m
-                                title: Processor Use 1M
-                                unit_of_measurement: '%'
-                                severity:
-                                - value: 12
-                                  color: '#1db954'
-                                - value: 16
-                                  color: '#bf9540'
-                                - value: 20
-                                  color: '#bf4040'
-                            
-                          - type: custom:gap-card
-                            height: 39
-                            size: 
-                      
-                          - type: custom:bar-card
-                            title_position: inside
-                            align: center
-                            padding: 0px
-                            card_style: 
-                              border-radius: 5px
-                            columns: 1
-                            max: 50
-                            entities:
-                              - entity: sensor.unifi_processor_use
-                                title: Processor Use
-                                unit_of_measurement: '%'
-                                severity:
-                                - value: 33
-                                  color: '#1db954'
-                                - value: 38
-                                  color: '#bf9540'
-                                - value: 45
-                                  color: '#bf4040'
-                                
-                          - type: custom:gap-card
-                            height: 39.5
-                            size: 
-                         
-                          - type: custom:bar-card
-                            title_position: inside
-                            align: center
-                            padding: 0px
-                            card_style: 
-                              border-radius: 5px
-                            columns: 1
-                            max: 17
-                            entities:
-                              - entity: sensor.unifi_uptime
-                                title: Uptime
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 0px
+                        card_style: 
+                          border-radius: 5px
+                        columns: 1
+                        max: 20
+                        entities:
+                          - entity: sensor.unifi_cpu_usage_1m
+                            title: Processor Use 1M
+                            unit_of_measurement: '%'
+                            severity:
+                            - value: 12
+                              color: '#1db954'
+                            - value: 16
+                              color: '#bf9540'
+                            - value: 20
+                              color: '#bf4040'
+
+                  
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 0px
+                        card_style: 
+                          border-radius: 5px
+                        columns: 1
+                        max: 50
+                        entities:
+                          - entity: sensor.unifi_processor_use
+                            title: Processor Use
+                            unit_of_measurement: '%'
+                            severity:
+                            - value: 33
+                              color: '#1db954'
+                            - value: 38
+                              color: '#bf9540'
+                            - value: 45
+                              color: '#bf4040'
+                     
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 0px
+                        card_style: 
+                          border-radius: 5px
+                        columns: 1
+                        max: 17
+                        entities:
+                          - entity: sensor.unifi_uptime
+                            title: Uptime
 
                         
-                  - type: custom:vertical-stack-in-card
+                  - type: vertical-stack
                     cards:
-                      - type: vertical-stack
-                        cards:
-                          - type: custom:circle-sensor-card
-                            entity: sensor.unifi_number_connected_2g
-                            max: 30
-                            min: 0
-                            stroke_width: 15
-                            gradient: true
-                            fill: '#383C45'
-                            name: Number 2G
-                            # units: 'Mbps'
-                            color_stops:
-                              200: '#09C7E8'
-                              300: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 10%, width: 6em, height: 6em, transform: none}
-                            
-                          - type: custom:bar-card
-                            title_position: inside
-                            align: center
-                            padding: 1px
-                            card_style: 
-                              border-radius: 5px
-                            columns: 1
-                            max: 10
-                            entities:
-                              - entity: sensor.unifi_number_connected_5g
-                                title: Number 5G
+                      - type: custom:circle-sensor-card
+                        entity: sensor.unifi_number_connected_2g
+                        max: 30
+                        min: 0
+                        stroke_width: 8
+                        gradient: true
+                        fill: '#383C45'
+                        name: Number 2G
+                        # units: 'Mbps'
+                        color_stops:
+                          200: '#09C7E8'
+                          300: '#5294E2'
+                        font_style:
+                          font-size: 1.1em
+                          font-color: white
+                          text-shadow: '2px 2px black'
+                        style:
+                          top: 5%
+                          left: 10%
+                          width: 6em 
+                          height: 6em
+                          transform: none
+                        
+                      - type: custom:bar-card
+                        title_position: inside
+                        align: center
+                        padding: 1px
+                        card_style: 
+                          border-radius: 5px
+                        columns: 1
+                        max: 10
+                        entities:
+                          - entity: sensor.unifi_number_connected_5g
+                            title: Number 5G
              
 
 #################################################################
 #                                                               #
-#              System Status - Network Status Card              #
+#    Router - OpenWrt                                           #
 #                                                               #
 #################################################################
-          
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section 
-            label: Router - OpenWrt
-          - type: custom:vertical-stack-in-card
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
             cards:
+              - type: custom:decluttering-card
+                template: title_template
+                variables:
+                  - name: "Router - OpenWrt"
+
               - type: horizontal-stack
                 cards:
                   - type: custom:card-modder
                     card:
                       type: picture
                       image: /local/lovelace/settings/wrt3200acm.png
-                    style:                 
-                      border-radius: 5px
-                      width: 126px
-                      left: 47px
+                      style:
+                        .: |
+                          ha-card {
+                            border-radius: 5px;
+                            overflow: hidden;
+                            width: 100%;
+                            height: 100px;
+                            margin: 0 auto;
+                            padding-top: 0px;
+                          }
                       
                   - type: custom:bar-card
                     title_position: inside
                     #show_icon: true
                     align: center
-                    padding: 4px
+                    padding: 20px
                     card_style: 
                       border-radius: 5px
                     columns: 1
@@ -864,47 +937,48 @@ cards:
                         title: Uptime
                         icon: mdi:clock
                         
-          - type: custom:bar-card
-            title_position: inside
-            show_icon: true
-            align: split
-            padding: 4px
-            card_style: 
-              border-radius: 5px
-            columns: 2
-            max: 60000
-            entities:
-              - entity: sensor.openwrt_cpu_system
-                title: CPU
-                icon: mdi:memory
-                unit_of_measurement: '%'
-                severity:
-                - value: 20000
-                  color: '#1db954'
-                - value: 40000
-                  color: '#bf9540'
-                - value: 60000
-                  color: '#bf4040'
-              - entity: sensor.openwrt_load_average
-                title: Load Average
-                icon: mdi:thermometer
-          - type: custom:bar-card
-            title_position: inside
-            show_icon: true
-            align: split
-            padding: 4px
-            card_style: 
-              border-radius: 5px
-            columns: 2
-            max: 4000000000
-            entities:
-              - entity: sensor.openwrt_lan
-                icon: mdi:memory
-                unit_of_measurement: '%'
-                severity:
-                - value: 1000000000
-                  color: '#1db954'
-                - value: 2000000000
-                  color: '#bf9540'
-                - value: 4000000000
-                  color: '#bf4040'
+              - type: custom:bar-card
+                title_position: inside
+                show_icon: true
+                align: split
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                columns: 2
+                max: 60000
+                entities:
+                  - entity: sensor.openwrt_cpu_system
+                    title: CPU
+                    icon: mdi:memory
+                    unit_of_measurement: '%'
+                    severity:
+                    - value: 20000
+                      color: '#1db954'
+                    - value: 40000
+                      color: '#bf9540'
+                    - value: 60000
+                      color: '#bf4040'
+                  - entity: sensor.openwrt_load_average
+                    title: Load Average
+                    icon: mdi:thermometer
+     
+              - type: custom:bar-card
+                title_position: inside
+                show_icon: true
+                align: split
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                columns: 2
+                max: 4000000000
+                entities:
+                  - entity: sensor.openwrt_lan
+                    icon: mdi:memory
+                    unit_of_measurement: '%'
+                    severity:
+                    - value: 1000000000
+                      color: '#1db954'
+                    - value: 2000000000
+                      color: '#bf9540'
+                    - value: 4000000000
+                      color: '#bf4040'

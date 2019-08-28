@@ -39,6 +39,17 @@ sensor:
     #ILS OR USD (Depends on local currency) Just change the value of "0.5404" to your local elctricity price
     unit_of_measurement: "₪" # USD / Other local currency 
 
+  - platform: template
+    sensors:
+      washing_machine_state:
+        friendly_name: "Washing Machine State"
+        icon_template: mdi:washing-machine
+        value_template: >-
+          {% if (states.sensor.washing_machine_power.state | int*1) > 3 %}
+             on
+          {% else %}      
+             off
+          {% endif %}
 
 #################################################################
 #                                                               #

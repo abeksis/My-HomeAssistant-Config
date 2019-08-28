@@ -2,88 +2,21 @@ resources:
   !include lovelace/resources/resources.yaml
 
 #################################################################
-#                          Templates                            #
+#  Templates                                                    #
 #################################################################
 
 #For Samsung Notte design / עיצוב סמסונג 
 decluttering_templates:
   !include lovelace/decluttering_templates/decluttering_templates.yaml
 
-#For Samsung Notte design / עיצוב סמסונג 
-popup_cards:
-  !include lovelace/popup-cards/weather-temporary.yaml
-  
   
 #################################################################
-#                        CCH Custom Header                      #
+#  CCH Custom Header                                            #
 #################################################################
-
 cch:
-  main_config: true
-  background: 'rgba(150, 150, 150, 0.2)'
-  menu: show
-  options: show
-  voice: hide
-  hide_tabs: '14 to 30'
-  notifications: clock
-  clock_format: '24'
-  clock_date: true
-  date_locale: en-gb
-  disable: false
-  exceptions: 
-    - conditions:
-        user: ipad
-      config: 
-        hide_tabs: '0 to 30'
-        default_tab: '11'
-        disable_sidebar: false
-        voice: hide
-        menu: hide
-        options: hide
-        notifications: hide
-        header: false
-        chevrons: false
-        kiosk_mode: true
-    - conditions:
-        user: avi samsung
-        media_query: "(max-width: 600px)"
-      config:
-        options: clock
-        voice: hide
-        menu: hide
-        notifications: hide
-        header: false
-        chevrons: false        
-        swipe: true
-        swipe_wrap: true
-        swipe_animate: swipe
-        swipe_prevent_default: true
-        swipe_amount: '20'
-        notify_indicator_color: "#e80000"
-        clock_format: '24'
-        default_tab: 'samasung'
-        hide_tabs: '0 to 30'
-    - conditions:
-        user: nurit
-        media_query: "(max-width: 600px)"
-      config:
-        options: clock
-        voice: hide
-        menu: hide
-        notifications: hide
-        header: false
-        chevrons: false        
-        swipe: true
-        swipe_wrap: true
-        swipe_animate: swipe
-        swipe_prevent_default: true
-        swipe_amount: '20'
-        notify_indicator_color: "#e80000"
-        clock_format: '24'
-        default_tab: 'samasung'
-        hide_tabs: '0 to 30'
-
+  !include lovelace/cch/compact-custom-header.yaml 
  
+title: Home
 background: var(--background-image)
 views:
   - !include lovelace/views/home.yaml
@@ -114,4 +47,6 @@ views:
   - !include lovelace/views/samasung_devices.yaml
   - !include lovelace/views/samasung_ha_statistics.yaml
   - !include lovelace/views/samasung_car.yaml
-  
+  - !include lovelace/views/samasung_calendar.yaml
+  - !include lovelace/views/samasung_weather.yaml
+  - !include lovelace/views/samasung_laundry.yaml

@@ -4,116 +4,157 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
+      - type: custom:decluttering-card
+        template: header
         variables:
-          - title: Devices
-          - name: Living room
+          - content: '## Devices'
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Accessories'
       - type: horizontal-stack
         cards:
           - !include ../decluttering_templates/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
-              - entity: sensor.sonff_fan_state
-              - name: Pc Room
-              - icon: fan
-              - color: DodgerBlue
-              - spin: true
+              - entity: device_tracker.xtreamer_whizz
+              - name: Xtreamer
+              - icon: kodi
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
-              - entity: switch.receiver
-              - name: Receiver
-              - icon: set-top-box
+              - entity: device_tracker.gateway_v3_xiaomi
+              - name: Gateway
+              - icon: bluetooth
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
-              - entity: switch.lg_tv_button
-              - name: TV
-              - icon: television
+              - entity: device_tracker.switch
+              - name: Switch
+              - icon: switch              
           - !include ../decluttering_templates/blank-card.yaml
 
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
-          - content: '##### Bedroom'
+          - content: '##### Camera'
       - type: horizontal-stack
         cards:
           - !include ../decluttering_templates/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
-              - entity: switch.ventilator
-              - name: Fan
-              - icon: fan
-              - color: DodgerBlue
-              - spin: true
-              - lock: true
+              - entity: sensor.front_door_camera_state
+              - name: Door Camera
+              - icon: cctv
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
-              - entity: switch.receiver_slaapkamer
-              - name: Receiver
-              - icon: set-top-box
-              - lock: true
+              - entity: sensor.dahua_6m_camera_state
+              - name: Dahua
+              - icon: cctv
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
-              - entity: switch.tradfri_outlet_2
-              - name: TV
-              - icon: television
-              - lock: true
+              - entity: sensor.high_quality_camera_state
+              - name: High Quality
+              - icon: cctv  
+
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: button
+            variables:
+              - entity: sensor.building_foront_camera_state
+              - name: Front Building
+              - icon: cctv
+
+
+          - type: custom:decluttering-card
+            template: button
+            variables:
+              - entity: camera.xiaomi_dafang
+              - name: Salon
+              - icon: cctv
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            aspect_ratio: 1/1 
+              
+              
           - !include ../decluttering_templates/blank-card.yaml
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
-          - content: '##### Small room'
+          - content: '##### Sonoff'
       - type: horizontal-stack
         cards:
           - !include ../decluttering_templates/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
-              - entity: switch.printer
-              - name: Printer
-              - icon: printer-wireless
+              - entity: sensor.sonoff_parents_light_state
+              - name: Parents Light
+              - icon: human-male-female
               
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
-              - entity: switch.xbox_one
-              - name: Xbox
-              - icon: xbox
-              - lock: true
-              - color: green
+              - entity: sensor.sonoff_stairs_light_state
+              - name: Stairs Light
+              - icon: stairs
+
+          - type: custom:decluttering-card
+            template: button
+            variables:
+              - entity: sensor.sonoff_balcony_light_state
+              - name: Smoking Balcony
+              - icon: smoking
+
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: button
+            variables:
+              - entity: sensor.sonoff_service_balcony_light_state
+              - name: Service Balcony
+              - icon: washing-machine
 
           - type: 'custom:button-card'
             color_type: blank-card
             aspect_ratio: 1/1
+
+          - type: 'custom:button-card'
+            color_type: blank-card
+            aspect_ratio: 1/1            
               
           - !include ../decluttering_templates/blank-card.yaml
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
-          - content: '##### kitchen'
+          - content: '##### General'
       - type: horizontal-stack
         cards:
           - !include ../decluttering_templates/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: sensor.tami4_power_state
               - name: Tami 4
               - icon: cup-water
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: sensor.yeelink_light_strip1_miio98683770_state
               - name: Strip
@@ -121,28 +162,51 @@ cards:
               - color: DodgerBlue
               - spin: true
 
+          - type: custom:decluttering-card
+            template: button
+            variables:
+              - entity: sensor.unifi_access_point_state
+              - name: Unifi
+              - icon: wifi
+
+
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: button
+            variables:
+              - entity: sensor.sonff_fan_state
+              - name: Pc Room
+              - icon: fan
+              - color: DodgerBlue
+              - spin: true
+
           - type: 'custom:button-card'
             color_type: blank-card
             aspect_ratio: 1/1
-            
+        
+          - type: 'custom:button-card'
+            color_type: blank-card
+            aspect_ratio: 1/1            
           - !include ../decluttering_templates/blank-card.yaml
 
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Scullery'
       - type: horizontal-stack
         cards:
           - !include ../decluttering_templates/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: sensor.washing_machine_status
               - name: Wasmachine
               - icon: washing-machine
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: sensor.laundry_dryer_status
               - name: Dryer

@@ -1,0 +1,58 @@
+title: Calendar
+path:  calendar
+cards:    
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: quick-access-menu
+        variables:
+          - name1: Links
+          - icon1: link-variant
+          - path1: links
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '## Important Dates'
+      - type: vertical-stack
+        cards:
+          - type: custom:decluttering-card
+            template: header
+            variables:
+              - content: '##### Important Dates'
+          - type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: entities
+                style: |
+                  ha-card {
+                    background: var(--homekit-card-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: var(--border-radius);
+                  }
+                entities:
+                  - entity: sensor.anniversary_wedding_day
+                    icon: mdi:ring
+                    name: Wedding day
+
+                  - entity: sensor.birthday_nurit
+                    name: Nurit
+                    icon: mdi:gift                    
+
+                  - entity: sensor.birthday_avi
+                    name: Avi
+                    icon: mdi:gift                    
+
+                  - entity: sensor.birthday_rotem
+                    name: Rotam
+                    icon: mdi:gift
+
+                  - entity: sensor.birthday_liran
+                    name: Liran
+                    icon: mdi:gift
+
+                  - entity: sensor.birthday_yakir
+                    name: Yakir
+                    icon: mdi:gift
+
+              - !include ../decluttering_templates/blank-card.yaml

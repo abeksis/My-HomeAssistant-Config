@@ -4,17 +4,17 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
         variables:
           - name1: Energy
           - icon1: flash
           - path1: energy
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Download Center'
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Speed Test'
       - type: horizontal-stack

@@ -6,7 +6,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                 Second Floor - Motion Sensor Card             #
+#   Motion Sensor                                               #
 #                                                               #
 #################################################################
 
@@ -26,7 +26,7 @@ cards:
         name: Temperatures
         icon: mdi:water-percent
         line_width: 2
-        height: 53
+        height: 40
         hours_to_show: 72
         points_per_hour: 1
         show:
@@ -36,7 +36,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                 Second Floor - Light Parents Card             #
+#   Light Parents                                               #
 #                                                               #
 #################################################################
 
@@ -48,14 +48,12 @@ cards:
           action: toggle
         image: /local/lovelace/parents/parents.jpg
 
-
-
-
 #################################################################
 #                                                               #
-#                   Second Floor - Switcher Card                #
+#   Switcher                                                    #
 #                                                               #
 #################################################################
+
   - type: vertical-stack
     cards:
       - type: picture-elements
@@ -64,75 +62,124 @@ cards:
           - type: icon
             icon: mdi:clock-outline
             entity: group.switcher_aio_v2_create_schedule
-            style: {color: white, left: 80%, top: 9%}
+            style:
+                color: white 
+                left: 80%
+                top: 9%
 
           - type: icon
             icon: mdi:google-circles-communities
             entity: group.switcher_aio_v2_configuration
-            style: {color: white, left: 60%, top: 9%, --paper-item-icon-color: rgb(115,122, 130)}
+            style:
+                color: white
+                left: 60%
+                top: 9%
+                --paper-item-icon-color: rgb(115,122, 130)
 
           - type: icon
             icon: mdi:stop
             tap_action: call-service
             entity: switcher_aio.control_device_switch
             service: switcher_aio.turn_off
-            style: {color: white, left: 40%, top: 9%, --paper-item-icon-color: rgb(115,122, 130)}
+            style:
+                color: white 
+                left: 40%
+                top: 9%
+                --paper-item-icon-color: rgb(115,122, 130)
 
           - type: icon
             icon: mdi:thermostat-box
             entity: switcher_aio.control_device_switch
-            style: {color: white, left: 20%, top: 9%, --paper-item-icon-color: rgb(115,122,130)}
+            style:
+                color: white 
+                left: 20%
+                top: 9%
+                --paper-item-icon-color: rgb(115,122,130)
 
           - type: icon
             icon: mdi:timelapse
             entity: switcher_aio.time_left_sensor
-            style: {color: white, left: 5%, top: 91%}
+            style:
+                color: white
+                left: 5% 
+                top: 91%
 
           - type: state-label
             entity: switcher_aio.time_left_sensor
-            style: {color: white, left: 13%, top: 91%}
+            style:
+                color: white
+                left: 13%
+                top: 91%
 
           - type: icon
             icon: mdi:timer
             entity: switcher_aio.auto_off_sensor
-            style: {color: white, left: 25%, top: 91%, --paper-item-icon-color: rgb(115,122, 130)}
+            style:
+                color: white 
+                left: 25%
+                top: 91% 
+                --paper-item-icon-color: rgb(115,122, 130)
 
           - type: state-label
             entity: switcher_aio.auto_off_sensor
-            style: {color: white, left: 34%, top: 92%}
+            style:
+                color: white 
+                left: 34%
+                top: 92%
 
           - type: icon
             icon: mdi:format-list-bulleted
             entity: switcher_aio.timer_minutes_input_select
-            style: {color: white, left: 48%, top: 91%, --paper-item-icon-color: rgb(115,122, 130)}
+            style:
+                color: white 
+                left: 48%
+                top: 91% 
+                --paper-item-icon-color: rgb(115,122, 130)
 
           - type: state-label
             entity: switcher_aio.timer_minutes_input_select
-            style: {color: white, left: 54%, top: 92%}
+            style:
+                color: white 
+                left: 54%
+                top: 92%
 
           - type: icon
             icon: mdi:power
             entity: switcher_aio.send_auto_off_script
-            style: {color: white, left: 65%, top: 91%, --paper-item-icon-color: rgb(115,122, 130)}
+            style:
+                color: white
+                left: 65% 
+                top: 91% 
+                --paper-item-icon-color: rgb(115,122, 130)
 
           - type: state-label
             entity: switcher_aio.send_auto_off_script
-            style: {color: white, left: 72%, top: 92%}
+            style:
+                color: white
+                left: 72%
+                top: 92%
 
           - type: icon
             icon: mdi:flash-circle
             entity: switcher_aio.electric_current_sensor
-            style: {color: white, left: 85%, top: 91%, --paper-item-icon-color: rgb(115,122, 130)}
+            style:
+                color: white
+                left: 85%
+                top: 91% 
+                --paper-item-icon-color: rgb(115,122, 130)
 
           - type: state-label
             entity: switcher_aio.electric_current_sensor
-            style: {color: white, left: 91%, top: 92%}
+            style:
+                color: white 
+                left: 91%
+                top: 92%
 
 
 
 #################################################################
 #                                                               #
-#                   Second Floor - Light Stairs Card            #
+#   Light Stairs                                                #
 #                                                               #
 #################################################################
 
@@ -146,7 +193,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                 Second Floor - Shower light intensity Card    #
+#   Shower Parents                                              #
 #                                                               #
 #################################################################
 
@@ -157,7 +204,7 @@ cards:
         variables:
             - entity: sensor.illumination_158d000204bfcb
             - name: Light intensity Shower Parents
-            - height: 165
+            - height: 110
             - line_width: 2
             - font_size: 70
             - color: yellow
@@ -168,7 +215,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                 Second Floor - Laundry Light Card             #
+#   Laundry Light                                               #
 #                                                               #
 #################################################################
 

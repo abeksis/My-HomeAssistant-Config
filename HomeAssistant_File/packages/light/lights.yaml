@@ -225,6 +225,19 @@ light:
     retain: true
 
 
+  - platform: mqtt  
+    name: "Parents Light"
+    state_topic: "stat/parents_light/POWER"
+    command_topic: "cmnd/parents_light/POWER"
+    availability_topic: "tele/parents_light/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+
 script:
   lights_off:
       alias: Lights OFF

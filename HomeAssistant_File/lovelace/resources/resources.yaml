@@ -88,6 +88,12 @@
   - url: /community_plugin/light-entity-card/light-entity-card.js
     type: js
 
+  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
+    type: js
+
+  - url: /community_plugin/lovelace-more-info-card/more-info-card.js
+    type: js    
+
   - url: 'https://fonts.googleapis.com/css?family=Quicksand:300,400'
     type: css
 
@@ -179,4 +185,10 @@
     type: module    
 
   - url: /community_plugin/thermostat-card/thermostat-card.js
+    type: module    
+    
+  - url: /community_plugin/config-template-card/config-template-card.js
+    type: module
+
+  - url: /community_plugin/lovelace-weather-card-chart/weather-card-chart.js
     type: module    

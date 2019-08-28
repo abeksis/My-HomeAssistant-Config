@@ -3,14 +3,18 @@ path:  lights
 popup_cards:
   !include ../popup-cards/light-popup.yaml
 cards:
-  - type: vertical-stack
+  - type: vertical-stack 
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
+      - type: custom:decluttering-card
+        template: header
         variables:
-          - title: Lights
-          - name: Floor below
-
+          - content: '## Lights'
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Floor Below'
       - type: horizontal-stack
         cards:
           - !include ../decluttering_templates/blank-card.yaml
@@ -66,7 +70,7 @@ cards:
           - !include ../decluttering_templates/blank-card.yaml
 
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Room area'
       - type: horizontal-stack
@@ -97,7 +101,7 @@ cards:
           - !include ../decluttering_templates/blank-card.yaml
  
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Balcony'
 
@@ -129,7 +133,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Stairs'
       - type: horizontal-stack
@@ -161,7 +165,7 @@ cards:
           - !include ../decluttering_templates/blank-card.yaml
 
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Second Floor'
       - type: horizontal-stack
@@ -169,7 +173,7 @@ cards:
           - !include ../decluttering_templates/blank-card.yaml
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.computer_room
               - name: Computer Server
@@ -177,7 +181,7 @@ cards:
               - size: 30%
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.parents
               - name: Parents

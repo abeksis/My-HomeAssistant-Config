@@ -1,16 +1,19 @@
-title: Home
 path: home
 icon: mdi:home-assistant
 cards:
 
 #################################################################
 #                                                               #
-#                     Home - Avi nurit Card                     #
+#    Avi                                                        #
 #                                                               #
 ################################################################# 
 
     - type: vertical-stack
       cards:
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - name: "My Family"
         - type: horizontal-stack
           cards:
             - type: custom:decluttering-card
@@ -26,7 +29,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Home - Nuri nurit Card                    #
+#   Nuri nurit                                                  #
 #                                                               #
 #################################################################
 
@@ -43,7 +46,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Home - kids Card                          #
+#   kids                                                        #
 #                                                               #
 #################################################################
          
@@ -69,167 +72,66 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Home - Birthday Card                      #
+#   Birthday                                                    #
 #                                                               #
 #################################################################
+
 
         - type: vertical-stack
           cards:
             - type: entities
-              show_header_toggle: off
               entities:
-                - type: 'custom:text-divider-row'
-                  text: Birthday
-                - type: custom:card-modder
-                  card:
-                    type: custom:decluttering-card
-                    template: birthday-template
-                    variables:
-                      - name1: nurit_birthday_days2go
-                      - prefix1: 'Nurit -- '
-                      - name1: nurit_birthday_days2go                      
-                      - image: /local/lovelace/home/Birthday.png 
-
-                      - name2: rotam_birthday_days2go
-                      - prefix2: 'Room -- '
-                      - name2: rotam_birthday_days2go                      
-                      - image: /local/lovelace/home/Birthday.png                       
-
-                      - name3: liran_birthday_days2go
-                      - prefix3: 'Liran -- '
-                      - name3: liran_birthday_days2go                     
-                      - image: /local/lovelace/home/Birthday.png
-                      
-                      - name3: yakir_birthday_days2go
-                      - prefix4: 'Yakir -- '
-                      - name4: yakir_birthday_days2go                     
-                      - image: /local/lovelace/home/Birthday.png  
-
-#################################################################
-#                                                               #
-#                 Home - Lighting mode Card                     #
-#                                                               #
-#################################################################
-
-            - type: vertical-stack
-              cards:              
-                - type: horizontal-stack
-                  cards:
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.kitchen
-                        - name: Kitchen 
-                        - icon: mdi:fridge-outline
-                      
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.prozdor
-                        - name: Prozdor
-
-                    - type: custom:decluttering-card 
-                      template: light_button
-                      variables:
-                        - entity: light.miklahat
-                        - name: Shower
-                        - icon: mdi:shower-head
-
-                    - type: custom:decluttering-card 
-                      template: light_button
-                      variables:
-                        - entity: light.laundry_room_lighting
-                        - name: Laundry
-                        - icon: mdi:washing-machine
-
-                - type: horizontal-stack
-                  cards:
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.liran_room
-                        - name: Liran
-                        - icon: mdi:bed-empty
-      
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.service_balcony
-                        - name: Balcony 
-
-
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.parents
-                        - name: Parents
-                        - icon: mdi:human-male-female
-
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.living_room
-                        - name: Living Room
-                        - icon: mdi:sofa
-                      
-                - type: horizontal-stack
-                  cards:
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.computer_room
-                        - name: PC Room 
-                        - icon: mdi:server
-
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.balcony
-                        - name: Smoking
-                        - icon: mdi:smoking
-
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.kitchen_strip_lamp
-                        - name: Strip Lamp
-                        - icon: mdi:led-strip
+                - entity: sensor.anniversary_wedding_day
+                  icon: mdi:ring
+                  name: Wedding day
  
-                    - type: custom:decluttering-card
-                      template: light_button
-                      variables:
-                        - entity: light.yeelight_poop
-                        - name: Bathroom
+                - entity: sensor.birthday_nurit
+                  name: Nurit
+                  icon: mdi:gift                    
 
+                - entity: sensor.birthday_avi
+                  name: Avi
+                  icon: mdi:gift                    
+
+                - entity: sensor.birthday_rotem
+                  name: Rotam
+                  icon: mdi:gift
+
+                - entity: sensor.birthday_liran
+                  name: Liran
+                  icon: mdi:gift
+
+                - entity: sensor.birthday_yakir
+                  name: Yakir
+                  icon: mdi:gift
 
 #################################################################
 #                                                               #
-#                     Home - Calendar Card                      #
+#   Calendar                                                    #
 #                                                               #
 #################################################################
 
     - type: vertical-stack
       cards:
-        - type: entities
-          show_header_toggle: false
-          entities:
-            - type: 'custom:text-divider-row'
-              text: Calendar
-            - type: custom:calendar-card
-              title:
-              numberOfDays: 5
-              style:
-                text-align: right
-                direction: channel                
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - name: "Calendar"
+        - type: custom:calendar-card
+          title:
+          numberOfDays: 5
+          style:
+            text-align: right
+            direction: channel                
 
-              entities:
-                - calendar.avi_abeksis
-                - calendar.work  
+          entities:
+            - calendar.avi_abeksis
+            - calendar.work  
                 
       
 #################################################################
 #                                                               #
-#                     Home - Weather Forecast Card              #
+#   Weather Forecast                                            #
 #                                                               #
 #################################################################              
 
@@ -282,17 +184,19 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Home - Work, events Card                  #
+#   Work, events                                                #
 #                                                               #
 #################################################################
 
     - type: vertical-stack
       cards:
-        - type: entities
-          show_header_toggle: off
-          entities:
-            - type: 'custom:text-divider-row'
-              text: Events
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - name: "Events"
+              
+        - type: horizontal-stack
+          cards:
             - type: custom:card-modder
               card:
                 type: picture-elements
@@ -300,7 +204,9 @@ cards:
                 elements:
                   - type: state-label
                     entity: sensor.time
-                    style: {top: 6%, left: 92%}
+                    style: 
+                      top: 6%
+                      left: 92%
   
                   - type: state-label
                     entity: sensor.time_of_day
@@ -335,7 +241,7 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Home - Next Bus Card                      #
+#    Next Bus                                                   #
 #                                                               #
 #################################################################
 
@@ -345,56 +251,65 @@ cards:
             - type: 'custom:text-divider-row'
               text: Next Bus
             - entity: sensor.next_bus
-              style: {color: white, left: 59px, top: 22px}
+              style:
+                color: white
+                left: 59px
+                top: 22px
               name: ' '
 
 
 #################################################################
 #                                                               #
-#                     Home - Steps Tracker Card                 #
+#   Steps Tracker                                               #
 #                                                               #
 #################################################################
 
-        - type: entities
-          show_header_toggle: off
-          entities:
-            - type: 'custom:text-divider-row'
-              text: Steps
-            - type: custom:vertical-stack-in-card
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - name: "Steps Tracker"
+              
+        - type: horizontal-stack
+          cards:
+            - type: custom:card-modder
+              card:
+                type: picture
+                image: /local/lovelace/home/google_fit_02.jpg
+                style:
+                  .: |
+                    ha-card {
+                      border-radius: 5px;
+                      overflow: hidden;
+                      width: 100%;
+                      height: 165px;
+                      margin: 0 auto;
+                      padding-top: 0px;
+                    }
+                
+            - type: vertical-stack
               cards:
                 - type: horizontal-stack
                   cards:
-                    - type: custom:card-modder
-                      card:
-                        type: picture
-                        image: /local/lovelace/home/google_fit_01.png
-                      style:                 
-                        border-radius: 5px
-                        
-                    - type: vertical-stack
-                      cards:
-                        - type: horizontal-stack
-                          cards:
-                            - type: custom:bar-card
-                              title_position: inside
-                              align: center
-                              padding: 17.5px
-                              card_style: 
-                                border-radius: 0px
-                              columns: 1
-                              max: 8000
-                              entities:
-                                - entity: sensor.steps_nurit
-                                  title: Nurit
-                                  severity:
-                                  - value: 5000
-                                    color: '#bf4040'
-                                  - value: 7000
-                                    color: '#6b8e23'
-                                - entity: sensor.walking_distance
-                                  title: Walking Distance
-                                  severity:
-                                  - value: 5000
-                                    color: '#bf4040'
-                                  - value: 7000
-                                    color: '#6b8e23'                                        
+                    - type: custom:bar-card
+                      title_position: inside
+                      align: center
+                      padding: 17.5px
+                      card_style: 
+                        border-radius: 0px
+                      columns: 1
+                      max: 8000
+                      entities:
+                        - entity: sensor.steps_nurit
+                          title: Nurit
+                          severity:
+                          - value: 5000
+                            color: '#bf4040'
+                          - value: 7000
+                            color: '#6b8e23'
+                        - entity: sensor.walking_distance
+                          title: Walking Distance
+                          severity:
+                          - value: 5000
+                            color: '#bf4040'
+                          - value: 7000
+                            color: '#6b8e23'                                        

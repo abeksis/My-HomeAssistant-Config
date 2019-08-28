@@ -1,5 +1,5 @@
 default:
-  - border_radius: var(--graph-border-radius)
+  - border_radius: var(--ha-card-border-radius)
   - font_size: 90
   - font_size_header: 14
   - line_width: 8

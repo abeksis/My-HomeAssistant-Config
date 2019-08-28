@@ -5,34 +5,24 @@ cards:
 
 #################################################################
 #                                                               #
-#            Tracking -  Package Tracking Card                  #
+#  Themes select                                                #
 #                                                               #
 ################################################################# 
 
-  # - type: horizontal-stack
-  #   cards:
   - type: vertical-stack
     cards:
-    
-    ############################################################################
-    #                                                                          #
-    #   Title                                                                  #
-    #                                                                          #
-    ############################################################################
-    
       - type: horizontal-stack
         cards:
-        
           - type: custom:decluttering-card
             template: title_template
             variables:
-              - text: Themes select
+              - name: "Themes select"     
     
-    ############################################################################
-    #                                                                          #
-    #   Themes dropdown                                                        #
-    #                                                                          #
-    ############################################################################
+############################################################################
+#                                                                          #
+#   Themes Dropdown                                                        #
+#                                                                          #
+############################################################################
     
       - type: horizontal-stack
         cards:
@@ -50,17 +40,18 @@ cards:
 
 #################################################################
 #                                                               #
-#                 Things Status - Xiaomi Card                   #
+#   Xiaomi Status                                               #
 #                                                               #
 #################################################################
 
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: 'custom:text-divider-row'
-            text: Zigbee
-          - type: section
-            label: XIAOMI ECO SYSTEM
+  - type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Xiaomi Status"
           - type: custom:vertical-stack-in-card
             cards:
               - type: custom:card-modder
@@ -89,232 +80,185 @@ cards:
 
 #################################################################
 #                                                               #
-#                   Tracking -  RoboVac Card                    #
+#   RoboVac Card                                                #
 #                                                               #
 #################################################################   
 
   - type: vertical-stack
     cards:
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: 'custom:text-divider-row'
-            text: RoboVac
-          - type: custom:card-modder
-            card:
-              type: picture-elements
-              image: /local/lovelace/home/robovac_7.jpg
-              elements:
-                - type: icon
-                  icon: mdi:bell-ring
-                  tap_action: 
-                    action: call-service
-                    service: vacuum.locate
-                    service_data: 
-                      entity_id: vacuum.robovac
-                  style: {color: white, left: 80%, top: 90.5%}
+      - type: horizontal-stack
+        cards:
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "RoboVac"      
 
-                - type: icon
-                  icon: mdi:home
-                  tap_action: 
-                    action: call-service
-                    service: vacuum.return_to_base
-                    service_data: 
-                      entity_id: vacuum.robovac
-                  style: {color: white, left: 60%, top: 90%}
-
-                - type: icon
-                  icon: mdi:play-pause
-                  tap_action: 
-                    action: call-service
-                    service: vacuum.start
-                    service_data:
-                      entity_id: vacuum.robovac
-                  style: {color: white, left: 20%, top: 90%}
-
-                - type: icon
-                  icon: mdi:stop
-                  tap_action: 
-                    action: call-service
-                    service: vacuum.stop
-                    service_data:
-                      entity_id: vacuum.robovac
-                  style: {color: white, left: 40%, top: 90%}
-
-                - type: state-label
-                  entity: sensor.robovac_status
+      - type: horizontal-stack
+        cards:    
+          - type: picture-elements
+            image: /local/lovelace/home/robovac_7.jpg
+            elements:
+              - type: icon
+                icon: mdi:bell-ring
+                tap_action: 
+                  action: call-service
+                  service: vacuum.locate
+                  service_data: 
+                    entity_id: vacuum.robovac
+                style: {color: white, left: 80%, top: 90.5%}
+      
+              - type: icon
+                icon: mdi:home
+                tap_action: 
+                  action: call-service
+                  service: vacuum.return_to_base
+                  service_data: 
+                    entity_id: vacuum.robovac
+                style: {color: white, left: 60%, top: 90%}
+      
+              - type: icon
+                icon: mdi:play-pause
+                tap_action: 
+                  action: call-service
+                  service: vacuum.start
+                  service_data:
+                    entity_id: vacuum.robovac
+                style: {color: white, left: 20%, top: 90%}
+      
+              - type: icon
+                icon: mdi:stop
+                tap_action: 
+                  action: call-service
+                  service: vacuum.stop
+                  service_data:
+                    entity_id: vacuum.robovac
+                style: {color: white, left: 40%, top: 90%}
+      
+              - type: state-label
+                entity: sensor.robovac_status
+                style:
+                  top: 12%
+                  left: 5%
+                  color: rgb(255, 255, 255)
+                  transform: translate(0%,-50%)
+                  pointer-events: none
+                  text-shadow: 1px 1px black
+                  font-family: Trebuchet MS
+                  font-size: 90%
+                  font-weight: bold
+                  border-left-style: solid
+                  border-right-style: solid
+                  border-color: rgb(34, 154, 210)
+                  background-color: rgb(54, 65, 78)
+                  border-radius: 10px
+                  opacity: 0.8
+      
+              - type: state-label
+                entity: sensor.robovac_battery
+                style:
+                  top: 12%
+                  right: 5%
+                  color: rgb(255, 255, 255)
+                  transform: translate(0%,-50%)
+                  pointer-events: none
+                  text-shadow: 1px 1px black
+                  font-family: Trebuchet MS
+                  font-size: 90%
+                  font-weight: bold
+                  border-left-style: solid
+                  border-right-style: solid
+                  border-color: rgb(34, 154, 210)
+                  background-color: rgb(54, 65, 78)
+                  border-radius: 10px
+                  opacity: 0.8
                   style:
-                    top: 12%
-                    left: 5%
-                    color: rgb(255, 255, 255)
-                    transform: translate(0%,-50%)
-                    pointer-events: none
-                    text-shadow: 1px 1px black
-                    font-family: Trebuchet MS
-                    font-size: 90%
-                    font-weight: bold
-                    border-left-style: solid
-                    border-right-style: solid
-                    border-color: rgb(34, 154, 210)
-                    background-color: rgb(54, 65, 78)
-                    border-radius: 10px
-                    opacity: 0.8
-
-                - type: state-label
-                  entity: sensor.robovac_battery
-                  style:
-                    top: 12%
-                    right: 5%
-                    color: rgb(255, 255, 255)
-                    transform: translate(0%,-50%)
-                    pointer-events: none
-                    text-shadow: 1px 1px black
-                    font-family: Trebuchet MS
-                    font-size: 90%
-                    font-weight: bold
-                    border-left-style: solid
-                    border-right-style: solid
-                    border-color: rgb(34, 154, 210)
-                    background-color: rgb(54, 65, 78)
-                    border-radius: 10px
-                    opacity: 0.8
-            style:
-              border-radius: 8px
+                    border-radius: 8px
                       
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: horizontal-stack
-                cards:
-                  - type: entities
-                    show_header_toggle: false
-                    entities:
-                      - type: section
-                        label: ROBOVAC INFO
-                      - entity: sensor.robovac_cleaning_time
-                        icon: mdi:clock-outline
-                        name: Clean Time
-                      - entity: sensor.robovac_cleaned_area
-                        icon: mdi:clock-outline
-                        name: Clean Area
-                      - entity: sensor.robovac_cleaning_count
-                        icon: mdi:counter
-                      - entity: sensor.robovac_total_clean_time
-                        icon: mdi:clock-outline
-                        name: Total Clean
-                        
-                  - type: entities
-                    show_header_toggle: false
-                    entities:
-                      - type: section
-                        label: MAINTENANCE
-                      - entity: sensor.robovac_main_brush
-                        icon: mdi:robot-vacuum
-                        name: Main Brush
-                      - entity: sensor.robovac_side_brush
-                        icon: mdi:robot-vacuum-variant
-                        name: Side Brush
-                      - entity: sensor.robovac_filter
-                        icon: mdi:filter
-                      - entity: sensor.robovac_sensor_dirty
-                        icon: mdi:broom
+      - type: horizontal-stack
+        cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - type: section
+                label: ROBOVAC INFO
+              - entity: sensor.robovac_cleaning_time
+                icon: mdi:clock-outline
+                name: Clean Time
+              - entity: sensor.robovac_cleaned_area
+                icon: mdi:clock-outline
+                name: Clean Area
+              - entity: sensor.robovac_cleaning_count
+                icon: mdi:counter
+              - entity: sensor.robovac_total_clean_time
+                icon: mdi:clock-outline
+                name: Total Clean
+                
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - type: section
+                label: MAINTENANCE
+              - entity: sensor.robovac_main_brush
+                icon: mdi:robot-vacuum
+                name: Main Brush
+              - entity: sensor.robovac_side_brush
+                icon: mdi:robot-vacuum-variant
+                name: Side Brush
+              - entity: sensor.robovac_filter
+                icon: mdi:filter
+              - entity: sensor.robovac_sensor_dirty
+                icon: mdi:broom
                   
-
-      - type: custom:gap-card
-        height: 100
-        style: 100
-
 
 #################################################################
 #                                                               #
-#                  Car - Where is my car? Card                  #
+#   Where is My Car                                             #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: custom:text-divider-row
-            text: Car
-          - type: custom:card-modder
-            card:
-              type: picture-elements
-              image: /local/lovelace/car/skoda4.png
-              elements:
-                - type:  state-icon
-                  entity: sensor.iturn_address
-                  style:
-                    top: 22px
-                    right: 8px
-                    transform: none
-                - type: state-label
-                  entity: sensor.iturn_address
-                  style:
-                    top: 12%
-                    right: 52px
-                    transform: none
-                    color: rgb(255, 255, 255)
-                    font-size: 90%
-                    border-top-right-radius: 5px
-      
-                - type: state-icon
-                  entity: sensor.iturn_name
-                  style:
-                    top: 66px
-                    right: 8px
-                    transform: none
-                - type: state-label
-                  entity: sensor.iturn_name
-                  style:
-                    top: 74px
-                    right: 52px
-                    transform: none
-                    color: rgb(255, 255, 255)
-                    font-size: 90%
-                    border-bottom-right-radius: 5px
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Where is My Car"      
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 0px
+          - type: markdown
+            style: |
+              ha-card {
+                background-image: url('/local/lovelace/car/skoda.jpg');
+                border-radius: var(--border-radius);
+                font-size: 13px;
+                font-family: Helvetica;
+                background-size: cover;
+                background-position: 50% 50%;
+                color: white;
+                height: 115px;
+                vertical-align: baseline;
+                margin-bottom: 2px;
+                overflow: hidden;
+              }
+            content: >
+              **Test:** 17-7-2020
   
+              **Model:** NS74KX
   
-  
-                - type: state-label
-                  entity: sensor.iturn_plate
-                  style:
-                    top: 114px
-                    right: 52px
-                    transform: none
-                    color: rgb(255, 255, 255)
-                    font-size: 90%
-                    border-bottom-right-radius: 5px                        
-  
-                - type: state-icon
-                  entity: sensor.iturn_plate
-                  style:
-                    top: 110px
-                    right: 8px
-                    transform: none
-                   
-      
-                - type: state-icon
-                  entity: sensor.iturn_lat
-                  style: {top: 86%, left: 45%}
-                - type: state-label
-                  entity: sensor.iturn_lat
-                  prefix: 'lat: '
-                  style: {top: 95%, left: 45%}
-      
-                - type: state-icon
-                  entity: sensor.iturn_lon
-                  style: {top: 86%, left: 80%}
-                - type: state-label
-                  entity: sensor.iturn_lon
-                  prefix: 'lon: '
-                  style: {top: 95%, left: 80%}                
-      
-      
-                - type: state-icon
-                  entity: sensor.iturn_milage
-                  style: {top: 86%, left: 15%}
-                - type: state-label
-                  entity: sensor.iturn_milage
-                  prefix: 'Milage: '
-                  style: {top: 95%, left: 14%}   
+              **Insured:** 30-6-2020    
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:vertical-stack-in-card'
+            cards:
+              - type: 'custom:config-template-card'
+                entities:
+                  - sensor.ituran_google_embedded
+                card:
+                  type: 'custom:hui-iframe-card'
+                  url: >-
+                    ${states['sensor.ituran_google_embedded'].state}
+                  aspect_ratio: 75%

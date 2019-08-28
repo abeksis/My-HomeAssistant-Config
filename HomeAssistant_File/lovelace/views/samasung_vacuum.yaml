@@ -4,13 +4,13 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
         variables:
           - name1: Cleaning
           - icon1: broom
           - path: cleaning
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## vacuum Control Center'
       - type: custom:swipe-card
@@ -22,32 +22,36 @@ cards:
           - type: vertical-stack
             cards:
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '#### Status >'
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '##### Current Status'
+              - type: horizontal-stack
+                cards:
+                  - !include ../includes/blank-card.yaml
+                  - type: markdown
+                    style: |
+                      ha-card {
+                        background: rgba(0, 0, 0, 0.5);
+                        border-radius: var(--border-radius);
+                        font-size: 13px;
+                        font-family: Helvetica;
+                        color: white;
+                      }              
+                    content: '<ha-icon icon="mdi:robot-vacuum"></ha-icon> [[ sensor.vacuum_cleaner_status_sensor.state ]]'
+                  - !include ../includes/blank-card.yaml
               - type: custom:decluttering-card
-                template: notification_card
-                variables:
-                  - color: rgba(0, 0, 0, 0.5)
-                  - icon: robot-vacuum
-                  - content: '[[ sensor.vacuum_cleaner_status_sensor.state ]]'
-              - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '##### Information'
               - type: horizontal-stack
                 cards:
-                  - type: 'custom:button-card'
-                    color_type: blank-card
-                    styles:
-                      card:
-                        - width: 10px 
+                  - !include ../includes/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: sensor.robovac_battery
                       - name: Battery
@@ -61,7 +65,7 @@ cards:
                           action: more-info
                           haptic: heavy
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: sensor.robovac_cleaned_area
                       - name: Total Cleaned
@@ -74,7 +78,7 @@ cards:
                           action: more-info
                           haptic: heavy
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: sensor.robovac_cleaning_time
                       - name: Total Time
@@ -86,24 +90,16 @@ cards:
                       - hold_action:
                           action: more-info
                           haptic: heavy
-                  - type: 'custom:button-card'
-                    color_type: blank-card
-                    styles:
-                      card:
-                        - width: 10px 
+                  - !include ../includes/blank-card.yaml
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '##### Cleaning'
               - type: horizontal-stack
                 cards:
-                  - type: 'custom:button-card'
-                    color_type: blank-card
-                    styles:
-                      card:
-                        - width: 10px 
+                  - !include ../includes/blank-card.yaml
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: sensor.robovac_main_brush
                       - name: Main Brush
@@ -116,7 +112,7 @@ cards:
                           action: more-info
                           haptic: heavy
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: sensor.robovac_side_brush
                       - name: Side Brush
@@ -129,7 +125,7 @@ cards:
                           action: more-info
                           haptic: heavy
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: sensor.robovac_filter
                       - name: Filter
@@ -154,7 +150,7 @@ cards:
                       card:
                         - width: 10px 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: sensor.robovac_sensor_dirty
                       - name: Sensors
@@ -180,11 +176,11 @@ cards:
           - type: vertical-stack
             cards: 
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '#### < Basic Controls >'
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '##### General'
               - type: horizontal-stack
@@ -201,7 +197,7 @@ cards:
                         state: Cleaning
                     card:
                       type: 'custom:decluttering-card'
-                      template: switch_button_card
+                      template: button
                       variables:
                         - entity: input_boolean.dummy1
                         - name: Clean
@@ -227,7 +223,7 @@ cards:
                         state_not: Cleaning
                     card:
                       type: 'custom:decluttering-card'
-                      template: switch_button_card
+                      template: button
                       variables:
                         - entity: input_boolean.dummy1
                         - name: Clean
@@ -250,7 +246,7 @@ cards:
                         state: Paused
                     card:
                       type: 'custom:decluttering-card'
-                      template: switch_button_card
+                      template: button
                       variables:
                         - entity: input_boolean.dummy1
                         - name: Pause
@@ -275,7 +271,7 @@ cards:
                         state_not: Paused
                     card:
                       type: 'custom:decluttering-card'
-                      template: switch_button_card
+                      template: button
                       variables:
                         - entity: input_boolean.dummy1
                         - name: Pause
@@ -298,7 +294,7 @@ cards:
                         state: Spot cleaning
                     card:    
                       type: 'custom:decluttering-card'
-                      template: switch_button_card
+                      template: button
                       variables:
                         - entity: input_boolean.dummy1
                         - name: Spot Clean
@@ -324,7 +320,7 @@ cards:
                         state_not: Spot cleaning
                     card:    
                       type: 'custom:decluttering-card'
-                      template: switch_button_card
+                      template: button
                       variables:
                         - entity: input_boolean.dummy1
                         - name: Spot Clean
@@ -355,7 +351,7 @@ cards:
                       card:
                         - width: 10px 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: Locate
@@ -379,7 +375,7 @@ cards:
                         state: Returning home
                     card:    
                       type: 'custom:decluttering-card'
-                      template: switch_button_card
+                      template: button
                       variables:
                         - entity: input_boolean.dummy1
                         - name: Return
@@ -405,7 +401,7 @@ cards:
                         state_not: Returning home
                     card:    
                       type: 'custom:decluttering-card'
-                      template: switch_button_card
+                      template: button
                       variables:
                         - entity: input_boolean.dummy1
                         - name: Return
@@ -438,7 +434,7 @@ cards:
                   type: vertical-stack
                   cards:
                     - type: custom:decluttering-card
-                      template: header_text
+                      template: header
                       variables:
                         - content: '##### Fan Speed'
                     - type: horizontal-stack
@@ -454,7 +450,7 @@ cards:
                               state: Quiet
                           card:
                             type: 'custom:decluttering-card'
-                            template: switch_button_card
+                            template: button
                             variables:
                               - entity: input_boolean.dummy1
                               - name: Quiet
@@ -481,7 +477,7 @@ cards:
                               state_not: Quiet
                           card:
                             type: 'custom:decluttering-card'
-                            template: switch_button_card
+                            template: button
                             variables:
                               - entity: input_boolean.dummy1
                               - name: Quiet
@@ -507,7 +503,7 @@ cards:
                               state: Turbo
                           card:
                             type: 'custom:decluttering-card'
-                            template: switch_button_card
+                            template: button
                             variables:
                               - entity: input_boolean.dummy1
                               - name: Turbo
@@ -534,7 +530,7 @@ cards:
                               state_not: Turbo
                           card:
                             type: 'custom:decluttering-card'
-                            template: switch_button_card
+                            template: button
                             variables:
                               - entity: input_boolean.dummy1
                               - name: Turbo
@@ -560,7 +556,7 @@ cards:
                               state: Max
                           card:
                             type: 'custom:decluttering-card'
-                            template: switch_button_card
+                            template: button
                             variables:
                               - entity: input_boolean.dummy1
                               - name: Max
@@ -586,7 +582,7 @@ cards:
                               state_not: Max
                           card:
                             type: 'custom:decluttering-card'
-                            template: switch_button_card
+                            template: button
                             variables:
                               - entity: input_boolean.dummy1
                               - name: Max
@@ -623,7 +619,7 @@ cards:
                               state: Balanced
                           card:
                             type: 'custom:decluttering-card'
-                            template: switch_button_card
+                            template: button
                             variables:
                               - entity: input_boolean.dummy1
                               - name: Balanced
@@ -649,7 +645,7 @@ cards:
                               state_not: Balanced
                           card:
                             type: 'custom:decluttering-card'
-                            template: switch_button_card
+                            template: button
                             variables:
                               - entity: input_boolean.dummy1
                               - name: Balanced
@@ -689,11 +685,11 @@ cards:
           - type: vertical-stack
             cards:
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '#### < Presets'
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '##### Predefined Zones'
               - type: horizontal-stack
@@ -705,7 +701,7 @@ cards:
                         - width: 10px 
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: פינת אוכל
@@ -726,7 +722,7 @@ cards:
                           action: none
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: סלון
@@ -747,7 +743,7 @@ cards:
                           action: none
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: מסדרון
@@ -782,7 +778,7 @@ cards:
                         - width: 10px 
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: אזור החדרים
@@ -803,7 +799,7 @@ cards:
                           action: none
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: מטבח
@@ -825,7 +821,7 @@ cards:
 
 
                   - type: 'custom:decluttering-card'
-                    template: switch_button_card
+                    template: button
                     variables:
                       - entity: input_boolean.dummy1
                       - name: כניסה לבית

@@ -6,40 +6,36 @@ cards:
 
 #################################################################
 #                                                               #
-#                             LG TV                             #
+#   LG TV                                                       #
 #                                                               #
 ################################################################# 
   - type: vertical-stack
     cards:    
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section
-            # label: Remote LG TV
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
-                    card:
-                      type: picture
-                      image: /local/lovelace/remote/WEBOS_2.jpg
-                    style:
-                      border-radius: 5px
-                      border: solid 1px rgba(40,40,40,1)
+      - type: horizontal-stack
+        cards:
+          - type: custom:card-modder
+            card:
+              type: picture
+              image: /local/lovelace/remote/WEBOS_2.jpg
+            style:
+              border-radius: 5px
+              border: solid 1px rgba(40,40,40,1)
+              box-shadow: var( --ha-card-box-shadow )
 
-                  - type: entity-button
-                    icon: mdi:television
-                    name: "Switch TV"
-                    entity: switch.lg_tv_button
-                    hold_action: none
-                    toggle:
-                      action: call-service
-                      service: switch.lg_tv_button                         
+          - type: entity-button
+            icon: mdi:television
+            name: "Switch TV"
+            entity: switch.lg_tv_button
+            hold_action: none
+            toggle:
+              action: call-service
+              service: switch.lg_tv_button                         
 
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "LG Remote"        
 
-      - type: 'custom:text-divider-row'
-        text: LG Remote
       - type: horizontal-stack
         cards:
           - type: custom:card-modder
@@ -399,39 +395,35 @@ cards:
 
 #################################################################
 #                                                               #
-#                             kodi                              #
+#   kodi                                                        #
 #                                                               #
 ################################################################# 
   - type: vertical-stack
     cards:    
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section
-            # label: Remote Kodi
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
-                    card:
-                      type: picture
-                      image: /local/lovelace/remote/kodi_05.png
-                    style:
-                      border-radius: 5px
-                      border: solid 1px rgba(40,40,40,1)
+      - type: horizontal-stack
+        cards:
+          - type: custom:card-modder
+            card:
+              type: picture
+              image: /local/lovelace/remote/kodi_05.png
+            style:
+              border-radius: 5px
+              border: solid 1px rgba(40,40,40,1)
 
-                  - type: entity-button
-                    icon: mdi:android
-                    name: "Switch Kodi"
-                    entity: switch.whizz_button
-                    hold_action: none
-                    toggle:
-                      action: call-service
-                      service: switch.whizz_button                    
+          - type: entity-button
+            icon: mdi:android
+            name: "Switch Kodi"
+            entity: switch.whizz_button
+            hold_action: none
+            toggle:
+              action: call-service
+              service: switch.whizz_button                    
 
-      - type: 'custom:text-divider-row'
-        text: Kodi Remote
+
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Kodi Remote" 
         
       - type: horizontal-stack
         cards:
@@ -671,40 +663,36 @@ cards:
 
 #################################################################
 #                                                               #
-#                             yes                               #
+#   yes                                                         #
 #                                                               #
 ################################################################# 
 
   - type: vertical-stack
     cards:    
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section
-            # label: Remote Yes
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
-                    card:
-                      type: picture
-                      image: /local/lovelace/remote/yes_tv_01.jpg
-                    style:
-                      border-radius: 5px
-                      border: solid 1px rgba(40,40,40,1)
+    
+      - type: horizontal-stack
+        cards:
+          - type: custom:card-modder
+            card:
+              type: picture
+              image: /local/lovelace/remote/yes_tv_01.jpg
+            style:
+              border-radius: 5px
+              border: solid 1px rgba(40,40,40,1)
 
-                  - type: entity-button
-                    icon: mdi:youtube-tv
-                    name: "Switch Yes"
-                    entity: switch.yes_dvr_button
-                    hold_action: none
-                    toggle:
-                      action: call-service
-                      service: switch.yes_dvr_button
+          - type: entity-button
+            icon: mdi:youtube-tv
+            name: "Switch Yes"
+            entity: switch.yes_dvr_button
+            hold_action: none
+            toggle:
+              action: call-service
+              service: switch.yes_dvr_button
 
-      - type: 'custom:text-divider-row'
-        text: Yes Remote
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Yes Remote"        
         
       - type: horizontal-stack
         cards:

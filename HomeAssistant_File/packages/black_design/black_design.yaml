@@ -111,7 +111,7 @@ sensor:
       yakir_location:
         value_template: "יקיר {{ states('device_tracker.life360_yakir') | regex_replace(find='not_home', replace='לא נמצא', ignorecase=true) }}"
       liran_location:
-        value_template: "לירן {{ states('device_tracker.life360_liran') | regex_replace(find='not_home', replace='לא נמצא', ignorecase=true) }}"        
+        value_template: "לירן {{ states('device_tracker.liran_note_phone') | regex_replace(find='not_home', replace='לא נמצא', ignorecase=true) }}"        
           
   # TEXT TEMPLATES    
       text_mainfloor:
@@ -152,3 +152,7 @@ sensor:
         value_template: "סלון"
       text_seating_area:
         value_template: "פינת ישיבה"        
+      text_parents_light:
+        value_template: "תאורה"
+      text_parents_toilet:
+        value_template: "מקלחת"        

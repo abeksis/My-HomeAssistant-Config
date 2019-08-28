@@ -4,18 +4,23 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu 
         variables:
-          - title: Security
-          - name: Camera's
-          - button-name: Vacuum
-          - icon: robot-vacuum
-          - path: vacuum
+          - name1: Vacuum
+          - icon1: robot-vacuum
+          - path1: vacuum
+      - type: custom:decluttering-card
+        template: header 
+        variables:
+          - content: '## Security'
+      - type: custom:decluttering-card
+        template: header 
+        variables:
+          - content: "##### Camera's"
 
-        ### Center 6mp ### 
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: picture-entity
             style: |
               ha-card {
@@ -25,12 +30,12 @@ cards:
             entity: camera.center_6mp
             title: Camera's  
             aspect_ratio: 16x9
-          - !include ../decluttering_templates/blank-card.yaml
+            deep_press: true
+          - !include ../includes/blank-card.yaml
 
-        ## Right Side Balcony ##
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: picture-entity
             style: |
               ha-card {
@@ -40,12 +45,12 @@ cards:
             entity: camera.right_side_balcony
             title: Camera's
             aspect_ratio: 16x9
-          - !include ../decluttering_templates/blank-card.yaml
+            deep_press: true
+          - !include ../includes/blank-card.yaml
 
-        ## Entrance To The Building ##
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: picture-entity
             style: |
               ha-card {
@@ -55,12 +60,12 @@ cards:
             entity: camera.entrance_to_the_building
             title: Camera's
             aspect_ratio: 16x9
-          - !include ../decluttering_templates/blank-card.yaml 
+            deep_press: true
+          - !include ../includes/blank-card.yaml  
 
-        ## Xiaomi Dafang ###
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: picture-entity
             style: |
               ha-card {
@@ -70,12 +75,12 @@ cards:
             entity: camera.xiaomi_dafang
             title: Camera's
             aspect_ratio: 16x9
-          - !include ../decluttering_templates/blank-card.yaml
+            deep_press: true
+          - !include ../includes/blank-card.yaml 
 
-        ## Front Door ### 
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: picture-entity
             style: |
               ha-card {
@@ -85,20 +90,22 @@ cards:
             entity: camera.front_door
             title: Camera's
             aspect_ratio: 16x9
-          - !include ../decluttering_templates/blank-card.yaml          
+            deep_press: true
+          - !include ../includes/blank-card.yaml          
 
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header 
         variables:
+          - content: '##### Doors'
           - content: '##### Doors'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.door_window_sensor_158d0001ef3425
               - name: Front Door
@@ -109,7 +116,7 @@ cards:
               - spin: 'mdi:door-open'
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.door_window_sensor_158d00027a59c6
               - name: Balcony Door
@@ -120,7 +127,7 @@ cards:
               - spin: 'mdi:door-open'
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.door_window_sensor_158d0002ea0754
               - name: Washing Machine
@@ -129,15 +136,15 @@ cards:
               - tap_action: more-info
               - variable: icon
               - spin: 'mdi:door-open'
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
 
 
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.door_window_sensor_158d0002ea866a
               - name: AC Yakir door
@@ -148,7 +155,7 @@ cards:
               - spin: 'mdi:door-open'
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.door_window_sensor_158d0002ea9896
               - name: Laundry Dryer
@@ -161,18 +168,17 @@ cards:
           - type: 'custom:button-card'
             color_type: blank-card
             aspect_ratio: 1/1
-          - !include ../decluttering_templates/blank-card.yaml
-
+          - !include ../includes/blank-card.yaml
 
       - type: custom:decluttering-card
-        template: header_text
+        template: header 
         variables:
           - content: '##### Motion'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.motion_sensor_158d0002047c5a
               - name: Shower
@@ -181,7 +187,7 @@ cards:
               - tap_action: more-info
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.motion_sensor_158d00024e7972
               - name: Laundry
@@ -190,20 +196,20 @@ cards:
               - tap_action: more-info
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.motion_sensor_158d000204bfcb
               - name: Parents
               - icon: motion-sensor
               - show_last_changed: true
               - tap_action: more-info
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.motion_sensor_158d000272bc63
               - name: Server Room
@@ -212,7 +218,7 @@ cards:
               - tap_action: more-info
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: binary_sensor.motion_sensor_158d0002b42fa3
               - name: Guests Bbathroom
@@ -222,18 +228,18 @@ cards:
 
           - type: custom:button-card
             color_type: blank-card
-            aspect_ratio: 1/1
-          - !include ../decluttering_templates/blank-card.yaml          
+            aspect_ratio: 1/1             
+          - !include ../includes/blank-card.yaml
 
       - type: custom:decluttering-card
-        template: header_text
+        template: header 
         variables:
           - content: '##### Alarms'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button 
             variables:
               - entity: binary_sensor.smoke_sensor_158d00028ee7fb
               - name: Kitchen
@@ -246,9 +252,5 @@ cards:
           - type: 'custom:button-card'
             color_type: blank-card
             aspect_ratio: 1/1
-          - !include ../decluttering_templates/blank-card.yaml
-      - type: 'custom:button-card'
-        color_type: blank-card
-        styles:
-          card:
-            - height: 10px
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml

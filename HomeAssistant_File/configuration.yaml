@@ -153,13 +153,13 @@ logger:
 
 cloud: !include config/cloud.yaml
 
-####################################################
-#                                                  #
-#                      owntracks                   #
-#                                                  #
-####################################################
+# ####################################################
+# #                                                  #
+# #                      owntracks                   #
+# #                                                  #
+# ####################################################
 
-owntracks:
+# owntracks:
 
 ####################################################
 #                                                  #
@@ -224,7 +224,17 @@ weather:
 switcher_aio:
   phone_id: !secret switcher_phone_id
   device_id: !secret switcher_device_id
-  device_password: !secret switcher_device_password      
+  device_password: !secret switcher_device_password 
+
+ 
+
+####################################################
+#                                                  #
+#                    Birthday Sensor               #
+#                                                  #
+####################################################
+
+python_script: 
   
 ####################################################
 #                                                  #
@@ -247,3 +257,12 @@ input_datetime: !include config/input_datetime.yaml
 input_boolean: !include configuration/input_boolean.yaml #For Samsung Notte design / עיצוב סמסונג 
 automation: !include configuration/automations.yaml #For Samsung Notte design / עיצוב סמס
 input_select: !include configuration/input_select.yaml #For Samsung Notte design / עיצוב סמס
+
+
+
+
+# camera:
+#   name: Paulus
+#   platform: generic
+#   still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ state_attr('ituran.skodakodiak', 'lat') }},{{ state_attr('ituran.skodakodiak', 'lon') }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ state_attr('ituran.skodakodiak', 'lat') }},{{ state_attr('ituran.skodakodiak', 'lon') }}&key=AIzaSyAs1SYji-6uXmQTbm0qSLHxPGarAwpbCTA
+#   limit_refetch_to_url_change: true

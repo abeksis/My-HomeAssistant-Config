@@ -4,18 +4,18 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
         variables:
           - name1: Remote
           - icon1: remote
           - path1: remote
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Home Assistant'
 
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Database'
 
@@ -23,30 +23,35 @@ cards:
         cards:
           - !include ../decluttering_templates/blank-card.yaml 
           - type: custom:decluttering-card
-            template: mini-graph-card
+            template: mini-graph
             variables:
-              - entity: sensor.events_size
+              - entity: events_size
               - name: Events
               - line_color: '#ffb414'
  
           - type: custom:decluttering-card
-            template: mini-graph-card
+            template: mini-graph
             variables:
-              - entity: sensor.states_size
+              - entity: states_size
               - name: States
               - line_color: '#00d8ff'
 
+          - !include ../decluttering_templates/blank-card.yaml              
+              
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml 
           - type: custom:decluttering-card
-            template: mini-graph-card
+            template: mini-graph
             variables:
-              - entity: sensor.db_size
+              - entity: db_size
               - name: Full DB
               - line_color: '#1427ff'              
 
           - !include ../decluttering_templates/blank-card.yaml
  
   #     - type: custom:decluttering-card
-  #       template: header_text
+  #       template: header
   #       variables:
   #         - content: '##### Backup'
 
@@ -54,21 +59,21 @@ cards:
   #       cards:
   #         - !include ../decluttering_templates/blank-card.yaml 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.phaze_1_voltage
   #             - name: Voltage
   #             - line_color: '#1427ff'
 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.phaze_1_reactive_power
   #             - name: Volt Ampere Reactive (var)
   #             - line_color: '#00d8ff'
 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.phaze_1_power_factor
   #             - name: Power Factor
@@ -77,7 +82,7 @@ cards:
   #         - !include ../decluttering_templates/blank-card.yaml 
 
   #     - type: custom:decluttering-card
-  #       template: header_text
+  #       template: header
   #       variables:
   #         - content: '##### KWH'
 
@@ -85,21 +90,21 @@ cards:
   #       cards:
   #         - !include ../decluttering_templates/blank-card.yaml 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.phaze_1_total
   #             - name: Total KWH
   #             - line_color: '#00d8ff'
 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.phaze_1_yesterday
   #             - name: Yesterday
   #             - line_color: '#00d8ff'
  
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.phaze_1_today
   #             - name: Today
@@ -109,14 +114,14 @@ cards:
   # - type: vertical-stack
   #   cards:
   #     - type: custom:decluttering-card
-  #       template: header_text
+  #       template: header
   #       variables:
   #         - content: '##### Energy Today'
   #     - type: horizontal-stack
   #       cards:
   #         - !include ../decluttering_templates/blank-card.yaml 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.power_calc_today_phaze1
   #             - name: Today
@@ -125,7 +130,7 @@ cards:
   #             - height: 120
 
   #       #   - type: custom:decluttering-card
-  #       #     template: mini-graph-card
+  #       #     template: mini-graph
   #       #     variables:
   #       #       - entity: power_calc_yesterday_phaze1
   #       #       - name: Day Before
@@ -134,7 +139,7 @@ cards:
   #       #       - height: 120
 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.shekel_count_all
   #             - name: Total This Month
@@ -144,14 +149,14 @@ cards:
   #         - !include ../decluttering_templates/blank-card.yaml 
  
   #     - type: custom:decluttering-card
-  #       template: header_text
+  #       template: header
   #       variables:
   #         - content: '##### Energy Yesterday'
   #     - type: horizontal-stack
   #       cards:
   #         - !include ../decluttering_templates/blank-card.yaml 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.power_calc_yesterday_phaze1
   #             - name: Day Before
@@ -160,7 +165,7 @@ cards:
   #             - height: 120
 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: input_number.shekel_number
   #             - name: Total Day Before
@@ -169,14 +174,14 @@ cards:
   #             - height: 120
   #         - !include ../decluttering_templates/blank-card.yaml
   #     - type: custom:decluttering-card
-  #       template: header_text
+  #       template: header
   #       variables:
   #         - content: '##### KWH Total'
   #     - type: horizontal-stack
   #       cards:
   #         - !include ../decluttering_templates/blank-card.yaml 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.kwh_count_all
   #             - name: all
@@ -185,7 +190,7 @@ cards:
   #             - height: 120
 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: sensor.kwh_count_yesterday
   #             - name: Yesterday KWH
@@ -194,7 +199,7 @@ cards:
   #             - height: 120
 
   #         - type: custom:decluttering-card
-  #           template: mini-graph-card
+  #           template: mini-graph
   #           variables:
   #             - entity: vaatwasser_energy_total
   #             - name: Total KWH

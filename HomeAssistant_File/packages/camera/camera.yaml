@@ -4,70 +4,6 @@
 #                                                               #
 #################################################################
 
-#################################################################
-#                                                               #
-#                          Customize                            #
-#                                                               #
-#################################################################
-
-homeassistant:
-  customize:      
-
-    ## שינוי שמות לאוטומציה של כיבוי המצלמה ##
-    automation.turn_on_xiaomi_cameras_if_nurit_and_avi_not_at_home:
-      friendly_name: פעיל - אני ונורית לא בבית
-      icon: mdi:cctv
-      home_assistant: true
-      
-    automation.turn_off_xiaomi_cameras_if_avi_at_home:
-      friendly_name: כיבוי מצלמה - אבי בבית
-      icon: mdi:cctv
-      home_assistant: true
-      
-    automation.turn_off_xiaomi_dafang_camera_if_nurit_at_home:
-      friendly_name: כיבוי מצלמה - נורית בבית
-      icon: mdi:cctv
-      home_assistant: true
-
-    automation.turn_on_cctv_cameras_if_late_night:
-      friendly_name: פעיל - מצלמה פעילה 23:00
-      icon: mdi:cctv
-      home_assistant: true
-
-    automation.turn_off_xiaomi_dafang_camera_if_morning_and_we_are_at_home:
-      friendly_name: כיבוי מצלמה 7 בבוקר
-      icon: mdi:cctv
-      home_assistant: true
-
-    # automation.avi_wifi_off:
-    #   friendly_name: הפעלת מצלמת שיאומי - וויפי אבי מכובה
-    #   icon: mdi:wifi-off
-    #   home-assistant: true
-
-    # automation.avi_wifi_on:
-    #   friendly_name: כיבוי מצלמת שיאומי - וויפי אבי פעיל
-    #   icon: mdi:wifi
-    #   home-assistant: true  
-
-    # automation.nurit_wifi_off:
-    #   friendly_name: הפעלת מצלמת שיאומי - וויפי נורית מכובה
-    #   icon: mdi:wifi-off
-    #   home-assistant: true  
-
-    # automation.nurit_wifi_on:
-    #   friendly_name: כיבוי מצלמת שיאומי - וויפי נורית פעיל
-    #   home-assistant: true
-
-    # automation.yakir_wifi_off:    
-    #   friendly_name: זיהוי מצב ה וויפי של יקיר - לא זמין
-    #   icon: mdi:wifi-off
-    #   home-assistant: true
-
-    # automation.yakir_wifi_on:
-    #   friendly_name: זיהוי מצב ה וויפי של יקיר - זמין
-    #   icon: mdi:wifi
-    #   home-assistant: true
-
 
 #################################################################
 #                                                               #
@@ -164,16 +100,116 @@ automation:
         data:
           entity_id: camera.front_door
           filename: "/config/tmp/front_house_{{ now().year }}_{{ now().month }}_{{ now().day }}_{{ now().hour }}_{{ now().minute }}.jpg"
-      # - delay: 
-      #   seconds: 5
       - service: notify.avitelegram
         data:
-          title: "הדלת נפתחה"
+          title: "Home Aׁssistant"
           message: "מישהו לא מורשה פתח את הדלת"
           data:
             photo:
               - file: "/config/tmp/front_house_{{ now().year }}_{{ now().month }}_{{ now().day }}_{{ now().hour }}_{{ now().minute }}.jpg"
                 capture: Front House Camera              
+
+
+########################### 
+  - alias: 'turn off xiaomi dafang camera if nurit at home'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: device_tracker.nurit_iphone
+      to: 'home'
+      for:
+        minutes: 1
+        seconds: 30
+    action:
+      - service: switch.turn_off
+        entity_id: switch.sh20_pow
+
+      - service: notify.mobile_app_nurit_iphone
+        data:
+          title: "אבטחה"
+          message: 'ברוכה הבאה נורית, המצלמה כבויה'
+
+
+##########################          
+  - alias: 'turn on xiaomi dafang camera if nurit not at home'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: device_tracker.nurit_iphone
+        to: 'not_home'
+        for:
+          minutes: 1
+    action:
+      - service: switch.turn_on
+        entity_id: switch.sh20_pow
+      - service: notify.avitelegram
+        data:
+          title: "Home Aׁssistant"
+          message: 'נורית לא בבית, המצלמה דולקת'
+              
+########################## 
+  - alias:  'turn off xiaomi dafang camera if morning and we are at home'
+    initial_state: 'on'
+    trigger:
+      platform: time
+      at: '07:00:00'
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: device_tracker.nurit_iphone
+          state: 'home'
+
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.sh20_pow
+      - service: notify.avitelegram
+        data:
+          title: "Home Aׁssistant"
+          message: 'אתם בבית - המצלמה נסגרה, אין צורך '        
+
+
+    #########################  Camera  ##########################        
+
+  - alias: turn on xiaomi camera in 23:00
+    initial_state: 'on'  
+    trigger:
+      platform: time
+      at: '23:00:00'
+
+    action:
+      - service: automation.turn_off 
+        data:
+          entity_id: automation.turn_off_xiaomi_dafang_camera_if_nurit_at_home
+          
+      - service: homeassistant.turn_on
+        entity_id: switch.sh20_pow
+        
+      - service: notify.avitelegram
+        data:
+          title: "Home Aׁssistant"  
+          message: 'השעה 23:00 המצלמות דולקות'
+
+          
+
+# ##########################          
+#   - alias:  Turn on Xiaomi Dafang camera if avi not at home
+#     initial_state: 'on'
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_avi_abeksis
+#         to: 'not_home'
+#         for:
+#           minutes: 1
+#     condition:
+#       condition: and
+#       conditions:
+#         - condition: state
+#           entity_id: device_tracker.life360_avi_abeksis
+#           state: 'not_home'
+#     action:
+#       - service: homeassistant.turn_on
+#         entity_id: switch.sh20_pow        
 
 ############################
 #   - alias:  Turn off Xiaomi Dafang if avi at home
@@ -194,76 +230,3 @@ automation:
 #           title: "אבטחה"
 #           message: 'ברוך הבא אבי, המצלמה כבויה' 
 
-########################### 
-  - alias:  Turn off Xiaomi Dafang camera if nurit at home
-    initial_state: 'on'
-    trigger:
-      platform: state
-      entity_id: device_tracker.nurit_iphone # מכוון לספק מידע דרך הראוטר - אמין יותר בשביל 
-      to: 'home'
-      for:
-        minutes: 1
-        seconds: 30
-    action:
-      - service: homeassistant.turn_off
-        entity_id: switch.sh20_pow
-
-      - service: notify.mobile_app_nurit_iphone
-        data:
-          title: "אבטחה"
-          message: 'ברוכה הבאה נורית, המצלמה כבויה'
-          data:
-            push:
-              sound: "US-EN-Alexa-Welcome-Home.wav"
-              badge: 5
-              category: 'modifymycctvswitch'
-            attachment: 
-              url: http://cdn2.iconfinder.com/data/icons/forbidden-signs/512/forbidden_record_video-512.png
-              
-########################## 
-  - alias:  Turn off Xiaomi Dafang camera if Morning and we are at home
-    initial_state: 'on'
-    trigger:
-      platform: time
-      at: '07:00:00'
-    condition:
-      condition: or
-      conditions:
-        # - condition: state
-        #   entity_id: device_tracker.avi_avi
-        #   state: 'home'
-        - condition: state
-          entity_id: device_tracker.nurit_iphone # מכוון לספק מידע דרך הראוטר - אמין יותר בשביל 
-          state: 'home'
-
-    action:
-      - service: homeassistant.turn_off
-        entity_id: switch.sh20_pow
-      - service: notify.avitelegram
-        data:
-          title: "אבטחה"
-          message: 'אתם בבית - המצלמה נסגרה, אין צורך '        
-          
-
-          
-##########################          
-  - alias:  Turn on Xiaomi Dafang camera if nurit and avi not at home
-    initial_state: 'on'
-    trigger:
-      - platform: state
-        entity_id: device_tracker.avi_avi,device_tracker.iphone_nurit
-        to: 'not_home'
-        for:
-          minutes: 1
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: device_tracker.avi_avi
-          state: 'not_home'
-        - condition: state
-          entity_id: device_tracker.nurit_iphone # מכוון לספק מידע דרך הראוטר - אמין יותר בשביל האוטומציה
-          state: 'not_home'
-    action:
-      - service: homeassistant.turn_on
-        entity_id: switch.sh20_pow

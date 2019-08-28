@@ -6,153 +6,133 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Electricity - USE Card                    #
+#  Electricity USE                                              #
 #                                                               #
 #################################################################  
 
   - type: vertical-stack
     cards:
-      - type: entities
-        show_header_toggle: off
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Electricity USE"             
+                  
+      - type: custom:bar-card
+        #title_position: inside
+        align: center
+        padding: 4px
+        card_style: 
+          border-radius: 8px
+        columns: 2
         entities:
-          - type: 'custom:text-divider-row'
-            text: Electricity USE
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: horizontal-stack
-                cards:
-                  #- type: "custom:button-card"
-                  #  color_type: blank-card
-                  - type: custom:card-modder
-                    card:
-                      type: "custom:button-card"
-                      entity: sensor.power_calc_total_phaze1
-                      name: Total Money
-                      show_name: false
-                      tap_action:
-                        action: toggle
-                      size: '8%'
-                      style:
-                        - font-size: 14px
-                    style:                 
-                      border-radius: 8px
-                    
-                  #- type: "custom:button-card"
-                  #  color_type: blank-card
-                      
-          - type: custom:bar-card
-            #title_position: inside
-            align: center
-            padding: 4px
-            card_style: 
-              border-radius: 8px
-            columns: 2
-            entities:
-              - entity: sensor.power_calc_today_phaze1
-                title: Today
-              - entity: sensor.power_calc_yesterday_phaze1
-                title: Day Before
-                unit_of_measurement: ₪
-            max: 35
-            severity:
-            - value: 25
-              color: '#1db954'
-            - value: 32
-              color: '#bf4040'
+          - entity: sensor.power_calc_today_phaze1
+            title: Today
+          - entity: sensor.power_calc_yesterday_phaze1
+            title: Day Before
+            unit_of_measurement: ₪
+        max: 35
+        severity:
+        - value: 25
+          color: '#1db954'
+        - value: 32
+          color: '#bf4040'
 
-          - type: custom:bar-card
-            align: center
-            padding: 5px
-            card_style: 
-              border-radius: 8px
-            columns: 2
-            entities:
-              - entity: sensor.shekel_count_all
-                title: Total This Month
-              - entity: input_number.shekel_number
-                title: Total Day Before
-                unit_of_measurement: ₪
-            max: 1800
-            severity:
-            - value: 2000
-              color: '#1db954'
-            - value: 3500
-              color: '#bf4040'
+      - type: custom:bar-card
+        align: center
+        padding: 5px
+        card_style: 
+          border-radius: 8px
+        columns: 2
+        entities:
+          - entity: sensor.shekel_count_all
+            title: Total This Month
+          - entity: input_number.shekel_number
+            title: Total Day Before
+            unit_of_measurement: ₪
+        max: 1800
+        severity:
+        - value: 2000
+          color: '#1db954'
+        - value: 3500
+          color: '#bf4040'
 
-          - type: custom:decluttering-card
-            template: graph
-            variables:
-                - entity: sensor.phaze_1_power
-                - name: Electric power
-                - icon: mdi:flash 
-                - height: 40
-                - line_width: 2
-                - show_extrema: true
-                - show_fill: true  
-                - hours_to_show: 168
-                - points_per_hour: 1
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Power" 
+      - type: custom:decluttering-card
+        template: graph
+        variables:
+            - entity: sensor.phaze_1_power
+            - name: Electric power
+            - icon: mdi:flash 
+            - height: 40
+            - line_width: 2
+            - show_extrema: true
+            - show_fill: true  
+            - hours_to_show: 168
+            - points_per_hour: 1
 
-          - type: custom:decluttering-card
-            template: graph
-            variables:
-                - entity: sensor.phaze_1_apparent_power
-                - name: צריכה הסתברותית
-                - icon: mdi:flash 
-                - height: 40
-                - line_width: 2
-                - color: green
-                - show_extrema: true
-                - show_fill: true 
-                - hours_to_show: 168
-                - points_per_hour: 1
+      - type: custom:decluttering-card
+        template: graph
+        variables:
+            - entity: sensor.phaze_1_apparent_power
+            - name: צריכה הסתברותית
+            - icon: mdi:flash 
+            - height: 40
+            - line_width: 2
+            - color: green
+            - show_extrema: true
+            - show_fill: true 
+            - hours_to_show: 168
+            - points_per_hour: 1
 
 #################################################################
 #                                                               #
-#                     Electricity - KWH Status                  #
+#   KWH Status                                                  #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:              
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section 
-            label: KWH
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
-                    card:
-                      type: picture
-                      image: /local/lovelace/electricity/kwh_size3.jpg
-                    style:                 
-                      border-radius: 5px
-                      width: 100%
-                      height: 95px
-                      
-                  - type: custom:bar-card
-                    max: 40000
-                    align: center
-                    padding: 3.75px
-                    card_style: 
-                      border-radius: 5px
-                    columns: 1
-                    entities:
-                      - entity: sensor.phaze_1_total
-                        title: Total KW/H
-                      - entity: input_number.kwh_number
-                        title: Outside
-                        unit_of_measurement: KwH
-                        severity:
-                        - value: 30000
-                          color: '#40bf40'
-                        - value: 35000
-                          color: '#bf9540'
-                        - value: 38000
-                          color: '#bf4040'
-                          
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "KWH"             
+      - type: horizontal-stack
+        cards:
+          # - type: custom:card-modder
+          #   card:
+          #     type: picture
+          #     image: /local/lovelace/electricity/kwh_size3.jpg
+          #   style:                 
+          #     border-radius: 5px
+          #     width: 100%
+          #     height: 95px
+              
+          - type: custom:bar-card
+            max: 40000
+            align: center
+            padding: 3.75px
+            card_style: 
+              border-radius: 5px
+            columns: 1
+            entities:
+              - entity: sensor.phaze_1_total
+                title: Total KW/H
+
+              - entity: input_number.kwh_number
+                title: Outside
+                unit_of_measurement: KwH
+                severity:
+                - value: 30000
+                  color: '#40bf40'
+                - value: 35000
+                  color: '#bf9540'
+                - value: 38000
+                  color: '#bf4040'
+      - type: horizontal-stack
+        cards:                          
           - type: custom:bar-card
             title_position: inside
             show_icon: true
@@ -188,44 +168,24 @@ cards:
 
 #################################################################
 #                                                               #
-#                  Electricity - VAR - PF - V                   #
+#   VAR - PF - V                                                #
 #                                                               #
 #################################################################
-
-  - type: vertical-stack
-    cards:
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: 'custom:text-divider-row'
-            text: VAR - PF - V
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: horizontal-stack
-                cards:
-                  #- type: "custom:butpowton-card"
-                  #  color_type: blank-card
-                  - type: custom:card-modder
-                    card:
-                      type: "custom:button-card"
-                      entity: sensor.phaze_1_reactive_power
-                      name: Reactive Power
-                      show_name: false
-                      tap_action:
-                        action: toggle
-                      size: '8%'
-                      style:
-                        - font-size: 14px
-                    style:                 
-                      border-radius: 8px
+    
+      - type: vertical-stack
+        cards:
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "VAR - PF - V"             
                     
-                      
           - type: custom:bar-card
             #title_position: inside
             align: center
             padding: 4px
             card_style: 
               border-radius: 8px
+              background-color: var(--title-button-background)
             columns: 2
             entities:
               - entity: sensor.phaze_1_reactive_power
@@ -239,7 +199,7 @@ cards:
               color: '#1db954'
             - value: 3500
               color: '#bf4040'
-
+    
           - type: custom:bar-card
             #title_position: inside
             align: center
@@ -262,82 +222,57 @@ cards:
 
 #################################################################
 #                                                               #
-#                     Electricity - VOLT USE                    #
+#   VOLT USE                                                    #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: 'custom:text-divider-row'
-            text: Ampere Use
-          - type: custom:vertical-stack-in-card
-            cards:
-              - type: horizontal-stack
-                cards:
-                  - type: custom:card-modder
-                    card:
-                      type: "custom:button-card"
-                      entity: sensor.phaze_1_current
-                      name: Total VOLT
-                      show_name: false
-                      tap_action:
-                        action: toggle
-                      size: '8%'
-                      style:
-                        - font-size: 14px
-                    style:                 
-                      border-radius: 8px
-                      
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Ampere Use" 
 
-          - type: custom:decluttering-card
-            template: graph
-            variables:
-                - entity: sensor.phaze_1_current
-                - name: Ampre
-                - height: 40
-                - line_width: 2
-                - font_size: 70
-                - color: yellow
-                - show_extrema: true
-                - show_fill: true 
-                - hours_to_show: 168
-                - points_per_hour: 1
+      - type: custom:decluttering-card
+        template: graph
+        variables:
+            - entity: sensor.phaze_1_current
+            - name: Ampre
+            - height: 40
+            - line_width: 2
+            - font_size: 70
+            - color: yellow
+            - show_extrema: true
+            - show_fill: true 
+            - hours_to_show: 168
+            - points_per_hour: 1
 
 #################################################################
 #                                                               #
-#                    Electricity - kWh Count                    #
+#   kWh Count                                                   #
 #                                                               #
 #################################################################
 
       - type: horizontal-stack
         cards:
-          - type: entities
-            show_header_toggle: off
-            entities:
-              - type: section
-                label: KW/H Count Today
-              - type: custom:vertical-stack-in-card
+
+          - type: vertical-stack
+            cards:
+              - type: custom:decluttering-card
+                template: title_template
+                variables:
+                  - name: "KW/H Count" 
+              - type: horizontal-stack
                 cards:
                   - type: horizontal-stack
                     cards:
-                      # - type: custom:card-modder
-                      #   card: 
-                      #     type: picture
-                      #     image: /local/lovelace/electricity/kwh_use.jpg
-                      #   style:                 
-                      #     border-radius: 5px
-                      #     margin-top: 14px
-                          
                       - type: vertical-stack
                         cards:
                           - type: custom:circle-sensor-card
                             entity: sensor.kwh_count_all
                             max: 40000
                             min: 0
-                            stroke_width: 15
+                            stroke_width: 8
                             gradient: true
                             fill: '#383C45'
                             name: Used
@@ -345,37 +280,26 @@ cards:
                             color_stops:
                               80: '#09C7E8'
                               100: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
+                            font_style:
+                              font-size: 1.1em, 
+                              font-color: white
+                              text-shadow: '2px 2px black'
+                            style:
+                              top: 5%
+                              left: 80% 
+                              width: 6em 
+                              height: 6em
+                              transform: none
                             
-                          - type: custom:gap-card
-                            height:
-                            size:
-                            
-          - type: entities
-            show_header_toggle: off
-            entities:
-              - type: section
-                label: KW/H Count Yesterday
-              - type: custom:vertical-stack-in-card
-                cards:
                   - type: horizontal-stack
                     cards:
-                      # - type: custom:card-modder
-                      #   card: 
-                      #     type: picture
-                      #     image: /local/lovelace/electricity/kwh_use.jpg
-                      #   style:                 
-                      #     border-radius: 5px
-                      #     margin-top: 14px
-                          
                       - type: vertical-stack
                         cards:
                           - type: custom:circle-sensor-card
                             entity: sensor.kwh_count_yesterday
                             max: 40000
                             min: 0
-                            stroke_width: 12
+                            stroke_width: 8
                             gradient: true
                             fill: '#383C45'
                             name: Used
@@ -383,9 +307,13 @@ cards:
                             color_stops:
                               80: '#09C7E8'
                               100: '#5294E2'
-                            font_style: {font-size: 1.1em, font-color: white, text-shadow: '2px 2px black'}
-                            style: {top: 5%, left: 80%, width: 6em, height: 6em, transform: none}
-                            
-                          - type: custom:gap-card
-                            height: 
-                            size:
+                            font_style: 
+                              font-size: 1.1em, 
+                              font-color: white, 
+                              text-shadow: '2px 2px black'
+                            style:
+                              top: 5%
+                              left: 80% 
+                              width: 6em 
+                              height: 6em
+                              transform: none

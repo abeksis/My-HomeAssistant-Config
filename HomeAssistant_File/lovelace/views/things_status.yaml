@@ -4,17 +4,16 @@ icon: mdi:cogs
 cards:
 #################################################################
 #                                                               #
-#               Things Status - Camera Status Card              #
+#  Camera Status                                                #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:
-      - type: entities
-        show_header_toggle: off
-        entities:
-          - type: section
-            label: CAMERAS
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Cameras"   
           - type: custom:bar-card
             title_position: inside
             align: center
@@ -42,12 +41,15 @@ cards:
 
 #################################################################
 #                                                               #
-#             Things Status - IR Blaster Status Card            #
+#   IR Blaster Status                                           #
 #                                                               #
 #################################################################
 
-          - type: section
-            label: Sonoff 
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Sonoff"  
+
           - type: custom:bar-card
             title_position: inside
             align: center
@@ -68,7 +70,7 @@ cards:
               - entity: sensor.sonoff_balcony_light_state
                 title: Smoking Balcony
                 show_value: false
-              - entity: sensor.sonoff_tris_state
+              - entity: sensor.shutters_state
                 title: Tris
                 show_value: false                    
             severity:
@@ -79,12 +81,15 @@ cards:
 
 #################################################################
 #                                                               #
-#            Things Status - BLE Tracker Status Card            #
+#   BLE Tracker                                                 #
 #                                                               #
 #################################################################
 
-          - type: section
-            label: Unifi
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "Unifi"
+
           - type: custom:bar-card
             title_position: inside
             align: center
@@ -104,12 +109,14 @@ cards:
 
 #################################################################
 #                                                               #
-#             Things Status - ESP Sensor Status Card            #
+#   ESP Sensor                                                  #
 #                                                               #
 #################################################################
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "ESP Sensor"
 
-          - type: section
-            label: ESP SENSORS
           - type: custom:bar-card
             title_position: inside
             align: center
@@ -127,104 +134,28 @@ cards:
             - value: 100
               color: '#1db954'
 
-#################################################################
-#                                                               #
-#             Things Status - Smart Fan Status Card             #
-#                                                               #
-#################################################################
-
-          - type: section
-            label: Fans
-          - type: custom:bar-card
-            title_position: inside
-            align: center
-            padding: 4px
-            card_style: 
-              border-radius: 5px
-            columns: 1
-            entities:
-              - entity: sensor.sonff_fan_state
-                title: Fan Pc Room
-                show_value: false
-            severity:
-            - value: 50
-              color: '#bf4040'
-            - value: 100
-              color: '#1db954'
-
-#################################################################
-#                                                               #
-#             Things Status - Yeelight Bulb Status Card         #
-#                                                               #
-#################################################################
-
-          - type: section
-            label: Yeelight
-          - type: custom:bar-card
-            title_position: inside
-            align: center
-            padding: 4px
-            card_style: 
-              border-radius: 5px
-            columns: 3
-            entities:
-              - entity: sensor.yeelinklightcolor1_miio86767262_state
-                title: Yeelight Bulb
-                show_value: false
-              - entity: sensor.yeelink_light_strip1_miio98683770_state
-                title: Yeelight Strip
-                show_value: false
-            severity:
-            - value: 50
-              color: '#bf4040'
-            - value: 100
-              color: '#1db954'
-              
-#################################################################
-#                                                               #
-#             Things Status - Smart socket Status Card          #
-#                                                               #
-#################################################################
-
-          - type: section
-            label: Smart socket
-          - type: custom:bar-card
-            title_position: inside
-            align: center
-            padding: 4px
-            card_style: 
-              border-radius: 5px
-            columns: 3
-            entities:
-              - entity: sensor.tami4_power_state
-                title: Tami 4 Power
-                show_value: false
-              - entity: sensor.s20_xiaomi_state
-                title: S20 Xiaomi on/off
-                show_value: false
-            severity:
-            - value: 50
-              color: '#bf4040'
-            - value: 100
-              color: '#1db954'
-
-
     
 #################################################################
 #                                                               #
-#              Things Status - Firmware Status Card             #
+#    Firmware                                                   #
 #                                                               #
 #################################################################
 
   - type: vertical-stack
     cards:
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Firmware"      
+
       - type: entities
         show_header_toggle: off
         entities:
-          - type: 'custom:text-divider-row'
-            text: Firmware
-          - type: section 
-            label: HOME ASSISTANT
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "HOME ASSISTANT"         
+
           - entity: input_boolean.ha_update_available
             name: HA Update Available
           - type: custom:bar-card
@@ -241,12 +172,17 @@ cards:
                 title: Latest
           - type: custom:fold-entity-row
             head: sensor.potential_breaking_changes
-          - type: section 
-            label: HOME ASSISTANT PODCAST
+      - type: entities
+        show_header_toggle: off
+        entities:
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "HOME ASSISTANT PODCAST"
+
           - entity: input_boolean.new_podcast_available
             name: New Podcast Available
 
-          # SONOFF TASMOTA
           - type: custom:bar-card
             title_position: inside
             align: center
@@ -257,10 +193,17 @@ cards:
             entities:
               - entity: sensor.latest_ha_podcast
                 title: Latest
-          - type: section 
-            label: SONOFF TASMOTA
+      - type: entities
+        show_header_toggle: off
+        entities:
+          - type: custom:decluttering-card
+            template: title_template
+            variables:
+              - name: "SONOFF TASMOTA"
+
           - entity: input_boolean.sonoff_update_available
             name: Sonoff Update Available
+
           - type: custom:bar-card
             title_position: inside
             align: center
@@ -275,40 +218,127 @@ cards:
 
 #################################################################
 #                                                               #
-#            Things Status - Wall Switch Status Card            #
+#   Wall Switch                                                 #
 #                                                               #
 #################################################################
   - type: vertical-stack
     cards:
-      - type: entities
-        show_header_toggle: off
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Things Status"   
+      - type: custom:bar-card
+        title_position: inside
+        align: center
+        padding: 4px
+        card_style: 
+          border-radius: 5px
+        columns: 4
         entities:
-          - type: 'custom:text-divider-row'
-            text: Things Status
-          - type: section
-            label: WALL SWITCHES
-          - type: custom:bar-card
-            title_position: inside
-            align: center
-            padding: 4px
-            card_style: 
-              border-radius: 5px
-            columns: 4
-            entities:
-              - entity: sensor.guests_bathroom_switch
-                title: Guests Bathroom Switch
-                show_value: false
-              - entity: sensor.liran_light_switch_state
-                title: Liran 
-                show_value: false
-              - entity: sensor.bathroom_light_switch_state
-                title: Bathroom
-                show_value: false
-              - entity: sensor.laundry_light_switch_state
-                title: Laundry
-                show_value: false
-            severity:
-            - value: 50
-              color: '#bf4040'
-            - value: 100
-              color: '#1db954'
+          - entity: sensor.guests_bathroom_switch
+            title: Guests Bathroom Switch
+            show_value: false
+          - entity: sensor.liran_light_switch_state
+            title: Liran 
+            show_value: false
+          - entity: sensor.bathroom_light_switch_state
+            title: Bathroom
+            show_value: false
+          - entity: sensor.laundry_light_switch_state
+            title: Laundry
+            show_value: false
+        severity:
+        - value: 50
+          color: '#bf4040'
+        - value: 100
+          color: '#1db954'
+#################################################################
+#                                                               #
+#   Smart Fan                                                   #
+#                                                               #
+#################################################################
+
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Fans"
+
+      - type: custom:bar-card
+        title_position: inside
+        align: center
+        padding: 4px
+        card_style: 
+          border-radius: 5px
+        columns: 1
+        entities:
+          - entity: sensor.sonff_fan_state
+            title: Fan Pc Room
+            show_value: false
+        severity:
+        - value: 50
+          color: '#bf4040'
+        - value: 100
+          color: '#1db954'
+
+#################################################################
+#                                                               #
+#   Yeelight Bulb                                               #
+#                                                               #
+#################################################################
+
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Yeelight"
+
+      - type: custom:bar-card
+        title_position: inside
+        align: center
+        padding: 4px
+        card_style: 
+          border-radius: 5px
+        columns: 3
+        entities:
+          - entity: sensor.yeelinklightcolor1_miio86767262_state
+            title: Yeelight Bulb
+            show_value: false
+          - entity: sensor.yeelink_light_strip1_miio98683770_state
+            title: Yeelight Strip
+            show_value: false
+        severity:
+        - value: 50
+          color: '#bf4040'
+        - value: 100
+          color: '#1db954'
+          
+#################################################################
+#                                                               #
+#   Smart socket                                                #
+#                                                               #
+#################################################################
+
+      - type: custom:decluttering-card
+        template: title_template
+        variables:
+          - name: "Smart socket"
+
+      - type: custom:bar-card
+        title_position: inside
+        align: center
+        padding: 4px
+        card_style: 
+          border-radius: 5px
+        columns: 3
+        entities:
+          - entity: sensor.tami4_power_state
+            title: Tami 4 Power
+            show_value: false
+          - entity: sensor.s20_xiaomi_state
+            title: S20 Xiaomi on/off
+            show_value: false
+        severity:
+        - value: 50
+          color: '#bf4040'
+        - value: 100
+          color: '#1db954'
+      

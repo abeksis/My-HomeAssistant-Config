@@ -4,14 +4,14 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
         variables:
           - name1: statistics
           - icon1: home-assistant
           - path1: statistics
 
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Car Tracking'
 
@@ -23,11 +23,11 @@ cards:
         #   - type: vertical-stack
         #     cards:
         #       - type: custom:decluttering-card
-        #         template: header_text
+        #         template: header
         #         variables:
         #           - content: '#### Car >'
         #       - type: custom:decluttering-card
-        #         template: header_text
+        #         template: header
         #         variables:
         #           - content: '##### Tracking'
         #       - type: horizontal-stack
@@ -120,11 +120,11 @@ cards:
           - type: vertical-stack
             cards:
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '#### < Car Avi/Nurit >'
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: "##### Skoda Kodiaq Style (2017) NS74KX"
               - type: horizontal-stack
@@ -161,11 +161,14 @@ cards:
                   - !include ../decluttering_templates/blank-card.yaml
                   - type: 'custom:vertical-stack-in-card'
                     cards:
-                      - type: custom:decluttering-card
-                        template: check_button_card
-                        variables:
-                          - title: map
-                          - entity: sensor.ituran_google_map
+                      - type: 'custom:config-template-card'
+                        entities:
+                          - sensor.ituran_google_embedded
+                        card:
+                          type: 'custom:hui-iframe-card'
+                          url: >-
+                            ${states['sensor.ituran_google_embedded'].state}
+                          aspect_ratio: 75%
 
                   - !include ../decluttering_templates/blank-card.yaml
               - type: horizontal-stack
@@ -195,11 +198,11 @@ cards:
         #   - type: vertical-stack
         #     cards:
         #       - type: custom:decluttering-card
-        #         template: header_text
+        #         template: header
         #         variables:
         #           - content: '#### < Car Nurit'
         #       - type: custom:decluttering-card
-        #         template: header_text
+        #         template: header
         #         variables:
         #           - content: "##### Skoda Kodiaq Style (2017) NS74KX"
         #       - type: horizontal-stack

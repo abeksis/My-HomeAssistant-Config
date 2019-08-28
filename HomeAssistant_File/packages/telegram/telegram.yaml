@@ -43,33 +43,6 @@ automation:
         title: "שלום אבי"
         message: 'דלת הבית פתוחה יותר מדקה'
 
-    #########################  Camera  ##########################        
-
-    ## Turn on xiaomi Camera in 23:00 ##
-  - alias: turn on CCTV cameras if late Night 
-    initial_state: 'on'  
-    trigger:
-      platform: time
-      at: '23:00:00'
-
-    action:
-      # - service: automation.turn_off
-      #   data:
-      #     entity_id: automation.turn_off_c_cameras_if_avi_at_home
-  
-      - service: automation.turn_off 
-        data:
-          entity_id: automation.turn_off_xiaomi_dafang_camera_if_nurit_at_home
-          
-      - service: homeassistant.turn_on
-        entity_id: switch.sh20_pow
-        
-      - service: notify.avitelegram
-        data:
-          title: "אבטחה"  
-          message: 'השעה 23:00 המצלמות דולקות'
-
-
     #########################  boiler  ##########################        
 
     ## notify if boiler is on ##

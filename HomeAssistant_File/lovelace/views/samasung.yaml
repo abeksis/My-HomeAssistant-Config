@@ -1,6 +1,8 @@
 title: samasung
 path: samasung
-icon: mdi:home
+icon: mdi:cellphone-iphone
+popup_cards:
+  !include ../popup-cards/notification-popup.yaml
 cards:
   - type: vertical-stack
     cards:
@@ -12,33 +14,7 @@ cards:
               card:
                 - width: 10px
                 
-          #################################################
-          #                     Weather                   #
-          #################################################            
-          - type: custom:simple-weather-card
-            style: |
-              ha-card {
-                border-radius: var(--border-radius);
-                opacity: 0.8;
-                font-size: 12px;
-                font-family: Helvetica;
-                font-weight: bold;
-              }
-                    
-            entity: weather.dark_sky
-            name: "Beer Sheva"
-            backdrop:
-              fade: true
-              day: "var(--homekit-card-on)"
-              night: "var(--homekit-card-off)"
-              text: "var(--weather-color)"
-
-          - type: 'custom:button-card'
-            color_type: blank-card
-            styles:
-              card:
-                - width: 10px
-
+      - !include ../includes/simple-weather-card.yaml
 
       - type: horizontal-stack
         cards:
@@ -61,7 +37,7 @@ cards:
                 state_not: "בית"
             card:
               type: custom:decluttering-card
-              template: person_elements
+              template: person
               variables:
                 - name: life360_avi_abeksis
                 - direction: left
@@ -76,7 +52,7 @@ cards:
                 state: "בית"
             card:
               type: custom:decluttering-card
-              template: person_elements
+              template: person
               variables:
                 - name: life360_avi_abeksis
                 - direction: left
@@ -98,7 +74,7 @@ cards:
                 state_not: "בית"
             card:
               type: custom:decluttering-card
-              template: person_elements
+              template: person
               variables:
                 - name: life360_nurit
                 - direction: right
@@ -112,7 +88,7 @@ cards:
                 state: "בית"
             card:
               type: custom:decluttering-card
-              template: person_elements
+              template: person
               variables:
                 - name: life360_nurit
                 - direction: right
@@ -146,7 +122,7 @@ cards:
 #                     Menu - icon               #
 #################################################
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - name: Menu
               - label: All Options
@@ -168,7 +144,7 @@ cards:
   #                     Vacuum - icon             #
   #################################################   
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - name: Vacuum
               - label: Johnny S55
@@ -190,7 +166,7 @@ cards:
   #                     Security - icon           #
   #################################################   
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - name: Security
               - label: Panel
@@ -222,7 +198,7 @@ cards:
   #                     Energy - icon             #
   #################################################
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - name: Energy
               - label: Panel
@@ -244,7 +220,7 @@ cards:
   #                     Control - icon            #
   #################################################
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - name: Light
               - label: Control
@@ -265,12 +241,9 @@ cards:
   #################################################
   #                     Climate - icon            #
   #################################################
-          # - type: custom:button-card
-          #   color_type: blank-card
-          #   aspect_ratio: 1/1
 
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.dummy1
               - name: Devices
@@ -292,3 +265,4 @@ cards:
       - type: horizontal-stack
         cards:
           - !include samasung_notifications.yaml
+          

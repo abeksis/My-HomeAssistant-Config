@@ -181,6 +181,11 @@ input_select:
 #################################################################
 
 automation:
+
+#################################################################
+#   Vacuum                                                      #
+#################################################################
+
   - id: vacuum_fan_speed_quiet
     alias: Vacuum Fan Speed Quiet
     trigger:
@@ -230,9 +235,10 @@ automation:
          fan_speed: 100
 
 
-# Set theme on startup
+#################################################################
+#                   Set theme on startup                        #
+#################################################################
 
-  
   - alias: 'Set theme light at startup'
     initial_state: 'true'
     trigger:
@@ -245,7 +251,7 @@ automation:
     action:
       service: frontend.set_theme
       data:
-        name: Homekit Gray Light
+        name: Homekit Blue Light
   
   - alias: 'Set theme dark at startup'
     initial_state: 'true'
@@ -259,53 +265,15 @@ automation:
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Gray Dark
- 
-# Theme Selector Automations
+          name: Homekit Blue Dark
+
+
+#################################################################
+#   Theme Selector Automations                                  #
+#################################################################
+
 
   - alias: 'theme selector input_select 1'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Homekit Gray Light'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Gray Light
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 2'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Homekit Gray Dark'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Gray Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 3'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Homekit Blue Light'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Blue Light
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 4'
     initial_state: true
     trigger:
       - platform: state
@@ -319,105 +287,21 @@ automation:
         data:
           entity_id: group.theme_selector
 
-  - alias: 'theme selector input_select 5'
+  - alias: 'theme selector input_select 2'
     initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.theme_selector
-        to: 'Standard Blue Light'
+        to: 'Homekit Blue Light'
     action:
       - service: frontend.set_theme
         data:
-          name: Standard Blue Light
+          name: Homekit Blue Light
       - service: homeassistant.turn_off
         data:
           entity_id: group.theme_selector
 
-  - alias: 'theme selector input_select 6'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Standard Blue Dark'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Standard Blue Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 7'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Automatic (default)'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Gray Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 8'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Standard Gray Light'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Standard Gray Light
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 9'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Standard Gray Dark'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Standard Gray Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 10'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Homekit Orange'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Orange
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 11'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Standard Orange'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Standard Orange
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 12'
+  - alias: 'theme selector input_select 3'
     initial_state: true
     trigger:
       - platform: state
@@ -429,59 +313,27 @@ automation:
           name: Midnight
       - service: homeassistant.turn_off
         data:
-          entity_id: group.theme_selector   
+          entity_id: group.theme_selector  
 
-  - alias: 'theme selector input_select 13'
+  - alias: 'theme selector input_select 4'
     initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.theme_selector
-        to: 'Google Dark'
+        to: 'Automatic (default)'
     action:
       - service: frontend.set_theme
         data:
-          name: Google Dark
+          name: Homekit Gray Dark
       - service: homeassistant.turn_off
         data:
-          entity_id: group.theme_selector             
+          entity_id: group.theme_selector          
 
-  # Theme Day/Night Cycle
-  # - alias: 'Set dark theme for the night'
-  #   initial_state: true
-  #   trigger:
-  #     - platform: sun
-  #       event: sunset
-  #       offset: '+00:00:00'
-  #   action:
-  #     - service: frontend.set_theme
-  #       data:
-  #         name: Homekit Gray Dark
 
-  # - alias: 'Set light theme for the day'
-  #   initial_state: true
-  #   trigger:
-  #     - platform: sun
-  #       event: sunrise
-  #       offset: '+00:00:00'
-  #   action:
-  #     - service: frontend.set_theme
-  #       data:
-  #         name: Homekit Gray Light
-
-  # Theme on Startup
+#################################################################
+#   Vacuum avitelegram                                          #
+#################################################################
   
-  - alias: 'Set Theme on Startup'
-    initial_state: 'true'
-    trigger:
-      - platform: homeassistant
-        event: start
-    action:
-      - service: frontend.set_theme
-        data:
-          name: "Midnight"
-
-
-  # Vacuum avitelegram
   - id: vacuum_cleaner_error
     alias: Vacuum Cleaner Error
     trigger:
@@ -497,7 +349,7 @@ automation:
     action:
       - service: notify.avitelegram
         data:
-          title: 'Roborock S55'
+          title: 'Roborock'
           message: >-
             {% if is_state('sensor.vacuum_cleaner_error_sensor', 'No Error')  %}
               {{states.sensor.vacuum_cleaner_status_sensor.state}}
@@ -505,7 +357,11 @@ automation:
               {{states.sensor.vacuum_cleaner_error_sensor.state}}
             {% endif %}
 
-  ## Vacuum step
+
+#################################################################
+#   Vacuum step                                                 #
+#################################################################  
+
   - id: vacuum_cleaner_started
     alias: Vacuum Cleaner Started
     trigger:
@@ -527,40 +383,6 @@ automation:
     action:
       - service: notify.avitelegram
         data:
-          title: 'Roborock S55'
+          title: 'Roborock'
           message: >-
             {{states.sensor.vacuum_cleaner_status_sensor.state}}
-
-
-# ## Charge Appliances overnight
-#   - alias: Appliance Charging after Daily Clean
-#     trigger:
-#     - platform: state
-#       entity_id: sensor.robovac_status
-#       to: Returning home
-#     action:
-#     - service: switch.turn_on
-#       data:
-#         entity_id: switch.plug_158d00022ae22d
-
-# ## Turn off Appliance Charging
-#   - alias: Turn off Appliance Charging after RoboVac Battery reaches 100%
-#     trigger:
-#     - platform: state
-#       entity_id: sensor.robovac_battery
-#       to: '100'
-#     action:
-#     - service: switch.turn_off
-#       data:
-#         entity_id: switch.plug_158d00022ae22d
-        
-# ## Robovac Error Notification
-#   - alias: Robovac Error Notification
-#     trigger:
-#       platform: state
-#       entity_id: sensor.robovac_status
-#       to: Error
-#     action:
-#       - service: notify.pushbullet
-#         data:
-#           message: 'Attention - Robovac has got himself into a situation again'

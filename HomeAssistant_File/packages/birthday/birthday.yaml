@@ -8,35 +8,6 @@
 
 #################################################################
 #                                                               #
-#                         Input Label                           #
-#                                                               #
-#################################################################
-
-input_label:
-  nurit_birthday:
-    value: !secret nurit_birthday
-  rotam_birthday:
-    value: !secret rotam_birthday
-  liran_birthday:
-    value: !secret liran_birthday
-  yakir_birthday:
-    value: !secret yakir_birthday
-
-  nurit_birthday_days2go:
-    icon: mdi:cake-variant
-    name: Nurit Birthday
-  rotam_birthday_days2go:
-    icon: mdi:cake-variant
-    name: Rotam Birthday
-  liran_birthday_days2go:
-    icon: mdi:cake-variant
-    name: Liran Birthday
-  yakir_birthday_days2go:
-    icon: mdi:cake-variant
-    name: Yakir Birthday    
-
-#################################################################
-#                                                               #
 #                         Automations                           #
 #                                                               #
 #################################################################
@@ -46,181 +17,137 @@ automation:
 #################################################################
 # Build the excitement
 #################################################################
-  - alias: Birthday Countdown 30 Days
-    initial_state: true
+  - alias: Wedding Anniversary Notification
+    initial_state: 'true'
     trigger:
-      platform: state
-      entity_id: 
-        - input_label.nurit_birthday_days2go
-        - input_label.rotam_birthday_days2go
-        - input_label.liran_birthday_days2go
-        - input_label.yakir_birthday_days2go
-    condition:
-      - condition: state
-        entity_id: group.all_devices
-        state: 'home'
-      - condition: template
-        value_template: "{{ trigger.to_state.state | int > 0 and trigger.to_state.state | int < 30 }}"
+      - platform: state
+        entity_id: sensor.anniversary_wedding_day
+        to: '0'
     action:
-      - service: notify.avitelegram
-        data_template:
-          message: "{{ trigger.entity_id.split('.')[1].split('_')[0] | title }}'s Birthday is only {{ trigger.to_state.state }} days to go!"
-
-###################################################################
-# Celebrate Birthday!!!
-###################################################################
-  - alias: Today is the Birthday
-    initial_state: true
-    trigger:
-      platform: state
-      entity_id: 
-        - input_label.nurit_birthday_days2go
-        - input_label.rotam_birthday_days2go
-        - input_label.liran_birthday_days2go
-        - input_label.yakir_birthday_days2go
-    condition:
-      - condition: state
-        entity_id: group.all_devices
-        state: 'home'
-      - condition: template
-        value_template: "{{ trigger.to_state.state | int == 0 }}"
-    action:
-      - service: notify.avitelegram
-        data_template:
-          message: "Hurray! Today is {{ trigger.entity_id.split('.')[1].split('_')[0] | title }}'s Birthday!"
-
-###############################################################################
-# Announce Happy Birthday message every hour starting 7 am until 9 PM
-###############################################################################
-  - alias: Random Birthday Wishes
-    initial_state: true
-    trigger:
-      platform: time_pattern
-      hours: '/1'
-      minutes: 3
-      seconds: 00
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: group.all_devices
-          state: 'home'
-        - condition: time
-          after: '07:00:00'
-          before: '21:00:00'
-        - condition: or
-          conditions:
-            - condition: template
-              value_template: "{{ states.input_label.nurit_birthday_days2go.state | int == 0 }}"
-            - condition: template
-              value_template: "{{ states.input_label.rotam_birthday_days2go.state | int == 0 }}"
-            - condition: template
-              value_template: "{{ states.input_label.liran_birthday_days2go.state | int == 0 }}"
-            - condition: template
-              value_template: "{{ states.input_label.yakir_birthday_days2go.state | int == 0 }}"              
-    action:
-      - service: script.voice_notify
-        data_template:
-          message: !include /config/templates/birthday_wishes.yaml
       - delay:
-          minutes: 1
-      - service: script.voice_notify
-        data_template:
-          message: "Alexa, Sing Happy Birthday Song."
-          greeting: 'no'
+          hours: 8
+      - service: notify.avitelegram
+        data:
+          title: "Wedding day"
+          message: "We are today [[ states.sensor.anniversary_wedding_day.years ]] year married! Congrats!"
 
-  - alias: Update Birthdays
-    initial_state: true
+  # Birthday Notifications
+  - alias: Nurit Birthday Notification
+    initial_state: 'true'
     trigger:
-      - platform: time_pattern
-        minutes: '/5'
-        seconds: 00
+      - platform: state
+        entity_id: sensor.birthday_nurit
+        to: '0'
+    action:
+      - delay:
+          hours: 8
+      - service: notify.avitelegram
+        data:
+          title: "Birthday"
+          message: "Nurit is Birthday [[ states.sensor.birthday_nurit.years ]] Wish her a happy birthday"
+ 
+ 
+  - alias: Avi Birthday Notification
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: sensor.birthday_avi
+        to: '0'
+    action:
+      - delay:
+          hours: 8
+      - service: notify.avitelegram
+        data:
+          title: "Birthday"
+          message: "Nurit is Birthday [[ states.sensor.birthday_avi.years ]] Wish him a happy birthday"
+ 
+
+  - alias: Rotem Birthday Notification
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: sensor.birthday_rotem
+        to: '0'
+    action:
+      - delay:
+          hours: 8
+      - service: notify.avitelegram
+        data:
+          title: "Birthday"
+          message: "Rotam is Birthday [[ states.sensor.birthday_rotem.years ]] Wish her a happy birthday"
+
+
+  - alias: liran Birthday Notification
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: sensor.birthday_liran
+        to: '0'
+    action:
+      - delay:
+          hours: 8
+      - service: notify.avitelegram
+        data:
+          title: "Birthday"
+          message: "Liran is Birthday [[ states.sensor.birthday_liran.years ]] Wish him a happy birthday"                                 
+
+
+  - alias: yakir Birthday Notification
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: sensor.birthday_yakir
+        to: '0'
+    action:
+      - delay:
+          hours: 8
+      - service: notify.avitelegram
+        data:
+          title: "Birthday"
+          message: "yakir is Birthday [[ states.sensor.birthday_yakir.years ]] Wish him a happy birthday"                                 
+
+
+  - alias: Reminder - Refresh date countdown sensors
+    initial_state: on
+    trigger:
+      - platform: time
+        at: '00:00:01'
       - platform: homeassistant
         event: start
-    condition:
-      - condition: template
-        value_template: "{{ states.input_label.nurit_birthday.state.split('-') | length  > 0 }}"
-      - condition: template
-        value_template: "{{ states.input_label.rotam_birthday.state.split('-') | length  > 0 }}"
-      - condition: template
-        value_template: "{{ states.input_label.liran_birthday.state.split('-') | length  > 0 }}"
-      - condition: template
-        value_template: "{{ states.input_label.yakir_birthday.state.split('-') | length  > 0 }}"        
     action:
-      - service: input_label.set_value
-        data_template:
-          entity_id: input_label.nurit_birthday_days2go
-          value: >
-            {% set year = states.sensor.date.state.split('-')[0] %}
-            {% set month = states.sensor.date.state.split('-')[1] %}
-            {% set date = states.sensor.date.state.split('-')[2] %}
-            {% if states('input_label.nurit_birthday') != "unknown" %}
-              {%- set bDayMonth = states.input_label.nurit_birthday.state.split('-')[0] -%}
-              {%- set bDayDate = states.input_label.nurit_birthday.state.split('-')[1] -%}
-              {%- set numOfDays = ((as_timestamp(strptime(year ~ '-' ~ bDayMonth ~ '-' ~ bDayDate , '%Y-%m-%d')) | timestamp_custom('%j', true) | int ) - (as_timestamp(strptime(year ~ '-' ~ month~ '-' ~ date , '%Y-%m-%d')) | timestamp_custom('%j', true) | int)) -%}
-              {%- if numOfDays < 0 -%}
-                {{ numOfDays + 365 }}
-              {%- else -%}
-                {{ numOfDays }}
-              {%- endif -%}
-            {% else %}
-              -
-            {% endif %}
-      - service: input_label.set_value
-        data_template:
-          entity_id: input_label.rotam_birthday_days2go
-          value: >
-            {% set year = states.sensor.date.state.split('-')[0] %}
-            {% set month = states.sensor.date.state.split('-')[1] %}
-            {% set date = states.sensor.date.state.split('-')[2] %}
-            {% if states('input_label.rotam_birthday') != "unknown" %}
-              {%- set bDayMonth = states.input_label.rotam_birthday.state.split('-')[0] -%}
-              {%- set bDayDate = states.input_label.rotam_birthday.state.split('-')[1] -%}
-              {%- set numOfDays = ((as_timestamp(strptime(year ~ '-' ~ bDayMonth ~ '-' ~ bDayDate , '%Y-%m-%d')) | timestamp_custom('%j', true) | int ) - (as_timestamp(strptime(year ~ '-' ~ month~ '-' ~ date , '%Y-%m-%d')) | timestamp_custom('%j', true) | int)) -%}
-              {%- if numOfDays < 0 -%}
-                {{ numOfDays + 365 }}
-              {%- else -%}
-                {{ numOfDays }}
-              {%- endif -%}
-            {% else %}
-              -
-            {% endif %}
-      - service: input_label.set_value
-        data_template:
-          entity_id: input_label.liran_birthday_days2go
-          value: >
-            {% set year = states.sensor.date.state.split('-')[0] %}
-            {% set month = states.sensor.date.state.split('-')[1] %}
-            {% set date = states.sensor.date.state.split('-')[2] %}
-            {% if states('input_label.liran_birthday') != "unknown" %}
-              {%- set bDayMonth = states.input_label.liran_birthday.state.split('-')[0] -%}
-              {%- set bDayDate = states.input_label.liran_birthday.state.split('-')[1] -%}
-              {%- set numOfDays = ((as_timestamp(strptime(year ~ '-' ~ bDayMonth ~ '-' ~ bDayDate , '%Y-%m-%d')) | timestamp_custom('%j', true) | int ) - (as_timestamp(strptime(year ~ '-' ~ month~ '-' ~ date , '%Y-%m-%d')) | timestamp_custom('%j', true) | int)) -%}
-              {%- if numOfDays < 0 -%}
-                {{ numOfDays + 365 }}
-              {%- else -%}
-                {{ numOfDays }}
-              {%- endif -%}
-            {% else %}
-              -
-            {% endif %}
+      - service: python_script.date_countdown
+        data:
+          name: Wedding day
+          type: anniversary
+          date: 09/08/1994
+      
+      - service: python_script.date_countdown
+        data:
+          name: Nurit
+          type: birthday
+          date: 17/10/1973 
 
-      - service: input_label.set_value
-        data_template:
-          entity_id: input_label.yakir_birthday_days2go
-          value: >
-            {% set year = states.sensor.date.state.split('-')[0] %}
-            {% set month = states.sensor.date.state.split('-')[1] %}
-            {% set date = states.sensor.date.state.split('-')[2] %}
-            {% if states('input_label.yakir_birthday') != "unknown" %}
-              {%- set bDayMonth = states.input_label.yakir_birthday.state.split('-')[0] -%}
-              {%- set bDayDate = states.input_label.yakir_birthday.state.split('-')[1] -%}
-              {%- set numOfDays = ((as_timestamp(strptime(year ~ '-' ~ bDayMonth ~ '-' ~ bDayDate , '%Y-%m-%d')) | timestamp_custom('%j', true) | int ) - (as_timestamp(strptime(year ~ '-' ~ month~ '-' ~ date , '%Y-%m-%d')) | timestamp_custom('%j', true) | int)) -%}
-              {%- if numOfDays < 0 -%}
-                {{ numOfDays + 365 }}
-              {%- else -%}
-                {{ numOfDays }}
-              {%- endif -%}
-            {% else %}
-              -
-            {% endif %}            
+      - service: python_script.date_countdown
+        data:
+          name: Avi
+          type: birthday
+          date: 26/12/1969  
+          
+      - service: python_script.date_countdown
+        data:
+          name: Rotem
+          type: birthday
+          date: 16/05/1995            
+
+
+      - service: python_script.date_countdown
+        data:
+          name: Liran
+          type: birthday
+          date: 25/08/1997           
+  
+      - service: python_script.date_countdown
+        data:
+          name: Yakir
+          type: birthday
+          date: 24/06/2004            

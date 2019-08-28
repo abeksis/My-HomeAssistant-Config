@@ -3,50 +3,48 @@ path: battery
 icon: mdi:battery-charging-100    
 cards:
 
-  ############################################################################
-  #                                                                          #
-  #   Batteries card                                                         #
-  #                                                                          #
-  ############################################################################
+############################################################################
+#                                                                          #
+#   Batteries card                                                         #
+#                                                                          #
+############################################################################
   - type: vertical-stack
     cards: 
-    - type: entities
-      show_header_toggle: off
-      entities:
-        - type: 'custom:text-divider-row'
-          text: Xiaomi Motion Sensor
-        - type: section
-        - type: custom:vertical-stack-in-card
-          cards:
-            - type: custom:card-modder
-              card:
-                type: entity-filter
-                entities:
-                  - binary_sensor.front_door
-                  - binary_sensor.balcony_door
-                  - binary_sensor.motion_shower
-                  - binary_sensor.bedroom_motion
-                  - binary_sensor.main_shower
-                  - binary_sensor.guest_services
-                  - binary_sensor.computer_room
-                  - binary_sensor.laundry_room
-                  - binary_sensor.living_room_temperature
-                  - binary_sensor.second_floor_temperature
-                  
-                state_filter:
-                  - 'off'
-                card:
-                  type: picture-glance
-                  title: Motion sensor Battery
-                  image: /local/lovelace/settings/motion_sensor.jpg
-              style:                 
-                border-radius: 8px 
+    - type: custom:decluttering-card
+      template: title_template
+      variables:
+        - name: "Xiaomi Motion sensor Battery" 
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: custom:card-modder
+          card:
+            type: entity-filter
+            entities:
+              - binary_sensor.front_door
+              - binary_sensor.balcony_door
+              - binary_sensor.motion_shower
+              - binary_sensor.bedroom_motion
+              - binary_sensor.main_shower
+              - binary_sensor.guest_services
+              - binary_sensor.computer_room
+              - binary_sensor.laundry_room
+              - binary_sensor.living_room_temperature
+              - binary_sensor.second_floor_temperature
+              
+            state_filter:
+              - 'off'
+            card:
+              type: picture-glance
+              title: Motion sensor Battery
+              image: /local/lovelace/settings/motion_sensor.jpg
+          style:                 
+            border-radius: 8px 
 
-    #######################################################################
-    #                                                                     #
-    #    Motion Sensor                                                    #
-    #                                                                     #
-    #######################################################################
+#######################################################################
+#                                                                     #
+#    Motion Sensor                                                    #
+#                                                                     #
+#######################################################################
 
     - type: horizontal-stack
       cards:
@@ -222,44 +220,42 @@ cards:
                     color: '#40bf40'                        
 
 
-  #########################################################################
-  #                                                                       #
-  #   Door Window Sensor                                                  #
-  #                                                                       #
-  #########################################################################
+#########################################################################
+#                                                                       #
+#   Door Window Sensor                                                  #
+#                                                                       #
+#########################################################################
   - type: vertical-stack
     cards: 
-    - type: entities
-      show_header_toggle: off
-      entities:
-        - type: 'custom:text-divider-row'
-          text: Xiaomi Door Window
-        - type: section
-        - type: custom:vertical-stack-in-card
-          cards:
-            - type: custom:card-modder
-              card:
-                type: entity-filter
-                entities:
-                  - binary_sensor.door_window_sensor_158d0001ef3425
-                  - binary_sensor.door_window_sensor_158d00027a59c6
-                  - binary_sensor.door_window_sensor_158d0002ea0754
-                  - binary_sensor.door_window_sensor_158d0002ea9896
-                  
-                state_filter:
-                  - 'off'
-                card:
-                  type: picture-glance
-                  title: Door Window sensor Battery
-                  image: /local/lovelace/settings/Door_Window_Sensor_01.jpg
-              style:                 
-                border-radius: 8px 
+    - type: custom:decluttering-card
+      template: title_template
+      variables:
+        - name: "Xiaomi Door Battery" 
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: custom:card-modder
+          card:
+            type: entity-filter
+            entities:
+              - binary_sensor.door_window_sensor_158d0001ef3425
+              - binary_sensor.door_window_sensor_158d00027a59c6
+              - binary_sensor.door_window_sensor_158d0002ea0754
+              - binary_sensor.door_window_sensor_158d0002ea9896
+              
+            state_filter:
+              - 'off'
+            card:
+              type: picture-glance
+              title: Door Window sensor Battery
+              image: /local/lovelace/settings/Door_Window_Sensor_01.jpg
+          style:                 
+            border-radius: 8px 
 
-    #######################################################################
-    #                                                                     #
-    #    Door Window Sensor                                               #
-    #                                                                     #
-    #######################################################################
+#######################################################################
+#                                                                     #
+#    Door Window Sensor                                               #
+#                                                                     #
+#######################################################################
 
     - type: horizontal-stack
       cards:
@@ -399,44 +395,42 @@ cards:
                   - value: 100
                     color: '#40bf40'
                                             
-  #########################################################################
-  #                                                                       #
-  #   Smart Wireless Switch                                               #
-  #                                                                       #
-  #########################################################################
+#########################################################################
+#                                                                       #
+#   Smart Wireless Switch                                               #
+#                                                                       #
+#########################################################################
   - type: vertical-stack
     cards: 
-    - type: entities
-      show_header_toggle: off
-      entities:
-        - type: 'custom:text-divider-row'
-          text: Xiaomi Smart Wireless Switch
-        - type: section
-        - type: custom:vertical-stack-in-card
-          cards:
-            - type: custom:card-modder
-              card:
-                type: entity-filter
-                entities:
-                  - binary_sensor.door_window_sensor_158d0001ef3425
-                  - binary_sensor.door_window_sensor_158d00027a59c6
-                  - binary_sensor.door_window_sensor_158d0002ea0754
-                  - binary_sensor.door_window_sensor_158d0002ea9896
-                  
-                state_filter:
-                  - 'off'
-                card:
-                  type: picture-glance
-                  title: Switch Click Battery
-                  image: /local/lovelace/settings/Smart_Wireless_Switch.jpg
-              style:                 
-                border-radius: 8px 
+    - type: custom:decluttering-card
+      template: title_template
+      variables:
+        - name: "Xiaomi Smart Wireless Battery" 
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: custom:card-modder
+          card:
+            type: entity-filter
+            entities:
+              - binary_sensor.door_window_sensor_158d0001ef3425
+              - binary_sensor.door_window_sensor_158d00027a59c6
+              - binary_sensor.door_window_sensor_158d0002ea0754
+              - binary_sensor.door_window_sensor_158d0002ea9896
+              
+            state_filter:
+              - 'off'
+            card:
+              type: picture-glance
+              title: Switch Click Battery
+              image: /local/lovelace/settings/Smart_Wireless_Switch.jpg
+          style:                 
+            border-radius: 8px 
 
-    #######################################################################
-    #                                                                     #
-    #    Switch Cֹlick                                                     #
-    #                                                                     #
-    #######################################################################
+#######################################################################
+#                                                                     #
+#    Switch Cֹlick                                                     #
+#                                                                     #
+#######################################################################
 
     - type: horizontal-stack
       cards:

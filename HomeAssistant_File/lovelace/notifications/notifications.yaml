@@ -1,7 +1,7 @@
 type: vertical-stack
 cards:
   - type: custom:decluttering-card
-    template: header_text
+    template: header
     variables:
       - content: '##### Notifications and Events'
 
@@ -11,7 +11,7 @@ cards:
         state: "Charging"
     card:
       type: custom:decluttering-card
-      template: notification_card
+      template: notification
       variables:
         - color: rgba(157, 0, 255, 0.5)
         - icon: check-box-outline
@@ -24,7 +24,7 @@ cards:
         state: cleaning
     card:
       type: custom:decluttering-card
-      template: notification_card
+      template: notification
       variables:
         - color: rgba(56, 43, 230, 0.5)
         - icon: robot-vacuum
@@ -36,7 +36,7 @@ cards:
         state: idle
     card:
       type: custom:decluttering-card
-      template: notification_card
+      template: notification
       variables:
         - color: rgba(56, 43, 230, 0.5)
         - icon: robot-vacuum
@@ -48,7 +48,7 @@ cards:
         state: paused
     card:
       type: custom:decluttering-card
-      template: notification_card
+      template: notification
       variables:
         - color: rgba(56, 43, 230, 0.5)
         - icon: robot-vacuum
@@ -60,7 +60,7 @@ cards:
         state: returning
     card:
       type: custom:decluttering-card
-      template: notification_card
+      template: notification
       variables:
         - color: rgba(56, 43, 230, 0.5)
         - icon: robot-vacuum
