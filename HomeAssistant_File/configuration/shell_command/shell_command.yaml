@@ -1,0 +1,2 @@
+backup_hass_config: "bash /config/scripts/backup_hass_config.sh"
+backup_ha_and_move_backup_to_unraid: "bash /config/scripts/backup_ha_and_move_backup_to_unraid.sh"

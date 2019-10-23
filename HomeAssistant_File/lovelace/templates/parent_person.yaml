@@ -1,0 +1,60 @@
+default:
+    - text_color: var(--picture-elements-text-color)
+    - prefix: ""
+    - battery_sensor: ""
+    - ituran: ""
+    - mail_sensor: ""
+    
+card:
+    type: picture-elements
+    image: '[[image]]'
+    elements:
+        - type: state-label
+          entity: device_tracker.[[name]]
+          prefix: '[[prefix]]'
+          style: 
+              color: '[[text_color]]'
+              left: 30%
+              top: 90%
+
+        - type: state-icon
+          entity: '[[battery_sensor]]'
+          tap_action: more_info
+          style:
+              left: 73%
+              top: 90% 
+ 
+        - type: state-label
+          entity: '[[battery_sensor]]'
+          style: 
+              color: '[[text_color]]' 
+              left: 87%
+              top: 91%
+
+        - type: state-icon
+          entity: '[[ituran]]'
+          style: 
+              left: 92% 
+              top: 15%
+ 
+        - type: state-icon
+          entity: '[[mail_sensor]]'
+          style: 
+              left: 92% 
+              top: 32%
+
+        - type: state-label
+          entity: '[[mail_sensor]]'
+          style: 
+              color: '[[text_color]]'
+              left: 92%
+              top: 45%             
+
+    style: |
+      ha-card {
+        background: var(--card-color-off);
+        --paper-item-icon-color: var(--icon-color-off);
+        color: var(--name-color-off);
+        border-radius: {{ states('input_select.border_radius') }};
+        box-shadow: {{ states('input_select.box_shadow') }};
+      }              

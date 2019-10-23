@@ -9,6 +9,8 @@
   title-button-background: 'rgba(150, 150, 150, 0.1)'                             # For The Title
   downstairs-paper-card-background-color: 'rgba(150, 150, 150, 0.1)'
   security-card-background-color: 'rgba(150, 150, 150, 0.1)'
+  homekit-bar-card: 'rgba(150, 150, 150, 0.1)'
+  ha-card-background: 'rgba(150, 150, 150, 0.1)'
 
 # Main colors
   primary-color: '#5294E2'                                                        # Header
@@ -16,7 +18,6 @@
   dark-primary-color: 'var(--accent-color)'                                       # Hyperlinks                                         
   light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
   ha-card-border-radius: '13px'   
-  ha-card-background: 'rgba(150, 150, 150, 0.1)'
 
 # Text colors                                                                  
   primary-text-color: '#FFFFFF'                                                   # Primary text colour, here is referencing dark-primary-color

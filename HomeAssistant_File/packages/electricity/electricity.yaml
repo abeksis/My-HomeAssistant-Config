@@ -30,14 +30,14 @@ homeassistant:
     
     sensor.phaze_1_voltage:
       friendly_name: מתח
-      icon: mdi:battery-charging-outline
+      icon: mdi:alpha-v-box-outline
 
     sensor.phaze_1_power_factor:
       friendly_name: הפרש הספק
       icon: mdi:altimeter
     
     sensor.power_calc_total_phaze1:  
-      icon: fas:bolt
+      icon: mdi:flash-circle
       
     sensor.power_calc_today_phaze1:
       icon: mdi:cash
@@ -55,9 +55,21 @@ homeassistant:
     sensor.phaze_1_apparent_power:
       friendly_name: צריכה הסתברותית
       
+    sensor.kwh_count_all: 
+      friendly_name: Total KWH
+      icon: mdi:power-socket-eu
+    
+    sensor.kwh_count_yesterday:
+      friendly_name: KWH Yesterday
+      icon: mdi:power-socket-eu
 
+    sensor.shekel_count_all:    
+      friendly_name: Total This Month
+      icon: mdi:currency-usd
 
-      
+    input_number.shekel_number:
+      friendly_name: Total Day Before  
+      icon: mdi:calendar-today    
  
 #################################################################
 #                                                               #

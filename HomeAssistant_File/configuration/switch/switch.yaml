@@ -1,0 +1,34 @@
+  # Shelly 
+  - platform: mqtt
+    name: "AC Shelly"
+    state_topic: "shellies/shelly1-E0A119/relay/0"
+    command_topic: "shellies/shelly1-E0A119/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+
+  # SH20
+  - platform: mqtt
+    name: "SH20 POW"
+    state_topic: "stat/sh20/POWER"
+    command_topic: "cmnd/sh20/POWER"
+    availability_topic: "tele/sh20/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true
+
+  # Tami 4 Power 
+  - platform: mqtt
+    name: "Tami 4 Power"
+    state_topic: "stat/tami4_power/POWER"
+    command_topic: "cmnd/tami4_power/POWER"
+    availability_topic: "tele/tami4_power/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true      

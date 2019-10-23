@@ -3,29 +3,7 @@
 #                   Packages/Xiaomi Status                      #
 #                                                               #
 #################################################################
-
-#################################################################
-#                                                               #
-#                          Customize                            #
-#                                                               #
-#################################################################
-
-homeassistant:
-  customize:
-    binary_sensor.door_window_sensor_158d0002ea0754:
-      friendly_name: Washing Machine
-      device_class: door 
-      icon: mdi:washing-machine 
-      
-    binary_sensor.door_window_sensor_158d0002ea9896:
-      friendly_name: Laundry Dryer
-      device_class: door 
-      icon: mdi:tumble-dryer   
-
-    binary_sensor.door_window_sensor_158d0002ea866a:
-      friendly_name: Air Conditioner Yakir door
-      device_class: door 
-      icon: mdi:air-conditioner         
+        
 
   
 #################################################################
@@ -39,27 +17,20 @@ group:
     name: Door Sensors
     view: no
     entities:
-      - binary_sensor.door_window_sensor_158d0001ef3425 # דלת כניסה
-      - binary_sensor.door_window_sensor_158d00027a59c6 # דלת מרפסת
-      - binary_sensor.door_window_sensor_158d0002ea0754 # מכונסת כביסה
-      - binary_sensor.door_window_sensor_158d0002ea9896 # מייבש כביסה
-      - binary_sensor.door_window_sensor_158d0002ea866a # דלת מזגן חדר של יקיר
+      - binary_sensor.front_door_sensor # דלת כניסה
+      - binary_sensor.balcony_door_sensor # דלת מרפסת
+      - binary_sensor.washing_machine_sensor # מכונסת כביסה
+      - binary_sensor.laundry_dryer_sensor # מייבש כביסה
+      - binary_sensor.air_conditioner_yakir # דלת מזגן חדר של יקיר
       
   xiaomi_motion_sensors:
     name: Motion Sensors
     view: no
     entities:
-      - binary_sensor.motion_sensor_158d0002047c5a # חיישן תנועה מקלחת
-      - binary_sensor.motion_sensor_158d000204bfcb # חיישן תנועה מקלחת הורים
-      - binary_sensor.motion_sensor_158d0002b42fa3 # Guest Services Motion Sensor
-      - binary_sensor.motion_sensor_158d00024e7972 # חיישן תנועה חדר כביסה
-
-  xiaomi_temperature_sensors:
-    name: Temperature Sensors
-    view: no
-    entities:
-      - sensor.temperature_158d00022ece24
-
+      - binary_sensor.main_shower_motion_sensor # חיישן תנועה מקלחת
+      - binary_sensor.parents_shower_motion_sensor # חיישן תנועה מקלחת הורים
+      - binary_sensor.guest_bathrom_motion_sensor # Guest Services Motion Sensor
+      - binary_sensor.laundry_room_motion_sensor # חיישן תנועה חדר כביסה
       
 #################################################################
 #                                                               #
@@ -85,9 +56,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.front_door', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.front_door', 'on') %}
-            fas:door-open
+            mdi:door-open
           {% elif is_state('sensor.front_door', 'off') %}
-            fas:door-closed         
+            mdi:door-closed       
           {% else %}
             mdi:alert
           {% endif %}
@@ -99,9 +70,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.balcony_door', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.balcony_door', 'on') %}
-            fas:door-closed
+            mdi:door-closed
           {% elif is_state('sensor.balcony_door', 'off') %}
-            fas:door-open         
+            mdi:door-open         
           {% else %}
             mdi:alert
           {% endif %}
@@ -113,9 +84,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.washing_machine', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.washing_machine', 'on') %}
-            fas:door-closed
+            mdi:door-closed
           {% elif is_state('sensor.washing_machine', 'off') %}
-            fas:door-open         
+            mdi:door-open         
           {% else %}
             mdi:alert
           {% endif %}   
@@ -127,9 +98,9 @@ binary_sensor:
         value_template: "{{ is_state('sensor.laundry_dryer', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.laundry_dryer', 'on') %}
-            fas:door-closed
+            mdi:door-closed
           {% elif is_state('sensor.laundry_dryer', 'off') %}
-            fas:door-open         
+            mdi:door-open         
           {% else %}
             mdi:alert
           {% endif %}          
@@ -222,12 +193,11 @@ binary_sensor:
 
 
 ## Temperature Sensors
-          
-          
+                  
       living_room_temperature:
-        friendly_name: Temp in the living roo
+        friendly_name: !secret sensor_1_friendly_name
         device_class: connectivity
-        entity_id: sensor.living_room_temperature
+        entity_id: !secret sensor_1
         value_template: "{{ is_state('sensor.living_room_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.living_room_temperature', 'on') %}
@@ -273,9 +243,9 @@ sensor:
       front_door:
         friendly_name: "Front Door"
         value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d0001ef3425', 'on') %}
+          {% if is_state('binary_sensor.front_door_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.door_window_sensor_158d0001ef3425', 'off') %}
+          {% elif is_state('binary_sensor.front_door_sensor', 'off') %}
             on
           {% else %}
             off
@@ -284,9 +254,9 @@ sensor:
       balcony_door:
         friendly_name: "Exit Door to balcony"
         value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d00027a59c6', 'on') %}
+          {% if is_state('binary_sensor.balcony_door_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.door_window_sensor_158d00027a59c6', 'off') %}
+          {% elif is_state('binary_sensor.balcony_door_sensor', 'off') %}
             on
           {% else %}
             off
@@ -295,9 +265,9 @@ sensor:
       washing_machine:
         friendly_name: "Washing Machine"
         value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d0002ea0754', 'on') %}
+          {% if is_state('binary_sensor.washing_machine_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.door_window_sensor_158d0002ea0754', 'off') %}
+          {% elif is_state('binary_sensor.washing_machine_sensor', 'off') %}
             on
           {% else %}
             off
@@ -306,9 +276,9 @@ sensor:
       laundry_dryer:
         friendly_name: "Laundry Dryer"
         value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d0002ea9896', 'on') %}
+          {% if is_state('binary_sensor.laundry_dryer_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.door_window_sensor_158d0002ea9896', 'off') %}
+          {% elif is_state('binary_sensor.laundry_dryer_sensor', 'off') %}
             on
           {% else %}
             off
@@ -317,41 +287,41 @@ sensor:
       air_conditioner_yakir_door:
         friendly_name: "Air Conditioner Yakir door"
         value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d0002ea866a', 'on') %}
+          {% if is_state('binary_sensor.air_conditioner_yakir', 'on') %}
             on
-          {% elif is_state('binary_sensor.door_window_sensor_158d0002ea866a', 'off') %}
+          {% elif is_state('binary_sensor.air_conditioner_yakir', 'off') %}
             on
           {% else %}
             off
           {% endif %}           
 
       laundry_dryer_status:
-        friendly_name: Door
-        entity_id: binary_sensor.door_window_sensor_158d0002ea9896
+        friendly_name: !secret binary_sensor_9_friendly_name
+        entity_id: !secret binary_sensor_9
         value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d0002ea9896', 'on') %}
+          {% if is_state('binary_sensor.laundry_dryer_sensor', 'on') %}
             Open
-          {% elif is_state('binary_sensor.door_window_sensor_158d0002ea9896', 'off') %}
+          {% elif is_state('binary_sensor.laundry_dryer_sensor', 'off') %}
             Closed
           {% endif %}
           
       washing_machine_status:
-        friendly_name: Door
-        entity_id: binary_sensor.door_window_sensor_158d0002ea0754
+        friendly_name: !secret binary_sensor_10_friendly_name
+        entity_id: !secret binary_sensor_10
         value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d0002ea0754', 'on') %}
+          {% if is_state('binary_sensor.washing_machine_sensor', 'on') %}
             Open
-          {% elif is_state('binary_sensor.door_window_sensor_158d0002ea0754', 'off') %}
+          {% elif is_state('binary_sensor.washing_machine_sensor', 'off') %}
             Closed
           {% endif %}  
           
       air_conditioner_yakir_door_status:
-        friendly_name: Air Conditioner Yakir door
-        entity_id: binary_sensor.door_window_sensor_158d0002ea866a
+        friendly_name: !secret binary_sensor_11_friendly_name
+        entity_id: !secret binary_sensor_11
         value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d0002ea866a', 'on') %}
+          {% if is_state('binary_sensor.air_conditioner_yakir', 'on') %}
             Open
-          {% elif is_state('binary_sensor.door_window_sensor_158d0002ea866a', 'off') %}
+          {% elif is_state('binary_sensor.air_conditioner_yakir', 'off') %}
             Closed
           {% endif %}            
           
@@ -360,9 +330,9 @@ sensor:
       motion_shower:
         friendly_name: "Motion sensor Main Shower"
         value_template: >-
-          {% if is_state('binary_sensor.motion_shower', 'on') %}
+          {% if is_state('binary_sensor.main_shower_motion_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.motion_shower', 'off') %}
+          {% elif is_state('binary_sensor.main_shower_motion_sensor', 'off') %}
             on
           {% else %}
             off
@@ -371,9 +341,9 @@ sensor:
       bedroom_motion:
         friendly_name: "Bedroom sensor"
         value_template: >-
-          {% if is_state('binary_sensor.motion_sensor_158d000204bfcb', 'on') %}
+          {% if is_state('binary_sensor.parents_shower_motion_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.motion_sensor_158d000204bfcb', 'off') %}
+          {% elif is_state('binary_sensor.parents_shower_motion_sensor', 'off') %}
             on
           {% else %}
             off
@@ -382,9 +352,9 @@ sensor:
       main_shower:
         friendly_name: "Main Shower"
         value_template: >-
-          {% if is_state('binary_sensor.motion_sensor_158d0002047c5a', 'on') %}
+          {% if is_state('binary_sensor.main_shower_motion_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.motion_sensor_158d0002047c5a', 'off') %}
+          {% elif is_state('binary_sensor.main_shower_motion_sensor', 'off') %}
             on
           {% else %}
             off
@@ -394,9 +364,9 @@ sensor:
       guest_services:
         friendly_name: "Guest Services Motion Sensor"
         value_template: >-
-          {% if is_state('binary_sensor.motion_sensor_158d0002b42fa3', 'on') %}
+          {% if is_state('binary_sensor.guest_bathrom_motion_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.motion_sensor_158d0002b42fa3', 'off') %}
+          {% elif is_state('binary_sensor.guest_bathrom_motion_sensor', 'off') %}
             on
           {% else %}
             off
@@ -406,9 +376,9 @@ sensor:
       computer_room:
         friendly_name: "Motion Sensor Computer Room"
         value_template: >-
-          {% if is_state('binary_sensor.motion_sensor_158d000272bc63', 'on') %}
+          {% if is_state('binary_sensor.server_room_motion_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.motion_sensor_158d000272bc63', 'off') %}
+          {% elif is_state('binary_sensor.server_room_motion_sensor', 'off') %}
             on
           {% else %}
             off
@@ -417,31 +387,10 @@ sensor:
       laundry_room:
         friendly_name: "Motion Sensor Laundry Room"
         value_template: >-
-          {% if is_state('binary_sensor.motion_sensor_158d00024e7972', 'on') %}
+          {% if is_state('binary_sensor.laundry_room_motion_sensor', 'on') %}
             on
-          {% elif is_state('binary_sensor.motion_sensor_158d00024e7972', 'off') %}
+          {% elif is_state('binary_sensor.laundry_room_motion_sensor', 'off') %}
             on
           {% else %}
             off
-          {% endif %}          
-          
-         
-          
-## Temerature Sensors
-      living_room_temperature:
-        friendly_name: "Temp in the living room"
-        value_template: >-
-          {% if is_state('sensor.temperature_158d00022ece24', 'unavailable') %}
-            off
-          {% else %}
-            on
           {% endif %}
-          
-      # second_floor_temperature:
-      #   friendly_name: "Temp in the living room"
-      #   value_template: >-
-      #     {% if is_state('sensor.second_floor_temperature', 'unavailable') %}
-      #       off
-      #     {% else %}
-      #       on
-      #     {% endif %}

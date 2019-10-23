@@ -83,16 +83,4 @@ sensor:
     value_template: '{{ value.split("/")[7] }}'
     attribute: url
 
-####################################################
-#                                                  #
-#                  Sonoff Version                  #
-#                                                  #
-####################################################
-
-## Check Latest Sonoff Firmware Version
-  - platform: command_line
-    name: Sonoff Firmware Version
-    command: /config/bin/versionsonoffhtml.sh
-    scan_interval: 21600
-
   

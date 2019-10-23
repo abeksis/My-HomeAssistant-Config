@@ -1,0 +1,4 @@
+entities:
+  - name: lovelace
+    url: /lovelace
+    icon: mdi:home-heart

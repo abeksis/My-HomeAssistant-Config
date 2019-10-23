@@ -76,7 +76,7 @@ script:
             milliseconds: 100
         - service: climate.set_temperature
           data_template:
-            entity_id: climate.living_room
+            entity_id: !secret climate_1
             temperature: "{{ (state_attr('climate.living_room', 'temperature')|round(0)) + 1 }}"
               
   sensibo_decrease_target_temp:
@@ -86,7 +86,7 @@ script:
             milliseconds: 100    
         - service: climate.set_temperature
           data_template:
-            entity_id: climate.living_room
+            entity_id: !secret climate_1
             temperature: "{{ (state_attr('climate.living_room', 'temperature')|round(0)) - 1 }}" 
 
             
@@ -101,17 +101,17 @@ switch:
     switches:
       ## -- OLD -- ##
       sensibo_living_room:
-        friendly_name: "Living Room AC"
-        icon_template: mdi:air-conditioner
+        friendly_name: !secret climate_1_friendly_name
+        icon_template: !secret climate_1_icon
         value_template: "{{ is_state('climate.living_room', 'cool') or is_state('climate.living_room', 'heat') or is_state('climate.living_room', 'dry') or is_state('climate.living_room', 'auto') or is_state('climate.living_room', 'fan_only')}}"
         turn_on:
             service: climate.turn_on
             data:
-                entity_id: climate.living_room
+                entity_id: !secret climate_1
         turn_off:
             service: climate.turn_off
             data:
-                entity_id: climate.living_room
+                entity_id: !secret climate_1
                   
 
 
@@ -123,12 +123,12 @@ switch:
           turn_on:
               service: climate.set_hvac_mode
               data:
-                  entity_id: climate.living_room
+                  entity_id: !secret climate_1
                   hvac_mode: "cool"
           turn_off:
               service: climate.set_hvac_mode
               data:
-                  entity_id: climate.living_room
+                  entity_id: !secret climate_1
                   hvac_mode: "off"     
 
       sensibo_living_room_heat:
@@ -138,12 +138,12 @@ switch:
           turn_on:
               service: climate.set_hvac_mode
               data:
-                  entity_id: climate.living_room
+                  entity_id: !secret climate_1
                   hvac_mode: "heat"
           turn_off:
               service: climate.set_hvac_mode
               data:
-                  entity_id: climate.living_room
+                  entity_id: !secret climate_1
                   hvac_mode: "off"  
 
       sensibo_living_room_fan_only:
@@ -153,12 +153,12 @@ switch:
           turn_on:
               service: climate.set_hvac_mode
               data:
-                  entity_id: climate.living_room
+                  entity_id: !secret climate_1
                   hvac_mode: "fan_only"
           turn_off:
               service: climate.set_hvac_mode
               data:
-                  entity_id: climate.living_room
+                  entity_id: !secret climate_1
                   hvac_mode: "off"
                   
       sensibo_living_room_heat_cool:
@@ -168,12 +168,12 @@ switch:
           turn_on:
               service: climate.set_hvac_mode
               data:
-                  entity_id: climate.living_room
+                  entity_id: !secret climate_1
                   hvac_mode: "heat_cool"
           turn_off:
               service: climate.set_hvac_mode
               data:
-                  entity_id: climate.living_room
+                  entity_id: !secret climate_1
                   hvac_mode: "off"                  
 
 #################################################################
@@ -193,7 +193,7 @@ sensor:
         friendly_name: 'humidity living room sensibo'
         value_template: '{{ states.climate.living_room.attributes.current_humidity }}'
         unit_of_measurement: "%"
-        entity_id: climate.living_room
+        entity_id: !secret climate_1
 
       sensibo_target_temp:
         friendly_name: "Target Temperature"
@@ -232,16 +232,10 @@ automation:
       above: 30
       # below: 25
     action:
-    - service: notify.mobile_app_nurit_iphone
+    - service: notify.nurit_telegram
       data:
         title: 'מד טמפרטורה'
-        message: 'הטמפרטורה בבית מעל 30 מעלות'
-        data:
-          push:
-            sound: "Bloom.caf"
-            badge: 5        
-          attachment: 
-            url: https://i.imgur.com/5YfHCVy.gif
+        message: 'הטמפרטוה בבית מעל 30 מעלות'
 
   
   
@@ -264,23 +258,23 @@ automation:
         - condition: or
           conditions: #"operation_list": ["dry","auto","heat","fan_only","cool"]
             - condition: state 
-              entity_id: climate.living_room
+              entity_id: !secret climate_1
               state: 'dry' 
             - condition: state 
-              entity_id: climate.living_room
+              entity_id: !secret climate_1
               state: 'auto' 
             - condition: state 
-              entity_id: climate.living_room
+              entity_id: !secret climate_1
               state: 'heat' 
             - condition: state 
-              entity_id: climate.living_room
+              entity_id: !secret climate_1
               state: 'fan_only'  
             - condition: state 
-              entity_id: climate.living_room
+              entity_id: !secret climate_1
               state: 'cool'
     action:
       - service: climate.turn_off
-        entity_id: climate.living_room
+        entity_id: !secret climate_1
       - service: homeassistant.turn_off
         entity_id: group.allmylights                              
 
@@ -301,7 +295,7 @@ automation:
         click_type: single
     action:
     - service: climate.turn_on
-      entity_id: climate.living_room
+      entity_id: !secret climate_1
 
 
 #Turn OFF living room AC on double click LivingRoomSwitch
@@ -316,4 +310,4 @@ automation:
         click_type: double
     action:
     - service: climate.turn_off
-      entity_id: climate.living_room        
+      entity_id: !secret climate_1        

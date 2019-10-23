@@ -103,9 +103,9 @@ sensor:
 
    # PRESENCE TRACKING TEMPLATES
       avi_location:
-        value_template: "אבי {{ states('device_tracker.life360_avi_abeksis') | regex_replace(find='not_home', replace='לא נמצא', ignorecase=true) }}"
+        value_template: "אבי {{ states('person.avi') | regex_replace(find='not_home', replace='לא נמצא', ignorecase=true) }}"
       nurit_location_2:
-        value_template: "נורית {{ states('device_tracker.life360_nurit') | regex_replace(find='not_home', replace='לא נמצאת', ignorecase=true) }}"
+        value_template: "נורית {{ states('person.nurit') | regex_replace(find='not_home', replace='לא נמצאת', ignorecase=true) }}"
       rotam_location:
         value_template: "רותם {{ states('device_tracker.rotam_iphone') | regex_replace(find='not_home', replace='לא נמצאת', ignorecase=true) }}"
       yakir_location:

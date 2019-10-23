@@ -1,0 +1,213 @@
+- title: Devices
+  path: devices
+  icon: mdi:devices
+  popup_cards:
+    !include ../popup-cards/device-popup.yaml
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Devices'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Living room'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: !secret switch_4
+                - name: !secret switch_4_friendly_name
+                - icon: !secret switch_4_icon
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: !secret switch_3 
+                - name: !secret switch_3_friendly_name
+                - icon: !secret switch_3_icon
+                - lock: true                
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: !secret switch_1
+                - name: !secret switch_1_friendly_name
+                - icon: !secret switch_1_icon
+                - lock: true                
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml            
+
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Laundry Room'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: !secret switch_5
+                - name: !secret switch_5_friendly_name
+                - icon: !secret switch_5_icon
+                - lock: true                
+                - grid:
+                    !include ../includes/light-devices-grid.yaml            
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1               
+            - !include ../includes/blank-card.yaml
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Computer'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: script.my_computer_reboot_yakir
+                - name: Yakir
+                - icon: mdi:desktop-tower-monitor 
+                - lock: true
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: script.my_computer_reboot_vm
+                - name: VM
+                - icon: mdi:desktop-tower-monitor 
+                - lock: true
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: script.my_computer_reboot_obs
+                - name: OBS
+                - icon: mdi:desktop-tower-monitor 
+                - lock: true
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack    
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: fan.server_room_fan
+                - name: Ventilator
+                - icon: mdi:fan 
+                - color: DodgerBlue
+                - spin: true
+                - lock: true
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+
+  
+  ### The following piece is for tablets only, You can leave this out if not needed.
+    - type: custom:state-switch
+      entity: user
+      states:
+        Home Assistant:
+          type: vertical-stack
+          cards:
+            - type: markdown 
+              style: |
+                ha-card {
+                  background: none;
+                  color: white;
+                  box-shadow: none;
+                  text-align: end;
+                  font-size: 45px;
+                  height: 155px;
+                }
+              content: '# [[ sensor.time.state ]]'
+  ### End of tablet code.
+  
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### kitchen'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: !secret switch_6
+                - name: !secret switch_6_friendly_name
+                - icon: !secret switch_6_icon
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml
+
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Second Floor'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: !secret switch_7
+                - name: !secret switch_7_friendly_name
+                - icon: !secret switch_7_icon
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml        

@@ -45,7 +45,7 @@ automation:
         brightness: 254
         color_name: blue
 
-    - service: notify.avitelegram
+    - service: notify.avi_telegram
       data:
         title: "כלבים"
         message: האם סקאי וגוצי אכלו ארוחת בוקר?   
@@ -107,7 +107,7 @@ automation:
     - service: light.turn_off
       entity_id: light.gateway_light_34ce008d4e2e
 
-    - service: notify.avitelegram
+    - service: notify.avi_telegram
       data:
         title: "כלבים"
         message: האם סקאי וגוצי אכלו ארוחת ערב?

@@ -1,0 +1,256 @@
+- title: Man Security
+  path: man-security
+  icon: mdi:shield-home
+  cards:
+
+  #################################################################
+  #                                                               #
+  #   Smoke Alarm                                                 #
+  #                                                               #
+  #################################################################
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: Smoke Detectors  
+
+        - type: entities
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-family: Helvetica;
+              opacity: 0.8;
+              overflow: hidden;
+            }
+          entities:
+            - binary_sensor.smoke_detector 
+            
+  #################################################################
+  #                                                               #
+  #   Washer and Dryer                                            #
+  #                                                               #
+  #################################################################
+
+        - type: vertical-stack
+          cards:
+            - type: custom:decluttering-card
+              template: title_template
+              variables:
+                - content: Laundry
+                
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:decluttering-card'
+                  template: laundry 
+                  variables:
+                    - image: washingmachine.jpg
+                    - entity_status: washing_machine_state
+                    - entity: washing_machine
+                    - entity_energy: washing_machine_power
+                    - entity_energy_today: washing_machine_yesterday
+
+            - type: custom:mini-graph-card
+              style: |
+                ha-card {
+                  background: var(--card-color-off);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  --paper-item-icon-color: var(--icon-color-off);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-weight: bold;
+                  opacity: 0.8;
+                }            
+              name: Washing Machine Consumption
+              entities: 
+                - entity: sensor.washing_machine_power
+                  name: Washer
+                  show_state: true
+                  unit: 'W'
+
+              icon: mdi:flash
+              height: 40
+              line_color: '#3498db'
+              line_width: 2
+              font_size: 70
+              hours_to_show: 72
+              points_per_hour: 1
+              show:
+                extrema: true
+                fill: true
+
+  #################################################################
+  #                                                               #
+  #   Door Status                                                 #
+  #                                                               #
+  #################################################################
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Door"
+
+
+        - type: entities
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-family: Helvetica;
+              opacity: 0.8;
+              overflow: hidden;
+            }
+          entities:
+            - binary_sensor.front_door_sensor
+            - binary_sensor.balcony_door_sensor
+
+  #################################################################
+  #                                                               #
+  #    Door Air Conditioner                                       #
+  #                                                               #
+  #################################################################
+
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Air Conditioner"
+
+
+        - type: entities
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+              opacity: 0.8;
+            }
+          entities:
+            - entity: binary_sensor.air_conditioner_yakir
+
+        - type: picture-glance
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+            }   
+          title: Air Conditioner Yakir
+          tap_action: toggle
+          entities:
+            - switch.ac_shelly         
+          image: /local/lovelace/switch/Air-Conditioner-yakri.jpg
+
+  #################################################################
+  #                                                               #
+  #   Dog Walk                                                    #
+  #                                                               #
+  #################################################################
+
+        - type: entities
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-family: Helvetica;
+              opacity: 0.8;
+              overflow: hidden;
+            }
+          entities:
+            - timer.dogwalk
+
+  #################################################################
+  #                                                               #
+  #   Motion Sensor                                               #
+  #                                                               #
+  #################################################################
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Motion Sensors"
+  
+    - type: vertical-stack
+      cards:
+        - type: entities
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-family: Helvetica;
+              opacity: 0.8;
+              overflow: hidden;
+            }
+          entities:
+            - binary_sensor.main_shower_motion_sensor
+            - binary_sensor.parents_shower_motion_sensor
+            - binary_sensor.guest_bathrom_motion_sensor
+            - binary_sensor.laundry_room_motion_sensor
+            - binary_sensor.server_room_motion_sensor        
+
+  #################################################################
+  #                                                               #
+  #   Last IP Login                                               #
+  #                                                               #
+  #################################################################
+
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "IP Address Tracking"
+        - type: entities
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+              opacity: 0.8;
+            }
+          entities:
+            - entity: sensor.myip
+              icon: mdi:ip-network
+              name: My IP address is       
+
+
+        - type: 'custom:bar-card'
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+              opacity: 0.8;
+            }
+          align: split     
+          padding: 2px
+          title_position: inside
+          icon_position: left
+          columns: 1
+          entities:
+            - entity: sensor.last_successful_authentication
+              title: Last Login
+            - entity: sensor.authentication_known_ip_info
+              title: Known iP info                 

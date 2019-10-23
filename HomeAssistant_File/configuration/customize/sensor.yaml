@@ -1,0 +1,117 @@
+# Sensors
+sensor.date:
+  friendly_name: Date
+  icon: mdi:calendar-range
+
+sensor.time:
+  friendly_name: Time
+  icon: mdi:clock-outline
+  
+sensor.date_time:
+  friendly_name: Date Aׁnd Time
+  icon: mdi:calendar-clock
+
+sensor.automation_count:
+  friendly_name: Number of Automations
+  icon: mdi:brightness-auto
+
+sensor.binary_sensor_count:
+  friendly_name: Number of Binary Sensors
+  icon: mdi:leak
+
+sensor.camera_count:
+  friendly_name: Number Camera Devices
+  icon: mdi:camera-metering-center
+
+sensor.lights_count:
+  friendly_name: Number Light Devices
+  icom: mdi:ceiling-light
+
+sensor.tracker_count:
+  friendly_name: Number Tracker Devices
+  icon: mdi:transit-connection-variant  
+
+sensor.media_player_count:
+  friendly_name: Number Media Player
+  icon: mdi:play-box-outline
+
+sensor.script_count:
+  friendly_name: Number off script
+  icon: mdi:script
+
+sensor.sensor_count:
+  friendly_name: Number off Sensor
+  icon: mdi:motion-sensor
+
+sensor.switch_count:
+  friendly_name: Number off Switch
+  icon: mdi:toggle-switch
+
+sensor.last_successful_authentication:
+  friendly_name: Last successful authentication
+  icon: mdi:google-chrome
+
+sensor.authentication_known_ip_info:
+  friendly_name: Known iP info
+  icon: mdi:book-open
+
+sensor.steps:
+  friendly_name: מספר צעדים - נורית
+  icon: mdi:walk
+
+# Xiaomi - Geteway
+sensor.illumination_34ce008d4e2e:
+  friendly_name: Geteway light intensity
+  icon: mdi:weather-sunse
+
+binary_sensor.washing_machine_sensor:
+  friendly_name: Washing Machine
+  device_class: door 
+  icon: mdi:washing-machine 
+  
+binary_sensor.laundry_dryer_sensor:
+  friendly_name: Laundry Dryer
+  device_class: door 
+  icon: mdi:tumble-dryer   
+
+binary_sensor.air_conditioner_yakir:
+  friendly_name: Air Conditioner Yakir door
+  device_class: door 
+  icon: mdi:fan  
+
+binary_sensor.front_door_sensor:
+  friendly_name: חיישן דלת קדמית
+  device_class: door
+
+binary_sensor.balcony_door_sensor:
+  friendly_name: חיישן דלת מרפסת עישון 
+  device_class: door 
+
+binary_sensor.main_shower_motion_sensor:
+  friendly_name: חיישן תנועה מקלחת ראשית
+
+binary_sensor.parents_shower_motion_sensor: 
+  friendly_name: חיישן תנועה מקלחת הורים
+  
+binary_sensor.guest_bathrom_motion_sensor:
+  friendly_name: שירותי אורחים חיישן תנועה
+  
+binary_sensor.laundry_room_motion_sensor:
+  friendly_name: חיישן תנועה חדר כביסה 
+
+binary_sensor.server_room_motion_sensor:
+  friendly_name: חיישן תנועה חדר מחשבים
+
+binary_sensor.smoke_detector:
+  friendly_name: גלאי עשן
+  device_class: smoke  
+  icon: mdi:smoke-detector
+
+
+# binary_sensor.switch_158d0001f36255:
+#   friendly_name: Good night Button
+#   icon: mdi:shower
+
+# binary_sensor.switch_158d0001f3ddfd:
+#   friendly_name: Smoking Balcony
+#   icon: mdi:smoking  

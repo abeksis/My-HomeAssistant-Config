@@ -3,7 +3,9 @@ background: 'rgba(150, 150, 150, 0.2)'
 menu: show
 options: show
 voice: hide
-hide_tabs: '14 to 30'
+hide_tabs: '16 to 50'
+default_tab: 4
+redirect: false
 notifications: clock
 clock_format: '24'
 clock_date: true
@@ -13,8 +15,8 @@ exceptions:
 - conditions:
     user: ipad
   config: 
-    hide_tabs: '0 to 30'
-    default_tab: '11'
+    hide_tabs: '0 to 60'
+    default_tab: '13'
     disable_sidebar: false
     voice: hide
     menu: hide
@@ -22,42 +24,43 @@ exceptions:
     notifications: hide
     header: false
     chevrons: false
-    kiosk_mode: true
+    kiosk_mode: true   
 - conditions:
     user: avi samsung
+    user_agent: Mobile
     media_query: "(max-width: 600px)"
   config:
-    options: clock
-    voice: hide
     menu: hide
+    options: hide
     notifications: hide
+    voice: hide
     header: false
-    chevrons: false        
-    swipe: true
-    swipe_wrap: true
-    swipe_animate: swipe
-    swipe_prevent_default: true
-    swipe_amount: '20'
+    chevrons: false
     notify_indicator_color: "#e80000"
-    clock_format: '24'
-    default_tab: 'samasung'
-    hide_tabs: '0 to 30'
+    swipe: true
+    swipe_wrap: false
+    background: 'rgba(0,0,0,0.3)'
+    hide_tabs: '4 to 60'
+    default_tab: 1
+    redirect: false  
 - conditions:
     user: nurit
+    user_agent: Mobile
     media_query: "(max-width: 600px)"
   config:
-    options: clock
-    voice: hide
     menu: hide
+    options: hide
     notifications: hide
+    voice: hide
     header: false
-    chevrons: false        
-    swipe: true
-    swipe_wrap: true
-    swipe_animate: swipe
-    swipe_prevent_default: true
-    swipe_amount: '20'
+    chevrons: false
     notify_indicator_color: "#e80000"
-    clock_format: '24'
-    default_tab: 'samasung'
-    hide_tabs: '0 to 30'
+    swipe: true
+    swipe_wrap: false
+    background: 'rgba(0,0,0,0.3)'
+    hide_tabs: '4 to 60'
+    default_tab: 1
+    redirect: false 
+
+
+    

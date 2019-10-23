@@ -1,0 +1,28 @@
+# Waze Travel Time
+  - platform: waze_travel_time
+    name: Travel time Avi Home
+    origin: person.avi
+    destination: zone.home
+    region: "IL"
+    realtime: true
+
+  - platform: waze_travel_time
+    name: Travel time Avi Work
+    origin: person.avi
+    destination: zone.bvdh
+    region: "IL"
+    realtime: true
+
+  - platform: waze_travel_time
+    name: Travel time Nurit home
+    origin: person.nurit
+    destination: zone.home
+    region: "IL"
+    realtime: true
+
+  - platform: waze_travel_time
+    name: Travel time Nurit Work
+    origin: person.nurit
+    destination: zone.bvdh_2
+    region: "IL"
+    realtime: true 

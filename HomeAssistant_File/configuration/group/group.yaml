@@ -1,0 +1,175 @@
+####################################################
+#                                                  #
+#                      Home                        #
+#                                                  #
+####################################################
+
+home:
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.weather_temp
+    - group.people_at_home
+    - group.skoda_ituran
+
+
+####################################################
+#                                                  #
+#                   Downstairs                     #
+#                                                  #
+####################################################
+
+downstairs:
+  name: Downstairs
+  icon: mdi:lightbulb-on
+  view: yes
+  entities:
+    - group.downstairs_lights
+    - group.upstairs_lights
+    - group.yeelight
+    
+camera:
+  name: camera
+  icon: mdi:cctv
+  view: yes
+  entities:
+    - group.high_quality
+    - group.security_cameras
+    - group.inside_the_home
+    
+people:
+  name: people
+  icon: mdi:cellphone-android
+  view: yes
+  entities:
+    - group.people_at_home
+    
+weather:
+  name: weather
+  icon: mdi:cloud
+  view: yes
+  entities:
+    - group.weather_temp
+
+known_devices:
+  name: Tracking Devices
+  icon: mdi:crosshairs-gps
+  view: yes
+  entities:
+    - group.sonoff
+    - group.phone
+    - group.stuff
+
+
+####################################################
+#                                                  #
+#                  Automation mode                 #
+#                                                  #
+####################################################
+
+automation:
+  name: automation info
+  icon: mdi:home-automation
+  view: yes
+  entities:
+    - group.notify
+    - group.turn_off
+    - group.turn_on
+    - group.vacuum
+    - group.homeassistant
+
+
+####################################################
+#                                                  #
+#                  Switch                          #
+#                                                  #
+####################################################
+
+switch:
+  name: Switch Control
+  icon: mdi:toggle-switch-off
+  view: yes
+  entities:
+    - group.ac
+    - group.tv
+    - group.tris
+    - group.power
+
+####################################################
+#                                                  #
+#                  Xiaomi Status                   #
+#                                                  #
+####################################################
+
+xiaomi status:
+  name: Xiaomi Status
+  icon: mdi:server
+  view: yes
+  entities:
+    - group.xiaomi_door_sensors
+    - group.xiaomi_motion_sensors
+    - group.xiaomi_temperature_sensors
+    
+
+####################################################
+#                                                  #
+#                  Skoda ituran                    #
+#                                                  #
+####################################################
+
+ituran:
+  name: Tracking My Car
+  icon: mdi:car-connected
+  view: yes
+  entities:
+    - group.skoda_ituran
+    
+
+####################################################
+#                                                  #
+#                  Home Electricity                #
+#                                                  #
+####################################################
+
+general electricity:
+  name: Monitor Power Consumption
+  icon: mdi:flash
+  view: yes
+  entities:
+    - group.power_consumption
+    - group.voltage
+    - group.money
+    - group.washing_machin
+    - group.washing_machin_tracking 
+    - group.electric_clock
+
+
+####################################################
+#                                                  #
+#                  Things Status                   #
+#                                                  #
+####################################################
+
+things status:
+  name: Things Status
+  icon: mdi:battery-charging-wireless-alert
+  view: yes
+  entities:
+    - group.battery_alert 
+    
+unraid:
+  name: HDD Temp
+  icon: mdi:server
+  view: yes
+  entities:
+    - group.hdd_temp
+    - group.unraid_info
+    - group.homeassistant_info
+    - group.speedtest
+
+device_status:
+  name: Status and Location
+  entities:
+    - person.avi
+    - person.nurit

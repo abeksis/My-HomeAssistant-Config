@@ -1,0 +1,51 @@
+- title: Currently On
+  path:  currently-on
+  cards:    
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Device Events'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Currently ON'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: 'custom:auto-entities'
+              card:
+                type: glance
+                columns: 3
+                show_empty: true
+                style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                    font-family: Helvetica;
+                    font-size: 12px;
+                    opacity: 0.8;
+                  }
+              filter:
+                include:
+                  - state: 'on'
+                exclude: # רשימה של מה לא להציג
+                  - entity_id: '*tools_*'
+                  - domain: scene
+                  - domain: automation
+                  - domain: group
+                  - domain: input_boolean
+                  - entity_id: switch.my_computer
+                  - entity_id: switch.sensibo_living_room_cool
+                  - entity_id: switch.sensibo_living_room_fan_only
+                  - entity_id: switch.sensibo_living_room_heat
+                  - entity_id: switch.sensibo_living_room_heat_cool  
+                  - entity_id: calendar.work
+                  - entity_id: calendar.holidays_in_israel                                                                                                       
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml

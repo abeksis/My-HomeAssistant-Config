@@ -1,0 +1,14 @@
+card:
+  type: markdown
+  style: |
+    ha-card {
+      border-radius: {{ states('input_select.border_radius') }};
+      box-shadow: {{ states('input_select.box_shadow') }};
+      background: var(--card-color-off);
+      justify-self: center;
+      font-size: 20px;
+      #color: blue;
+      text-align: center;
+      color: var(--name-color-off);
+    }
+  content: '[[content]]'

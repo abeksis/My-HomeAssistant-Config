@@ -26,10 +26,11 @@ automation:
     action:
       - delay:
           hours: 8
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: "Wedding day"
-          message: "We are today [[ states.sensor.anniversary_wedding_day.years ]] year married! Congrats!"
+          message: "We are today year married! Congrats!"
+
 
   # Birthday Notifications
   - alias: Nurit Birthday Notification
@@ -41,10 +42,10 @@ automation:
     action:
       - delay:
           hours: 8
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: "Birthday"
-          message: "Nurit is Birthday [[ states.sensor.birthday_nurit.years ]] Wish her a happy birthday"
+          message: "Nurit is Birthday Wish her a happy birthday"
  
  
   - alias: Avi Birthday Notification
@@ -56,10 +57,10 @@ automation:
     action:
       - delay:
           hours: 8
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: "Birthday"
-          message: "Nurit is Birthday [[ states.sensor.birthday_avi.years ]] Wish him a happy birthday"
+          message: "Nurit is Birthday Wish him a happy birthday"
  
 
   - alias: Rotem Birthday Notification
@@ -71,10 +72,10 @@ automation:
     action:
       - delay:
           hours: 8
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: "Birthday"
-          message: "Rotam is Birthday [[ states.sensor.birthday_rotem.years ]] Wish her a happy birthday"
+          message: "Rotam is Birthday Wish her a happy birthday"
 
 
   - alias: liran Birthday Notification
@@ -86,10 +87,10 @@ automation:
     action:
       - delay:
           hours: 8
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: "Birthday"
-          message: "Liran is Birthday [[ states.sensor.birthday_liran.years ]] Wish him a happy birthday"                                 
+          message: "Liran is Birthday Wish him a happy birthday"                                 
 
 
   - alias: yakir Birthday Notification
@@ -101,10 +102,10 @@ automation:
     action:
       - delay:
           hours: 8
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: "Birthday"
-          message: "yakir is Birthday [[ states.sensor.birthday_yakir.years ]] Wish him a happy birthday"                                 
+          message: "yakir is Birthday Wish him a happy birthday"                                 
 
 
   - alias: Reminder - Refresh date countdown sensors

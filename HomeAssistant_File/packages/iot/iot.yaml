@@ -3,9 +3,47 @@
 #                     Packages/IOT Windows-Monitor              #
 #                                                               #
 #################################################################
-  
 
 
+automation:
+
+  - alias: 'Yakir Refresh on Startup'
+    initial_state: 'true'  
+    hide_entity: true
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: mqtt.publish 
+        data:
+          topic: "iotlink/workgroup/yakir/refresh"
+          payload: ""
+
+
+  - alias: 'obs Refresh on Startup'
+    initial_state: 'true'  
+    hide_entity: true
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: mqtt.publish 
+        data:
+          topic: "iotlink/workgroup/obs/refresh"
+          payload: ""
+
+  - alias: 'windows 10 Refresh on Startup'
+    initial_state: 'true'  
+    hide_entity: true
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: mqtt.publish 
+        data:
+          topic: "iotlink/workgroup/windows_10_vm/refresh"
+          payload: ""
+          
 #################################################################
 #                                                               #
 #                          Binary Sensor                        #
@@ -46,13 +84,13 @@ binary_sensor:
 
 
 #################################################################
-#                          Windows Liran                        #
+#                          Windows OBS                        #
 #################################################################
 
 
   - platform: mqtt
-    name: "Windows liran  - Connected"
-    state_topic: "iotlink/workgroup/liran/lwt"
+    name: "Windows obs  - Connected"
+    state_topic: "iotlink/workgroup/obs/lwt"
     value_template: "{{ value }}"
     payload_on: "ON"
     payload_off: "OFF"
@@ -79,12 +117,12 @@ camera:
     topic: "iotlink/workgroup/windows_10_vm/windows-monitor/stats/display/0/screen"
 
 #################################################################
-#                          Windows 10 liran                     #
+#                          Windows 10 obs                     #
 #################################################################
 
   - platform: mqtt
-    name: "Windows 10 liran - Screen 0"
-    topic: "iotlink/workgroup/liran/windows-monitor/stats/display/0/screen"
+    name: "Windows 10 obs - Screen 0"
+    topic: "iotlink/workgroup/obs/windows-monitor/stats/display/0/screen"
 
 
 #################################################################
@@ -266,72 +304,72 @@ sensor:
     qos: 1
 
 #################################################################
-#                          Windows Liran                        #
+#                          Windows obs                        #
 #################################################################
 
   - platform: mqtt
-    name: "Windows Liran - CPU Usage"
-    state_topic: "iotlink/workgroup/liran/windows-monitor/stats/cpu"
+    name: "Windows obs - CPU Usage"
+    state_topic: "iotlink/workgroup/obs/windows-monitor/stats/cpu"
     unit_of_measurement: '%'
     icon: mdi:speedometer
     value_template: "{{ value }}"
-    availability_topic: "iotlink/workgroup/liran/lwt"
+    availability_topic: "iotlink/workgroup/obs/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
     qos: 1
 
   - platform: mqtt
-    name: "Windows Liran - RAM Usage"
-    state_topic: "iotlink/workgroup/liran/windows-monitor/stats/memory/usage"
+    name: "Windows obs - RAM Usage"
+    state_topic: "iotlink/workgroup/obs/windows-monitor/stats/memory/usage"
     unit_of_measurement: '%'
     icon: mdi:memory
     value_template: "{{ value }}"
-    availability_topic: "iotlink/workgroup/liran/lwt"
+    availability_topic: "iotlink/workgroup/obs/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
     qos: 1
 
   - platform: mqtt
-    name: "Windows Liran - RAM Available"
-    state_topic: "iotlink/workgroup/liran/windows-monitor/stats/memory/available"
+    name: "Windows obs - RAM Available"
+    state_topic: "iotlink/workgroup/obs/windows-monitor/stats/memory/available"
     unit_of_measurement: 'MB'
     icon: mdi:memory
     value_template: "{{ value }}"
-    availability_topic: "iotlink/workgroup/liran/lwt"
+    availability_topic: "iotlink/workgroup/obs/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
     qos: 1
 
   - platform: mqtt
-    name: "Windows Liran - RAM Used"
-    state_topic: "iotlink/workgroup/liran/windows-monitor/stats/memory/used"
+    name: "Windows obs - RAM Used"
+    state_topic: "iotlink/workgroup/obs/windows-monitor/stats/memory/used"
     unit_of_measurement: 'MB'
     icon: mdi:memory
     value_template: "{{ value }}"
-    availability_topic: "iotlink/workgroup/liran/lwt"
+    availability_topic: "iotlink/workgroup/obs/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
     qos: 1
 
 
   - platform: mqtt
-    name: "Windows Liran - HDD Total Free Space (C)"
-    state_topic: "iotlink/workgroup/liran/windows-monitor/stats/hard-drive/c/total-free-space"
+    name: "Windows obs - HDD Total Free Space (C)"
+    state_topic: "iotlink/workgroup/obs/windows-monitor/stats/hard-drive/c/total-free-space"
     unit_of_measurement: 'GB'
     icon: mdi:harddisk
     value_template: "{{ value }}"
-    availability_topic: "iotlink/workgroup/liran/lwt"
+    availability_topic: "iotlink/workgroup/obs/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
     qos: 1
 
   - platform: mqtt
-    name: "Windows Liran - HDD Used Space (C)"
-    state_topic: "iotlink/workgroup/liran/windows-monitor/stats/hard-drive/c/used-space"
+    name: "Windows obs - HDD Used Space (C)"
+    state_topic: "iotlink/workgroup/obs/windows-monitor/stats/hard-drive/c/used-space"
     unit_of_measurement: 'GB'
     icon: mdi:harddisk
     value_template: "{{ value }}"
-    availability_topic: "iotlink/workgroup/liran/lwt"
+    availability_topic: "iotlink/workgroup/obs/lwt"
     payload_available: "ON"
     payload_not_available: "OFF"
     qos: 1
@@ -520,84 +558,93 @@ script:
           payload: '{ "command": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", "args": "https://www.google.co.il", "path": "C:\\Program Files (x86)\\Google\\Chrome\\Application", "user": "", "visible": true, "fallback": true }'
 
 #################################################################
-#                          Windows liran                        #
+#                          Windows obs                        #
 #################################################################
 
-  my_computer_wake_liran:
-    alias: "Windows Liran - Wake"
+  my_computer_wake_obs:
+    alias: "Windows obs - Wake"
     sequence:
       - service: wake_on_lan.send_magic_packet
         data:
-          mac: "!secret mac_lan_liran"
+          mac: "!secret mac_lan_obs"
 
-  my_computer_shutdown_liran:
-    alias: "Windows Liran - Shutdown"
+  my_computer_refresh_obs:
+    alias: "Windows obs - Refresh"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/shutdown"
+          topic: "iotlink/workgroup/obs/refresh"
           payload: ""
 
-  my_computer_suspend_liran:
-    alias: "Windows Liran - Suspend"
+  my_computer_shutdown_obs:
+    alias: "Windows obs - Shutdown"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/suspend"
+          topic: "iotlink/workgroup/obs/commands/shutdown"
           payload: ""
 
-  my_computer_hibernate_liran:
-    alias: "Windows Liran - Hibernate"
+
+  my_computer_suspend_obs:
+    alias: "Windows obs - Suspend"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/hibernate"
+          topic: "iotlink/workgroup/obs/commands/suspend"
           payload: ""
 
-  my_computer_reboot_liran:
-    alias: "Windows Liran - Reboot"
+  my_computer_hibernate_obs:
+    alias: "Windows obs - Hibernate"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/reboot"
+          topic: "iotlink/workgroup/obs/commands/hibernate"
           payload: ""
 
-  my_computer_lock_liran:
-    alias: "Windows Liran - Lock"
+  my_computer_reboot_obs:
+    alias: "Windows obs - Reboot"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/lock"
+          topic: "iotlink/workgroup/obs/commands/reboot"
           payload: ""
 
-  my_computer_logoff_liran:
-    alias: "Windows Liran - Logoff"
+  my_computer_lock_obs:
+    alias: "Windows obs - Lock"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/logoff"
+          topic: "iotlink/workgroup/obs/commands/lock"
           payload: ""
 
-  my_computer_vol_mute_liran:
-    alias: "Windows Liran - Toggle Mute"
+  my_computer_logoff_obs:
+    alias: "Windows obs - Logoff"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/volume/mute"
+          topic: "iotlink/workgroup/obs/commands/logoff"
           payload: ""
 
-  my_computer_vol_max_liran:
-    alias: "Windows Liran - Vol Max"
+  my_computer_vol_mute_obs:
+    alias: "Windows obs - Toggle Mute"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/volume/set"
+          topic: "iotlink/workgroup/obs/commands/volume/mute"
+          payload: ""
+
+  my_computer_vol_max_obs:
+    alias: "Windows obs - Vol Max"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "iotlink/workgroup/obs/commands/volume/set"
           payload: "100"
 
-  my_computer_run_chrome_liran:
-    alias: "Windows Liran - Run Chrome"
+  my_computer_run_chrome_obs:
+    alias: "Windows obs - Run Chrome"
     sequence:
       - service: mqtt.publish
         data:
-          topic: "iotlink/workgroup/liran/commands/run"
+          topic: "iotlink/workgroup/obs/commands/run"
           payload: '{ "command": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", "args": "https://www.google.co.il", "path": "C:\\Program Files (x86)\\Google\\Chrome\\Application", "user": "", "visible": true, "fallback": true }'

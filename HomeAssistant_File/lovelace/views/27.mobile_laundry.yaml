@@ -1,0 +1,34 @@
+- title: Laundry
+  path:  laundry
+  cards:    
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu 
+          variables:
+            - name1: Cleaning
+            - icon1: broom
+            - path1: cleaning
+        - type: custom:decluttering-card
+          template: header 
+          variables:
+            - content: '## Laundry Room'
+        - type: vertical-stack
+          cards:
+            - type: custom:decluttering-card
+              template: header 
+              variables:
+                - content: '##### Washing Machine'
+            - type: horizontal-stack
+              cards:
+                - !include ../includes/blank-card.yaml
+                - type: 'custom:decluttering-card'
+                  template: laundry 
+                  variables:
+                    - image: washingmachine.jpg
+                    - entity_status: washing_machine_state
+                    - entity: washing_machine
+                    - entity_energy: washing_machine_power
+                    - entity_energy_today: washing_machine_yesterday
+                - !include ../includes/blank-card.yaml
+            - !include ../includes/bottom-card.yaml

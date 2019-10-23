@@ -1,0 +1,244 @@
+- title: Security
+  path: security
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu 
+          variables:
+            - name1: Vacuum
+            - icon1: mdi:robot-vacuum
+            - path1: vacuum
+        - type: custom:decluttering-card
+          template: header 
+          variables:
+            - content: '## Security'
+        - type: custom:decluttering-card
+          template: header 
+          variables:
+            - content: "##### Camera's"
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: picture-entity
+              style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  overflow: hidden;
+                }
+              entity: camera.center_6mp
+              title: Camera's  
+              aspect_ratio: 16x9
+              deep_press: true
+            - !include ../includes/blank-card.yaml
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: picture-entity
+              style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  overflow: hidden;
+                }
+              entity: camera.right_side_balcony
+              title: Camera's
+              aspect_ratio: 16x9
+              deep_press: true
+            - !include ../includes/blank-card.yaml
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: picture-entity
+              style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  overflow: hidden;
+                }
+              entity: camera.entrance_to_the_building
+              title: Camera's
+              aspect_ratio: 16x9
+              deep_press: true
+            - !include ../includes/blank-card.yaml  
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: picture-entity
+              style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  overflow: hidden;
+                }
+              entity: camera.xiaomi_dafang
+              title: Camera's
+              aspect_ratio: 16x9
+              deep_press: true
+            - !include ../includes/blank-card.yaml 
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: picture-entity
+              style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  overflow: hidden;
+                }
+              entity: camera.front_door
+              title: Camera's
+              aspect_ratio: 16x9
+              deep_press: true
+            - !include ../includes/blank-card.yaml          
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header 
+          variables:
+            - content: '##### Doors'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_1
+                - name: !secret binary_sensor_1_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:door-open'; else return 'mdi:door'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_2
+                - name: !secret binary_sensor_2_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:door-open'; else return 'mdi:door'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_10
+                - name: !secret binary_sensor_10_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:door-open'; else return 'mdi:door'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+            - !include ../includes/blank-card.yaml
+
+
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_11
+                - name: !secret binary_sensor_11_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:door-open'; else return 'mdi:door'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_9
+                - name: !secret binary_sensor_9_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:door-open'; else return 'mdi:door'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+
+        - type: custom:decluttering-card
+          template: header 
+          variables:
+            - content: '##### Motion'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_5
+                - name: !secret binary_sensor_5_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_6
+                - name: !secret binary_sensor_6_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_7
+                - name: !secret binary_sensor_7_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+            - !include ../includes/blank-card.yaml
+            
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_8
+                - name: !secret binary_sensor_8_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret binary_sensor_4
+                - name: !secret binary_sensor_4_friendly_name
+                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
+                - show_last_changed: true
+                - tap_action: more-info
+
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1             
+            - !include ../includes/blank-card.yaml
+
+        - type: custom:decluttering-card
+          template: header 
+          variables:
+            - content: '##### Alarms'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: !secret binary_sensor_3
+                - name: !secret binary_sensor_3_friendly_name
+                - icon: !secret binary_sensor_3_icon
+                - show_last_changed: true
+                - tap_action: more-info
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - type: 'custom:button-card'
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml

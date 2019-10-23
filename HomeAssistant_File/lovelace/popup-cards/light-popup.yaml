@@ -2,7 +2,6 @@
     title: Toilet
     style:
       color: white
-      border-radius: var(--border-radius)
       background: var(--background-image)
     card:
       type: vertical-stack
@@ -72,7 +71,7 @@
               variables:
                 - entity: light.liran_room
             - !include ../includes/blank-card.yaml
-        - !include ../includes/bottom-card.yaml        
+        - !include ../includes/bottom-card.yaml
 
   light.computer_room:
     title: Computer Server
@@ -91,4 +90,4 @@
               variables:
                 - entity: light.computer_room
             - !include ../includes/blank-card.yaml
-        - !include ../includes/bottom-card.yaml                
+        - !include ../includes/bottom-card.yaml

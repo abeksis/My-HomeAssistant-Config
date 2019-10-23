@@ -17,28 +17,28 @@ sensor:
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.motion_sensor_158d0002047c5a.attributes.battery_level }}
+          {{ states.binary_sensor.main_shower_motion_sensor.attributes.battery_level }}
           
       xiaomi_motion_laundry_room_battery:
         friendly_name: "Motion Laundry Room Battery"
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.motion_sensor_158d00024e7972.attributes.battery_level }}          
+          {{ states.binary_sensor.laundry_room_motion_sensor.attributes.battery_level }}          
           
       xiaomi_motion_sensor_computer_room_battery:
         friendly_name: "Motion Sensor Computer Room"
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.motion_sensor_158d000272bc63.attributes.battery_level }}                    
+          {{ states.binary_sensor.server_room_motion_sensor.attributes.battery_level }}                    
 
       xiaomi_motion_sensor_guest_services_battery:
         friendly_name: "Motion Sensor Guest Services"
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.motion_sensor_158d0002b42fa3.attributes.battery_level }}                              
+          {{ states.binary_sensor.guest_bathrom_motion_sensor.attributes.battery_level }}                              
           
 
       xiaomi_motion_sensor_shower_father_and_mother_battery:
@@ -46,7 +46,7 @@ sensor:
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.motion_sensor_158d000204bfcb.attributes.battery_level }}                              
+          {{ states.binary_sensor.parents_shower_motion_sensor.attributes.battery_level }}                              
                     
 
       #################################################################
@@ -58,28 +58,28 @@ sensor:
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.door_window_sensor_158d0001ef3425.attributes.battery_level }}
+          {{ states.binary_sensor.front_door_sensor.attributes.battery_level }}
 
       xiaomi_door_window_sensor_balcony_door_sensor:
         friendly_name: "Balcony Door Sensor"
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.door_window_sensor_158d00027a59c6.attributes.battery_level }}         
+          {{ states.binary_sensor.balcony_door_sensor.attributes.battery_level }}         
 
       xiaomi_door_window_sensor_washing_machine_sensor:
         friendly_name: "Washing Machine Sensor"
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.door_window_sensor_158d0002ea0754.attributes.battery_level }}                    
+          {{ states.binary_sensor.washing_machine_sensor.attributes.battery_level }}                    
 
       xiaomi_door_window_sensor_laundry_dryer_sensor:
         friendly_name: "Laundry Dryer Sensor"
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.door_window_sensor_158d0002ea9896.attributes.battery_level }}                              
+          {{ states.binary_sensor.laundry_dryer_sensor.attributes.battery_level }}                              
 
 
       #################################################################
@@ -116,4 +116,4 @@ sensor:
         icon_template: mdi:battery
         unit_of_measurement: '%'
         value_template: >-
-          {{ states.binary_sensor.smoke_sensor_158d00028ee7fb.attributes.battery_level }}          
+          {{ states.binary_sensor.smoke_detector.attributes.battery_level }}          

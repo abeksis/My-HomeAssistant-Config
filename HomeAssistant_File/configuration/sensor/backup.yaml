@@ -1,0 +1,5 @@
+# Show The Last System Backup
+- platform: command_line
+  command: "bash /config/scripts/latest_hass_backup.py"
+  name: 'Latest Home Assistant Backup'
+  scan_interval: 43200 #12 Hours

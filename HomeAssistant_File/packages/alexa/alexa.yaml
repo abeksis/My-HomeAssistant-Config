@@ -1,0 +1,134 @@
+#################################################################
+#                                                               #
+#                     Packages/Appliances                       #
+#                                                               #
+#################################################################
+api:
+alexa:
+  smart_home:
+    filter:
+      include_entities:
+        - light.kitchen
+        - light.kitchen_strip_lamp
+        - light.living_room
+        - light.balcony
+        - light.service_balcony
+        - light.stairs
+        - light.laundry
+        - light.liran_room
+        - light.yeelight_poop
+        - light.gateway_light_34ce008d4e2e
+        - light.prozdor
+        - light.parents_shower
+        - light.parents_bedroom
+        - light.computer_room
+        - light.seating_area
+        - light.laundry_room_lighting
+        - ligh.miklahat
+        - switch.tami_4_power
+        - switch.sh20_pow
+        - switch.ac_shelly
+        - cover.living_room_shutters
+      include_domains:
+        - light
+        - switch
+      exclude_entities: # do not include
+        - switch.outside
+        - switch.sensibo_living_room_cool
+        - switch.my_computer
+        - switch.washing_machine
+        - switch.lg_tv_button
+        - switch.whizz_button
+        - switch.yes_dvr_button
+        - switch.sensibo_living_room_fan_only
+        - switch.sensibo_living_room_heat
+        - switch.sensibo_living_room_heat_cool
+        - switch.sensibo_living_room
+        - switch.sensibo_living_room_heat
+        - light.guests_bathroom_switch
+        - fan.server_room_fan
+    entity_config:
+      light.kitchen:
+        name: Kitchen
+        description: תאורה במטבח
+        display_categories: LIGHT  
+      light.kitchen_strip_lamp:
+        name: Strip Light
+        description: תאורת לד במטבח
+        display_categories: LIGHT          
+      light.living_room:
+        name: Salon
+        description: תאורה בסלון
+        display_categories: LIGHT 
+      light.stairs:
+        name: Stairs Light
+        description: תאורה במדרגות
+        display_categories: LIGHT 
+      light.laundry:
+        name: Laundry Light
+        description: חדר כביסה
+        display_categories: LIGHT  
+      light.balcony:
+        name: Smoking
+        description: מרפסת עישון
+        display_categories: LIGHT
+      light.service_balcony:
+        name: Balcony Light
+        description: מרפסת שירות
+        display_categories: LIGHT 
+      light.liran_room:  
+        name: Liran
+        description: תאורה חדר לירן
+        display_categories: LIGHT
+      light.yeelight_poop:  
+        name: Poop
+        description: שירותי אורחים
+        display_categories: LIGHT 
+      light.prozdor:
+        name: Prozdor
+        description: תאורה בפרוזדור
+        display_categories: LIGHT 
+      light.gateway_light_34ce008d4e2e:
+        name: Gateway
+        description: תאורה שיאומי
+        display_categories: LIGHT 
+      light.parents_shower:
+        name: Parents Light shower
+        description: מקלחת הורים
+        display_categories: LIGHT      
+      light.computer_room:
+        name: Computer room
+        description: תאורה בחדר מחשבים
+        display_categories: LIGHT     
+      light.seating_area:
+        name: Seating Area
+        description: פינת ישיבה
+        display_categories: LIGHT 
+      light.parents_bedroom:
+        name: Parents Light
+        description: תאורה בחדר הורים
+        display_categories: LIGHT  
+      light.laundry_room_lighting:
+        name: Laundry
+        description: חדר כבביסה
+        display_categories: LIGHT  
+      light.miklahat:
+        name: Miklahat
+        description: מקלחת
+        display_categories: LIGHT
+      switch.tami_4_power:
+        name: Tami 4
+        description: תמי 4      
+        display_categories: KITCHEN
+      switch.sh20_pow:
+        name: Canera
+        description: מצלמה סלון     
+        display_categories: CAMERA      
+      switch.ac_shelly:
+        name: Yakir Ac
+        description: מזגן יקיר     
+        display_categories: AC       
+      cover.living_room_shutters:       
+        name: Shutters
+        description: תריס בסלון     
+        display_categories: LIVING       

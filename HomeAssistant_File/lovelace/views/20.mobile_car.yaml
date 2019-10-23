@@ -1,0 +1,106 @@
+- title: skoda_car
+  path:  skoda
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: statistics
+            - icon1: mdi:home-assistant
+            - path1: statistics
+  
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Car Tracking'
+  
+        - type: custom:swipe-card
+          parameters:
+            effect: 'coverflow'
+            grabCursor: true
+          cards:
+            - type: vertical-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '#### Car Avi/Nurit'
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: "##### Skoda Kodiaq Style (2017) NS74KX"
+                - type: horizontal-stack
+                  cards:
+                    - type: 'custom:button-card'
+                      color_type: blank-card
+                      styles:
+                        card:
+                          - width: 10px
+                    - type: markdown
+                      style: |
+                        ha-card {
+                          background-image: url('/local/lovelace/car/skoda.jpg');
+                          border-radius: {{ states('input_select.border_radius') }};
+                          box-shadow: {{ states('input_select.box_shadow') }};
+                          font-size: 13px;
+                          font-family: Helvetica;
+                          background-size: cover;
+                          background-position: 50% 50%;
+                          color: white;
+                          height: 140px;
+                          vertical-align: baseline;
+                          margin-bottom: 2px;
+                          overflow: hidden;
+                        }
+                      content: >
+                        **Test:** 17-7-2020
+          
+                        **Model:** NS74KX
+          
+                        **Insured:** 30-6-2020
+                    - !include ../includes/blank-card.yaml
+
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: 'custom:vertical-stack-in-card'
+                      cards:
+                        - type: 'custom:config-template-card'
+                          entities:
+                            - sensor.ituran_google_embedded
+                          card:
+                            type: 'custom:hui-iframe-card'
+                            url: >-
+                              ${states['sensor.ituran_google_embedded'].state}
+                            aspect_ratio: 75%
+                    - !include ../includes/blank-card.yaml
+ 
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: entities
+                      style: |
+                        ha-card {
+                          border-radius: {{ states('input_select.border_radius') }};
+                          box-shadow: {{ states('input_select.box_shadow') }};
+                          opacity: 0.8;
+                          font-size: 13px;
+                          font-family: Helvetica;
+                        }
+                      entities:        
+                        - type: weblink
+                          name: מוסך העמק
+                          icon: 'mdi:phone'
+                          url: tel:08-627-3317
+                        - type: weblink
+                          name: ביטוח
+                          url: tel:08-6272202
+                          icon: 'mdi:phone'
+                    - !include ../includes/blank-card.yaml
+ 
+        - type: 'custom:button-card'
+          color_type: blank-card
+          styles:
+            card:
+              - height: 50px              

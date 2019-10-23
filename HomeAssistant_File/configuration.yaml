@@ -13,7 +13,7 @@ homeassistant:
   unit_system: metric
   elevation: 169
   packages: !include_dir_named packages
-  customize: !include config/customize.yaml
+  customize: !include_dir_merge_named configuration/customize/
   auth_providers:
     - type: trusted_networks
       trusted_networks:
@@ -26,6 +26,9 @@ homeassistant:
     - /config/backup/hass
 
 
+# Configure a default setup of Home Assistant https://www.home-assistant.io/integrations/default_config
+default_config:
+
 ###################################################
 #                                                 #
 #                     lovelace                    #
@@ -33,7 +36,6 @@ homeassistant:
 ###################################################
 lovelace:
   mode: yaml
-
 
 
 ####################################################
@@ -52,7 +54,7 @@ panel_iframe:
    title: Unraid
    icon: mdi:desktop-tower
    url: !secret unraid
-   
+
   cloud9: 
    title: ide
    icon: mdi:cloud-upload-outline
@@ -69,10 +71,6 @@ panel_iframe:
 #                                                  #
 ####################################################
 
-config:
-
-system_health:
-
 http:
   # api_password: !secret http_password
   base_url: !secret base_url
@@ -86,28 +84,11 @@ http:
   - 172.17.0.3 #mariadb
 
 
-updater:
 discovery:
 conversation:
 speedtestdotnet:
-history:
-logbook:
-mobile_app:
 hacs:
   token: !secret my_github_access_token
-map:
-sun:
-  show_installable: false
-  hide_sensor: true
-  track:
-    - components
-    - cards
-    - python_scripts
-  card_urls:
-      - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
-      - https://raw.githubusercontent.com/ljmerza/waze-card/master/updater.json
-      - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
-      - https://raw.githubusercontent.com/iammexx/home-assistant-config/master/ui/darksky/version.json
       
 tts:
   - platform: google_translate
@@ -119,21 +100,9 @@ tts:
 #                 Customizations                   #
 #                                                  #
 ####################################################
-
-#customizer:
-#  custom_ui: local
-
-
 frontend:
-  themes: !include configuration/themes.yaml #For Samsung Notte design
+  themes: !include_dir_named configuration/themes #For Samsung Notte design
   javascript_version: auto
-  extra_html_url:
-    - /local/custom_ui/fontawesome/hass-fontawesome-solid.html
-    - /local/custom_ui/fontawesome/hass-fontawesome-regular.html
-    - /local/custom_ui/fontawesome/hass-fontawesome-brands.html  
-    - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui.html
-  extra_html_url_es5:
-    - /local/custom_ui/state-card-custom-ui-es5.html
 
 ####################################################
 #                                                  #
@@ -145,21 +114,14 @@ logger:
   default: warn
     
 
-####################################################
-#                                                  #
-#                      Cloud                       #
-#                                                  #
-####################################################
+#####################################################
+#                                                   #
+#                       Cloud                       #
+#                                                   #
+# ###################################################
 
-cloud: !include config/cloud.yaml
+# cloud: !include config/cloud.yaml
 
-# ####################################################
-# #                                                  #
-# #                      owntracks                   #
-# #                                                  #
-# ####################################################
-
-# owntracks:
 
 ####################################################
 #                                                  #
@@ -205,7 +167,8 @@ telegram_bot:
   - platform: polling
     api_key: !secret TelegramBotApiKey
     allowed_chat_ids:
-      - !secret TelegramChatIDNum1   
+      - !secret telgram_avi   
+      - !secret telgram_nurit  
 
 
 
@@ -230,10 +193,9 @@ switcher_aio:
 
 ####################################################
 #                                                  #
-#                    Birthday Sensor               #
+#        Birthday Sensor For mobile mode           #
 #                                                  #
 ####################################################
-
 python_script: 
   
 ####################################################
@@ -242,27 +204,25 @@ python_script:
 #                                                  #
 ####################################################
 
-#automation: !include_dir_merge_list config/automation/
-#group: !include config/groups.yaml
-media_player: !include config/media_players.yaml
-shell_command: !include config/shell_command.yaml
-sensor: !include config/sensors.yaml
-notify: !include config/notify.yaml
-switch: !include config/switchs.yaml
-weblink: !include config/weblink.yaml
-cloudflare: !include config/cloudflare.yaml
-zone: !include config/zones.yaml
-timer: !include config/timer.yaml
-input_datetime: !include config/input_datetime.yaml
-input_boolean: !include configuration/input_boolean.yaml #For Samsung Notte design / עיצוב סמסונג 
-automation: !include configuration/automations.yaml #For Samsung Notte design / עיצוב סמס
-input_select: !include configuration/input_select.yaml #For Samsung Notte design / עיצוב סמס
+#New
+switch: !include configuration/switch/switch.yaml
+group: !include configuration/group/group.yaml
+notify: !include configuration/notify/notify.yaml
+alarm_control_panel: !include configuration/alarm_control_panel/alarms.yaml
+zone: !include configuration/zone/zone.yaml
+input_select: !include configuration/input_select/input_select.yaml
+media_player: !include configuration/media_player/media_player.yaml
+cloud: !include configuration/cloud/cloud.yaml
+timer: !include configuration/timer/timer.yaml
+cloudflare: !include configuration/cloudflare/cloudflare.yaml
+input_datetime: !include configuration/input_datetime/input_datetime.yaml
+weblink: !include configuration/weblink/weblink.yaml
+shell_command: !include configuration/shell_command/shell_command.yaml
+fan: !include configuration/fan/fans.yaml
 
+sensor: !include_dir_merge_list configuration/sensor/
+automation: !include_dir_merge_list configuration/automations/
 
+script: !include_dir_merge_named configuration/scripts/
+input_boolean: !include_dir_merge_named configuration/input_boolean/
 
-
-# camera:
-#   name: Paulus
-#   platform: generic
-#   still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ state_attr('ituran.skodakodiak', 'lat') }},{{ state_attr('ituran.skodakodiak', 'lon') }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ state_attr('ituran.skodakodiak', 'lat') }},{{ state_attr('ituran.skodakodiak', 'lon') }}&key=AIzaSyAs1SYji-6uXmQTbm0qSLHxPGarAwpbCTA
-#   limit_refetch_to_url_change: true

@@ -27,7 +27,7 @@ automation:
       - condition: template
         value_template: "{{ trigger.to_state.state != 'None' }}"
     action:
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data_template:
           title: 'בוצע נסיון כניסה שנכשל!'   #Failed login attempt!
           message: "{{ states.persistent_notification.http_login.attributes.message}}"
@@ -46,7 +46,7 @@ automation:
       - condition: template
         value_template: "{{ trigger.to_state.state != 'None' }}"
     action:
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data_template:
           title: 'אייפיי נחסם!'   #Failed login attempt!
           message: "{{ states.persistent_notification.ip_ban.attributes.message}}"

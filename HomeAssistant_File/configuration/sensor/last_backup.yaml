@@ -1,0 +1,4 @@
+- platform: command_line
+  name: Last Backup
+  command: cd /config/backup/hass/ && ls -lt | grep Backup | grep zip | head -n 1 | awk '{ print $9}'
+  scan_interval: 43200 #12 Hours

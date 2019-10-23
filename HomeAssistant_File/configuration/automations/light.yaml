@@ -1,0 +1,327 @@
+#################################################################
+#       הדלקה/כיבוי תאורה במדרגות בהתאם לשקיעה וזריחת השמש       #
+#################################################################
+
+  - alias: Lighting the light after sunset at eleven oclock
+    initial_state: 'on'  
+    trigger:
+      platform: time
+      at: '22:00:00'
+    action:
+    - service: light.turn_on
+      data_template:
+        entity_id: 
+        - light.stairs
+
+  - alias: Lights off after sunset
+    initial_state: 'on'  
+    trigger:
+      platform: time
+      at: '06:00:00'
+    action:
+    - service: light.turn_off
+      data_template:
+        entity_id: 
+        - light.stairs
+
+#################################################################
+#                     Sensor Xiaom                              #
+#################################################################
+  ## לחצן הפעלה במרפסת ##
+  - alias: 'Turn on lighting on the Smoking Balcony'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: smoking_balcony
+        event: 1002
+    action:
+      service: light.toggle
+      entity_id: light.balcony
+      
+
+   ## לחצן הפעלה מרפסת שירות
+  - alias: 'Turn on lighting on the Service balcony'
+    initial_state: 'on'
+    trigger:
+      platform: event
+      event_type: deconz_event
+      event_data:
+        id: balcony_laundry_switch
+        event: 1002
+    action:
+      service: light.toggle
+      entity_id: light.service_balcony
+
+
+#################################################################
+#                    חיישן תנועה מקלחת ראשית                    #
+#################################################################
+  - alias: Turn on lights miklahat based on montion
+    initial_state: 'on'  
+    trigger:
+    - entity_id: !secret binary_sensor_5
+      platform: state
+      to: 'on'
+    action:
+    - service: light.turn_on
+      entity_id: light.miklahat
+
+  - alias: Turn off lights miklahat based on montion
+    initial_state: 'on'  
+    trigger:
+      platform: state
+      entity_id: !secret binary_sensor_5
+      to: 'off'
+      for:
+        minutes: 2
+    action:
+    - service: light.turn_off
+      entity_id: light.miklahat
+
+
+#################################################################
+#                    חיישן תנועה מקלחת שלי                       #
+#################################################################
+  ### הקוד עבר לשליטה תחת Node Red ##
+  # - alias: Turn on lights parents based on montion
+  #   initial_state: 'on'
+  #   trigger:
+  #   - entity_id: !secret binary_sensor_7
+  #     platform: state
+  #     to: 'on'
+  #   action:
+  #   - service: light.turn_on
+  #     entity_id: light.parents_shower
+
+  # - alias: Turn off lights parents based on montion
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: state
+  #     entity_id: !secret binary_sensor_7
+  #     to: 'off'
+  #     for:
+  #       seconds: 30
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.parents_shower
+
+#################################################################
+#                     Good night                                #
+#################################################################
+      ##### הקוד עבר לשליטה על הזמגן המרכזי ###
+
+  # - alias: turn off lights on long press before sleep
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: event
+  #     event_type: xiaomi_aqara.click
+  #     event_data:
+  #       entity_id: binary_sensor.switch_158d0001f36255
+  #       click_type: long_click_press
+  #   action:
+  #     service: light.turn_off
+  #     entity_id: 
+  #       - light.guests_bathroom_switch
+  #       - light.prozdor
+  #       - light.miklahat
+  #       - light.laundry
+  #       - light.balcony
+  #       - light.service_balcony
+  #       - light.kitchen
+ 
+ 
+
+#################################################################
+#                     turn on with a single click               #
+#################################################################
+      ##### הקוד עבר לשליטה על הזמגן המרכזי #####
+
+  # - alias: turn on lights on single press
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: event
+  #     event_type: xiaomi_aqara.click
+  #     event_data:
+  #       entity_id: binary_sensor.switch_158d0001f36255
+  #       click_type: single
+  #   action:
+  #     service: light.turn_on
+  #     entity_id:
+  #       - light.guests_bathroom_switch
+  #       - light.prozdor
+  #       - light.miklahat
+  #       - light.laundry
+  #       - light.balcony
+  #       - light.service_balcony
+  #       - light.kitchen_strip_lamp
+
+#################################################################
+#          Turn off Air-Conditioner on double pres              #
+#################################################################
+
+      ##### הקוד עבר לשליטה על הזמגן המרכזי #####
+
+  # - alias: turn off ac on double press
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: event
+  #     event_type: xiaomi_aqara.click
+  #     event_data:
+  #       entity_id: binary_sensor.switch_158d0001f36255
+  #       click_type: double
+  #   action:
+  #   - service: switch.turn_off 
+  #     entity_id: 
+  #       - switch.ac_yakir
+        
+
+
+# #################################################################
+# #           הדלקת תאורה בזמן חופשה                                  #
+# #################################################################
+
+
+# ############      balcony        ##############################
+#   - alias: lighting on during vacation balcony
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '17:45:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.balcony
+
+#   - alias: lighting off during vacation balcony
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '17:52:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.balcony
+
+
+# ############      laundry        ##############################
+#   - alias: lighting on during vacation laundry
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:15:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.laundry
+
+#   - alias: lighting off during vacation laundry
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:20:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.laundry
+
+
+# ############      poop        ##############################
+#   - alias: lighting on during vacation poop
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:25:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.poop
+
+#   - alias: lighting off during vacation poop
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:28:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.poop
+
+
+# ############      miklahat        ##############################
+#   - alias: lighting on during vacation miklahat
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '19:35:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.miklahat
+
+#   - alias: lighting off during vacation miklahat
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '19:40:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.miklahat
+    
+
+# ############      strip        ##############################
+#   - alias: lighting on during vacation strip
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '19:35:00'
+#     action:
+#     - service: light.turn_on
+#       data_template:
+#         entity_id: 
+#         - light.light.yeelight_strip_7c49ebadb95c
+
+#   - alias: lighting off during vacation strip
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '22:28:00'
+#     action:
+#     - service: light.turn_off
+#       data_template:
+#         entity_id: 
+#         - light.light.yeelight_strip_7c49ebadb95c
+
+
+# ############      tv        ##############################
+#   - alias: tv on during vacation tv
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '18:35:00'
+#     action:
+#     - service: switch.turn_on
+#       data_template:
+#         entity_id: 
+#         - switch.tv_lg
+
+#   - alias: tv off during vacation tv
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '22:30:00'
+#     action:
+#     - service: switch.turn_off
+#       data_template:
+#         entity_id: 
+#         - switch.tv_lg

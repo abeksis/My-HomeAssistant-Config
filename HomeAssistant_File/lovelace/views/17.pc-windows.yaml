@@ -1,0 +1,684 @@
+- title: Windows
+  path: windows
+  icon: mdi:windows    
+  cards:
+  
+  #################################################################
+  #                                                               #
+  #  Windows OBS                                                  #
+  #                                                               #
+  #################################################################
+    - type: vertical-stack
+      cards:    
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Windows OBS" 
+  
+        - type: horizontal-stack
+          cards:
+            - type: custom:card-modder
+              card:
+                type: picture
+                image: /local/lovelace/settings/windows_liran_2.jpg
+              style:                 
+                border-radius: 5px
+  
+        - type: custom:bar-card
+          align: split
+          show_icon: true
+          padding: 4px
+          columns: 2
+          max: 85
+          card_style: 
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+            }
+          entities:
+            - entity: sensor.windows_obs_hdd_total_free_space_c
+              title: Disk Free
+              icon: mdi:harddisk
+              severity:
+              - value: 10
+                color: '#bf4040'
+              - value: 30
+                color: '#1db954'
+              unit_of_measurement: 'GB'
+  
+            - entity: sensor.windows_obs_ram_usage
+              title: RAM Usage
+              icon: mdi:memory
+              severity:
+              - value: 35
+                color: '#bf4040'
+              - value: 85
+                color: '#1db954'
+  
+        - type: custom:bar-card
+          align: split
+          show_icon: true
+          padding: 4px
+          columns: 2
+          max: 6800
+          card_style: 
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+            }
+          entities:
+            - entity: sensor.windows_obs_ram_used
+              title: Ram Used
+              icon: mdi:memory
+              severity:
+              - value: 2000
+                color: '#bf4040'
+              - value: 4000
+                color: '#bf9540'
+              - value: 6800
+                color: '#40bf40'                      
+            - entity: sensor.windows_obs_cpu_usage
+              title: CPU Usage
+              icon: mdi:thermometer
+              severity:
+              - value: 10
+                color: '#bf4040'
+              - value: 100
+                color: '#1db954'
+  
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Control Buttons Liran"
+            
+        ## Reboot PC  
+        - type: horizontal-stack
+          cards:                          
+            - type: 'custom:card-modder'
+              style:
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 60px 
+                padding: 1%
+                font-size: 13px 
+              card:
+                type: custom:button-card
+                entity: script.my_computer_reboot_obs
+                name: 'Reboot PC'
+                icon: 'mdi:power'
+                color_type: card
+                show_state: false
+                show_label: false
+                size: 30px
+                style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }                 
+  
+        ## Screenshot
+        - type: horizontal-stack
+          cards: 
+            - type: 'custom:card-modder'
+              style: |
+                ha-card {
+                  background: var(--card-color-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  color: var(--name-color-off);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                } 
+              card:
+                name: 'screen'
+                type: entity-button
+                icon: 'mdi:tooltip-image-outline'
+                hold_action: 
+                  action: more-info
+                entity: camera.windows_10_obs_screen_0                 
+                style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  } 
+
+            ## Wake PC 
+            - type: 'custom:card-modder'
+              style: |
+                ha-card {
+                  background: var(--card-color-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  color: var(--name-color-off);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }             
+              card:
+                name: 'Wake PC'
+                type: entity-button
+                icon: 'mdi:lan-connect'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_wake_obs
+                style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }
+
+
+            ## Lock PC   
+            - type: 'custom:card-modder'
+              style: |
+                ha-card {
+                  background: var(--card-color-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  color: var(--name-color-off);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }             
+              card:
+                name: 'Lock PC'
+                type: entity-button
+                icon: 'mdi:lock-reset'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_lock_obs
+                style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }
+
+
+            ## Logoff PC    
+            - type: 'custom:card-modder'
+              style: |
+                ha-card {
+                  background: var(--card-color-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  color: var(--name-color-off);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }            
+              card:
+                name: 'Logoff PC'
+                type: entity-button
+                icon: 'mdi:account-off-outline'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_logoff_obs
+                style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }  
+  
+  #################################################################
+  #                                                               #
+  #   Windows Yakir                                               #
+  #                                                               #
+  #################################################################
+    - type: vertical-stack
+      cards:    
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Windows Yakir"
+        - type: horizontal-stack
+          cards:
+            - type: custom:card-modder
+              card:
+                type: picture
+                image: /local/lovelace/settings/windows_10_yakir.jpg
+              style:                 
+                border-radius: 5px
+  
+        - type: custom:bar-card
+          align: split
+          show_icon: true
+          padding: 4px
+          columns: 2
+          max: 220
+          card_style: 
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+            }
+          entities:
+            - entity: sensor.windows_10_yakir_hdd_total_free_space_c
+              title: Disk Free
+              icon: mdi:harddisk
+              severity:
+              - value: 150
+                color: '#bf4040'
+              - value: 220
+                color: '#1db954'
+              unit_of_measurement: 'GB'
+
+            - entity: sensor.windows_10_yakir_ram_usage
+              title: RAM Usage
+              icon: mdi:memory
+              severity:
+              - value: 20
+                color: '#bf4040' 
+              - value: 71
+                color: '#1db954'
+  
+        - type: custom:bar-card
+          align: split
+          show_icon: true
+          padding: 4px
+          columns: 2
+          max: 6000
+          card_style: 
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+            }
+          entities:
+            - entity: sensor.windows_10_yakir_ram_used
+              title: Ram Used
+              icon: mdi:memory
+              severity:
+              - value: 2000
+                color: '#bf4040'
+              - value: 6000
+                color: '#1db954'                
+            - entity: sensor.windows_10_yakir_cpu_usage
+              title: CPU Usage
+              icon: mdi:thermometer
+              severity:
+              - value: 55
+                color: '#bf4040'
+              - value: 8
+                color: '#1db954'
+  
+  
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Control Buttons Yakir"
+  
+  
+        - type: horizontal-stack
+          cards:                          
+            - type: 'custom:card-modder'
+              style:
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 60px 
+                padding: 1%
+                font-size: 13px  
+              card:
+                type: custom:button-card
+                entity: script.my_computer_reboot_yakir
+                name: 'Reboot PC'
+                icon: 'mdi:power'
+                color_type: card
+                show_state: false
+                show_label: false
+                size: 30px
+                styles:
+                  card:
+                    - background-color: '[[background_color]]'                 
+  
+  
+        - type: horizontal-stack
+          cards: 
+            - type: 'custom:card-modder'
+              style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }           
+              card:
+                name: 'screen '
+                type: entity-button
+                icon: 'mdi:tooltip-image-outline'
+                hold_action: 
+                  action: more-info
+                entity: camera.windows_10_yakir_screen_0                
+                style: |
+                    ha-card {
+                      background: var(--card-color-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }  
+  
+            - type: 'custom:card-modder'
+              style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }            
+              card:
+                name: 'Wake PC'
+                type: entity-button
+                icon: 'mdi:lan-connect'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_wake_yakir
+                style: |
+                    ha-card {
+                      background: var(--card-color-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }                
+
+            #####   
+            - type: 'custom:card-modder'
+              style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }            
+              card:
+                name: 'Lock PC'
+                type: entity-button
+                icon: 'mdi:lock-reset'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_lock_yakir
+                style: |
+                    ha-card {
+                      background: var(--card-color-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }
+
+            
+            ##### 
+            - type: 'custom:card-modder'
+              style: |
+                ha-card {
+                  background: var(--card-color-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  color: var(--name-color-off);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                }             
+              card:
+                name: 'Logoff PC'
+                type: entity-button
+                icon: 'mdi:account-off-outline'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_logoff_yakir
+                style: |
+                    ha-card {
+                      background: var(--card-color-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }  
+                                      
+      
+  #################################################################
+  #                                                               #
+  #   Windows Vm                                                  #
+  #                                                               #
+  #################################################################
+    - type: vertical-stack
+      cards:    
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Windows Vm"
+        - type: horizontal-stack
+          cards:
+            - type: custom:card-modder
+              card:
+                type: picture
+                image: /local/lovelace/settings/vm-windows-10.png
+              style:                 
+                border-radius: 5px
+  
+        - type: custom:bar-card
+          align: split
+          show_icon: true
+          padding: 4px
+          columns: 2
+          max: 60
+          card_style: 
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+            }
+          entities:
+            - entity: sensor.windows_10_vm_hdd_total_free_space_c
+            
+              title: Disk Free
+              icon: mdi:harddisk
+              severity:
+              - value: 15
+                color: '#1db954'
+              - value: 7
+                color: '#bf9540'
+              - value: 3
+                color: '#bf4040'
+              unit_of_measurement: 'GB'
+              
+              
+            - entity: sensor.windows_10_vm_ram_usage
+              title: RAM Usage
+              icon: mdi:memory
+              severity:
+              - value: 15
+                color: '#bf4040'
+              - value: 65
+                color: '#1db954'
+  
+        - type: custom:bar-card
+          align: split
+          show_icon: true
+          padding: 4px
+          columns: 2
+          max: 6000
+          card_style: 
+          style: |
+            ha-card {
+              background: var(--card-color-off);
+              --paper-item-icon-color: var(--icon-color-off);
+              color: var(--name-color-off);
+              border-radius: {{ states('input_select.border_radius') }};
+              box-shadow: {{ states('input_select.box_shadow') }};
+            }
+          entities:
+            - entity: sensor.windows_10_vm_ram_used
+              title: Ram Used
+              icon: mdi:memory
+              severity:
+              - value: 3100
+                color: '#bf4040'
+              - value: 6000
+                color: '#1db954'                  
+              unit_of_measurement: 'MB'
+            - entity: sensor.windows_10_vm_cpu_usage
+              title: CPU Usage
+              icon: mdi:thermometer
+              severity:
+              - value: 8
+                color: '#bf4040'
+              - value: 55
+                color: '#1db954'
+  
+  
+        - type: custom:decluttering-card
+          template: title_template
+          variables:
+            - content: "Control Buttons VM"
+  
+        - type: horizontal-stack
+          cards:                          
+            - type: 'custom:card-modder'
+              style:
+                border-radius: 5px   
+                box-shadow: 2px 2px rgba(0,0,0,0.3)    
+                height: 60px 
+                padding: 1%
+                font-size: 13px
+              card:
+                type: custom:button-card
+                entity: script.my_computer_reboot_vm
+                name: 'Reboot PC'
+                icon: 'mdi:power'
+                color_type: card
+                show_state: false
+                show_label: false
+                size: 30px
+                styles:
+                  card:
+                    - background-color: '[[background_color]]'
+   
+  
+        - type: horizontal-stack
+          cards: 
+            - type: 'custom:card-modder'
+              style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }           
+              card:
+                name: 'screen'
+                type: entity-button
+                icon: 'mdi:tooltip-image-outline'
+                hold_action: 
+                  action: more-info
+                entity: camera.windows_10_vm_screen_0                 
+                style: |
+                    ha-card {
+                      background: var(--card-color-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }  
+  
+            - type: 'custom:card-modder'
+              style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }            
+              card:
+                name: 'Wake PC'
+                type: entity-button
+                icon: 'mdi:lan-connect'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_wake_vm 
+                style: |
+                    ha-card {
+                      background: var(--card-color-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }                
+  
+            - type: 'custom:card-modder'
+              style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }             
+              card:
+                name: 'Lock PC'
+                type: entity-button
+                icon: 'mdi:lock-reset'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_lock_vm
+                style: |
+                    ha-card {
+                      background: var(--card-color-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }                
+  
+            - type: 'custom:card-modder'
+              style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }            
+              card:
+                name: 'Logoff PC'
+                type: entity-button
+                icon: 'mdi:account-off-outline'
+                tap_action:
+                  action: toggle
+                entity: script.my_computer_logoff_vm
+                style: |
+                  ha-card {
+                    background: var(--card-color-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: {{ states('input_select.border_radius') }};
+                    box-shadow: {{ states('input_select.box_shadow') }};
+                  }

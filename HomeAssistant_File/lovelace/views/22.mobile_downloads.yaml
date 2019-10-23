@@ -1,0 +1,42 @@
+- title: Downloads
+  path:  downloads
+  cards:    
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Energy
+            - icon1: mdi:flash
+            - path1: energy
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Download Center'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Speed Test'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: entities
+              style: |
+                ha-card {
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  opacity: 0.8;
+                  font-size: 13px;
+                  font-family: Helvetica;
+                }
+              entities:
+                - entity: sensor.speedtest_download
+                  icon: 'mdi:download'
+                  name: SpeedTest Download
+                - entity: sensor.speedtest_ping
+                  icon: 'mdi:format-list-bulleted'
+                  name: SpeedTest Ping
+                - entity: sensor.speedtest_upload
+                  icon: 'mdi:upload'
+                  name: SpeedTest upload
+            - !include ../includes/blank-card.yaml

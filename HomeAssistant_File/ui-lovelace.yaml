@@ -4,49 +4,18 @@ resources:
 #################################################################
 #  Templates                                                    #
 #################################################################
-
-#For Samsung Notte design / עיצוב סמסונג 
 decluttering_templates:
-  !include lovelace/decluttering_templates/decluttering_templates.yaml
-
+  !include_dir_named lovelace/templates
   
+
 #################################################################
 #  CCH Custom Header                                            #
 #################################################################
 cch:
   !include lovelace/cch/compact-custom-header.yaml 
- 
+
+
 title: Home
 background: var(--background-image)
 views:
-  - !include lovelace/views/home.yaml
-  - !include lovelace/views/security.yaml
-  - !include lovelace/views/downstairs.yaml
-  - !include lovelace/views/electricity.yaml
-  - !include lovelace/views/car.yaml
-  - !include lovelace/views/second_floor.yaml 
-  - !include lovelace/views/server.yaml 
-  - !include lovelace/views/things_status.yaml
-  - !include lovelace/views/camera.yaml 
-  - !include lovelace/views/windows.yaml
-  - !include lovelace/views/remote.yaml
-  - !include lovelace/views/ipad_control.yaml
-  - !include lovelace/views/battery.yaml
-  - !include lovelace/views/samasung.yaml  
-  - !include lovelace/views/samasung_security.yaml  
-  - !include lovelace/views/samasung_light.yaml
-  - !include lovelace/views/samasung_main_menu.yaml  
-  - !include lovelace/views/samasung_vacuum.yaml
-  - !include lovelace/views/samasung_themes.yaml
-  - !include lovelace/views/samasung_energy.yaml
-  - !include lovelace/views/samasung_notifications.yaml  
-  - !include lovelace/views/samasung_downloads.yaml
-  - !include lovelace/views/samasung_currently_on.yaml
-  - !include lovelace/views/samasung_location.yaml 
-  - !include lovelace/views/samasung_remote.yaml
-  - !include lovelace/views/samasung_devices.yaml
-  - !include lovelace/views/samasung_ha_statistics.yaml
-  - !include lovelace/views/samasung_car.yaml
-  - !include lovelace/views/samasung_calendar.yaml
-  - !include lovelace/views/samasung_weather.yaml
-  - !include lovelace/views/samasung_laundry.yaml
+  !include_dir_merge_list lovelace/views/

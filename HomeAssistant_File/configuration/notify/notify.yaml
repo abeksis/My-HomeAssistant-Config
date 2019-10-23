@@ -1,0 +1,14 @@
+## Telegram Avi
+  - name: Avi_Telegram
+    platform: telegram
+    chat_id: !secret telgram_avi
+
+## Telegram Nurit     
+  - name: Nurit_Telegram
+    platform: telegram
+    chat_id: !secret telgram_nurit   
+
+## Nurit_iPhone ##
+  # - platform: ios
+  #   name: iOSApp
+  #   target: !secret iOSAppnuritTarget

@@ -52,10 +52,15 @@ group:
 
 device_tracker:
 
-  - platform: luci
+  # - platform: luci
+  #   host: 192.168.1.1
+  #   track_new_devices: true
+  #   interval_seconds: 15     
+  #   username: !secret openwrt_username
+  #   password: !secret openwrt_password 
+
+  - platform: ubus
     host: 192.168.1.1
-    track_new_devices: true
-    interval_seconds: 15     
     username: !secret openwrt_username
     password: !secret openwrt_password 
 
@@ -176,9 +181,9 @@ binary_sensor:
         value_template: "{{ is_state('device_tracker.xtreamer_whizz', 'home') }}"
         icon_template: >-
           {% if is_state('device_tracker.xtreamer_whizz', 'home') %}
-            fas:film
+            mdi:movie-open-outline
           {% else %}
-            fas:film
+            mdi:movie-open-outline
           {% endif %}
           
       unriad:
@@ -188,14 +193,14 @@ binary_sensor:
         value_template: "{{ is_state('device_tracker.unriad', 'home') }}"
         icon_template: >-
           {% if is_state('device_tracker.unriad', 'home') %}
-            fas:server
+            mdi:server
           {% else %}
-            fas:server
+            mdi:server
           {% endif %}
           
           
       google_home_mini:
-        friendly_name: Alexa
+        friendly_name: Google Mini
         device_class: connectivity
         entity_id: device_tracker.google_home_mini
         value_template: "{{ is_state('device_tracker.google_home_mini', 'home') }}"
@@ -266,9 +271,9 @@ binary_sensor:
         value_template: "{{ is_state('device_tracker.ipad', 'home') }}"
         icon_template: >-
           {% if is_state('device_tracker.ipad', 'home') %}
-            fas:tablet-alt
+            mdi:tablet-ipad
           {% else %}
-            fas:tablet-alt
+            mdi:tablet-ipad
           {% endif %} 
           
           
@@ -591,7 +596,7 @@ automation:
       entity_id: sensor.cpu_temp
       above: 40
     action:
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: 'Home Assistant CPU Temp Server'
           message: 'Warning - HA Server CPU Temp Above 40c'
@@ -604,7 +609,7 @@ automation:
       entity_id: sensor.speedtest_download
       below: 90
     action:
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: 'Home Assistant Unraid Server'
           message: 'Warning - ISP Download Speed is lower then 90Mbps'
@@ -618,7 +623,7 @@ automation:
   #     entity_id: sensor.home_assistant_v2_db
   #     above: 800
   #   action:
-  #     - service: notify.avitelegram
+  #     - service: notify.avi_telegram
   #       data:
   #         title: 'Home Assistant Database'
   #         message: 'Warning - Database is Use is above 800mb'

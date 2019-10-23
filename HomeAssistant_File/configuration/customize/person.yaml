@@ -1,0 +1,8 @@
+# Person
+person.avi:
+  entity_picture: !secret person_1_picture
+  friendly_name: !secret person_1_friendly_name 
+
+person.nurit:
+  entity_picture: !secret person_2_picture
+  friendly_name: !secret person_2_friendly_name 

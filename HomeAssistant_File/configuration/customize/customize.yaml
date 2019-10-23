@@ -1,0 +1,83 @@
+#################################################################
+#                New Customize Arrangement                      #
+#################################################################
+
+# Date/Time Home-Assistant
+sensor.date_time:
+  friendly_name: Date Aׁnd Time
+  icon: mdi:calendar-clock
+
+sensor.date:
+  friendly_name: Date
+  icon: mdi:calendar-range
+
+sensor.time:
+  friendly_name: Time
+  icon: mdi:clock-outline
+  
+sun.sun:
+  friendly_name: The state of the sun
+  assumed_state: false
+
+
+# General - Home-Assistant
+automation.startup_notification:
+  friendly_name: Home Assistant Works
+  icon: mdi:home-assistant
+  assumed_state: false  
+
+automation.lighting_the_light_after_sunset_at_eleven_oclock:
+  friendly_name: Lighting at sunset
+  icon: mdi:white-balance-sunny
+  homebridge_hidden: true
+
+automation.lights_off_after_sunset:
+  friendly_name: Turning off lighting at sunrise
+  icon: mdi:brightness-6
+  homebridge_hidden: true 
+  
+# Smart socket
+switch.sh20_pow: 
+  friendly_name: Camera ON/Off
+  icon: mdi:power-socket-au
+       
+
+# Devices
+switch.yes_dvr_button:
+  friendly_name: TV LG
+  icon: mdi:television
+
+
+# Xiaomi - Buttons Switch
+binary_sensor.switch_158d0001f36255:
+  friendly_name: Good night Button
+  icon: mdi:shower
+
+binary_sensor.switch_158d000224231e:
+  friendly_name: Lighting the balcony
+  icon: mdi:tshirt-crew
+
+binary_sensor.switch_158d0001f3ddfd:
+  friendly_name: Smoking Balcony
+  icon: mdi:smoking
+
+# Xiaomi - Buttons Door Window Sensors
+binary_sensor.door_window_sensor_158d0002ea0754:
+  friendly_name: Washing Machine
+  device_class: door 
+  icon: mdi:washing-machine 
+  
+binary_sensor.door_window_sensor_158d0002ea9896:
+  friendly_name: Laundry Dryer
+  device_class: door 
+  icon: mdi:tumble-dryer   
+
+binary_sensor.door_window_sensor_158d0002ea866a:
+  friendly_name: Air Conditioner Yakir door
+  device_class: door 
+  icon: mdi:air-conditioner  
+  
+# Xiaomi - Geteway
+sensor.illumination_34ce008d4e2e:
+  friendly_name: Geteway light intensity
+  icon: mdi:weather-sunse  

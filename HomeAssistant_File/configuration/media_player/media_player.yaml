@@ -1,0 +1,29 @@
+  # kodi
+  - platform: kodi
+    host: 192.168.1.22             
+    port: 8080
+    username: !secret kodi_username
+    password: !secret kodi_password
+
+  # TV Living Room
+  - platform: webostv
+    host: 192.168.1.4
+    name: Living Room TV
+    filename: webostv.conf
+    timeout: 5
+    turn_on_action:
+      service: persistent_notification.create
+      data:
+        message: "Turn on action"
+    customize:
+      sources:
+        - livetv
+        - youtube
+        - makotv
+        - netflix  
+        
+  # spotify
+  - platform: spotify
+    name: Spotify
+    client_id: !secret spotify_id
+    client_secret: !secret spotify_secret

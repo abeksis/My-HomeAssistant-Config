@@ -1,0 +1,23 @@
+- title: Nurit
+  path:  nurit
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: PostNL
+            - icon1: mdi:package-variant-closed
+            #- path1: postnl-nurit
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Nurit Schings'
+        - type: custom:decluttering-card
+          template: person-more-info
+          variables:
+            - name: nurit
+            - name-s: Nurit's
+            - emailsensor: !secret nuritsensor
+            - sensor_battery_state: sensor.life360_nurit_battery
+            - sensor_battery_level: sensor.battery_level

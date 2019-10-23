@@ -1,0 +1,13 @@
+# Daily Home Assistant Backup
+- alias: 'Daily Home Assistant Backup'
+  initial_state: 'on'
+  trigger:
+    platform: time
+    at: '02:00:00'
+  action:
+    - service: script.turn_on
+      entity_id: script.backup_ha_and_move_backup_to_unraid
+    - service: notify.avi_telegram
+      data:
+        title: 'הודעת גיבוי'
+        message: 'הגיבוי השבועי בוצע, בדוק תקינות הקבצים בשרת הנפרד.'

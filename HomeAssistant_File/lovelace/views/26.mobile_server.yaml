@@ -1,0 +1,295 @@
+- title: server
+  path:  m_server
+  cards:    
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Remote
+            - icon1: mdi:remote
+            - path1: remote
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Server Status'
+        - type: custom:swipe-card
+          parameters:
+            effect: 'coverflow'
+            grabCursor: true
+          cards:
+            - type: vertical-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '#### Speed Test'
+                - !include ../includes/blank-card.yaml
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: glance
+                      style: |
+                        ha-card {
+                          background: var(--card-color-off);
+                          --paper-item-icon-color: var(--icon-color-off);
+                          color: var(--name-color-off);
+                          border-radius: {{ states('input_select.border_radius') }};
+                          {{ states('input_select.box_shadow') }};
+                          font-family: Helvetica;
+                          font-size: 13px;
+                          opacity: 0.8;
+                        }
+                      columns: 3
+                      entities:
+                        - entity: sensor.speedtest_download
+                          icon: 'mdi:download'
+                          name: Speed
+                        - entity: sensor.speedtest_upload
+                          icon: 'mdi:upload'
+                          name: Upload
+                        - entity: sensor.speedtest_ping
+                          icon: 'mdi:finance'
+                          name: Ping
+                    - !include ../includes/blank-card.yaml 
+     
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '##### Hard Disk Temp'
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: entities
+                      style: |
+                        ha-card {
+                          background: var(--card-color-off);
+                          --paper-item-icon-color: var(--icon-color-off);
+                          color: var(--name-color-off);
+                          border-radius: {{ states('input_select.border_radius') }};
+                          box-shadow: {{ states('input_select.box_shadow') }};
+                          font-family: Helvetica;
+                          font-size: 13px;
+                          opacity: 0.8;
+                          overflow: hidden;
+                        }
+                      entities:
+                        - entity: sensor.hdd_sde_temp
+                          name: Parity
+                        - entity: sensor.hdd_sdd_temp
+                          name: Disk 1
+                        - entity: sensor.hdd_sdh_temp
+                          name: Disk 2
+                        - entity: sensor.hdd_sdb_temp
+                          name: Disk 3
+                        - entity: sensor.hdd_sdc_temp
+                          name: Disk 4
+                    - !include ../includes/blank-card.yaml             
+
+            - type: vertical-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '##### Unraid Uptime'
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: 'custom:bar-card'
+                      style: |
+                        ha-card {
+                          background: var(--card-color-off);
+                          --paper-item-icon-color: var(--icon-color-off);
+                          color: var(--name-color-off);
+                          border-radius: {{ states('input_select.border_radius') }};
+                          box-shadow: {{ states('input_select.box_shadow') }};
+                          font-size: 13px;
+                          opacity: 0.7;
+                        }                    
+                      title_position: inside
+                      padding: 2px
+                      icon_position: left
+                      columns: 1
+                      entities:
+                        - entity: sensor.uptime_unraid
+                          title: Uptime
+                          icon: mdi:clock
+                    - !include ../includes/blank-card.yaml
+
+
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '#### Unraid Server info'
+                - !include ../includes/blank-card.yaml
+
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+ 
+                    - type: 'custom:bar-card'
+                      style: |
+                        ha-card {
+                          background: var(--card-color-off);
+                          --paper-item-icon-color: var(--icon-color-off);
+                          color: var(--name-color-off);
+                          border-radius: {{ states('input_select.border_radius') }};
+                          box-shadow: {{ states('input_select.box_shadow') }};
+                          font-size: 13px;
+                          opacity: 0.7;
+                        }
+                      align: split
+                      max: 100
+                      min: 0
+                      padding: 2px
+                      icon_position: left
+                      title_position: inside
+                      unit_of_measurement: 'c'
+                      columns: 1
+                      entities:
+                        - entity: sensor.ssd_usage
+                          icon: mdi:harddisk
+                          title: Disk                        
+                          severity:
+                          - value: 50
+                            color: '#40bf40'
+                          - value: 80
+                            color: '#ffde00'
+                          - value: 100
+                            color: '#bf4040'           
+                        - entity: sensor.memory_use_percent
+                          icon: mdi:memory
+                          title: RAM                        
+                          severity:
+                          - value: 50
+                            color: '#40bf40'
+                          - value: 80
+                            color: '#ffde00'
+                          - value: 100
+                            color: '#bf4040'
+                        - entity: sensor.processor_use
+                          icon: mdi:cpu-64-bit
+                          title: CPU                        
+                          severity:
+                          - value: 50
+                            color: '#40bf40'
+                          - value: 80
+                            color: '#ffde00'
+                          - value: 100
+                            color: '#bf4040'                  
+                        - entity: sensor.cpu_temp
+                          icon: mdi:thermometer
+                          title: Temp                        
+                          severity:
+                          - value: 50
+                            color: '#40bf40'
+                          - value: 80
+                            color: '#ffde00'
+                          - value: 100
+                            color: '#bf4040'
+                    - !include ../includes/blank-card.yaml                    
+     
+            - type: vertical-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '#### HP Server Uptime'
+                - !include ../includes/blank-card.yaml
+
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: 'custom:bar-card'
+                      style: |
+                        ha-card {
+                          background: var(--card-color-off);
+                          --paper-item-icon-color: var(--icon-color-off);
+                          color: var(--name-color-off);
+                          border-radius: {{ states('input_select.border_radius') }};
+                          box-shadow: {{ states('input_select.box_shadow') }};
+                          font-size: 13px;
+                          opacity: 0.7;
+                        }                    
+                      title_position: inside
+                      padding: 2px
+                      icon_position: left
+                      columns: 1
+                      entities:
+                        - entity: sensor.hp_server_uptime
+                          title: Uptime
+                          icon: mdi:clock
+                    - !include ../includes/blank-card.yaml                    
+
+
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '##### HP Server Info'
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: 'custom:bar-card'
+                      style: |
+                        ha-card {
+                          background: var(--card-color-off);
+                          --paper-item-icon-color: var(--icon-color-off);
+                          color: var(--name-color-off);
+                          border-radius: {{ states('input_select.border_radius') }};
+                          box-shadow: {{ states('input_select.box_shadow') }};
+                          opacity: 0.7;
+                        }
+                      align: split
+                      max: 100
+                      min: 0
+                      padding: 2px
+                      icon_position: left
+                      title_position: inside
+                      unit_of_measurement: '%'
+                      columns: 1
+                      entities:
+                        - entity: sensor.hp_server_system_cpu
+                          title: CPU
+                          icon: mdi:memory
+                          unit_of_measurement: '%'
+                          severity:
+                          - value: 10
+                            color: '#1db954'
+                          - value: 20
+                            color: '#bf9540'
+                          - value: 45
+                            color: '#bf4040'
+                        - entity: sensor.hp_ssd_usage
+                          title: Disk Used              
+                          icon: mdi:harddisk
+                          unit_of_measurement: '%'                
+                          severity:
+                          - value: 50
+                            color: '#40bf40'
+                          - value: 80
+                            color: '#ffde00'
+                          - value: 100
+                            color: '#bf4040'
+                        - entity: sensor.hp_server_mem_free
+                          icon: mdi:memory
+                          title: Mem Free
+                          unit_of_measurement: '%'
+                          severity:
+                          - value: 10
+                            color: '#1db954'
+                          - value: 15
+                            color: '#bf9540'
+                          - value: 20
+                            color: '#bf4040'
+                        - entity: sensor.hp_server_mem_used
+                          icon: mdi:memory              
+                          title: Mem used
+                          unit_of_measurement: '%'
+                          severity:
+                          - value: 10
+                            color: '#1db954'
+                          - value: 15
+                            color: '#bf9540'
+                          - value: 20
+                            color: '#bf4040'                            
+                    - !include ../includes/blank-card.yaml                      

@@ -80,42 +80,13 @@ group:
 #                                                               #
 #################################################################
 automation:
-  - alias: frontdoor_snapshot
-    initial_state: 'on'
-    trigger:
-      platform: state
-      entity_id: 'binary_sensor.door_window_sensor_158d0001ef3425'
-      to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: 'device_tracker.avi_avi'
-          state: 'not_home'
-        - condition: state
-          entity_id: 'device_tracker.nurit_iphone' # מכוון לספק מידע דרך הראוטר - אמין יותר בשביל 
-          state: 'not_home'
-    action:
-      - service: camera.snapshot
-        data:
-          entity_id: camera.front_door
-          filename: "/config/tmp/front_house_{{ now().year }}_{{ now().month }}_{{ now().day }}_{{ now().hour }}_{{ now().minute }}.jpg"
-      - service: notify.avitelegram
-        data:
-          title: "Home Aׁssistant"
-          message: "מישהו לא מורשה פתח את הדלת"
-          data:
-            photo:
-              - file: "/config/tmp/front_house_{{ now().year }}_{{ now().month }}_{{ now().day }}_{{ now().hour }}_{{ now().minute }}.jpg"
-                capture: Front House Camera              
-
-
 ########################### 
+
   - alias: 'turn off xiaomi dafang camera if nurit at home'
     initial_state: 'on'
     trigger:
       platform: state
-      entity_id: device_tracker.nurit_iphone
+      entity_id: person.nurit #device_tracker.nurit_iphone
       to: 'home'
       for:
         minutes: 1
@@ -124,30 +95,32 @@ automation:
       - service: switch.turn_off
         entity_id: switch.sh20_pow
 
-      - service: notify.mobile_app_nurit_iphone
+      - service: notify.nurit_telegram
         data:
-          title: "אבטחה"
-          message: 'ברוכה הבאה נורית, המצלמה כבויה'
+          title: "בית חכם"
+          message: 'ברוכה הבאה נורית, המצלמה לא פעילה'
 
 
 ##########################          
+
   - alias: 'turn on xiaomi dafang camera if nurit not at home'
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: device_tracker.nurit_iphone
+        entity_id: person.nurit #device_tracker.nurit_iphone
         to: 'not_home'
         for:
           minutes: 1
     action:
       - service: switch.turn_on
         entity_id: switch.sh20_pow
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
-          title: "Home Aׁssistant"
-          message: 'נורית לא בבית, המצלמה דולקת'
+          title: "בית חכם"
+          message: 'נורית לא בבית המצלמה פעילה'
               
 ########################## 
+
   - alias:  'turn off xiaomi dafang camera if morning and we are at home'
     initial_state: 'on'
     trigger:
@@ -163,13 +136,19 @@ automation:
     action:
       - service: homeassistant.turn_off
         entity_id: switch.sh20_pow
-      - service: notify.avitelegram
+
+      - service: notify.avi_telegram
         data:
-          title: "Home Aׁssistant"
-          message: 'אתם בבית - המצלמה נסגרה, אין צורך '        
+          title: "בית חכם"
+          message: 'אתם בבית, המצלמה כבויה'        
+
+      - service: notify.nurit_telegram
+        data:
+          title: "בית חכם"
+          message: 'אתם בבית המצלמה כבויה'        
 
 
-    #########################  Camera  ##########################        
+    #########################  23:00 OFF  ##########################        
 
   - alias: turn on xiaomi camera in 23:00
     initial_state: 'on'  
@@ -185,11 +164,15 @@ automation:
       - service: homeassistant.turn_on
         entity_id: switch.sh20_pow
         
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
-          title: "Home Aׁssistant"  
-          message: 'השעה 23:00 המצלמות דולקות'
+          title: "בית חכם"  
+          message: 'השעה 23:00 המצלמה דולקת'
 
+      - service: notify.nurit_telegram
+        data:
+          title: "בית חכם"  
+          message: 'השעה 23:00 המצלמה דולקת'
           
 
 # ##########################          
@@ -197,7 +180,7 @@ automation:
 #     initial_state: 'on'
 #     trigger:
 #       - platform: state
-#         entity_id: device_tracker.life360_avi_abeksis
+#         entity_id: person.avi
 #         to: 'not_home'
 #         for:
 #           minutes: 1
@@ -205,7 +188,7 @@ automation:
 #       condition: and
 #       conditions:
 #         - condition: state
-#           entity_id: device_tracker.life360_avi_abeksis
+#           entity_id: person.avi
 #           state: 'not_home'
 #     action:
 #       - service: homeassistant.turn_on
@@ -225,7 +208,7 @@ automation:
 #       - service: homeassistant.turn_off
 #         entity_id: switch.sh20_pow 
 
-#       - service: notify.avitelegram
+#       - service: notify.avi_telegram
 #         data:
 #           title: "אבטחה"
 #           message: 'ברוך הבא אבי, המצלמה כבויה' 

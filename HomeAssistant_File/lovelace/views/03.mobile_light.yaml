@@ -1,0 +1,254 @@
+- title: Lights
+  path:  lights
+  icon: mdi:light-switch
+  popup_cards:
+    !include ../popup-cards/light-popup.yaml
+  cards:
+    - type: vertical-stack 
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Lights'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Floor Below'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret light_5
+                - name: !secret light_5_friendly_name
+                - icon: !secret light_2_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml  
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret light_2
+                - name: !secret light_2_friendly_name
+                - icon: !secret light_2_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+                    
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - size: 25%
+                - entity: !secret light_6
+                - name: !secret light_6_friendly_name
+                - icon: !secret light_6_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+                    
+            - !include ../includes/blank-card.yaml
+  
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button  
+              variables:
+                - entity: !secret light_4
+                - name: !secret light_4_friendly_name
+                - icon: !secret light_4_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml                    
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - size: 25%
+                - entity: !secret light_7
+                - name: !secret light_7_friendly_name
+                - icon: !secret light_7_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret light_10
+                - name: !secret light_10_friendly_name
+                - icon: !secret light_10_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+                    
+            - !include ../includes/blank-card.yaml
+  
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Room area'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - size: 25%
+                - entity: !secret light_9
+                - name: !secret light_9_friendly_name
+                - icon: !secret light_9_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+                    
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - size: 25%
+                - entity: !secret light_16
+                - name: !secret light_16_friendly_name
+                - icon: !secret light_16_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret light_1
+                - name: !secret light_1_friendly_name
+                - icon: !secret light_1_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+                    
+            - !include ../includes/blank-card.yaml
+  
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Balcony'
+  
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - size: 25%
+                - entity: !secret light_8
+                - name: !secret light_8_friendly_name
+                - icon: !secret light_8_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - size: 25%
+                - entity: !secret light_3
+                - name: !secret light_3_friendly_name
+                - icon: !secret light_3_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+  
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+  
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Stairs'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret light_11
+                - name: !secret light_11_friendly_name
+                - icon: !secret light_11_icon
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+  
+            #### Space
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+              
+            #### Space
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+  
+            - type: 'custom:button-card'
+              color_type: blank-card
+              styles:
+                card:
+                  - width: 10px
+  
+            - !include ../includes/blank-card.yaml
+  
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Second Floor'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret light_12
+                - name: !secret light_12_friendly_name
+                - icon: !secret light_12_icon
+                - size: 30%
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret light_14
+                - name: !secret light_14_friendly_name
+                - icon: !secret light_14_icon
+                - size: 30%
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+
+  
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: !secret light_13
+                - name: !secret light_13_friendly_name
+                - icon: !secret light_13_icon
+                - size: 30%
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+  
+        - type: 'custom:button-card'
+          color_type: blank-card
+          styles:
+            card:
+              - height: 10px    

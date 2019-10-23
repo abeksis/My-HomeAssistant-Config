@@ -235,104 +235,9 @@ automation:
          fan_speed: 100
 
 
-#################################################################
-#                   Set theme on startup                        #
-#################################################################
-
-  - alias: 'Set theme light at startup'
-    initial_state: 'true'
-    trigger:
-      - platform: homeassistant
-        event: start
-    condition:
-      condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    action:
-      service: frontend.set_theme
-      data:
-        name: Homekit Blue Light
-  
-  - alias: 'Set theme dark at startup'
-    initial_state: 'true'
-    trigger:
-      - platform: homeassistant
-        event: start
-    condition:
-      condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Blue Dark
-
-
-#################################################################
-#   Theme Selector Automations                                  #
-#################################################################
-
-
-  - alias: 'theme selector input_select 1'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Homekit Blue Dark'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Blue Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 2'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Homekit Blue Light'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Blue Light
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 3'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Midnight'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Midnight
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector  
-
-  - alias: 'theme selector input_select 4'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Automatic (default)'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Gray Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector          
-
-
-#################################################################
-#   Vacuum avitelegram                                          #
-#################################################################
+  #################################################################
+  #   Vacuum avitelegram                                          #
+  #################################################################
   
   - id: vacuum_cleaner_error
     alias: Vacuum Cleaner Error
@@ -347,7 +252,7 @@ automation:
         entity_id: vacuum.robovac
         to: 'Charging Error'
     action:
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: 'Roborock'
           message: >-
@@ -356,12 +261,12 @@ automation:
             {% else %}
               {{states.sensor.vacuum_cleaner_error_sensor.state}}
             {% endif %}
-
-
-#################################################################
-#   Vacuum step                                                 #
-#################################################################  
-
+  
+  
+  #################################################################
+  #   Vacuum step                                                 #
+  #################################################################  
+  
   - id: vacuum_cleaner_started
     alias: Vacuum Cleaner Started
     trigger:
@@ -381,7 +286,7 @@ automation:
         entity_id: vacuum.robovac
         to: 'idle'
     action:
-      - service: notify.avitelegram
+      - service: notify.avi_telegram
         data:
           title: 'Roborock'
           message: >-

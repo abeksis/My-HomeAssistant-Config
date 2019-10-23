@@ -1,0 +1,2 @@
+  ## Weather prediction https://www.home-assistant.io/integrations/yr/
+  - platform: yr

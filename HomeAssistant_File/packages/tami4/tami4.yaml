@@ -4,13 +4,6 @@
 #                                                               #
 #################################################################
 
-
-#################################################################
-#                                                               #
-#                          Customize                            #
-#                                                               #
-#################################################################
-
 #################################################################
 #                                                               #
 #                          Customize                            #
@@ -20,18 +13,18 @@
 homeassistant:
   customize:
     automation.auto_off_tami_4_in_night:
-      friendly_name: כיבוי תמי 4 בלילה
+      friendly_name: Tammy 4 shutdown at Night
       icon: mdi:cup-water
       home-assistant: true
 
     automation.turn_on_tami_4_in_mornning:
-      friendly_name: הפעלת תמי 4 בבוקר
+      friendly_name: Turning on Tammy 4 in the morning
       icon: mdi:cup-water
       home-assistant: true 
     
     
     switch.tami_4_power:
-      friendly_name: הפעלת תמי 4
+      friendly_name: ON/OFF Tammy 4
       icon: mdi:power-plug
       home-assistant: true 
 
@@ -42,7 +35,6 @@ homeassistant:
 #                                                               #
 #################################################################
 switch:
-
   - platform: mqtt
     name: "Tami 4 Power"
     state_topic: "stat/tami4_power/POWER"
@@ -77,7 +69,7 @@ automation:
       
   - id: Turn_on_Tami_4_in_Mornning
     initial_state: 'on'  
-    alias: 'Turn On Tami 4 In Mornning'
+    alias: 'Turn On tami 4 in Mornning'
     trigger:
       platform: time
       at: '05:45:00'
@@ -86,51 +78,3 @@ automation:
     - data:
         entity_id: switch.tami_4_power
       service: switch.turn_on
-
-
-
-  # - id: Auto_off_Tami_4_in_Night
-  #   initial_state: 'on'  
-  #   alias: 'Auto Off Tami 4 In Night'
-  #   trigger:
-  #     - entity_id: switch.service_out_light
-  #       from: 'off'
-  #       platform: state
-  #       to: 'on'
-  #   condition:
-  #     condition: time
-  #     after: '00:00:00'
-  #     before: '05:00:00'
-  #   action:
-  #   - service: timer.start
-  #     entity_id: timer.tami4
-      
-  # - alias: Tami_4_Timerstop
-  #   initial_state: 'on'  
-  #   id: 'Tami 4 Timerstop'
-  #   trigger: 
-  #   - platform: event
-  #     event_type: timer.finished
-  #     event_data: 
-  #       entity_id: timer.tami4
-  #   action:
-  #   - data:
-  #       entity_id: switch.tami_4_power
-  #     service: switch.turn_off    
-      
-# ##############################################################################   
-# #
-# # HA Startup up and running Notification דוגמא של אלירן
-# #
-# ##############################################################################   
-# - alias: 'Startup Notification'
-#   initial_state: 'on'
-#   hide_entity: true
-#   trigger:
-#     platform: homeassistant
-#     event: start
-#   action:
-#     - service: mqtt.publish 
-#       data:
-#         topic: "cmnd/tami4_power/state" #Update the power state of all the sonoffs
-#         payload: ""

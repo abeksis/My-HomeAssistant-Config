@@ -43,19 +43,19 @@ light:
 
 yeelight:
     devices:
-      192.168.1.153:
+      192.168.1.30:
         name: Yeelight Poop
         transition: 1000
   
-      192.168.1.196:
+      192.168.1.31:
         name: computer room
         transition: 1000
               
-      192.168.1.171:
+      192.168.1.32:
         name: Kitchen strip Lamp
         transition: 1000 
 
-      192.168.1.208:
+      192.168.1.33:
         name: Laundry Room lighting
         transition: 1000         
     
@@ -70,35 +70,30 @@ automation:
 #################################################################
 #                        חיישן תנועה שירותי אורחים                     #
 #################################################################
+  - alias: Turn on lights poop based on montion
+    initial_state: 'on'  
+    trigger:
+    - entity_id: !secret binary_sensor_4
+      platform: state
+      to: 'on'
+    action:
+    - service: light.turn_on
+      entity_id: light.yeelight_poop
+      data:
+        brightness_pct: 100
+        kelvin: 5500    
 
-#########                                                  ######
-#########  Code Moved To Node-Red Under Flow Motion-Sensor ######
-#########                                                  ######
-
-  # - alias: Turn on lights poop based on montion
-  #   initial_state: 'on'  
-  #   trigger:
-  #   - entity_id: binary_sensor.motion_sensor_158d0002b42fa3 
-  #     platform: state
-  #     to: 'on'
-  #   action:
-  #   - service: light.turn_on
-  #     entity_id: light.yeelight_poop
-  #     data:
-  #       brightness_pct: 100
-  #       kelvin: 5000    
-
-  # - alias: Turn off lights poop based on montion
-  #   initial_state: 'on'  
-  #   trigger:
-  #     platform: state
-  #     entity_id: binary_sensor.motion_sensor_158d0002b42fa3
-  #     to: 'off'
-  #     for:
-  #       seconds: 30
-  #   action:
-  #   - service: light.turn_off
-  #     entity_id: light.yeelight_poop
+  - alias: Turn off lights poop based on montion
+    initial_state: 'on'  
+    trigger:
+      platform: state
+      entity_id: !secret binary_sensor_4
+      to: 'off'
+      for:
+        seconds: 30
+    action:
+    - service: light.turn_off
+      entity_id: light.yeelight_poop
 
 
 #################################################################
@@ -108,7 +103,7 @@ automation:
   - alias: Turn on lights laundry based on montion
     initial_state: 'on'  
     trigger:
-    - entity_id: binary_sensor.motion_sensor_158d00024e7972
+    - entity_id: !secret binary_sensor_6
       platform: state
       to: 'on'
     action:
@@ -122,7 +117,7 @@ automation:
     initial_state: 'on'  
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d00024e7972
+      entity_id: !secret binary_sensor_6
       to: 'off'
       for:
         seconds: 30
@@ -131,13 +126,13 @@ automation:
       entity_id: light.laundry_room_lighting      
 
 #################################################################
-#                      חיישן תנועה חדר מחשבים                       #
+#                      חיישן תנועה חדר מחשבים                   #
 #################################################################
 
   - alias: Turn on lights pc room based on montion
     initial_state: 'on'  
     trigger:
-    - entity_id: binary_sensor.motion_sensor_158d000272bc63
+    - entity_id: !secret binary_sensor_8
       platform: state
       to: 'on'
     action:
@@ -151,7 +146,7 @@ automation:
     initial_state: 'on'  
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d000272bc63
+      entity_id: !secret binary_sensor_8
       to: 'off'
       for:
         seconds: 30

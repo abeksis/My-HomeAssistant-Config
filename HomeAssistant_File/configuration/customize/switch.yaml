@@ -1,0 +1,9 @@
+# Smart socket       
+!secret switch_1: 
+  friendly_name: !secret switch_1_friendly_name
+  icon: !secret switch_1_icon
+
+# Devices
+!secret switch_2: 
+  friendly_name: !secret switch_2_friendly_name
+  icon: !secret switch_2_icon

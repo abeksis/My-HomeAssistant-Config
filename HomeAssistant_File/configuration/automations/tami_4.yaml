@@ -1,0 +1,23 @@
+  - id: Turn_off_Tami_4_in_Night
+    initial_state: 'on'  
+    alias: 'Turn Off Tami 4 In Night'
+    trigger:
+      platform: time
+      at: '22:00:00'
+    condition:
+    action:
+    - data:
+        entity_id: !secret switch_6
+      service: switch.turn_off
+      
+  - id: Turn_on_Tami_4_in_Mornning
+    initial_state: 'on'  
+    alias: 'Turn On tami 4 in Mornning'
+    trigger:
+      platform: time
+      at: '05:45:00'
+    condition:
+    action:
+    - data:
+        entity_id: !secret switch_6
+      service: switch.turn_on

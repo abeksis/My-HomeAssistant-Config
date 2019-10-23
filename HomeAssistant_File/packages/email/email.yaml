@@ -13,9 +13,9 @@
 homeassistant:
   customize:
     sensor.abeksis_gmail_com:
-      friendly_name: Gmail Avi
+      friendly_name: avi-mail
       icon: mdi:email-outline
-      assumed_state: false 
+      assumed_state: false
 
 #################################################################
 #                                                               #
@@ -24,15 +24,14 @@ homeassistant:
 #################################################################
 
 sensor:
-
   - platform: imap
     server: imap.gmail.com
+    port: 993    
     username: !secret avi_gmail_username
     password: !secret avi_gmail_password
-    port: 993      
     
   - platform: imap
     server: imap.gmail.com
+    port: 993    
     username: !secret nurit_gmail_username
     password: !secret nurit_gmail_password
-    port: 993     
