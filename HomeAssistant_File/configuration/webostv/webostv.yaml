@@ -1,4 +1,4 @@
-  host: 192.168.1.4
+  host: !secret webostv_ip
   name: Living Room TV
   turn_on_action:
     service: persistent_notification.create
