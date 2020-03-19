@@ -17,7 +17,7 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
 
 ## Video
 
-<!-- [![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/T-D1KVIuvjA) -->
+[![Watch the video](https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/video_clip.png)](https://www.youtube.com/watch?v=CoiW0YjCO8g)
 
 
 <!-- <p>
