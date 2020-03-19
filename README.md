@@ -13,6 +13,7 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
  ## Credits
  - [Jimz011](https://github.com/jimz011) Thanks for your assistance and ideas on this :)
  - [Noodlemctwoodle](https://github.com/noodlemctwoodle) Did a perfect job of bringing unraid server to the home assistant interface, and helped me with the discord I needed.
+
 <!-- <p>
   <img src="https://img.shields.io/github/stars/abeksis/My-HomeAssistant-Config.svg?style=plasticr"/>
   <img src="https://img.shields.io/badge/HA--Version-0.87.1-brightgreen.svg"/>
@@ -23,8 +24,7 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
   <img src="https://img.shields.io/badge/license-Unlicense-blue.svg"/>
   <img src="http://hits.dwyl.io/abeksis/My-HomeAssistant-Config.svg)%5D(http://hits.dwyl.io/abeksis/My-HomeAssistant-Config)"/>
 </p> -->
-
-<hr>
+ <!--  <hr> קו הפרדה -->
 
 <!-- <img src="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Github_Pictures/Xiaomi_Logo.png" width="150"/>
 
