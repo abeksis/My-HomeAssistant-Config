@@ -56,7 +56,7 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
 </tr>
 </thead></table>
 
-<table>
+<!-- <table>
 <thead>
 <tr>
 <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots">Lovelace Screenshots</a></th>
@@ -65,7 +65,7 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
 <tbody>
 <tr>
 <td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/new/lovelace-11.jpg" style="max-width:100%;"></a></td>
-</tr></tbody></table>
+</tr></tbody></table> -->
 
 <table>
 <thead>
