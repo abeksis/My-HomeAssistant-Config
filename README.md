@@ -66,7 +66,7 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/> a
 <tr>
 <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HomeAssistant_File/ui-lovelace.yaml">Lovelace UI</a></th>
 <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HomeAssistant_File/packages">Packages</a></th>
-<th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HomeAssistant_File/config">Config</a></th>
+<th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HomeAssistant_File/configuration">configuration</a></th>
 <!-- <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HomeAssistant_File/config/scripts.yaml">Scripts</a></th> -->
 <!-- <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HomeAssistant_File/config/groups.yaml">Groups</a></th> -->
 <!-- <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HomeAssistant_File/config/automation/automations.yaml">Automations</a></th> -->
