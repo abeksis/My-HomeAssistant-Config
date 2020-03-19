@@ -24,9 +24,13 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
 </tr>
 </thead>
 <tbody>
-
-[![Watch the video](https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/video_clip.png)](https://www.youtube.com/watch?v=CoiW0YjCO8g)
+<tr>
+<td><a href="https://www.youtube.com/watch?v=CoiW0YjCO8g"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/video_clip.png" style="max-width:100%;"></a></td>
+</tr>
+</tbody>
 </table>
+
+
 
 <!-- <p>
   <img src="https://img.shields.io/github/stars/abeksis/My-HomeAssistant-Config.svg?style=plasticr"/>
