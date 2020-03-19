@@ -14,6 +14,8 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
  - [Jimz011](https://github.com/jimz011) Thanks for your assistance and ideas on this :)
  - [Noodlemctwoodle](https://github.com/noodlemctwoodle) Did a perfect job of bringing unraid server to the home assistant interface, and helped me with the discord I needed.
 
+
+[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/T-D1KVIuvjA)
 <!-- <p>
   <img src="https://img.shields.io/github/stars/abeksis/My-HomeAssistant-Config.svg?style=plasticr"/>
   <img src="https://img.shields.io/badge/HA--Version-0.87.1-brightgreen.svg"/>
