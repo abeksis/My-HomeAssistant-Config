@@ -24,12 +24,11 @@ http:
   login_attempts_threshold: 5
   use_x_forwarded_for: true
   trusted_proxies:
-  - 127.0.0.1 #localhost
-  - 192.168.1.1 #router
-  - 172.18.0.2 #letsencryot 
-  - 172.17.0.3 #mariadb
-  - 172.19.0.2
-    
+  - 127.0.0.1
+  - !secret home_router
+  - !secret letsencrypt_container
+  - !secret database_server
+  - !secret docker_something_or_othe    
 
 frontend:
   themes: !include_dir_merge_named themes/

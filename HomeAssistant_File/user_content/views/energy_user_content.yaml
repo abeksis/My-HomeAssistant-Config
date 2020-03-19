@@ -254,7 +254,7 @@
 - !include
   - '../../lovelace/templates/header_text.yaml'
   - content: "##### Apparent VA" 
-- type: vertical-stack
+- type: horizontal-stack
   cards:
     - type: 'custom:mini-graph-card'
       style: |
@@ -325,3 +325,80 @@
       show:
         average: true
         extrema: true        
+
+
+#####
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: "##### Electricity" 
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+       ha-card {
+          background: rgba(0,0,0,0.0) !important;
+          border-radius: none;
+          --paper-item-icon-color: white !important;
+          color: white !important;
+          box-shadow: none;
+          font-weight: bold;
+          --paper-dialog-color: white !important;
+        }
+      entities:
+        - entity: sensor.power_calc_today_phaze1
+      hours_to_show: 24
+      points_per_hour: 12
+      line_width: 3
+      hour24: true
+      animate: true
+      decimals: 1
+      show:
+        graph: line
+        icon: false
+        fill: true
+        extrema: true
+        average: true
+      color_thresholds:
+        - value: 700
+          color: "#33cc33"
+        - value: 2500
+          color: "#ff9900"
+        - value: 4500
+          color: "#ff0000"
+      name: Effekt (24t)
+
+- type: horizontal-stack
+  cards:     
+    - type: 'custom:mini-graph-card'
+      style: |
+       ha-card {
+          background: rgba(0,0,0,0.0) !important;
+          border-radius: none;
+          --paper-item-icon-color: white !important;
+          color: white !important;
+          box-shadow: none;
+          font-weight: bold;
+          --paper-dialog-color: white !important;
+        }
+      entities:
+        - entity: sensor.power_calc_yesterday_phaze1
+      hours_to_show: 24
+      points_per_hour: 1
+      line_width: 3
+      hour24: true
+      animate: true
+      decimals: 2
+      show:
+        graph: line
+        icon: false
+        fill: true
+        extrema: true
+        average: true
+      color_thresholds:
+        - value: 5
+          color: "#0099ff"
+        - value: 12
+          color: "#ff9900"
+        - value: 38
+          color: "#ff0000"
+      name: Strømpris (24t)
