@@ -17,7 +17,17 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
 
 ## Video
 
-[![Watch the video](https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/video_clip.png)](https://www.youtube.com/watch?v=CoiW0YjCO8g)
+<table>
+<thead>
+<tr>
+<th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots">Youtube - Short video</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a>[![Watch the video](https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/video_clip.png)](https://www.youtube.com/watch?v=CoiW0YjCO8g)</a></td>
+</tr></tbody></table>
+
 
 
 <!-- <p>
@@ -76,7 +86,7 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
 <table>
 <thead>
 <tr>
-<th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots">Mobile Display</a></th>
+<th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots">Pictures - Mobile Display</a></th>
 </tr>
 </thead>
 <tbody>
