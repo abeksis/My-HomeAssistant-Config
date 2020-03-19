@@ -1,11 +1,11 @@
-<p align="center">
+<!-- <p align="center">
   <img src="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Github_Pictures/Banner.png" width="1000"/>
-</p>
+</p> -->
 
 
 I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, and I love technology very much. I'm familiar with Israel from my other projects and I enjoy sharing what I do.
 
-The project presented - is my smart home project. Where I sat for hours and was helped by good friends like [Eliran Turgeman](https://github.com/VirtualL/HomeAssistant-Config) ,[Dima Goltsman](https://github.com/dimagoltsman/ha-custom-component-ituran), [Yuval Mejahez](https://github.com/rt400/Shabbat-Times?fbclid=IwAR1ctaMcllg22ZSeg97n_G6L-f0kiBI0y0rqpIIOS82eIVlNHg6dvjn-QgU) And JamesMcCarthy79 sorry if I forgot someone. 
+<!-- The project presented - is my smart home project. Where I sat for hours and was helped by good friends like [Eliran Turgeman](https://github.com/VirtualL/HomeAssistant-Config) ,[Dima Goltsman](https://github.com/dimagoltsman/ha-custom-component-ituran), [Yuval Mejahez](https://github.com/rt400/Shabbat-Times?fbclid=IwAR1ctaMcllg22ZSeg97n_G6L-f0kiBI0y0rqpIIOS82eIVlNHg6dvjn-QgU) And JamesMcCarthy79 sorry if I forgot someone.  -->
 
 
 <p align="center">Be sure to <g-emoji class="g-emoji" alias="star" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji> my repo!</p>
