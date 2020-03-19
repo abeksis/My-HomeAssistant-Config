@@ -1,0 +1,484 @@
+automation:
+  - alias: 'language selector'
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: input_select.language_selector
+    action:
+      - service: input_select.select_option
+        data_template:
+          entity_id: input_select.language_selector_backend
+          option: >
+            {% if is_state('input_select.language_selector', 'English') %}
+              English
+            {% elif is_state('input_select.language_selector', 'Español') %}
+              Espanol
+            {% elif is_state('input_select.language_selector', 'Français') %}
+              Francais
+            {% elif is_state('input_select.language_selector', 'Italiano') %}
+              Italiano
+            {% elif is_state('input_select.language_selector', 'Nederlands') %}
+              Nederlands
+            {% elif is_state('input_select.language_selector', 'Português do Brasil') %}
+              Portuguesebrasil
+            {% else %}
+              Select
+            {% endif %}
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_lights
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_lights' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_devices
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_devices' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_climate
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_climate' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_security
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_security' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_automations
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_automations' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_battery
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_battery' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_calendar
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_calendar' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_cleaning
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_cleaning' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_computers
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_computers' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_energy
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_energy' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_floorplan
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_floorplan' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_laundry
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_laundry' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_location
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_location' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_media
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_media' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_scenes
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_scenes' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_system
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_system' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_traffic
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_traffic' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_vacuum
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_vacuum' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_weather
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_weather' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_menu
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_menu' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_alarm
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_alarm' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_secondary_download
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_secondary_download' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_climate
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_climate' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_lights
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_lights' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_devices
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_devices' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_security
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_security' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_cleaning
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_cleaning' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_scenes
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_scenes' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_remote
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_remote' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_vacuum
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_vacuum' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_menu
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_menu' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_settings
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_settings' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_alarm
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_alarm' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_weather
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_weather' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_about
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_about' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_automations
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_automations' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_battery
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_battery' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_calendar
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_calendar' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_system
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_system' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_computers
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_computers' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_energy
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_energy' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_media
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_media' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_floorplan
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_floorplan' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_laundry
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_laundry' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_location
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_location' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_header_traffic
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_header_traffic' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_custom
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_custom' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_favorites
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_favorites' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_all
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_all' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_power
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_power' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_frost
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_frost' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_heat
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_heat' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_on
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_on' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_off
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_off' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_protection
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_protection' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_presets
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_presets' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_thermostat
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_thermostat' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_fans
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_fans' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_temperature
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_temperature' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_humidity
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_humidity' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_air_pressure
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_air_pressure' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_cameras
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_cameras' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_doors
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_doors' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_windows
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_windows' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_motion
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_motion' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_other
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_other' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_good_morning
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_good_morning' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_good_afternoon
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_good_afternoon' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_good_evening
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_good_evening' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_good_night
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_good_night' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_battery
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_battery' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_battery_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_battery_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_automation
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_automation' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_automation_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_automation_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_calendar
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_calendar' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_calendar_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_calendar_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_computer
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_computer' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_computer_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_computer_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_download
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_download' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_download_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_download_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_energy
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_energy' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_energy_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_energy_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_floorplan
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_floorplan' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_floorplan_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_floorplan_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_laundry
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_laundry' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_laundry_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_laundry_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_location
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_location' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_location_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_location_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_media
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_media' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_media_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_media_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_system
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_system' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_system_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_system_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_traffic
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_traffic' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_traffic_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_traffic_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_weather
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_weather' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_weather_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_weather_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_light
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_light' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_light_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_light_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_device
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_device' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_device_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_device_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_climate
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_climate' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_climate_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_climate_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_security
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_security' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_security_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_security_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_cleaning
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_cleaning' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_cleaning_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_cleaning_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_scene
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_scene' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_scene_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_scene_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_vacuum
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_vacuum' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_vacuum_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_vacuum_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_remote
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_remote' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_remote_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_remote_label' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_alarm
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_alarm' %}{{ states(e) }}"
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.name_alarm_label
+          value: "{% set e = 'input_text.' ~ states('input_select.language_selector_backend')| lower ~ '_name_alarm_label' %}{{ states(e) }}"
+    
+    

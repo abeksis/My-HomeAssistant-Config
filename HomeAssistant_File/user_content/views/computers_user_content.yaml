@@ -1,0 +1,1240 @@
+# This is the file you can use to add your own cards, they are already in a vertical stack.
+# You can simply put cards under each other, easy huh? :P. You can even use this file to 
+# customize your entire view (just turn off the other elements except for user content)!
+# The first card is an example, you can safely remove it!
+
+
+# UnRAID Picture Card
+- type: picture-elements
+  style: |
+    ha-card {
+      border-radius: {{ states('input_select.border_radius') }};
+      box-shadow: {{ states('input_select.box_shadow') }};
+      overflow: hidden;
+    }
+  image: '/local/images/hardware/unraid_logo.png'
+  elements:
+
+# Docker Containers Running
+    - type: state-label
+      entity: input_text.card_containers
+      style:
+        top: 15%
+        left: 1%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+    - type: icon
+      icon: mdi:docker
+      style:
+        top: 35%
+        left: 11%
+        pointer-events: none
+        transform: scale(1.0)
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 7px 7px
+        font-size: 15px
+    - type: state-label
+      entity: sensor.glances_unraid_containers_active
+      style:
+        top: 60%
+        left: 6%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+
+# UnRAID Version Available
+    - type: state-label
+      entity: input_text.software_version
+      style:
+        top: 15%
+        left: 70%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+    - type: icon
+      icon: mdi:server
+      style:
+        top: 38%
+        left: 79%
+        pointer-events: none
+        transform: scale(0.8)
+        line-height: 32px
+        padding: 7px 7px
+        font-size: 15px
+    - type: state-label
+      entity: sensor.unraid_version_next
+      style:
+        top: 60%
+        left: 68%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+
+- type: horizontal-stack
+  cards:
+# UnRAID Array Status
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.unraid_array_status
+      severity:
+      - value: Started
+        color: '#3ed11d'
+      - value: unknown
+        color: '#bf4040'
+      title: Array Status
+      show_icon: true
+      icon: mdi:code-array
+      title_position: 'inside'
+      icon_position: inside
+      direction: right
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+
+# UnRAID Array Protection
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.unraid_array_protection
+      severity:
+      - value: 'Parity is valid.'
+        color: '#3ed11d'
+      - value: unknown
+        color: '#bf4040'
+      title: Parity Status
+      show_icon: true
+      icon: mdi:harddisk-plus
+      title_position: 'inside'
+      icon_position: inside
+      direction: right
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+
+- type: vertical-stack
+  cards:
+
+# UnRAID Array Total Space
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.unraid_array_space
+      severity:
+      - value: '30'
+        color: '#3cff00'
+      - value: '40'
+        color: '#ccff00'
+      - value: '50'
+        color: '#d9d21c'
+      - value: '60'
+        color: '#f7da00'
+      - value: '70'
+        color: '#ffa408'
+      - value: '90'
+        color: '#ed0909'
+      title: Array Usage
+      show_icon: true
+      icon: mdi:database-settings
+      title_position: 'inside'
+      icon_position: inside
+      direction: right
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+
+
+##Full DB Info
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: "##### Full DB Info"    
+  
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.db_size
+      name: Full DB
+      icon: far:database
+      animate: true
+      color_thresholds:
+        - color: '#0aaf31'
+          value: 50
+        - color: '#ffee00'
+          value: 35
+        - color: '#e01a1a'
+          value: 0
+      font_size: 75
+      hours_to_show: 24
+      line_width: 1
+      show:
+        extrema: true
+        fill: fade  
+        icon: false
+
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - entity: sensor.events_size
+      hours_to_show: 24
+      points_per_hour: 2
+      line_width: 3
+      hour24: true
+      animate: true
+      decimals: 1
+      font_size: 53
+      height: 90
+      show:
+        graph: line
+        icon: false
+        fill: true
+        extrema: true
+        average: true
+      font_size_header: 12
+      line_color: red
+      name: Events                      
+
+
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.states_size
+      name: States
+      animate: true
+      color_thresholds:
+        - color: '#0aaf31'
+          value: 50
+        - color: '#ffee00'
+          value: 35
+        - color: '#e01a1a'
+          value: 0
+      font_size: 75
+      hours_to_show: 24
+      line_width: 1
+      show:
+        extrema: true
+        fill: fade  
+        icon: false
+
+# System Temperatures Card
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: '##### System Temperatures'
+
+- type: horizontal-stack
+  cards:
+
+# CPU Temps
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.glances_unraid_core_0_temp
+          name: CPU0
+          line_color: '"#14ff8d"'
+        - entity: sensor.glances_unraid_core_1_temp
+          name: CPU1
+          line_color: '"#2814ff"'
+        - entity: sensor.glances_unraid_core_2_temp
+          name: CPU2
+          line_color: '"#2814ff"'
+        - entity: sensor.glances_unraid_core_3_temp
+          name: CPU3
+          line_color: '"#2814ff"'
+      name: AMD Ryzen 7 1700 | 3000 MHz
+      hours_to_show: 7
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true
+
+- type: horizontal-stack
+  cards:
+
+# Motherboard Temps
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.glances_unraid_core_0_temp
+      name: Processor Temperatures
+      hours_to_show: 7
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true
+      color_thresholds:
+        - value: 30
+          color: "#4fcc29"
+        - value: 40
+          color: "#f39c12"
+        - value: 50
+          color: "#d35400"
+        - value: 60
+          color: "#c0392b"
+
+# System Resourses Card
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: '##### Resources'
+
+- type: horizontal-stack
+  cards:
+
+# CPU Usage
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.glances_unraid_cpu_used
+          name: System
+          line_color: '"#14ff8d"'
+        - entity: sensor.glances_unraid_containers_cpu_used
+          name: Containers
+          line_color: '"#2814ff"'
+      name: CPU Usage
+      hours_to_show: 7
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true
+
+# Ram Usage
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.glances_unraid_ram_used
+          name: System
+          line_color: '"#14ff8d"'
+        - entity: sensor.glances_unraid_containers_ram_used
+          name: Containers
+          line_color: '"#2814ff"'
+      name: RAM Usage
+      hours_to_show: 7
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true
+
+- type: horizontal-stack
+  cards:
+
+# SSD Cache
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_cache_free
+      severity:
+      - value: 550
+        color: '#3ed11d'
+      - value: 300
+        color: '#bf9540'
+      - value: 100
+        color: '#e69422'
+      - value: 50
+        color: '#bf4040'
+      title: SSD Cache
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: right
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+# Disk Size (500GB)
+      max: 500
+      min: 0
+
+# Appdata Backup Storage
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disks_backups_free
+      severity:
+      - value: 950
+        color: '#3ed11d'
+      - value: 700
+        color: '#bf9540'
+      - value: 600
+        color: '#e69422'
+      - value: 400
+        color: '#bf4040'
+      - value: 200
+        color: 'b9d11d'
+      - value: 100
+        color: 'fa0505'
+      title: Backups SSD
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: right
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+# Disk Size (931GB)
+      max: 931
+
+# Containers
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: '##### Docker Containers'
+- type: horizontal-stack
+  cards:
+    - type: custom:swipe-card
+      parameters:
+        spaceBetween: 8
+        scrollbar:
+          hide: true
+          draggable: true
+          snapOnRelease: true
+      cards:
+        - type: 'picture-entity' 
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_plexmediaserver
+          image: /local/images/software/Plex_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_plexmediaserver
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_adguardhome
+          image: /local/images/software/adguard_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_adguardhome
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_bazarr
+          image: /local/images/software/Bazarr_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_bazarr
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_duplicati
+          image: /local/images/software/duplicati_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_duplicati
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_mariadb
+          image: /local/images/software/mariadb_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_mariadb
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_phpmyadmin
+          image: /local/images/software/phpmyadmin_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_phpmyadmin
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_letsencrypt
+          image: /local/images/software/letsencrypt_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_letsencrypt
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_nextcloud
+          image: /local/images/software/nextcloud_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_nextcloud
+ 
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_openvpn_as
+          image: /local/images/software/OpenVPN_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_openvpn_as
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_tasmobackup
+          image: /local/images/software/TasmoBackup_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_tasmobackup
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_xeoma
+          image: /local/images/software/Xeoma_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_xeoma              
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_glances
+          image: /local/images/software/glances_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_glances
+
+        - type: 'picture-entity'
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entity: switch.tower_docker_binhex_minidlna
+          image: /local/images/software/MiniDLNA_bar.png
+          aspect_ratio: 4:9
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: toggle
+            service: switch.toggle
+            service_data:
+              entity_id: switch.tower_docker_binhex_minidlna
+
+# Disk Space Used Card
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: '##### Disk Used %'
+
+- type: horizontal-stack
+  cards:
+
+## Disk 1 Used %
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk1_used_percent
+      severity:
+      - value: 20
+        color: '#40bf40'
+      - value: 50
+        color: '#bf9540'
+      - value: 80
+        color: '#e69422'
+      - value: 90
+        color: '#bf4040'
+      title: Disk 1
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+
+## Disk 2 Used %
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk2_used_percent
+      severity:
+      - value: 20
+        color: '#40bf40'
+      - value: 50
+        color: '#bf9540'
+      - value: 80
+        color: '#e69422'
+      - value: 90
+        color: '#bf4040'
+      title: Disk 2
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+
+## Disk 3 Used %
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk3_used_percent
+      severity:
+      - value: 20
+        color: '#40bf40'
+      - value: 50
+        color: '#bf9540'
+      - value: 80
+        color: '#e69422'
+      - value: 90
+        color: '#bf4040'
+      title: Disk 3
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+
+## Disk 4 Used %
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk4_used_percent
+      severity:
+      - value: 20
+        color: '#40bf40'
+      - value: 50
+        color: '#bf9540'
+      - value: 80
+        color: '#e69422'
+      - value: 90
+        color: '#bf4040'
+      title: Disk 4
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: '##### Disk Space Free'
+- type: horizontal-stack
+  cards:
+## Disk 1 Free
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk1_free
+      severity:
+      - value: 500
+        color: '#fa0505'
+      - value: 600
+        color: '#de4314'
+      - value: 800
+        color: '#d1861d'
+      - value: 900
+        color: '#d4c11c'
+      - value: 1000
+        color: '#64c91c'
+      - value: 2000
+        color: '#b9d11d'
+      title: Disk 1
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+# Disk Size (3TB)
+      max: 2730
+      min: 0
+
+## Disk 2 Free
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk2_free
+      severity:
+      - value: 500
+        color: '#fa0505'
+      - value: 600
+        color: '#de4314'
+      - value: 800
+        color: '#d1861d'
+      - value: 900
+        color: '#d4c11c'
+      - value: 2000
+        color: '#64c91c'
+      - value: 1000
+        color: '#b9d11d'
+      title: Disk 2
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+# Disk Size (3TB)
+      max: 2730
+      min: 0
+
+## Disk 3 Free
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk3_free
+      severity:
+      - value: 500
+        color: '#fa0505'
+      - value: 600
+        color: '#de4314'
+      - value: 800
+        color: '#d1861d'
+      - value: 900
+        color: '#d4c11c'
+      - value: 1000
+        color: '#64c91c'
+      - value: 2000
+        color: '#b9d11d'
+      title: Disk 3
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+# Disk Size (3TB)
+      max: 2730
+      min: 0
+
+## Disk 4 Free
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk4_free
+      severity:
+      - value: 100
+        color: '#fa0505'
+      - value: 200
+        color: '#de4314'
+      - value: 400
+        color: '#d1861d'
+      - value: 500
+        color: '#d4c11c'
+      - value: 600
+        color: '#64c91c'
+      - value: 900
+        color: '#b9d11d'
+      title: Disk 4
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+# Disk Size (1TB)
+      max: 931
+      min: 0
+
+
+
+## Speedtest
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: "##### Internet"
+- type: horizontal-stack
+  cards:
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.speedtest_download
+      name: Download
+      hours_to_show: 24
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true
+      color_thresholds:
+        - value: 300
+          color: "#29cf45"
+        - value: 200
+          color: "#e7ff14"
+        - value: 180
+          color: "#ff1414"
+
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }    
+      entities:
+        - entity: sensor.speedtest_upload
+      name: Upload
+      hours_to_show: 24
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true
+      color_thresholds:
+        - value: 30
+          color: "#29cf45"
+        - value: 20
+          color: "#e7ff14"
+        - value: 10
+          color: "#ff1414"  

@@ -1,6 +1,0 @@
-  email: !secret MyEmail 
-  api_key: !secret CloudflareAPIKey
-  zone: !secret CloudflareZone
-  records:
-    - hass
-    - ide   

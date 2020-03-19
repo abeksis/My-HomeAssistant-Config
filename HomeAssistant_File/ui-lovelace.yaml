@@ -1,21 +1,8 @@
-resources:
-  !include lovelace/resources/resources.yaml
-
-#################################################################
-#  Templates                                                    #
-#################################################################
-decluttering_templates:
-  !include_dir_named lovelace/templates
-  
-
-#################################################################
-#  CCH Custom Header                                            #
-#################################################################
-cch:
-  !include lovelace/cch/compact-custom-header.yaml 
-
+resources: !include lovelace/resources/resources.yaml
+custom_header: !include lovelace/custom_header/custom_header.yaml
 
 title: Home
 background: var(--background-image)
-views:
-  !include_dir_merge_list lovelace/views/
+popup_cards: !include lovelace/templates/legacy_popup_cards.yaml
+views: !include_dir_merge_list lovelace/views/
+  

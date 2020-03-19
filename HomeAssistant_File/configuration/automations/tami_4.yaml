@@ -7,7 +7,7 @@
     condition:
     action:
     - data:
-        entity_id: !secret switch_6
+        entity_id: switch.tami_4_power
       service: switch.turn_off
       
   - id: Turn_on_Tami_4_in_Mornning
@@ -19,5 +19,5 @@
     condition:
     action:
     - data:
-        entity_id: !secret switch_6
+        entity_id: switch.tami_4_power
       service: switch.turn_on

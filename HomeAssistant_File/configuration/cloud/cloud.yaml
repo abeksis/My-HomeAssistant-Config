@@ -2,144 +2,170 @@ alexa:
   filter:
     include_entities: ## להציג ##
       - light.laundry
-      - light.parents_shower
-      - light.service_balcony  
-      - light.balcony
-      - light.guests_bathroom_switch
+      - light.gateway_light_34ce008d4e2e
+      - light.kitchen_strip_lamp
+      - light.yeelight_poop
+      - light.living_room
+      - light.seating_area
       - light.prozdor
-      - light.stairs
+      - light.service_balcony
+      - light.miklahat
+      - light.laundry_room_lighting
       - light.liran_room
-      - light.kitchen
-      - switch.tv_lg
-      - switch.ac_power
-      - script.vacuum_all_home
-      - switch.sh20_pow
-      - switch.move_channels_down
-      - switch.move_channels_up
-      - switch.info
-      - switch.yes_mute
-      - switch.tris_down
-      - switch.tris_up
-      - sensor.binary_sensors
+      - light.stairs
+      - light.parents_bedroom
+      - light.parents_shower
+      - light.computer_room
+      - switch.tami_4_power
+      - switch.lg_tv_button
+      - switch.yes_dvr_button
+      - switch.ac_shelly
+      - switch.server_room_fan
+      - switch.whizz_button
+      - remote.living_room
     include_domains:
       - switch
       - media_player
       - lights
       - sensor
     exclude_entities: ## לא להציג ##
-      - media_player.living_room_tv
-      - group.version
-      - group.all_devices
-      - group.weather_sensor
-      - group.lighting
-      - group.homeassistent
-      - group.miscellaneous
-      - media_player.mibox3
-      - media_player.unnamed_device
-      - switch.ac_fan_speed
-      - switch.lg_volume_up
-      - switch.ac_timer
-      - switch.ac_temp_down
-      - switch.ac_mode
-      - switch.lg_volume_down
-      - switch.ac_temp_up
-      - media_player.safari
-      - sensor.hdd_sdi_temp
-      - sensor.hdd_sde_temp
-      - sensor.hdd_sdc_temp
-      - sensor.hdd_sdf_temp
-      - sensor.hdd_sdg_temp
-      - sensor.hdd_sdd_temp
-      - sensor.hdd_sdh_temp
-      - sensor.cpu_temp
-      - sensor.hdd_sdb_temp
-      - media_player.safari_4
-      - media_player.safari_3
-      - media_player.whizz
-      - media_player.whizz_2
-      - media_player.kodi
+      - sensor.glances_tctl_temp
+      - input_boolean.lights_room_16_lock
+      - automation.internet_download_speed_dro
+      - input_boolean.automations_automations
+      - sensor.dark_sky_daytime_high_temperature_0d
+      - input_boolean.climate_air_pressure
+      - sensor.dark_sky_daytime_high_temperature_5d
+      - sensor.dark_sky_overnight_low_apparent_temperature_5d
+      - sensor.dark_sky_daytime_high_apparent_temperature_2d
+      - sensor.dark_sky_overnight_low_temperature_4d
+      - sensor.dark_sky_daytime_high_temperature_1d
+      - sensor.dark_sky_overnight_low_temperature_3d
+      - sensor.dark_sky_daytime_high_apparent_temperature_5d
+      - sensor.dark_sky_daytime_high_apparent_temperature_4d
+      - sensor.dark_sky_overnight_low_apparent_temperature_0d
+      - sensor.dark_sky_daytime_high_apparent_temperature_0d
+      - sensor.dark_sky_daytime_high_apparent_temperature_3d
+      - sensor.dark_sky_daytime_high_apparent_temperature_1d 
+      - sensor.dark_sky_overnight_low_apparent_temperature_1d
+      - sensor.dark_sky_overnight_low_temperature_2d
+      - sensor.dark_sky_overnight_low_temperature_5d
+      - sensor.dark_sky_overnight_low_temperature_1d
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_temperature
+      - sensor.docker_it8792_2_temp
+      - sensor.dark_sky_overnight_low_apparent_temperature_4d
+      - sensor.dark_sky_overnight_low_temperature_0d
+      - sensor.dark_sky_overnight_low_apparent_temperature_2d
+      - sensor.dark_sky_overnight_low_apparent_temperature_3d
+      - sensor.dark_sky_daytime_high_temperature_4d
+      - sensor.dark_sky_daytime_high_temperature_3d
+      - sensor.dark_sky_daytime_high_temperature_2d
+      - sensor.glances_unraid_core_2_temp
+      - sensor.glances_unraid_core_0_temp
+      - sensor.glances_unraid_core_3_temp
+      - sensor.glances_unraid_package_id_0_temp
+      - sensor.living_room_temp_sensor
+      - sensor.glances_it8792_1_temp
+      - sensor.glances_it8792_2_temp
+      - sensor.docker_tdie_temp
+      - sensor.glances_tdie_temp
+      - sensor.glances_it8792_3_temp
+      - sensor.docker_it8792_3_temp
+      - sensor.docker_tctl_temp
+      - media_player.71f9b76c_e537905
+      - media_player.71f9b76c_e5379055
+      - sensor.docker_motherboard_temp
 
   entity_config:
+    light.living_room:
+      name: אור בסלון
+      description: להדליק את האור בסלון
+
+    light.kitchen_strip_lamp:
+      name: לד במטבח
+      description: תאורה לדים במטבח
+
+    light.gateway_light_34ce008d4e2e:
+      name: אור של שיאומי
+      description:  תאורת שיאומי במטבח
+
+    light.yeelight_poop:
+      name: שירותי אורחים
+      description: תאורת שירותי אורחים
+
+    light.seating_area:
+      name: פינת ישיבה
+      description: תאורת בפינת ישיבה בסלון
+
+    light.miklahat:
+      name: מקלחת 
+      description: תאורה במקלחת ראשית
+     
     light.laundry_room_lighting:
-      name: Laundry room
-      description: להדליק את האור בחדר כביסה
+      name: חדר כביסה
+      description: תאורה בחדר כביסה
 
-    light.kitchen:
-      name: Kitchen light
-      display_categories: LIGHT
-
-    light.parents_shower:
-      name: Parents
-      description: להדליק את התאורה בחדר הורים  
-
-    light.service_balcony:
-      name: service balcony  
-      description: להדליק את האור במרפסת שירות
-
-    light.balcony:
-      name: balcony
-      description: להדליק את התאורה במרפסת הראשית
-
-    light.guests_bathroom_switch: 
-      name: Guests Bathroomp Switch
-      description: להדליק את האור בשירותי אורחים   
+    light.laundry:
+      name: מפסק חדר כביסה
+      description: סווייצ תאורה חדר כביסה
 
     light.stairs:
-      name: stairs
+      name: מדרגות
       description: להדליק את האור במדרגות
+    
+    light.computer_room:
+      name: חדר שרתים
+      description: תאורה בחדר שרתים
+     
+    light.parents_bedroom:
+      name: חדר הורים
+      description: תאורה בחדר הורים
+    
+    light.parents_shower:
+      name: מקלחת הורים
+      description: תאורה במקלחת הורים
+    
+    light.tradfri_remote_control_17:
+      name: תאורה איקאה
+      description: כפתור תאורה לאיקאה
+    
+    light.service_balcony:
+      name: מרפסת שירות
+      description: תאורה מרפסת שירות
 
-    light.liran_room: 
-      name: liran 
-      description:  להדליק את האור בחדר של לירן
-
+    light.liran_room:
+      name: לירן
+      description: תאורה בחדר לירן
+   
     light.prozdor:
-      name: prozdor
-      description: תאורה בפרוזדור
-
-    switch.tv_lg:
-      name: tv               
-      description: להדליק את הטלוויזיה בסלון
-
-    switch.ac_power:
-      name: mazgan
-      description: להדליק את המזגן    
-
-    script.vacuum_all_home:
-      name: robot
-      description: לשאוב את כל הבית
-
-    switch.sh20_pow:
-      name: home camera
-      description: כיבוי מצלמת אבטחה בבית
-
-    switch.move_channels_down:
-      name: move channel down
-      description: העברת ערוץ אחורה
-
-    switch.move_channels_up:
-      name: move chammel up
-      description: העברת ערוץ קדימה   
-  
-    switch.info:
-      name: info
-      description: מידע על התוכנית המשודרת
-
-    switch.yes_mute:
-      name: mute
-      description: השתקה
+      name: פרוזור
+      description: תאורה בפרזודור
     
-    switch.tris_down:
-      name: tris lemata
-      description: הורדת התריס למטה
+    switch.tami_4_power: 
+      name: להפעיל את תמי 4
+      description: להפעיל את תמי 4 או לכבות
     
-    switch.tris_up:
-      name: tris lemala
-      description: הרמת התריס למעלה
+    switch.server_room_fan:
+      name: מאוורר בחדר מחשבים
+      description: שליטה על מאוורר בחדר מחשבים
+    
+    switch.ac_shelly:
+      name: מזגן יקיר
+      description: שליטה מזגן יקיר
 
-    switch.tami_4_power:
-      name: water
-      description: כיבוי חשמל לתמי 4
-    
-    switch.washing_machine:
-      name: washing machine
-      description: כיבוי או הדלקה מכונת כביסה
+    switch.whizz_button:
+      name: xiaomi
+      description: לעבורי לסטרימר
+      
+    switch.lg_tv_button:
+      name: LG מעבר
+      description: מעבר דרך ארמוני לטלוויזיה
+      
+    remote.living_room:
+      name: כיבוי טלוויזיה
+      description: כיבוי טלוויזיה בסלון 
+
+    switch.yes_dvr_button:
+       name: הפעלת TV
+       description: הפעלת טלוויזיה ישירות ליס

@@ -1,0 +1,12 @@
+  host: 192.168.1.4
+  name: Living Room TV
+  turn_on_action:
+    service: persistent_notification.create
+    data:
+      message: "Turn on action"
+  customize:
+    sources:
+      - livetv
+      - youtube
+      - makotv
+      - netflix

@@ -13,9 +13,9 @@
 group:
   cameras:
     name: Cameras
-    view: no
+    #view: no
     entities:
-      - sensor.front_door_camera_state
+      # - sensor.front_door_camera_state
       - binary_sensor.dahua_camera
       - binary_sensor.building_foront_camera
       - binary_sensor.high_quality_camera
@@ -23,14 +23,14 @@ group:
       
   smart_home:
     name: Smart Home
-    view: no
+    #view: no
     entities:
       - binary_sensor.broadlink_remote
       - binary_sensor.google_home_mini
       
   wall_switches:
     name: Wall Switches
-    view: no
+    #view: no
     entities:
       - binary_sensor.light_switch_poop
       - binary_sensor.wall_switch_prozdor
@@ -40,7 +40,7 @@ group:
       
   light_bulbs:
     name: Light Bulbs
-    view: no
+   # view: no
     entities:
       - binary_sensor.sonoff_balcony_light
       - binary_sensor.sonoff_light_liran
@@ -51,13 +51,13 @@ group:
       
   fan:
     name: Fan Sonoff
-    view: no
+    #view: no
     entities:
       - binary_sensor.sonff_fan
       
   network_connection:
     name: Network connections
-    view: no
+    #view: no
     entities:
       - binary_sensor.unifi_access_point
  
@@ -68,7 +68,7 @@ group:
 #                                                               #
 #################################################################
 
-device_tracker:
+# device_tracker:
 
 ####################################################
 #                                                  #
@@ -76,29 +76,29 @@ device_tracker:
 #                                                  #
 ####################################################
 
-  - platform: ping
-    hosts:
-      dahua_6m_camera: !secret dahua_6m_camera
-      front_door_camera: !secret front_door_camera
-      high_quality_camera: !secret high_quality_camera
-      building_foront_camera: !secret building_foront_camera
-      guests_bathroom_switch: !secret guests_bathroom_switch
-      liran_light_switch: !secret liran_light_switch
-      bathroom_light_switch: !secret bathroom_light_switch
-      laundry_light_switch: !secret laundry_light_switch
-      sonff_fan: !secret sonff_fan
-      sonoff_bedroom_parents: !secret sonoff_bedroom_parents
-      sonoff_stairs_light: !secret sonoff_stairs_light
-      sonoff_service_balcony_light: !secret sonoff_service_balcony_light
-      sonoff_balcony_light: !secret sonoff_balcony_light
-      shutters: !secret shutters
-      yeelinklightcolor1_miio86767262: !secret yeelinklightcolor1_miio86767262
-      yeelink_light_strip1_miio98683770: !secret yeelink_light_strip1_miio98683770
-      broadlink: !secret broadlink
-      esp_electric: !secret esp_electric
-      unifi_access_point: !secret unifi_access_point
-      tami4_power: !secret tami4_power
-      s20_xiaomi: !secret s20_xiaomi
+  # - platform: ping
+  #   hosts:
+  #     dahua_6m_camera: !secret dahua_6m_camera
+  #     front_door_camera: !secret front_door_camera
+  #     high_quality_camera: !secret high_quality_camera
+  #     building_foront_camera: !secret building_foront_camera
+  #     guests_bathroom_switch: !secret guests_bathroom_switch
+  #     liran_light_switch: !secret liran_light_switch
+  #     bathroom_light_switch: !secret bathroom_light_switch
+  #     laundry_light_switch: !secret laundry_light_switch
+  #     sonff_fan: !secret sonff_fan
+  #     sonoff_bedroom_parents: !secret sonoff_bedroom_parents
+  #     sonoff_stairs_light: !secret sonoff_stairs_light
+  #     sonoff_service_balcony_light: !secret sonoff_service_balcony_light
+  #     sonoff_balcony_light: !secret sonoff_balcony_light
+  #     shutters: !secret shutters
+  #     yeelinklightcolor1_miio86767262: !secret yeelinklightcolor1_miio86767262
+  #     yeelink_light_strip1_miio98683770: !secret yeelink_light_strip1_miio98683770
+  #     broadlink: !secret broadlink
+  #     esp_electric: !secret esp_electric
+  #     unifi_access_point: !secret unifi_access_point
+  #     tami4_power: !secret tami4_power
+  #     s20_xiaomi: !secret s20_xiaomi
       
       
       

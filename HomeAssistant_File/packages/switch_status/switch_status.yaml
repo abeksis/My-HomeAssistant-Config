@@ -14,7 +14,7 @@
 group:
   ac:
     name: AC Control
-    view: no
+    #view: no
     entities:
       - switch.ac_fan_speed
       - switch.ac_mode
@@ -23,21 +23,20 @@ group:
       - switch.ac_temp_up
       - switch.ac_timer
   
-  tv:
-    name: LG TV
-    view: no
-    entities:      
-      - switch.tv_lg
-      - switch.info
-      - switch.lg_volume_down
-      - switch.lg_volume_up
-      - switch.move_channels_down
-      - switch.move_channels_up
-      - switch.yes_mute
+  # tv:
+  #   name: LG TV
+  #   view: no
+  #   entities:      
+  #     - switch.tv_lg
+  #     - switch.info
+  #     - switch.lg_volume_down
+  #     - switch.lg_volume_up
+  #     - switch.move_channels_down
+  #     - switch.move_channels_up
+  #     - switch.yes_mute
 
   power:
     name: Power
-    view: no
+    #view: no
     entities:      
       - switch.tami_4_power
-      - switch.sh20_pow

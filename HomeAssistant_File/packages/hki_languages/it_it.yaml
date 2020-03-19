@@ -1,0 +1,258 @@
+input_text:
+# Italian
+  italiano_name_header_secondary_lights:
+    initial: Panoramica 
+  italiano_name_header_secondary_devices:
+    initial: Panoramica 
+  italiano_name_header_secondary_climate:
+    initial: Panoramica 
+  italiano_name_header_secondary_security:
+    initial: Panoramica 
+  italiano_name_header_secondary_automations:
+    initial: Panoramica 
+  italiano_name_header_secondary_battery:
+    initial: Panoramica 
+  italiano_name_header_secondary_calendar:
+    initial: Panoramica 
+  italiano_name_header_secondary_cleaning:
+    initial: Panoramica 
+  italiano_name_header_secondary_computers:
+    initial: Panoramica 
+  italiano_name_header_secondary_energy:
+    initial: Panoramica 
+  italiano_name_header_secondary_floorplan:
+    initial: Panoramica 
+  italiano_name_header_secondary_laundry:
+    initial: Panoramica 
+  italiano_name_header_secondary_location:
+    initial: Panoramica 
+  italiano_name_header_secondary_media:
+    initial: Panoramica 
+  italiano_name_header_secondary_scenes:
+    initial: Panoramica 
+  italiano_name_header_secondary_system:
+    initial: Panoramica 
+  italiano_name_header_secondary_traffic:
+    initial: Panoramica 
+  italiano_name_header_secondary_vacuum:
+    initial: Panoramica 
+  italiano_name_header_secondary_weather:
+    initial: Panoramica 
+  italiano_name_header_secondary_menu:
+    initial: Panoramica 
+  italiano_name_header_secondary_alarm:
+    initial: Panoramica 
+  italiano_name_header_secondary_download:
+    initial: Panoramica 
+
+  italiano_name_custom:
+    initial: Personalizza
+  italiano_name_favorites:
+    initial: Preferiti
+  italiano_name_all:
+    initial: Tutti
+  italiano_name_power:
+    initial: Accensione
+  italiano_name_frost:
+    initial: Congelamento
+  italiano_name_protection:
+    initial: Protezione
+  italiano_name_heat:
+    initial: Caldo
+  italiano_name_on:
+    initial: 'On'
+  italiano_name_off:
+    initial: 'Off'
+
+  italiano_name_header_about:
+    initial: Riguardo a
+  italiano_name_header_automations:
+    initial: Automazioni
+  italiano_name_header_battery:
+    initial: Batteria
+  italiano_name_header_calendar:
+    initial: Calendario
+  italiano_name_header_system:
+    initial: Sistema
+  italiano_name_header_computers:
+    initial: Computers
+  italiano_name_header_energy:
+    initial: Energia
+  italiano_name_header_media:
+    initial: Media
+  italiano_name_header_floorplan:
+    initial: Planimetria
+  italiano_name_header_laundry:
+    initial: Lavandera
+  italiano_name_header_location:
+    initial: Posizione
+  italiano_name_header_remote:
+    initial: Telecomando
+  italiano_name_header_traffic:
+    initial: Informazioni sul traffico
+
+  italiano_name_header_weather:
+    initial: Meteo
+  italiano_name_header_alarm:
+    initial: Allarme
+  italiano_name_header_climate:
+    initial: Clima
+  italiano_name_header_lights:
+    initial: Luci
+  italiano_name_header_devices:
+    initial: Dispositivi
+  italiano_name_header_security:
+    initial: Sicurezza
+  italiano_name_header_cleaning:
+    initial: Pulizia
+  italiano_name_header_scenes:
+    initial: Scenari
+  italiano_name_header_vacuum:
+    initial: Aspirapolvere
+  italiano_name_header_menu:
+    initial: Menu
+  italiano_name_header_settings:
+    initial: Impostazioni
+
+  italiano_name_presets:
+    initial: Presets
+  italiano_name_thermostat:
+    initial: Termostato
+  italiano_name_fans:
+    initial: Ventilatore
+  italiano_name_temperature:
+    initial: Temperatura
+  italiano_name_humidity:
+    initial: Umidità
+  italiano_name_air_pressure:
+    initial: Pressione dell'Aria
+
+  italiano_name_cameras:
+    initial: Telecamera
+  italiano_name_doors:
+    initial: Porte
+  italiano_name_windows:
+    initial: Finestre
+  italiano_name_motion:
+    initial: Movimento
+  italiano_name_other:
+    initial: Altro
+
+  italiano_name_good_morning:
+    initial: Buon Giorno
+  italiano_name_good_afternoon:
+    initial: Buon Pomeriggio
+  italiano_name_good_evening:
+    initial: Buona Sera
+  italiano_name_good_night:
+    initial: Buona Notte
+
+  italiano_name_battery:
+    initial: Batteria
+  italiano_name_battery_label:
+    initial: Panoramica
+
+  italiano_name_automation:
+    initial: Automazione
+  italiano_name_automation_label:
+    initial: Manager
+
+  italiano_name_calendar:
+    initial: Calendario
+  italiano_name_calendar_label:
+    initial: Panoramica
+
+  italiano_name_computer:
+    initial: Computer
+  italiano_name_computer_label:
+    initial: Monitor
+
+  italiano_name_download:
+    initial: Download
+  italiano_name_download_label:
+    initial: Manager
+
+  italiano_name_energy:
+    initial: Energia
+  italiano_name_energy_label:
+    initial: Panoramica
+
+  italiano_name_floorplan:
+    initial: Planimetria
+  italiano_name_floorplan_label:
+    initial: Carta
+
+  italiano_name_laundry:
+    initial: Lavanderia
+  italiano_name_laundry_label:
+    initial: Stanza
+
+  italiano_name_location:
+    initial: Posizione
+  italiano_name_location_label:
+    initial: Carta
+
+  italiano_name_media:
+    initial: Media
+  italiano_name_media_label:
+    initial: Center
+
+  italiano_name_system:
+    initial: Sistema
+  italiano_name_system_label:
+    initial: Controllo
+
+  italiano_name_traffic:
+    initial: Traffico
+  italiano_name_traffic_label:
+    initial: Informazioni
+
+  italiano_name_weather:
+    initial: Meteo
+  italiano_name_weather_label:
+    initial: Informazioni
+
+  italiano_name_light:
+    initial: Luci
+  italiano_name_light_label:
+    initial: Controlllo
+
+  italiano_name_device:
+    initial: Dispositivo
+  italiano_name_device_label:
+    initial: Controllo
+
+  italiano_name_climate:
+    initial: Clima
+  italiano_name_climate_label:
+    initial: Controllo
+
+  italiano_name_security:
+    initial: Sicurezza
+  italiano_name_security_label:
+    initial: Pannello
+
+  italiano_name_cleaning:
+    initial: Pulizie
+  italiano_name_cleaning_label:
+    initial: Lista
+
+  italiano_name_scene:
+    initial: Scenario
+  italiano_name_scene_label:
+    initial: Controllo
+
+  italiano_name_vacuum:
+    initial: Aspirapolvere
+  italiano_name_vacuum_label:
+    initial: Controllo
+
+  italiano_name_remote:
+    initial: Telecomando
+  italiano_name_remote_label:
+    initial: Controllo
+
+  italiano_name_alarm:
+    initial: Allarme
+  italiano_name_alarm_label:
+    initial: Panello

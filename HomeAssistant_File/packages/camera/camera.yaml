@@ -4,74 +4,52 @@
 #                                                               #
 #################################################################
 
-
-#################################################################
-#                                                               #
-#                          cameras                              #
-#                                                               #
-#################################################################
 camera:
-
-
 #################################################################
-#                        Blue iris                              #
+#   Xeoma                                                       #
 #################################################################
     - platform: mjpeg
-      mjpeg_url: !secret hostcenter
-      name: Center 6MP
-      username: !secret bi_username
-      password: !secret bi_password
+      mjpeg_url: !secret smoking
+      name: Smoking
       authentication: basic
       
     - platform: mjpeg
       mjpeg_url: !secret building
       name: Entrance to the Building
-      username: !secret bi_username
-      password: !secret bi_password
       authentication: basic   
       
     - platform: mjpeg
-      mjpeg_url: !secret door
-      name: Front Door
-      username: !secret bi_username
-      password: !secret bi_password
+      mjpeg_url: !secret home
+      name: Home
       authentication: basic       
  
     - platform: mjpeg
-      mjpeg_url: !secret right_side_balcony
-      name: Right Side Balcony
-      username: !secret bi_username
-      password: !secret bi_password
+      mjpeg_url: !secret laundry
+      name: Laundry
       authentication: basic  
   
-    - platform: mjpeg
-      mjpeg_url: !secret xiaomi_dafang
-      name: Xiaomi Dafang
-      username: !secret bi_username
-      password: !secret bi_password
-      authentication: basic      
+      
 
 #################################################################
-#                                                               #
-#                           Groups                              #
-#                                                               #
+#   Groups                                                      #
 #################################################################
 group:
   Outside the home:
     name: Outside Camera
-    view: no
+    #view: no
     entities:
       - camera.entrance_to_the_building
-      - camera.right_side_balcony
-      - camera.center_6mp
+      - camera.laundry
+      - camera.home
+      - camera.laundry
+      - camera.smoking
 
 
   inside the home:
     name: Home Fornt Dor Camera 
-    view: no
+    #view: no
     entities:
-      - camera.front_door
-      - camera.xiaomi_dafang
+      - camera.home
     
     
 #################################################################
@@ -79,100 +57,100 @@ group:
 #                         Automations                           #
 #                                                               #
 #################################################################
-automation:
+#automation:
 ########################### 
 
-  - alias: 'turn off xiaomi dafang camera if nurit at home'
-    initial_state: 'on'
-    trigger:
-      platform: state
-      entity_id: person.nurit #device_tracker.nurit_iphone
-      to: 'home'
-      for:
-        minutes: 1
-        seconds: 30
-    action:
-      - service: switch.turn_off
-        entity_id: switch.sh20_pow
+  # - alias: 'turn off xiaomi dafang camera if nurit at home'
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: state
+  #     entity_id: person.nurit #device_tracker.nurit_iphone
+  #     to: 'home'
+  #     for:
+  #       minutes: 1
+  #       seconds: 30
+  #   action:
+  #     - service: switch.turn_off
+  #       entity_id: switch.sh20_pow
 
-      - service: notify.nurit_telegram
-        data:
-          title: "בית חכם"
-          message: 'ברוכה הבאה נורית, המצלמה לא פעילה'
+  #     - service: notify.nurit_telegram
+  #       data:
+  #         title: "בית חכם"
+  #         message: 'ברוכה הבאה נורית, המצלמה לא פעילה'
 
 
 ##########################          
 
-  - alias: 'turn on xiaomi dafang camera if nurit not at home'
-    initial_state: 'on'
-    trigger:
-      - platform: state
-        entity_id: person.nurit #device_tracker.nurit_iphone
-        to: 'not_home'
-        for:
-          minutes: 1
-    action:
-      - service: switch.turn_on
-        entity_id: switch.sh20_pow
-      - service: notify.avi_telegram
-        data:
-          title: "בית חכם"
-          message: 'נורית לא בבית המצלמה פעילה'
+  # - alias: 'turn on xiaomi dafang camera if nurit not at home'
+  #   initial_state: 'on'
+  #   trigger:
+  #     - platform: state
+  #       entity_id: person.nurit #device_tracker.nurit_iphone
+  #       to: 'not_home'
+  #       for:
+  #         minutes: 1
+  #   action:
+  #     - service: switch.turn_on
+  #       entity_id: switch.sh20_pow
+  #     - service: notify.avi_telegram
+  #       data:
+  #         title: "בית חכם"
+  #         message: 'נורית לא בבית המצלמה פעילה'
               
 ########################## 
 
-  - alias:  'turn off xiaomi dafang camera if morning and we are at home'
-    initial_state: 'on'
-    trigger:
-      platform: time
-      at: '07:00:00'
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: device_tracker.nurit_iphone
-          state: 'home'
+  # - alias:  'turn off xiaomi dafang camera if morning and we are at home'
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: time
+  #     at: '07:00:00'
+  #   condition:
+  #     condition: or
+  #     conditions:
+  #       - condition: state
+  #         entity_id: device_tracker.nurit_iphone
+  #         state: 'home'
 
-    action:
-      - service: homeassistant.turn_off
-        entity_id: switch.sh20_pow
+  #   action:
+  #     - service: homeassistant.turn_off
+  #       entity_id: switch.sh20_pow
 
-      - service: notify.avi_telegram
-        data:
-          title: "בית חכם"
-          message: 'אתם בבית, המצלמה כבויה'        
+  #     - service: notify.avi_telegram
+  #       data:
+  #         title: "בית חכם"
+  #         message: 'אתם בבית, המצלמה כבויה'        
 
-      - service: notify.nurit_telegram
-        data:
-          title: "בית חכם"
-          message: 'אתם בבית המצלמה כבויה'        
+  #     - service: notify.nurit_telegram
+  #       data:
+  #         title: "בית חכם"
+  #         message: 'אתם בבית המצלמה כבויה'        
 
 
     #########################  23:00 OFF  ##########################        
 
-  - alias: turn on xiaomi camera in 23:00
-    initial_state: 'on'  
-    trigger:
-      platform: time
-      at: '23:00:00'
+  # - alias: turn on xiaomi camera in 23:00
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: time
+  #     at: '23:00:00'
 
-    action:
-      - service: automation.turn_off 
-        data:
-          entity_id: automation.turn_off_xiaomi_dafang_camera_if_nurit_at_home
+  #   action:
+  #     - service: automation.turn_off 
+  #       data:
+  #         entity_id: automation.turn_off_xiaomi_dafang_camera_if_nurit_at_home
           
-      - service: homeassistant.turn_on
-        entity_id: switch.sh20_pow
+  #     - service: homeassistant.turn_on
+  #       entity_id: switch.sh20_pow
         
-      - service: notify.avi_telegram
-        data:
-          title: "בית חכם"  
-          message: 'השעה 23:00 המצלמה דולקת'
+  #     - service: notify.avi_telegram
+  #       data:
+  #         title: "בית חכם"  
+  #         message: 'השעה 23:00 המצלמה דולקת'
 
-      - service: notify.nurit_telegram
-        data:
-          title: "בית חכם"  
-          message: 'השעה 23:00 המצלמה דולקת'
+  #     - service: notify.nurit_telegram
+  #       data:
+  #         title: "בית חכם"  
+  #         message: 'השעה 23:00 המצלמה דולקת'
           
 
 # ##########################          

@@ -13,33 +13,30 @@
 group:
   core network:
     name: Core Network
-    view: no
+    #view: no
     entities:
       - binary_sensor.switch
 
       
   core devices:
     name: Core Devices
-    view: no
+    #view: no
     entities:
       - binary_sensor.nas_movies
       - binary_sensor.xtreamer_whizz
       - binary_sensor.unriad
       - binary_sensor.gateway_v3_xiaomi
       - binary_sensor.google_home_mini
-      - binary_sensor.windows_10_vm
-      - binary_sensor.windows_liran
-      - binary_sensor.desktop_4fdcngh
       
   ha devices:
     name: HA Devices
-    view: no
+    #view: no
     entities:
       - binary_sensor.ipad
 
   media devices:
     name: Media Devices
-    view: no
+    #view: no
     entities:
       - binary_sensor.media_tv
 
@@ -89,9 +86,6 @@ device_tracker:
       google_home_mini: !secret google_home_mini
       media_tv: !secret media_tv
       ipad: !secret ipad
-      windows_10_vm: !secret windows_10_vm
-      desktop_4fdcngh: !secret desktop_4fdcngh
-      windows_liran: !secret windows_liran
 
       
 ####################################################
@@ -212,43 +206,6 @@ binary_sensor:
           {% endif %}
           
           
-      windows_10_vm:
-        friendly_name: windows 10 VM
-        device_class: connectivity
-        entity_id: device_tracker.windows_10_vm
-        value_template: "{{ is_state('device_tracker.windows_10_vm', 'home') }}"
-        icon_template: >-
-          {% if is_state('device_tracker.windows_10_vm', 'home') %}
-            mdi:windows
-          {% else %}
-            mdi:windows
-          {% endif %}
-          
-          
-      windows_liran:
-        friendly_name: windows 10 Liran
-        device_class: connectivity
-        entity_id: device_tracker.windows_10_vm
-        value_template: "{{ is_state('device_tracker.windows_liran', 'home') }}"
-        icon_template: >-
-          {% if is_state('device_tracker.windows_liran', 'home') %}
-            mdi:windows
-          {% else %}
-            mdi:windows
-          {% endif %}  
-          
-          
-      desktop_4fdcngh:
-        friendly_name: desktop_4fdcngh
-        device_class: connectivity
-        entity_id: device_tracker.desktop_4fdcngh
-        value_template: "{{ is_state('device_tracker.desktop_4fdcngh', 'home') }}"
-        icon_template: >-
-          {% if is_state('device_tracker.desktop_4fdcngh', 'home') %}
-            mdi:windows
-          {% else %}
-            mdi:windows
-          {% endif %}
           
           
       gateway_v3_xiaomi:

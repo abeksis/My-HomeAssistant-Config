@@ -1,0 +1,8 @@
+  - platform: radarr_upcoming_media
+    api_key: !secret radarr_apy_key
+    host: 192.168.1.125 
+    port: 7878
+    days: 120
+    ssl: false
+    theaters: false
+    max: 10

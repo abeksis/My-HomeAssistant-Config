@@ -1,8 +1,0 @@
-Homekit Blue Light:
-  !include themes/homekit-light.yaml
-Homekit Blue Dark:
-  !include themes/homekit-dark.yaml
-Homekit Gray Dark:
-  !include themes/original-hk-dark.yaml  
-Midnight: 
-  !include themes/midnight.yaml  

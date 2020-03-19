@@ -7,15 +7,13 @@
 
   
 #################################################################
-#                                                               #
-#                           Group                               #
-#                                                               #
+#   Group                                                       #
 #################################################################
 
 group:
   xiaomi_door_sensors:
     name: Door Sensors
-    view: no
+    #view: no
     entities:
       - binary_sensor.front_door_sensor # דלת כניסה
       - binary_sensor.balcony_door_sensor # דלת מרפסת
@@ -25,25 +23,21 @@ group:
       
   xiaomi_motion_sensors:
     name: Motion Sensors
-    view: no
+    #view: no
     entities:
       - binary_sensor.main_shower_motion_sensor # חיישן תנועה מקלחת
       - binary_sensor.parents_shower_motion_sensor # חיישן תנועה מקלחת הורים
-      - binary_sensor.guest_bathrom_motion_sensor # Guest Services Motion Sensor
+      - binary_sensor.guest_bathrom_motion_sensor # חיישן תנועה מקלחת ראשית
       - binary_sensor.laundry_room_motion_sensor # חיישן תנועה חדר כביסה
       
 #################################################################
-#                                                               #
-#                       Binary Sensors                          #
-#                                                               #
+#   Binary Sensors                                              #
 #################################################################
 
 binary_sensor:
 
 ####################################################
-#                                                  #
-#              Binary Sensor - Template            #
-#                                                  #
+#   Binary Sensor - Template                       #
 ####################################################
 
   - platform: template
@@ -195,9 +189,9 @@ binary_sensor:
 ## Temperature Sensors
                   
       living_room_temperature:
-        friendly_name: !secret sensor_1_friendly_name
+        friendly_name: Temp Living Room
         device_class: connectivity
-        entity_id: !secret sensor_1
+        entity_id: sensor.living_room_temp
         value_template: "{{ is_state('sensor.living_room_temperature', 'on') }}"
         icon_template: >-
           {% if is_state('sensor.living_room_temperature', 'on') %}
@@ -224,17 +218,13 @@ binary_sensor:
       #     {% endif %}           
 
 #################################################################
-#                                                               #
-#                            Sensors                            #
-#                                                               #
+#  Sensors                                                      #
 #################################################################
 
 sensor:
 
 ####################################################
-#                                                  #
-#                 Sensor - Template                #
-#                                                  #
+#   Sensor - Template                              #
 ####################################################
 
   - platform: template
@@ -296,8 +286,8 @@ sensor:
           {% endif %}           
 
       laundry_dryer_status:
-        friendly_name: !secret binary_sensor_9_friendly_name
-        entity_id: !secret binary_sensor_9
+        friendly_name: "דלת מייבש"
+        entity_id: binary_sensor.laundry_dryer_sensor
         value_template: >-
           {% if is_state('binary_sensor.laundry_dryer_sensor', 'on') %}
             Open
@@ -306,8 +296,8 @@ sensor:
           {% endif %}
           
       washing_machine_status:
-        friendly_name: !secret binary_sensor_10_friendly_name
-        entity_id: !secret binary_sensor_10
+        friendly_name: "דלת מכונת כביסה"
+        entity_id: binary_sensor.washing_machine_sensor
         value_template: >-
           {% if is_state('binary_sensor.washing_machine_sensor', 'on') %}
             Open
@@ -316,8 +306,8 @@ sensor:
           {% endif %}  
           
       air_conditioner_yakir_door_status:
-        friendly_name: !secret binary_sensor_11_friendly_name
-        entity_id: !secret binary_sensor_11
+        friendly_name: "מזגן יקיר"
+        entity_id: binary_sensor.air_conditioner_yakir
         value_template: >-
           {% if is_state('binary_sensor.air_conditioner_yakir', 'on') %}
             Open

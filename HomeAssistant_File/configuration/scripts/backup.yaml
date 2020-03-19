@@ -1,4 +1,0 @@
-backup_ha_and_move_backup_to_unraid:
-  alias: 'Backup All Home Assistant and move to Server hp'
-  sequence:
-    - service: shell_command.backup_ha_and_move_backup_to_unraid

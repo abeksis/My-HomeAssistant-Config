@@ -1,0 +1,327 @@
+# This is the file you can use to add your own cards, they are already in a vertical stack.
+# You can simply put cards under each other, easy huh? :P. You can even use this file to 
+# customize your entire view (just turn off the other elements except for user content)!
+# The first card is an example, you can safely remove it!
+
+- type: picture-elements
+  style: |
+    ha-card {
+      border-radius: {{ states('input_select.border_radius') }};
+      box-shadow: {{ states('input_select.box_shadow') }};
+      overflow: hidden;
+    }
+  image: '/local/images/electricity/electricity_use.png'
+  elements:
+# Electricity Use Today
+    - type: state-label
+      entity: input_text.electricity_use_today
+      style:
+        top: 15%
+        left: 4%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+    - type: icon
+      icon: mdi:flash
+      style:
+        top: 35%
+        left: 11%
+        pointer-events: none
+        transform: scale(1.0)
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 7px 7px
+        font-size: 15px
+    - type: state-label
+      entity: sensor.power_calc_today_phaze1
+      style:
+        top: 60%
+        left: 4%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+
+# Electricity Use Yesterday
+    - type: state-label
+      entity: input_text.electricity_use_yesterday
+      style:
+        top: 15%
+        left: 70%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+    - type: icon
+      icon: mdi:power-plug
+      style:
+        top: 38%
+        left: 79%
+        pointer-events: none
+        transform: scale(0.8)
+        line-height: 32px
+        padding: 7px 7px
+        font-size: 15px
+    - type: state-label
+      entity: sensor.power_calc_yesterday_phaze1
+      style:
+        top: 60%
+        left: 71%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+
+
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: "##### Total Payment"
+
+- type: horizontal-stack
+  cards:  
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.shekel_count_all
+      name: Total
+      animate: true
+      color_thresholds:
+        - color: '#0aaf31'
+          value: 50
+        - color: '#ffee00'
+          value: 35
+        - color: '#e01a1a'
+          value: 0
+      font_size: 75
+      hours_to_show: 24
+      line_width: 1
+      show:
+        extrema: true
+        fill: fade  
+        icon: false
+
+
+
+
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: "##### Power"
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - entity: sensor.phaze_1_power
+      hours_to_show: 24
+      points_per_hour: 2
+      line_width: 3
+      hour24: true
+      animate: true
+      decimals: 1
+      font_size: 53
+      height: 90
+      show:
+        graph: line
+        icon: false
+        fill: true
+        extrema: true
+        average: true
+      font_size_header: 12
+      line_color: red
+      name: Power
+
+
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: "##### Energy kWh" 
+- type: horizontal-stack
+  cards:  
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.phaze_1_today
+          name: Today
+          line_color: '"#14ff8d"'
+        - entity: sensor.phaze_1_yesterday
+          name: Yesterday
+          line_color: '"#2814ff"'
+      name: Energy Usage
+      hours_to_show: 7
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true    
+
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.phaze_1_today
+      name: Today
+      animate: true
+      color_thresholds:
+        - color: '#0aaf31'
+          value: 50
+        - color: '#ffee00'
+          value: 35
+        - color: '#e01a1a'
+          value: 0
+      font_size: 75
+      hours_to_show: 24
+      line_width: 1
+      show:
+        extrema: true
+        fill: fade  
+        icon: false
+
+
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.phaze_1_yesterday
+      name: Yesterday
+      animate: true
+      color_thresholds:
+        - color: '#0aaf31'
+          value: 50
+        - color: '#ffee00'
+          value: 35
+        - color: '#e01a1a'
+          value: 0
+      font_size: 75
+      hours_to_show: 24
+      line_width: 1
+      show:
+        extrema: true
+        fill: fade  
+        icon: false
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: "##### Apparent VA" 
+- type: vertical-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      name: Apparent Power
+      entities: 
+        - entity: sensor.phaze_1_apparent_power
+          name: 'VA'
+          show_state: true
+          unit: 'W'
+        - entity: sensor.phaze_1_reactive_power
+          name: VAR
+          show_state: true
+          unit: 'W'
+      icon: mdi:flash
+      height: 40
+      line_color: '#3498db'
+      line_width: 2
+      font_size: 70
+      hours_to_show: 72
+      points_per_hour: 1
+      show:
+        extrema: true
+        fill: true          
+        
+
+- !include
+  - '../../lovelace/templates/header_text.yaml'
+  - content: "##### Electricity" 
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.phaze_1_power_factor
+          name: Power Factor
+          line_color: '"#2814ff"'
+        - entity: sensor.phaze_1_current
+          name: Amper
+          line_color: '"#2814ff"'
+        - entity: sensor.phaze_1_voltage
+          name: voltage
+          line_color: '"#14ff8d"'
+      name: Electricity
+      hours_to_show: 7
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true        

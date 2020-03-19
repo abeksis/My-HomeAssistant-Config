@@ -1,4 +1,6 @@
-  # Shelly 
+############################################################################
+#  Shelly                                                                  #
+############################################################################   
   - platform: mqtt
     name: "AC Shelly"
     state_topic: "shellies/shelly1-E0A119/relay/0"
@@ -7,20 +9,24 @@
     payload_off: "off"
     retain: false
 
-  # SH20
-  - platform: mqtt
-    name: "SH20 POW"
-    state_topic: "stat/sh20/POWER"
-    command_topic: "cmnd/sh20/POWER"
-    availability_topic: "tele/sh20/LWT"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    retain: true
+############################################################################
+#   Power SH20  - לא מחובר                                                  #
+############################################################################  
+#   - platform: mqtt
+#     name: "SH20 POW"
+#     state_topic: "stat/sh20/POWER"
+#     command_topic: "cmnd/sh20/POWER"
+#     availability_topic: "tele/sh20/LWT"
+#     qos: 1
+#     payload_on: "ON"
+#     payload_off: "OFF"
+#     payload_available: "Online"
+#     payload_not_available: "Offline"
+#     retain: true
 
-  # Tami 4 Power 
+############################################################################
+#   Tami 4 Power                                                           #
+############################################################################ 
   - platform: mqtt
     name: "Tami 4 Power"
     state_topic: "stat/tami4_power/POWER"
@@ -31,4 +37,104 @@
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"
-    retain: true      
+    retain: true
+
+############################################################################
+#   Fan ON The Server                                                      #
+############################################################################ 
+  - platform: mqtt  
+    name: "Server Room Fan"
+    state_topic: "stat/fan/POWER"
+    command_topic: "cmnd/fan/POWER"
+    availability_topic: "tele/fan/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: true 
+    
+    
+############################################################################
+#   Sensibo Living Room                                                    #
+############################################################################
+  - platform: template
+    switches:
+      sensibo_living_room_cool:
+        friendly_name: "Living Room AC Cool"
+        icon_template: mdi:snowflake
+        value_template: "{{ is_state('climate.living_room', 'cool') }}"
+        turn_on:
+            service: climate.set_hvac_mode
+            data:
+                entity_id: climate.living_room
+                hvac_mode: "cool"
+        turn_off:
+            service: climate.set_hvac_mode
+            data:
+                entity_id: climate.living_room
+                hvac_mode: "off"     
+  
+      sensibo_living_room_heat:
+        friendly_name: "Living Room AC Heat"
+        icon_template: mdi:fire
+        value_template: "{{ is_state('climate.living_room', 'heat') }}"
+        turn_on:
+            service: climate.set_hvac_mode
+            data:
+                entity_id: climate.living_room
+                hvac_mode: "heat"
+        turn_off:
+            service: climate.set_hvac_mode
+            data:
+                entity_id: climate.living_room
+                hvac_mode: "off"  
+  
+      sensibo_living_room_auto:
+        friendly_name: "Living Room AC Auto"
+        icon_template: mdi:brightness-auto
+        value_template: "{{ is_state('climate.living_room', 'heat_cool') }}"
+        turn_on:
+            service: climate.set_hvac_mode
+            data:
+                entity_id: climate.living_room
+                hvac_mode: "heat_cool"
+        turn_off:
+            service: climate.set_hvac_mode
+            data:
+                entity_id: climate.living_room
+                hvac_mode: "off"   
+  
+      sensibo_living_room_fan:
+        friendly_name: "Living Room AC Fan"
+        icon_template: mdi:fan
+        value_template: "{{ is_state('climate.living_room', 'fan_only') }}"
+        turn_on:
+            service: climate.set_hvac_mode
+            data:
+                entity_id: climate.living_room
+                hvac_mode: "fan_only"
+        turn_off:
+            service: climate.set_hvac_mode
+            data:
+                entity_id: climate.living_room
+                hvac_mode: "off"    
+
+############################################################################
+#   Switcher   - לא עובד יותר                                                 #
+############################################################################
+
+#   - platform: template
+#     switches:
+#       switcher_aio_switch:
+#         friendly_name: Boiler
+#         icon_template: mdi:shower-head
+#         value_template: "{{ is_state('switcher_aio.control_device_switch', 'on') }}"
+#         turn_on:
+#             service: switcher_aio.turn_on
+#             data:
+#                 entity_id: switcher_aio.control_device_switch 
+#         turn_off:
+#             service: switcher_aio.turn_off
+#             data:
+#                 entity_id: switcher_aio.control_device_switch                

@@ -1,3 +1,0 @@
-  ## Cloudlare - https://www.home-assistant.io/integrations/dnsip
-  - platform: dnsip
-    scan_interval: 300 #5 min

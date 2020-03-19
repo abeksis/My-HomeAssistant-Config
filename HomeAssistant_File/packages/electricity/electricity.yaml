@@ -80,7 +80,7 @@ homeassistant:
 group:
   money:
     name: Total Money
-    view: no
+    #view: no
     entities:
       - sensor.power_calc_total_phaze1 
       - sensor.power_calc_today_phaze1
@@ -88,7 +88,7 @@ group:
 
   power consumption:
     name: Electricity
-    view: no
+    #view: no
     entities:
       - sensor.phaze_1_total
       - sensor.phaze_1_current
@@ -97,7 +97,7 @@ group:
 
   voltage:
     name: All Voltage
-    view: no
+    #view: no
     entities:
       - sensor.phaze_1_voltage
       - sensor.phaze_1_yesterday
@@ -107,7 +107,7 @@ group:
 
   electric clock:
     name: Electric Company
-    view: no
+    #view: no
     entities:
       - input_number.kwh_number
       - input_number.shekel_number
@@ -188,33 +188,7 @@ sensor:
     state_topic: "tele/electricity/SENSOR"
     value_template: "{{ value_json['ENERGY'].ReactivePower }}"
     unit_of_measurement: "VAr"   
-
-
-#################################################################
-#                          Tami 4                               #
-#################################################################     
-  # - platform: mqtt
-  #   name: "BlitzWolf shp1 energy today"
-  #   state_topic: "tele/bw-shp1/SENSOR"
-  #   value_template: '{{ value_json["ENERGY"]["Today"] }}'
-  #   unit_of_measurement: "kWh"
-  # - platform: mqtt
-  #   name: "BlitzWolf shp1 yesterday"
-  #   state_topic: "tele/bw-shp1/SENSOR"
-  #   value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
-  #   unit_of_measurement: "kWh"
-  # - platform: mqtt
-  #   name: "BlitzWolf shp1 total"
-  #   state_topic: "tele/bw-shp1/SENSOR"
-  #   value_template: '{{ value_json["ENERGY"]["Total"] }}'
-  #   unit_of_measurement: "kWh"
-  # - platform: mqtt
-  #   name: "BlitzWolf shp1 total cost"
-  #   state_topic: "tele/bw-shp1/SENSOR"
-  #   value_template: '{{ (value_json["ENERGY"]["Total"] * 0.5404) | round(3) }}'
-  #   #ILS OR USD (Depends on local currency) Just change the value of "0.5404" to your local elctricity price
-  #   unit_of_measurement: "₪" # USD / Other local currency 
-
+ 
   - platform: template
     sensors:
       power_calc_total_phaze1:

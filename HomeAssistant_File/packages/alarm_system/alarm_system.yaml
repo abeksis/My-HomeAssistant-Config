@@ -5,16 +5,14 @@
 #################################################################
 
 #################################################################
-#                                                               #
-#                           Group                               #
-#                                                               #
+#   Group                                                       #
 #################################################################
 
 group:
   security:
     name: Security
     icon: mdi:security-home
-    view: yes
+    #view: yes
     entities:
       - group.alarms
       - group.motion      
@@ -23,14 +21,14 @@ group:
   alarms:
     name: Alarms
     icon: mdi:security
-    view: no
+    #view: no
     entities:
       - binary_sensor.smoke_detector # חיישן עשן 
       
   motion:
     name: Motion
     icon: mdi:walk
-    view: no
+    #view: no
     entities:
       - binary_sensor.main_shower_motion_sensor # חיישן מקלחת ראשית
       - binary_sensor.parents_shower_motion_sensor # חיישן תנועה מקלחת הורים
@@ -41,7 +39,7 @@ group:
   doors:
     name: Doors
     icon: mdi:door
-    view: no
+    #view: no
     entities:
       - binary_sensor.front_door_sensor # חיישן דלת כניסה
       - binary_sensor.balcony_door_sensor # חיישן מרפסת
@@ -63,24 +61,13 @@ sensor:
            {{ states.binary_sensor | selectattr('state', 'eq', 'on') | selectattr('attributes.device_class', 'eq', 'door') | list | count | int }}
 
 
-#################################################################
-#                                                               #
-#                       Binary Sensors                          #
-#                                                               #
-#################################################################
-
-### For Lovelace UI ###
-
 ####################################################
-#                                                  #
-#             Binary Sensor - Template             #
-#                                                  #
+#   Binary Sensor - Template                       #
 ####################################################
            
 binary_sensor:
   - platform: template
     sensors:
-## Door Sensors
       doors:
         friendly_name: Doors
         device_class: door

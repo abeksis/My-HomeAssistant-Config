@@ -1,538 +1,103 @@
-title: battery
-path: battery
-icon: mdi:battery-charging-100    
-cards:
+# lovelace_gen
 
-############################################################################
-#                                                                          #
-#   Batteries card                                                         #
-#                                                                          #
-############################################################################
-  - type: vertical-stack
-    cards: 
-    - type: custom:decluttering-card
-      template: title_template
-      variables:
-        - name: "Xiaomi Motion sensor Battery" 
-    - type: custom:vertical-stack-in-card
+- title: Battery
+  path: battery
+  icon: mdi:battery
+  cards: 
+    - type: vertical-stack
       cards:
-        - type: custom:card-modder
+        - type: custom:state-switch
+          entity: input_boolean.header_advanced_mode_battery          
+          states:
+            "off":
+              !include
+              - '../templates/system_header.yaml'
+              - name: input_text.name_header_secondary_battery
+                system_header: input_boolean.header_secondary_battery
+                icon: "[[[ return `${states['input_text.icon_header_battery'].state}` ]]]"
+                {% raw %}
+                content: "{{ states.input_text.name_header_battery.state }}"
+                {% endraw %}
+            "on":
+              !include
+              - '../templates/system_header_advanced.yaml'
+              - name: "{{ _global.header_secondary.battery|default('return `Set your own template in YAML`') }}"
+                system_header: input_boolean.header_secondary_battery
+                icon: "[[[ return `${states['input_text.icon_header_battery'].state}` ]]]"
+{% raw %}
+                content: "{{ states.input_text.name_header_battery.state }}"
+        - type: conditional
+          conditions:
+            - entity: input_boolean.edit_mode
+              state: "on"
           card:
-            type: entity-filter
-            entities:
-              - binary_sensor.front_door
-              - binary_sensor.balcony_door
-              - binary_sensor.motion_shower
-              - binary_sensor.bedroom_motion
-              - binary_sensor.main_shower
-              - binary_sensor.guest_services
-              - binary_sensor.computer_room
-              - binary_sensor.laundry_room
-              - binary_sensor.living_room_temperature
-              - binary_sensor.second_floor_temperature
-              
-            state_filter:
-              - 'off'
-            card:
-              type: picture-glance
-              title: Motion sensor Battery
-              image: /local/lovelace/settings/motion_sensor.jpg
-          style:                 
-            border-radius: 8px 
-
-#######################################################################
-#                                                                     #
-#    Motion Sensor                                                    #
-#                                                                     #
-#######################################################################
-
-    - type: horizontal-stack
-      cards:
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
+            !include
+            - '../templates/edit_mode_warning.yaml'
+            - template: battery_layout_popup.yaml
+        - type: conditional
+          conditions:
+            - entity: input_boolean.battery_battery
+              state: "on"
           card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:
-              - entity: sensor.xiaomi_motion_shower_battery_parents
-                title: Main Shower Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'                  
-                unit_of_measurement: '%'
-        
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
+            type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:auto-entities
+                filter:
+                  exclude:
+                    - entity_id: '*battery_state*'
+                    - domain: input_boolean
+                    - domain: input_text
+                    - domain: input_select
+                    - domain: automation
+                  include:
+                    - entity_id: '*battery*'
+                      options:
+                        !include
+                        - '../templates/button_popup_only.yaml'
+                        - entity: this.entity_id
+                          show_last_changed: false
+                          show_label: false
+                          template: more_info_popup.yaml
+                          tap_action: more-info
+                          hold_action: more-info
+                          icon: "'[[[ if (states[`this.entity_id`].state < 10) return `mdi:battery-10`; if (states[`this.entity_id`].state < 20) return `mdi:battery-20`; if (states[`this.entity_id`].state < 30) return `mdi:battery-30`; if (states[`this.entity_id`].state < 40) return `mdi:battery-40`; if (states[`this.entity_id`].state < 50) return `mdi:battery-50`; if (states[`this.entity_id`].state < 60) return `mdi:battery-60`; if (states[`this.entity_id`].state < 70) return `mdi:battery-70`; if (states[`this.entity_id`].state < 80) return `mdi:battery-80`; if (states[`this.entity_id`].state < 90) return `mdi:battery-90`; return `mdi:battery`; ]]]'"
+                    - type: custom:button-card
+                      color_type: blank-card
+                      aspect_ratio: 1/1
+                show_empty: false
+                sort:
+                  method: name
+                  numeric: true
+                card:
+                  type: custom:layout-card
+                  min_columns: 3
+                  max_columns: 3
+                  justify_content: start
+                  layout: horizontal
+              - !include ../includes/blank-card.yaml
+        - type: conditional
+          conditions:
+            - entity: input_boolean.user_content_message
+              state: "on"
           card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:                  
-              - entity: sensor.xiaomi_motion_laundry_room_battery
-                title: Laundry Room Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'
-
-    - type: horizontal-stack
-      cards:
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
+            type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:layout-card
+                cards:
+                  - !include ../includes/edit_mode/message-user-content-edit-mode.yaml
+              - !include ../includes/blank-card.yaml
+        - type: conditional
+          conditions:
+            - entity: input_boolean.battery_user_content
+              state: "on"
           card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:
-              - entity: sensor.xiaomi_motion_sensor_computer_room_battery
-                title: Computer Room Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'                  
-                unit_of_measurement: '%'
-        
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:                  
-              - entity: sensor.xiaomi_motion_sensor_guest_services_battery
-                title: Guest Services Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'
-
-    - type: horizontal-stack
-      cards:
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:                  
-              - entity: sensor.xiaomi_motion_sensor_shower_father_and_mother_battery
-                title: Father & Mother
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'                        
-
-
-#########################################################################
-#                                                                       #
-#   Door Window Sensor                                                  #
-#                                                                       #
-#########################################################################
-  - type: vertical-stack
-    cards: 
-    - type: custom:decluttering-card
-      template: title_template
-      variables:
-        - name: "Xiaomi Door Battery" 
-    - type: custom:vertical-stack-in-card
-      cards:
-        - type: custom:card-modder
-          card:
-            type: entity-filter
-            entities:
-              - binary_sensor.door_window_sensor_158d0001ef3425
-              - binary_sensor.door_window_sensor_158d00027a59c6
-              - binary_sensor.door_window_sensor_158d0002ea0754
-              - binary_sensor.door_window_sensor_158d0002ea9896
-              
-            state_filter:
-              - 'off'
-            card:
-              type: picture-glance
-              title: Door Window sensor Battery
-              image: /local/lovelace/settings/Door_Window_Sensor_01.jpg
-          style:                 
-            border-radius: 8px 
-
-#######################################################################
-#                                                                     #
-#    Door Window Sensor                                               #
-#                                                                     #
-#######################################################################
-
-    - type: horizontal-stack
-      cards:
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:
-              - entity: sensor.xiaomi_door_window_sensor_front_door_sensor
-                title: Front Door Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'                  
-                unit_of_measurement: '%'
-        
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:                  
-              - entity: sensor.xiaomi_door_window_sensor_balcony_door_sensor
-                title: Balcony Door Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'
-
-    - type: horizontal-stack
-      cards:
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:
-              - entity: sensor.xiaomi_door_window_sensor_washing_machine_sensor
-                title: Washing Machine Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'                  
-                unit_of_measurement: '%'
-        
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:                  
-              - entity: sensor.xiaomi_door_window_sensor_laundry_dryer_sensor
-                title: Laundry Dryer Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'
-                                            
-#########################################################################
-#                                                                       #
-#   Smart Wireless Switch                                               #
-#                                                                       #
-#########################################################################
-  - type: vertical-stack
-    cards: 
-    - type: custom:decluttering-card
-      template: title_template
-      variables:
-        - name: "Xiaomi Smart Wireless Battery" 
-    - type: custom:vertical-stack-in-card
-      cards:
-        - type: custom:card-modder
-          card:
-            type: entity-filter
-            entities:
-              - binary_sensor.door_window_sensor_158d0001ef3425
-              - binary_sensor.door_window_sensor_158d00027a59c6
-              - binary_sensor.door_window_sensor_158d0002ea0754
-              - binary_sensor.door_window_sensor_158d0002ea9896
-              
-            state_filter:
-              - 'off'
-            card:
-              type: picture-glance
-              title: Switch Click Battery
-              image: /local/lovelace/settings/Smart_Wireless_Switch.jpg
-          style:                 
-            border-radius: 8px 
-
-#######################################################################
-#                                                                     #
-#    Switch Cֹlick                                                     #
-#                                                                     #
-#######################################################################
-
-    - type: horizontal-stack
-      cards:
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:
-              - entity: sensor.xiaomi_sensor_switch_good_night_click
-                title: Good Night Click
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'                  
-                unit_of_measurement: '%'
-        
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:                  
-              - entity: sensor.xiaomi_sensor_switch_lighting_balcony_click
-                title: Switch Lighting Balcony Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'
-
-    - type: horizontal-stack
-      cards:
-        - type: 'custom:card-modder'
-          style:
-            border-radius: 5px   
-            box-shadow: 2px 2px rgba(0,0,0,0.3)    
-            height: 50px 
-            padding: 1%
-            font-size: 13px
-          card:
-            type: custom:bar-card
-            title_position: 'inside'
-            show_icon: true
-            icon: mdi:thermometer
-            icon_position: 'inside'
-            unit_of_measurement: "%"
-            align: split
-            padding: 4px
-            columns: 1
-            width: 100%
-            severity:                
-            card_style: 
-              border-radius: 5px              
-            entities:
-              - entity: sensor.xiaomi_sensor_switch_lighting_service_balcony_click
-                title: Lighting Service Balcony Battery
-                icon: mdi:thermometer
-                severity:
-                  - value: 10
-                    color: '#bf4040'
-                  - value: 50
-                    color: '#bf9540'
-                  - value: 100
-                    color: '#40bf40'                  
-                unit_of_measurement: '%'
+            type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:layout-card
+                cards:
+                  !include ../../user_content/views/battery_user_content.yaml
+              - !include ../includes/blank-card.yaml
+{% endraw %}

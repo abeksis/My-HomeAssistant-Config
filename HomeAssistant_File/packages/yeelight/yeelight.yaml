@@ -6,39 +6,20 @@
 
       
 #################################################################
-#                                                               #
-#                           Groups                              #
-#                                                               #
+#  Groups                                                       #
 #################################################################
 
 group:
   yeelight:
     name: Yeelight
-    view: no
+    #view: no
     entities:
       - light.kitchen_strip_lamp
       - light.computer_room
       - light.yeelight_poop
-
-
-
-light:
-  - platform: mqtt  
-    name: "Guests Bathroom Switch"
-    command_topic: "cmnd/Guests_Bathroom_Switch/POWER"
-    state_topic: "stat/Guests_Bathroom_Switch/POWER"
-    availability_topic: "tele/Guests_Bathroom_Switch/LWT"   
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"  
-    retain: true      
-    
+      
 #################################################################
-#                                                               #
-#                           lights                              #
-#                                                               #
+#  lights                                                       #
 #################################################################
 
 yeelight:
@@ -59,97 +40,4 @@ yeelight:
         name: Laundry Room lighting
         transition: 1000         
     
-    
-#################################################################
-#                                                               #
-#                         Automations                           #
-#                                                               #
-#################################################################
-automation:
 
-#################################################################
-#                        חיישן תנועה שירותי אורחים                     #
-#################################################################
-  - alias: Turn on lights poop based on montion
-    initial_state: 'on'  
-    trigger:
-    - entity_id: !secret binary_sensor_4
-      platform: state
-      to: 'on'
-    action:
-    - service: light.turn_on
-      entity_id: light.yeelight_poop
-      data:
-        brightness_pct: 100
-        kelvin: 5500    
-
-  - alias: Turn off lights poop based on montion
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: !secret binary_sensor_4
-      to: 'off'
-      for:
-        seconds: 30
-    action:
-    - service: light.turn_off
-      entity_id: light.yeelight_poop
-
-
-#################################################################
-#                       חיישן תנועה חדר כביסה                        #
-#################################################################
- 
-  - alias: Turn on lights laundry based on montion
-    initial_state: 'on'  
-    trigger:
-    - entity_id: !secret binary_sensor_6
-      platform: state
-      to: 'on'
-    action:
-    - service: light.turn_on
-      entity_id: light.laundry_room_lighting
-      data:
-        brightness_pct: 100
-        kelvin: 5500   
-
-  - alias: Turn off lights laundry based on montion
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: !secret binary_sensor_6
-      to: 'off'
-      for:
-        seconds: 30
-    action:
-    - service: light.turn_off
-      entity_id: light.laundry_room_lighting      
-
-#################################################################
-#                      חיישן תנועה חדר מחשבים                   #
-#################################################################
-
-  - alias: Turn on lights pc room based on montion
-    initial_state: 'on'  
-    trigger:
-    - entity_id: !secret binary_sensor_8
-      platform: state
-      to: 'on'
-    action:
-    - service: light.turn_on
-      entity_id: light.computer_room
-      data:
-        brightness_pct: 100
-        kelvin: 6000        
-
-  - alias: Turn off lights pc room based on montion
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: !secret binary_sensor_8
-      to: 'off'
-      for:
-        seconds: 30
-    action:
-    - service: light.turn_off
-      entity_id: light.computer_room

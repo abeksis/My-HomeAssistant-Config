@@ -1,0 +1,88 @@
+- title: HKI Settings
+  path: hki_settings_calendar
+  cards:    
+    - type: vertical-stack
+      cards:
+        - !include
+          - '../../templates/system_header_advanced.yaml'
+          - name: Calendar
+            icon: mdi:calendar
+            content: "HKI {{ states.input_text.name_header_settings.state }}"
+            system_header: input_boolean.config_header
+        - type: conditional
+          conditions:
+            - entity: input_boolean.edit_mode
+              state: "on"
+          card:
+            !include
+            - '../../templates/edit_mode_warning.yaml'
+            - template: nothing_to_edit.yaml
+        - !include
+          - '../../templates/settings_back_button.yaml'
+          - background_color: LightSeaGreen
+        - type: custom:search-card
+          style: |
+            ha-card {
+              border-radius: none;
+              box-shadow: none;
+              --paper-card-background-color: rgba(0,0,0,0.0);
+              --primary-text-color: var(--category-text) !important;
+              color: var(--category-text) !important;
+              --text-primary-color: var(--category-text) !important;
+              --secondary-text-color: var(--category-text) !important;
+              --disabled-text-color: var(--category-text) !important;
+            }
+          max_results: 10
+        - type: horizontal-stack
+          cards:
+            - !include ../../includes/blank-card.yaml
+            - type: vertical-stack
+              cards:
+                - type: conditional
+                  conditions:
+                    - entity: input_boolean.system_help
+                      state: "on"
+                  card:
+                    type: markdown
+                    style: |
+                      ha-card {
+                        background: rgba(0, 0, 0, 0.5);
+                        border-radius: {{ states('input_select.border_radius') }};
+                        box-shadow: {{ states('input_select.box_shadow') }};
+                        font-size: 13px;
+                        font-family: Helvetica;
+                        color: white;
+                      }                    
+                    content: >
+                      **Calendar:** Calendar setup, the household calendar is only used in the frontpage widget (this must be turned on with edit mode). You can setup calendars for persons as well, these will only show inside of the persons respective view!
+                - type: entities
+                  title: House Calendar
+                  style: |
+                    ha-card {
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                      overflow: hidden;
+                    }                        
+                  show_header_toggle: false
+                  entities:
+                    - entity: input_text.house_calendar_entity
+                      type: 'custom:text-input-row'
+                - type: entities
+                  title: Personal Calendar
+                  style: |
+                    ha-card {
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                      overflow: hidden;
+                    }                        
+                  show_header_toggle: false
+                  entities:
+                    - entity: input_text.person_1_calendar_entity
+                      type: 'custom:text-input-row'
+                    - entity: input_text.person_2_calendar_entity
+                      type: 'custom:text-input-row'
+                    - entity: input_text.person_3_calendar_entity
+                      type: 'custom:text-input-row'
+                    - entity: input_text.person_4_calendar_entity
+                      type: 'custom:text-input-row'
+            - !include ../../includes/blank-card.yaml

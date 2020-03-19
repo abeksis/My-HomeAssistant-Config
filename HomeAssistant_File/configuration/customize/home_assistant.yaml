@@ -1,8 +1,0 @@
-sun.sun:
-  friendly_name: The state of the sun
-  assumed_state: false
-
-# Home Assistent
-automation.startup_notification:
-  friendly_name: Home Assistant Works
-  icon: mdi:home-assistant

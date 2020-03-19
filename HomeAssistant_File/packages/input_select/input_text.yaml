@@ -1,0 +1,10 @@
+input_text:
+  card_containers:
+    initial: Containers
+  software_version:
+    initial: Version
+  electricity_use_today:
+    initial: Today
+  electricity_use_yesterday:
+    initial: Yesterday
+    

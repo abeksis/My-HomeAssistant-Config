@@ -1,0 +1,53 @@
+# This is the file you can use to add your own cards, they are already in a vertical stack.
+# You can simply put cards under each other, easy huh? :P. You can even use this file to 
+# customize your entire view (just turn off the other elements except for user content)!
+# The first card is an example, you can safely remove it!
+
+#- type: markdown
+#  style: |
+#    ha-card {
+#      border-radius: {{ states('input_select.border_radius') }};
+#      box-shadow: {{ states('input_select.box_shadow') }};
+#    }              
+#  content: >
+#    User Cards Here!
+
+  - type: "custom:mini-media-player"
+    style: |
+      ha-card {
+        border-radius: {{ states('input_select.border_radius') }};
+        box-shadow: {{ states('input_select.box_shadow') }};
+      }
+    entity: media_player.living_room_tv
+
+  - type: "custom:mini-media-player"
+    style: |
+      ha-card {
+        border-radius: {{ states('input_select.border_radius') }};
+        box-shadow: {{ states('input_select.box_shadow') }};
+      }
+    entity: media_player.tv_khdr_shynh
+    
+
+  - !include
+    - '../../lovelace/templates/header_text.yaml'
+    - content: "##### Plex Recently Added Movies"
+  - type: 'custom:upcoming-media-card'
+    style: |
+      ha-card {
+        border-radius: {{ states('input_select.border_radius') }};
+        box-shadow: {{ states('input_select.box_shadow') }};
+      }
+    entity: sensor.recently_added_movies 
+
+
+  - !include
+    - '../../lovelace/templates/header_text.yaml'
+    - content: "##### Radarr Upcoming Movies"
+  - type: 'custom:upcoming-media-card'
+    style: |
+      ha-card {
+        border-radius: {{ states('input_select.border_radius') }};
+        box-shadow: {{ states('input_select.box_shadow') }};
+      }
+    entity: sensor.radarr_upcoming_media

@@ -1,9 +1,3 @@
-###################################################
-#                                                 #
-#     Home Assistant Main Configuration File      #
-#                                                 #
-###################################################
-
 homeassistant:
   name: !secret name
   temperature_unit: C
@@ -12,67 +6,19 @@ homeassistant:
   longitude: !secret longitude
   unit_system: metric
   elevation: 169
-  packages: !include_dir_named packages
-  customize: !include_dir_merge_named configuration/customize/
+  packages: !include_dir_named packages/
+  customize: !include customize.yaml
   auth_providers:
     - type: trusted_networks
       trusted_networks:
-        - 192.168.1.1
+        - 192.168.1.0/24
     - type: homeassistant
-
-  whitelist_external_dirs:
-    - /config
-    - /config/tmp
-    - /config/backup/hass
-
-
-# Configure a default setup of Home Assistant https://www.home-assistant.io/integrations/default_config
-default_config:
-
-###################################################
-#                                                 #
-#                     lovelace                    #
-#                                                 #
-###################################################
-lovelace:
-  mode: yaml
-
-
+    
 ####################################################
-#                                                  #
-#                     iFrame                       #
-#                                                  #
-####################################################
-
-panel_iframe:
-  node_red:
-   title: Node Red
-   icon: mdi:file-plus
-   url: !secret node_red
-
-  unraid:
-   title: Unraid
-   icon: mdi:desktop-tower
-   url: !secret unraid
-
-  cloud9: 
-   title: ide
-   icon: mdi:cloud-upload-outline
-   url: !secret cloud9  
-   
-  tasmoadmin: 
-   title: TasmoAdmin
-   icon: mdi:omega
-   url: !secret tasmoadmin
-
-####################################################
-#                                                  #
 #                     Enables                      #
-#                                                  #
 ####################################################
 
 http:
-  # api_password: !secret http_password
   base_url: !secret base_url
   ip_ban_enabled: true
   login_attempts_threshold: 5
@@ -82,87 +28,78 @@ http:
   - 192.168.1.1 #router
   - 172.18.0.2 #letsencryot 
   - 172.17.0.3 #mariadb
-
-
-discovery:
-conversation:
-speedtestdotnet:
-hacs:
-  token: !secret my_github_access_token
-      
-tts:
-  - platform: google_translate
-    service_name: google_say
-
-
-####################################################
-#                                                  #
-#                 Customizations                   #
-#                                                  #
-####################################################
-frontend:
-  themes: !include_dir_named configuration/themes #For Samsung Notte design
-  javascript_version: auto
-
-####################################################
-#                                                  #
-#                 Logger - קובץ לוג                 #
-#                                                  #
-####################################################
-
-logger:
-  default: warn
+  - 172.19.0.2
     
 
+frontend:
+  themes: !include_dir_merge_named themes/
+
+
+########################################################
+# Speedtest.net                                        #
+########################################################
+speedtestdotnet:
+
+########################################################
+# Browser-mod makes the browser more useful + required #
+########################################################
+browser_mod:
+
+########################################################
+# Home Assistant Mobile App Support                    #
+########################################################
+mobile_app:
+
+#######################################################
+# improve the lovelace yaml parser for Home Assistant #
+#######################################################
+lovelace_gen:
+
+#####################################
+#              Required             #
+#####################################
+lovelace:
+  mode: yaml
+
 #####################################################
-#                                                   #
-#                       Cloud                       #
-#                                                   #
-# ###################################################
+#              Required by home assistant           #
+#####################################################
+default_config:
 
-# cloud: !include config/cloud.yaml
+
+#####################################################
+#              Required by home assistant           #
+#####################################################
+discovery:
+
+####################################################
+#                      Weather Dark Sky            #
+####################################################
+weather:
+  - platform: darksky
+    mode: daily
+    api_key: !secret darksky_api
 
 
 ####################################################
-#                                                  #
-#                      MQTT                        #
-#                                                  #
-####################################################
-
-mqtt: 
-  password: !secret http_password
-  broker:  !secret broker_host
-  username: !secret http_username
-  client_id: HOME_ASSISTANT
-
-####################################################
-#                                                  #
 #                      xiaomi                      #
-#                                                  #
 ####################################################
 xiaomi_aqara:
   discovery_retry: 10
   gateways:
     - key: !secret xiaomi
 
-
 ####################################################
-#                                                  #
-#                      google                      #
-#                                                  #
+#                Google  Calendar                  #
 ####################################################
-
 google:
   client_id: !secret client_id
   client_secret: !secret client_secret 
 
 
 ####################################################
-#                                                  #
 #                    Telegram Bot                  #
-#                                                  #
 #################################################### 
-
 telegram_bot:
   - platform: polling
     api_key: !secret TelegramBotApiKey
@@ -171,58 +108,30 @@ telegram_bot:
       - !secret telgram_nurit  
 
 
-
-## Weather Dark Sky
-weather:
-  - platform: darksky
-    mode: daily
-    api_key: !secret darksky_api
+####################################################
+#                      MQTT                        #
+####################################################
+mqtt: 
+  password: !secret http_password
+  broker:  !secret broker_host
+  username: !secret http_username  
 
 ####################################################
-#                                                  #
-#                    Switcher V2                   #
-#                                                  #
-####################################################       
+#                      Hacs                        #
+####################################################
+hacs:
+  token: !secret my_github_access_token  
 
-switcher_aio:
-  phone_id: !secret switcher_phone_id
-  device_id: !secret switcher_device_id
-  device_password: !secret switcher_device_password 
-
- 
 
 ####################################################
-#                                                  #
-#        Birthday Sensor For mobile mode           #
-#                                                  #
+#                      include                     #
 ####################################################
-python_script: 
-  
-####################################################
-#                                                  #
-#                    Includes                      #
-#                                                  #
-####################################################
-
-#New
-switch: !include configuration/switch/switch.yaml
-group: !include configuration/group/group.yaml
-notify: !include configuration/notify/notify.yaml
-alarm_control_panel: !include configuration/alarm_control_panel/alarms.yaml
-zone: !include configuration/zone/zone.yaml
-input_select: !include configuration/input_select/input_select.yaml
-media_player: !include configuration/media_player/media_player.yaml
-cloud: !include configuration/cloud/cloud.yaml
-timer: !include configuration/timer/timer.yaml
-cloudflare: !include configuration/cloudflare/cloudflare.yaml
-input_datetime: !include configuration/input_datetime/input_datetime.yaml
-weblink: !include configuration/weblink/weblink.yaml
-shell_command: !include configuration/shell_command/shell_command.yaml
-fan: !include configuration/fan/fans.yaml
-
-sensor: !include_dir_merge_list configuration/sensor/
-automation: !include_dir_merge_list configuration/automations/
-
-script: !include_dir_merge_named configuration/scripts/
-input_boolean: !include_dir_merge_named configuration/input_boolean/
-
+automation: !include_dir_merge_list configuration/automations/ #place every automation in this folder
+notify: !include configuration/notify/notify.yaml # by home assistent
+alarm_control_panel: !include configuration/alarm_control_panel/alarms.yaml # Alarm Panel
+webostv: !include configuration/webostv/webostv.yaml # LG TV
+group: !include configuration/group/group.yaml # jimz011/homekit
+cloud: !include configuration/cloud/cloud.yaml # amazon alexa
+zone: !include configuration/zone/zone.yaml # place every zone in this folder
+switch: !include configuration/switch/switch.yaml # for tami 4 and mor
+sensor: !include_dir_merge_list configuration/sensor/ #place every sensor in this folder

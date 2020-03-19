@@ -6,9 +6,7 @@
 
 
 #################################################################
-#                                                               #
-#                          mqtt - light                         #
-#                                                               #
+#   Mqtt - Light                                                #
 #################################################################
 light:
   - platform: mqtt  
@@ -156,6 +154,18 @@ light:
     payload_not_available: "Offline"
     retain: true
 
+  - platform: mqtt  
+    name: "Guests Bathroom Switch"
+    command_topic: "cmnd/Guests_Bathroom_Switch/POWER"
+    state_topic: "stat/Guests_Bathroom_Switch/POWER"
+    availability_topic: "tele/Guests_Bathroom_Switch/LWT"   
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"  
+    retain: true        
+
 
 script:
   lights_off:
@@ -183,29 +193,27 @@ script:
                   - light.computer_room                
       
 #################################################################
-#                                                               #
-#                           Group                               #
-#                                                               #
+#   Group                                                       #
 #################################################################
 
 group:
-  downstairs lights:
+  downstairs_lights:
     name: Downstairs Lights
-    view: no
+    #view: no
     entities:
-      - light.guests_bathroom_switch
+      - light.yeelight_poop
       - light.prozdor
       - light.miklahat
-      - light.laundry
+      - light.laundry_room_lighting
       - light.liran_room
       - light.balcony
       - light.service_balcony
       - light.kitchen_strip_lamp
       - light.gateway_light_34ce008d4e2e
       
-  upstairs lights:
+  upstairs_lights:
     name: Upstairs Lights
-    view: no
+    #view: no
     entities:
       - light.stairs
       - fan.server_room_fan

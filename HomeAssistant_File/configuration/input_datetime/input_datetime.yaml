@@ -1,4 +1,0 @@
-    only_date:
-      name: Start Date
-      has_date: true
-      has_time: false

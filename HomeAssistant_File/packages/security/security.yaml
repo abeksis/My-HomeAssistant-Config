@@ -14,9 +14,7 @@
 #################################################################
 automation:
   ############################################################
-  #
-  # send notification upon failed login attempt
-  # if there was a login attempt with worng password , send Notification with URL and IP of the hacker ;)
+  # send notification upon failed login attempt              #
   ############################################################
   - alias: 'Send notification upon failed login attempt'
     initial_state: 'on'
@@ -33,9 +31,7 @@ automation:
           message: "{{ states.persistent_notification.http_login.attributes.message}}"
 
   ############################################################
-  #
-  # send notification upon IP BAN
-  # if there was a IP BAN , send Notification with URL and IP of the hacker ;)
+  # send notification upon IP BAN                            #
   ############################################################
   - alias: 'Send notification upon IP BAN'
     initial_state: 'on'

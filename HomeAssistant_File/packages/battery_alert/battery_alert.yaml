@@ -48,7 +48,6 @@ homeassistant:
 
 group:
   battery_alert:
-    control: hidden
     entities:
       - automation.battery_alert
       - automation.battery_alert_clear
@@ -100,7 +99,7 @@ automation:
           {%- endfor %}
           {% endmacro %}
           {{ battery_level() }}
-    - service: notify.slack_notify
+    - service: notify.avi_telegram
       data_template:
         message: "Low Battery Levels"
         data:

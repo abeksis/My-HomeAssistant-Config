@@ -3,10 +3,10 @@
   initial_state: 'true'
   trigger:
   - platform: state
-    entity_id: !secret binary_sensor_1
+    entity_id: sensor.living_room_temp
     to: 'on'
   - platform: state
-    entity_id: !secret binary_sensor_1
+    entity_id: sensor.living_room_temp
     to: 'off'
   condition:
     condition: and
@@ -44,7 +44,7 @@
   initial_state: 'on'
   trigger:
     platform: state
-    entity_id: !secret binary_sensor_1
+    entity_id: sensor.living_room_temp
     to: 'on'
   condition:
     condition: and
@@ -85,7 +85,7 @@
   initial_state: 'on'  
   trigger:
     platform: state
-    entity_id: !secret binary_sensor_1
+    entity_id: sensor.living_room_temp
     from: 'off'
     to: 'on'
     for:

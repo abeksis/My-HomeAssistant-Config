@@ -5,18 +5,17 @@
 # ALARM FOR AWAY
 - alias: Alarm Away
   initial_state: 'true'
-  hide_entity: True
   trigger:
-  - entity_id: !secret binary_sensor_1
+  - entity_id: binary_sensor.front_door_sensor
     platform: state
     to: 'on'
-  - entity_id: !secret binary_sensor_2 # חיישן דלת מרפסת
+  - entity_id: binary_sensor.balcony_door_sensor # חיישן דלת מרפסת
     platform: state
     to: 'on'
-  - entity_id: !secret binary_sensor_3 # חיישן עשן
+  - entity_id: binary_sensor.smoke_detector # חיישן עשן
     platform: state
     to: 'on'
-  - entity_id: !secret binary_sensor_4 # חיישן תנועה שירותי אורחים
+  - entity_id: binary_sensor.guest_bathrom_motion_sensor # חיישן תנועה שירותי אורחים
     platform: state
     to: 'on'
   condition:
@@ -31,15 +30,14 @@
 # ALARM FOR AT HOME
 - alias: Alarm Home
   initial_state: 'true'
-  hide_entity: True
   trigger:
-  - entity_id: !secret binary_sensor_1 # חיישן דלת כניסה
+  - entity_id: binary_sensor.front_door_sensor # חיישן דלת כניסה
     platform: state
     to: 'on'
-  - entity_id: !secret binary_sensor_2 # חיישן דלת מרפסת
+  - entity_id: binary_sensor.balcony_door_sensor # חיישן דלת מרפסת
     platform: state
     to: 'on'
-  - entity_id: !secret binary_sensor_3 # חיישן עשן
+  - entity_id: binary_sensor.smoke_detector # חיישן עשן
     platform: state
     to: 'on'
   condition:
@@ -54,9 +52,8 @@
 # ALARM FOR AT NIGHT
 - alias: Alarm Night
   initial_state: 'true'
-  hide_entity: True
   trigger:
-  - entity_id: !secret binary_sensor_1 # חיישן דלת כניסה
+  - entity_id: binary_sensor.front_door_sensor # חיישן דלת כניסה
     platform: state
     to: 'on'
   condition:
@@ -74,7 +71,6 @@
 
 - alias: Triggered Flash
   initial_state: 'true'
-  hide_entity: True
   trigger:
   - entity_id: alarm_control_panel.home_alarm
     platform: state
@@ -93,7 +89,6 @@
 
 - alias: Disarmed Off
   initial_state: 'true'
-  hide_entity: True
   trigger:
   - entity_id: alarm_control_panel.home_alarm
     platform: state
