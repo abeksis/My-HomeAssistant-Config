@@ -75,5 +75,5 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/>, 
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Samsung_Note_8.jpg" style="max-width:100%;"></a></td>
+<td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Mobile-display.jpg" style="max-width:100%;"></a></td>
 </tr></tbody></table>
