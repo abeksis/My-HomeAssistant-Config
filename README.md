@@ -9,6 +9,11 @@ I live in <img src="https://github.com/oxguy3/flags/blob/master/mini/il.png"/> a
 
 <p align="center">Be sure to <g-emoji class="g-emoji" alias="star" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji> my repo!</p>
 
+## Home Assistant Configuration
+- Unraid Server
+- Docker Container
+- [Home Kit Infused](https://github.com/jimz011/homekit-infused)
+
  ## Credits
  - [Jimz011](https://github.com/jimz011) Thanks for your assistance and ideas on this :)
  - [Noodlemctwoodle](https://github.com/noodlemctwoodle) Did a perfect job of bringing unraid server to the home assistant interface, and helped me in discord when I needed.

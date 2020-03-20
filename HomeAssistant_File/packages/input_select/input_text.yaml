@@ -7,4 +7,3 @@ input_text:
     initial: Today
   electricity_use_yesterday:
     initial: Yesterday
-    

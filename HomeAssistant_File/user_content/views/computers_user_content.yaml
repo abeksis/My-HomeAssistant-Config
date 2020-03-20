@@ -297,81 +297,129 @@
 
 - type: horizontal-stack
   cards:
+    - type: custom:swipe-card
+      parameters:
+        spaceBetween: 8
+        scrollbar:
+          hide: true
+          draggable: true
+          snapOnRelease: true
+      cards:
+    # CPU Temps
+        - type: custom:mini-graph-card
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entities:
+            - entity: sensor.glances_unraid_cpu_tcl_temp
+              name: CPU0
+              line_color: '"#14ff8d"'
+            # - entity: sensor.glances_unraid_core_1_temp #להסיר או לבדור חלופה 
+            #   name: CPU1
+            #   line_color: '"#2814ff"'
+            # - entity: sensor.glances_unraid_core_2_temp # להסיר או לבדוק חלופה
+            #   name: CPU2
+            #   line_color: '"#2814ff"'
+            # - entity: sensor.glances_unraid_core_3_temp # להסיר או לבדוק חלופה
+            #   name: CPU3
+            #   line_color: '"#2814ff"'
+          name: AMD Ryzen 7 1700 | 3000 MHz
+          hours_to_show: 7
+          points_per_hour: 10
+          update_interval: 30
+          aggregate_func: max
+          line_width: 2
+          smoothing: false
+          font_size: 65
+          font_size_header: 9
+          show:
+            average: true
+            extrema: true
+          tap_action: none
 
-# CPU Temps
-    - type: custom:mini-graph-card
-      style: |
-        ha-card {
-          background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
-          font-weight: bold;
-          opacity: 0.8;
-        }
-      entities:
-        - entity: sensor.glances_unraid_core_0_temp
-          name: CPU0
-          line_color: '"#14ff8d"'
-        - entity: sensor.glances_unraid_core_1_temp
-          name: CPU1
-          line_color: '"#2814ff"'
-        - entity: sensor.glances_unraid_core_2_temp
-          name: CPU2
-          line_color: '"#2814ff"'
-        - entity: sensor.glances_unraid_core_3_temp
-          name: CPU3
-          line_color: '"#2814ff"'
-      name: AMD Ryzen 7 1700 | 3000 MHz
-      hours_to_show: 7
-      points_per_hour: 10
-      update_interval: 30
-      aggregate_func: max
-      line_width: 2
-      smoothing: false
-      font_size: 65
-      font_size_header: 9
-      show:
-        average: true
-        extrema: true
+    # Motherboard Temps
+        - type: custom:mini-graph-card
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entities:
+            - entity: sensor.glances_motherboard_tdie_temp
+              name: Motherboard
+          name: Motherboard Temp ASUS B450-F
+          hours_to_show: 7
+          points_per_hour: 10
+          update_interval: 30
+          aggregate_func: max
+          line_width: 2
+          smoothing: false
+          font_size: 65
+          font_size_header: 9
+          show:
+            average: true
+            extrema: true
+          color_thresholds:
+            - value: 30
+              color: "#4fcc29"
+            - value: 40
+              color: "#f39c12"
+            - value: 50
+              color: "#d35400"
+            - value: 60
+              color: "#c0392b"
+          tap_action: none
 
-- type: horizontal-stack
-  cards:
-
-# Motherboard Temps
-    - type: custom:mini-graph-card
-      style: |
-        ha-card {
-          background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
-          font-weight: bold;
-          opacity: 0.8;
-        }
-      entities:
-        - entity: sensor.glances_unraid_core_0_temp
-      name: Processor Temperatures
-      hours_to_show: 7
-      points_per_hour: 10
-      update_interval: 30
-      aggregate_func: max
-      line_width: 2
-      smoothing: false
-      font_size: 65
-      font_size_header: 9
-      show:
-        average: true
-        extrema: true
-      color_thresholds:
-        - value: 30
-          color: "#4fcc29"
-        - value: 40
-          color: "#f39c12"
-        - value: 50
-          color: "#d35400"
-        - value: 60
-          color: "#c0392b"
+    # HDD Temps
+        - type: custom:mini-graph-card
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entities:
+            - entity: sensor.unraid_parity_temperature
+              name: Parity
+              line_color: '"#14ff8d"'
+            - entity: sensor.unraid_disk1_temperature
+              name: Disk 1
+              line_color: '"#2814ff"'
+            - entity: sensor.unraid_disk2_temperature
+              name: Disk 2
+              line_color: '"#2814ff"'
+            - entity: sensor.unraid_disk3_temperature
+              name: Disk 3
+              line_color: '"#2814ff"'
+            - entity: sensor.unraid_disk4_temperature
+              name: Disk 4
+              line_color: '"#14ff8d"'
+          name: UnRAID Storage Pool
+          hours_to_show: 7
+          points_per_hour: 10
+          update_interval: 30
+          aggregate_func: max
+          line_width: 2
+          smoothing: false
+          font_size: 65
+          font_size_header: 9
+          show:
+            average: true
+            extrema: true
+          tap_action: none
 
 # System Resourses Card
 - !include
