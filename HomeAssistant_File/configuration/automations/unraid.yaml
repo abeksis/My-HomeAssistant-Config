@@ -1,0 +1,15 @@
+#################################################################
+#   CPU Temp hige                                               #
+#################################################################
+
+  - alias: CPU Temp Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.glances_unraid_cpu_tcl_temp
+      above: 45
+    action:
+      - service: notify.avi_telegram
+        data:
+          title: 'UnRAID CPU Temp Server'
+          message: 'Warning - UnRAID CPU Temp Above 45C'

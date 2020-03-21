@@ -265,6 +265,7 @@
   action:
     - service: alarm_control_panel.alarm_arm_home
       data: !secret alarmcode 
+
 - alias: simple alarm deactivate
   initial_state: 'true'
   trigger:
