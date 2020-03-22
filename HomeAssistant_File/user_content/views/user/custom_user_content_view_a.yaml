@@ -3,11 +3,243 @@
 # customize your entire view (just turn off the other elements except for user content)!
 # The first card is an example, you can safely remove it!
 
-- type: markdown
+# UnRAID Picture Card
+- type: picture-elements
   style: |
     ha-card {
       border-radius: {{ states('input_select.border_radius') }};
       box-shadow: {{ states('input_select.box_shadow') }};
-    }              
+      overflow: hidden;
+    }
+  image: '/local/images/network/network.jpg'
+  elements:
+    - type: state-label
+      entity: input_text.router
+      style:
+        top: 15%
+        left: 2%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+    - type: icon
+      icon: mdi:router-wireless
+      style:
+        top: 35%
+        left: 11%
+        pointer-events: none
+        transform: scale(1.0)
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 7px 7px
+        font-size: 15px
+    - type: state-label
+      entity: sensor.openwrt_uptime
+      style:
+        top: 60%
+        left: -4%
+        pointer-events: none
+        transform: initial
+        font-size: 12px
+        color: rgba(255,255,255,0.8)
+        line-height: 32px
+        padding: 0px 28px
+
+- type: markdown
+  style: |
+    ha-card {
+      box-shadow: none;
+      height: 33px;
+      background: rgba(0,0,0,0.0);
+      padding: 0px 11px;
+      color: var(--category-text)
+    }
   content: >
-    User Cards Here!
+    ##### Lan Use
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.openwrt_lan
+      name: OpenWRT Lan Use
+      icon: far:house-signal
+      animate: true
+      color_thresholds:
+        - color: '#0aaf31'
+          value: 50
+        - color: '#ffee00'
+          value: 35
+        - color: '#e01a1a'
+          value: 0
+      font_size: 75
+      hours_to_show: 24
+      line_width: 1
+      show:
+        extrema: true
+        fill: fade  
+        icon: false
+        
+
+####
+- type: markdown
+  style: |
+    ha-card {
+      box-shadow: none;
+      height: 33px;
+      background: rgba(0,0,0,0.0);
+      padding: 0px 11px;
+      color: var(--category-text)
+    }            
+  content: >
+    ##### UniFi iNFO  
+- type: horizontal-stack
+  cards:
+    - type: custom:mini-graph-card
+      name: UniFi Memory free
+      icon: far:memory
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.unifi_memory_free
+          line_color: '"#e69422"'
+      height: 65
+      line_width: 2
+      font_size: 70
+      hours_to_show: 168
+      line_color: '#e69422'  
+      show:
+        extrema: true
+        fill: fade  
+        icon: false      
+
+- type: horizontal-stack
+  cards:
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }    
+      entity: sensor.unifi_number_connected_2g
+      severity:
+      - value: 6
+        color: '#bf4040'
+      - value: 12
+        color: '#bf9540'
+      - value: 24
+        color: '#40bf40'  
+      title: 2G connected
+      title_position: inside
+      icon_position: left
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+      icon: far:house-signal
+
+
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        -  sensor.unifi_number_connected_5gh
+      severity:
+      - value: 'Parity is valid.'
+        color: '#3ed11d'
+      - value: unknown
+        color: '#bf4040'
+      title: 5G Connected 
+      show_icon: true
+      icon: far:wifi
+      title_position: 'inside'
+      icon_position: inside
+      direction: right
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+
+- type: horizontal-stack
+  cards:
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entity: sensor.uptime
+      severity:
+      - value: 6
+        color: '#bf4040'
+      title_position: inside
+      icon_position: left
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+      icon: far:clock
+
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+  
+      entity: sensor.firmware
+      severity:
+      - value: 6
+        color: '#bf4040'
+      title_position: inside
+      icon_position: left
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      align: split
+      icon: far:cogs     
+      

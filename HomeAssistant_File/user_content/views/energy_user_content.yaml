@@ -39,7 +39,7 @@
       entity: sensor.power_calc_today_phaze1
       style:
         top: 60%
-        left: 4%
+        left: 2%
         pointer-events: none
         transform: initial
         font-size: 12px
@@ -63,7 +63,7 @@
       icon: mdi:power-plug
       style:
         top: 38%
-        left: 79%
+        left: 81%
         pointer-events: none
         transform: scale(0.8)
         line-height: 32px

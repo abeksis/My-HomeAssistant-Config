@@ -2,7 +2,7 @@
 #       הדלקה/כיבוי תאורה במדרגות בהתאם לשקיעה וזריחת השמש              #
 #################################################################
 
-  - alias: Lighting the light after sunset at eleven oclock
+  - alias: 'Lighting the light after sunset at eleven oclock'
     initial_state: 'on'  
     trigger:
       platform: time
@@ -13,7 +13,7 @@
         entity_id: 
         - light.stairs
 
-  - alias: Lights off after sunset
+  - alias: 'Lights off after sunset'
     initial_state: 'on'  
     trigger:
       platform: time

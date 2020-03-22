@@ -24,19 +24,19 @@ group:
 
 yeelight:
     devices:
-      192.168.1.30:
+      !secret yeelight_poop:
         name: Yeelight Poop
         transition: 1000
   
-      192.168.1.31:
+      !secret yeelight_computer_room:
         name: computer room
         transition: 1000
               
-      192.168.1.32:
+      !secret yeelight_kitchen_strip_lamp:
         name: Kitchen strip Lamp
         transition: 1000 
 
-      192.168.1.33:
+      !secret yeelight_laundry_room_lighting:
         name: Laundry Room lighting
         transition: 1000         
     

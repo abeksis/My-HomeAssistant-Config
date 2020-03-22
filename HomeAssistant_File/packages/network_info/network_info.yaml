@@ -1,0 +1,135 @@
+#################################################################
+#                                                               #
+#                    Packages/Network                           #
+#                                                               #
+#################################################################
+
+#################################################################
+#                          Sensors                              #
+################################################################# 
+sensor:
+ ## OpenWrt Uptime ##
+  - platform: snmp
+    scan_interval: 60
+    name: "OpenWrt Uptime"
+    host: !secret home_router
+    baseoid: 1.3.6.1.2.1.31.1.5.0
+    value_template: >-
+        {% set timetick = value | int %}
+        {% set minutes = ((timetick % 360000) / 6000) | int%}
+        {% set hours = ((timetick % 8640000) / 360000) | int %}
+        {% set days = (timetick / 8640000) | int %}
+        {%- if timetick < 6000 -%}
+          Less than a minute
+        {%- else -%}
+          {%- if days > 0 -%}
+            {%- if days == 1 -%}
+              1 day
+            {%- else -%}
+              {{ days }} days
+            {%- endif -%}
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ', ' }}
+            {%- endif -%}
+            {%- if hours == 1 -%}
+              1 hr
+            {%- else -%}
+              {{ hours }} hrs
+            {%- endif -%}
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ', ' }}
+            {%- endif -%}
+            {%- if minutes == 1 -%}
+              1 min
+            {%- else -%}
+              {{ minutes }} min
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+
+ ## OpenWrt lan ##
+  - platform: snmp
+    version: 2c
+    scan_interval: 120
+    accept_errors: true
+    name: 'OpenWrt lan'
+    host: !secret home_router
+    port: 161
+    community: public
+    baseoid: 1.3.6.1.2.1.2.2.1.10.3
+    unit_of_measurement: 'Gb'
+    value_template: '{{((value | int) / 1048576) | round(2)}}'
+
+
+#################################################################
+#   Unifi                                                       #
+################################################################# 
+  - platform: snmp
+    host: !secret unfi_ip
+    baseoid: 1.3.6.1.4.1.41112.1.6.1.2.1.8.3
+    name: 'UniFi Number connected 5Gh'
+
+  - platform: snmp
+    host: !secret unfi_ip
+    baseoid: 1.3.6.1.4.1.41112.1.6.1.2.1.8.1
+    name: 'UniFi Number connected 2G'  
+
+  - platform: snmp
+    name: 'UniFi Memory free'
+    host: !secret unfi_ip
+    port: 161
+    community: public
+    baseoid: .1.3.6.1.4.1.2021.4.11.0
+    accept_errors: false
+    unit_of_measurement: "MB"
+    value_template: >
+      {{((value | float ) / 1024 ) | round(2) }}
+    
+  - platform: snmp
+    name: 'UniFi Total Memory'
+    host: !secret unfi_ip
+    port: 161
+    community: public
+    baseoid: .1.3.6.1.4.1.10002.1.1.1.1.1.0
+    accept_errors: false
+    unit_of_measurement: "MB"
+    value_template: >
+      {{((value | float ) / 1024 ) | round(2) }} 
+ 
+  - platform: snmp
+    host: !secret unfi_ip
+    baseoid: 1.3.6.1.4.1.41112.1.6.3.6.0
+    name: 'Firmware'
+
+  - platform: snmp
+    host: !secret unfi_ip
+    baseoid: 1.3.6.1.2.1.1.3.0
+    name: 'Uptime'
+    value_template: >-
+      {% set time = (value | int) | int %}
+      {% set minutes = ((time % 360000) / 6000) | int%}
+      {% set hours = ((time % 8640000) / 360000) | int %}
+      {% set days = (time / 8640000) | int %}
+        {%- if time < 60 -%}
+          Less then 1 min
+          {%- else -%}
+          {%- if days > 0 -%}
+            {{ days }}d
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if days > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ hours }}hr
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if days > 0 or hours > 0 -%}
+              {{ ' ' }}
+            {%- endif -%}
+            {{ minutes }}min
+          {%- endif -%}
+        {%- endif -%}

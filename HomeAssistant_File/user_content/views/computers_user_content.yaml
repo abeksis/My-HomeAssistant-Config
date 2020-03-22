@@ -300,10 +300,14 @@
     - type: custom:swipe-card
       parameters:
         spaceBetween: 8
-        scrollbar:
-          hide: true
-          draggable: true
-          snapOnRelease: true
+        touchEventsTarget: 'container'
+        pagination:
+          type: 'bullets'
+          dynamicBullets: true
+#        scrollbar:
+#          hide: true
+#          draggable: true
+#          snapOnRelease: true
       cards:
     # CPU Temps
         - type: custom:mini-graph-card
@@ -315,20 +319,12 @@
               box-shadow: {{ states('input_select.box_shadow') }};
               font-weight: bold;
               opacity: 0.8;
+              height: 242px;                  
             }
           entities:
             - entity: sensor.glances_unraid_cpu_tcl_temp
               name: CPU0
               line_color: '"#14ff8d"'
-            # - entity: sensor.glances_unraid_core_1_temp #להסיר או לבדור חלופה 
-            #   name: CPU1
-            #   line_color: '"#2814ff"'
-            # - entity: sensor.glances_unraid_core_2_temp # להסיר או לבדוק חלופה
-            #   name: CPU2
-            #   line_color: '"#2814ff"'
-            # - entity: sensor.glances_unraid_core_3_temp # להסיר או לבדוק חלופה
-            #   name: CPU3
-            #   line_color: '"#2814ff"'
           name: AMD Ryzen 7 1700 | 3000 MHz
           hours_to_show: 7
           points_per_hour: 10
@@ -353,6 +349,7 @@
               box-shadow: {{ states('input_select.box_shadow') }};
               font-weight: bold;
               opacity: 0.8;
+              height: 242px;                  
             }
           entities:
             - entity: sensor.glances_motherboard_tdie_temp
@@ -390,6 +387,7 @@
               box-shadow: {{ states('input_select.box_shadow') }};
               font-weight: bold;
               opacity: 0.8;
+              height: 242px;
             }
           entities:
             - entity: sensor.unraid_parity_temperature
@@ -428,68 +426,153 @@
 
 - type: horizontal-stack
   cards:
+    - type: custom:swipe-card
+      parameters:
+        spaceBetween: 8
+        touchEventsTarget: 'container'
+        pagination:
+          type: 'bullets'
+          dynamicBullets: true
+#        scrollbar:
+#          hide: true
+#          draggable: true
+#          snapOnRelease: true
+      cards:
 
-# CPU Usage
-    - type: custom:mini-graph-card
-      style: |
-        ha-card {
-          background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
-          font-weight: bold;
-          opacity: 0.8;
-        }
-      entities:
-        - entity: sensor.glances_unraid_cpu_used
-          name: System
-          line_color: '"#14ff8d"'
-        - entity: sensor.glances_unraid_containers_cpu_used
-          name: Containers
-          line_color: '"#2814ff"'
-      name: CPU Usage
-      hours_to_show: 7
-      points_per_hour: 10
-      update_interval: 30
-      aggregate_func: max
-      line_width: 2
-      smoothing: false
-      font_size: 65
-      font_size_header: 9
-      show:
-        average: true
-        extrema: true
+    # CPU Usage
+        - type: custom:mini-graph-card
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entities:
+            - entity: sensor.glances_unraid_cpu_used
+              name: System
+              line_color: '"#14ff8d"'
+            - entity: sensor.glances_unraid_containers_cpu_used
+              name: Containers
+              line_color: '"#2814ff"'
+          name: CPU Usage
+          hours_to_show: 7
+          points_per_hour: 10
+          update_interval: 30
+          aggregate_func: max
+          line_width: 2
+          smoothing: false
+          font_size: 65
+          font_size_header: 9
+          show:
+            average: true
+            extrema: true
+    
+    # Ram Usage
+        - type: custom:mini-graph-card
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+              opacity: 0.8;
+            }
+          entities:
+            - entity: sensor.glances_unraid_ram_used
+              name: System
+              line_color: '"#14ff8d"'
+            - entity: sensor.glances_unraid_containers_ram_used
+              name: Containers
+              line_color: '"#2814ff"'
+          name: RAM Usage
+          hours_to_show: 7
+          points_per_hour: 10
+          update_interval: 30
+          aggregate_func: max
+          line_width: 2
+          smoothing: false
+          font_size: 65
+          font_size_header: 9
+          show:
+            average: true
+            extrema: true
 
-# Ram Usage
-    - type: custom:mini-graph-card
-      style: |
-        ha-card {
-          background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
-          font-weight: bold;
-          opacity: 0.8;
-        }
-      entities:
-        - entity: sensor.glances_unraid_ram_used
-          name: System
-          line_color: '"#14ff8d"'
-        - entity: sensor.glances_unraid_containers_ram_used
-          name: Containers
-          line_color: '"#2814ff"'
-      name: RAM Usage
-      hours_to_show: 7
-      points_per_hour: 10
-      update_interval: 30
-      aggregate_func: max
-      line_width: 2
-      smoothing: false
-      font_size: 65
-      font_size_header: 9
-      show:
-        average: true
-        extrema: true
+        - type: vertical-stack
+          cards:
+            # LAN Download
+            - type: custom:mini-graph-card
+              style: |
+                ha-card {
+                  background: var(--paper-card-background-color);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  --paper-item-icon-color: var(--paper-item-icon-color);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-weight: bold;
+                  opacity: 0.8;
+                  height: 242px;                
+                }            
+              entities: 
+                - sensor.unraid_lan_download_intel_gigabit
+              name: UnRAID LAN Traffic (Download)
+              hours_to_show: 7
+              points_per_hour: 5
+              update_interval: 120
+              aggregate_func: avg
+              line_width: 2
+              smoothing: false
+              font_size: 65
+              font_size_header: 9
+              show:
+                graph: bar
+                average: true
+                extrema: true
+              tap_action: none
+              color_thresholds:
+                - value: 2000
+                  color: "#e69422"
+                - value: 6000
+                  color: "#FFFF00"
+              
+
+        - type: vertical-stack
+          cards:
+        # LAN Upload
+            - type: custom:mini-graph-card
+              style: |
+                ha-card {
+                  background: var(--paper-card-background-color);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  --paper-item-icon-color: var(--paper-item-icon-color);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-weight: bold;
+                  opacity: 0.8;
+                  height: 242px;                
+                }            
+              entities: 
+                - sensor.unraid_lan_upload_intel_gigabit
+              name: UnRAID LAN Traffic (Upload)
+              hours_to_show: 7
+              points_per_hour: 5
+              update_interval: 120
+              aggregate_func: avg
+              line_width: 2
+              smoothing: false
+              font_size: 65
+              font_size_header: 9
+              show:
+                graph: bar
+                average: true
+                extrema: true
+              tap_action: none
+              color_thresholds:
+                - value: 2000
+                  color: "#14ff8d"
+                - value: 6000
+                  color: "#FFFF00"
 
 - type: horizontal-stack
   cards:
@@ -582,6 +665,9 @@
     - type: custom:swipe-card
       parameters:
         spaceBetween: 8
+        touchEventsTarget: 'container'
+        pagination:
+          type: 'bullets'
         scrollbar:
           hide: true
           draggable: true
@@ -1285,4 +1371,4 @@
         - value: 20
           color: "#e7ff14"
         - value: 10
-          color: "#ff1414"  
+          color: "#ff1414"
