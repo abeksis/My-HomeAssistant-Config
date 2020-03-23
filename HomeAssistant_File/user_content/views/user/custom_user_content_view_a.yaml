@@ -3,7 +3,7 @@
 # customize your entire view (just turn off the other elements except for user content)!
 # The first card is an example, you can safely remove it!
 
-# UnRAID Picture Card
+# Home communication information
 - type: picture-elements
   style: |
     ha-card {
@@ -91,7 +91,7 @@
         icon: false
         
 
-####
+
 - type: markdown
   style: |
     ha-card {
@@ -142,7 +142,7 @@
           font-weight: bold;
           opacity: 0.8;
         }    
-      entity: sensor.unifi_number_connected_2g
+      entity: sensor.unifi_number_connected_2gh
       severity:
       - value: 6
         color: '#bf4040'
