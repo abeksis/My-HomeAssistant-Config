@@ -405,6 +405,15 @@
             - entity: sensor.unraid_disk4_temperature
               name: Disk 4
               line_color: '"#14ff8d"'
+            - entity: sensor.unraid_disk5_temperature
+              name: Disk 5
+              line_color: '"#2814ff"'
+            - entity: sensor.unraid_disk6_temperature
+              name: Disk 6
+              line_color: '"#2814ff"'
+            - entity: sensor.unraid_disk7_temperature
+              name: Disk 7
+              line_color: '"#14ff8d"'              
           name: UnRAID Storage Pool
           hours_to_show: 7
           points_per_hour: 10
@@ -516,7 +525,7 @@
                   height: 242px;                
                 }            
               entities: 
-                - sensor.unraid_lan_download_intel_gigabit
+                - sensor.unraid_lan_download_intel_gigabit_i211
               name: UnRAID LAN Traffic (Download)
               hours_to_show: 7
               points_per_hour: 5
@@ -553,7 +562,7 @@
                   height: 242px;                
                 }            
               entities: 
-                - sensor.unraid_lan_upload_intel_gigabit
+                - sensor.unraid_lan_upload_intel_gigabit_i211
               name: UnRAID LAN Traffic (Upload)
               hours_to_show: 7
               points_per_hour: 5

@@ -127,4 +127,7 @@
 ####################################################
 # Bar Card
   - url: /hacsfiles/bar-card/bar-card.js
-    type: module  
+    type: module
+    
+  - url: /hacsfiles/canvas-gauge-card/canvas-gauge-card.js  
+    type: module

@@ -60,7 +60,7 @@ sensor:
     host: !secret home_router
     port: 161
     community: public
-    baseoid: 1.3.6.1.2.1.2.2.1.10.3
+    baseoid: .1.3.6.1.2.1.2.2.1.10.3
     unit_of_measurement: 'TB'
     value_template: '{{((value | int) / 1048576) | round(2)}}'
 
