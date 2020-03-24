@@ -47,6 +47,90 @@
         line-height: 32px
         padding: 0px 28px
 
+
+## Speedtest
+
+- type: markdown
+  style: |
+    ha-card {
+      box-shadow: none;
+      height: 33px;
+      background: rgba(0,0,0,0.0);
+      padding: 0px 11px;
+      color: var(--category-text)
+    }
+  content: >
+    ##### Internet
+
+# - !include
+#   - '../../lovelace/templates/header_text.yaml'
+#   - content: "##### Internet"
+- type: horizontal-stack
+  cards:
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities:
+        - entity: sensor.speedtest_download
+      name: Download
+      hours_to_show: 24
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true
+      color_thresholds:
+        - value: 300
+          color: "#29cf45"
+        - value: 200
+          color: "#e7ff14"
+        - value: 180
+          color: "#ff1414"
+
+    - type: custom:mini-graph-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }    
+      entities:
+        - entity: sensor.speedtest_upload
+      name: Upload
+      hours_to_show: 24
+      points_per_hour: 10
+      update_interval: 30
+      aggregate_func: max
+      line_width: 2
+      smoothing: false
+      font_size: 65
+      font_size_header: 9
+      show:
+        average: true
+        extrema: true
+      color_thresholds:
+        - value: 30
+          color: "#29cf45"
+        - value: 20
+          color: "#e7ff14"
+        - value: 10
+          color: "#ff1414"
+
 - type: markdown
   style: |
     ha-card {
@@ -106,7 +190,7 @@
 - type: horizontal-stack
   cards:
     - type: custom:mini-graph-card
-      name: UniFi Memory free
+      name: UniFi Memory Free
       icon: far:memory
       style: |
         ha-card {
@@ -175,7 +259,7 @@
       entities: 
         -  sensor.unifi_number_connected_5gh
       severity:
-      - value: 'Parity is valid.'
+      - value: 'Parity is valid'
         color: '#3ed11d'
       - value: unknown
         color: '#bf4040'

@@ -131,7 +131,7 @@
       entities: 
         - sensor.unraid_array_protection
       severity:
-      - value: 'Parity is valid.'
+      - value: 'Parity is valid'
         color: '#3ed11d'
       - value: unknown
         color: '#bf4040'
@@ -599,7 +599,7 @@
         color: '#e69422'
       - value: 50
         color: '#bf4040'
-      title: SSD Cache
+      title: SSD Cache (Free)
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -641,7 +641,7 @@
         color: 'b9d11d'
       - value: 100
         color: 'fa0505'
-      title: Backups SSD
+      title: Backups USB Disk (Free)
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1002,7 +1002,7 @@
         color: '#e69422'
       - value: 90
         color: '#bf4040'
-      title: Disk 1
+      title: Disk 1 Used
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1037,7 +1037,7 @@
         color: '#e69422'
       - value: 90
         color: '#bf4040'
-      title: Disk 2
+      title: Disk 2 Used
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1072,7 +1072,7 @@
         color: '#e69422'
       - value: 90
         color: '#bf4040'
-      title: Disk 3
+      title: Disk 3 Used
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1107,7 +1107,7 @@
         color: '#e69422'
       - value: 90
         color: '#bf4040'
-      title: Disk 4
+      title: Disk 4 Used
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1119,6 +1119,116 @@
       height: 160px
       width: 100px
       align: center
+
+## Disk 5 Used %
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk5_used_percent
+      severity:
+      - value: 20
+        color: '#40bf40'
+      - value: 50
+        color: '#bf9540'
+      - value: 80
+        color: '#e69422'
+      - value: 90
+        color: '#bf4040'
+      title: Disk 5 Used
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+      tap_action: none
+
+## Disk 6 Used %
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk6_used_percent
+      severity:
+      - value: 20
+        color: '#40bf40'
+      - value: 50
+        color: '#bf9540'
+      - value: 80
+        color: '#e69422'
+      - value: 90
+        color: '#bf4040'
+      title: Disk 6 Used
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 110px
+      align: center
+      tap_action: none   
+
+## Disk 7 Used %
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk7_used_percent
+      severity:
+      - value: 20
+        color: '#40bf40'
+      - value: 50
+        color: '#bf9540'
+      - value: 80
+        color: '#e69422'
+      - value: 90
+        color: '#bf4040'
+      title: Disk 7 Used
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 110px
+      align: center
+      tap_action: none       
+
+      
 
 - !include
   - '../../lovelace/templates/header_text.yaml'
@@ -1151,7 +1261,7 @@
         color: '#64c91c'
       - value: 2000
         color: '#b9d11d'
-      title: Disk 1
+      title: Disk 1 Free
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1195,7 +1305,7 @@
         color: '#64c91c'
       - value: 1000
         color: '#b9d11d'
-      title: Disk 2
+      title: Disk 2 Free
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1239,7 +1349,7 @@
         color: '#64c91c'
       - value: 2000
         color: '#b9d11d'
-      title: Disk 3
+      title: Disk 3 Free
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1283,7 +1393,7 @@
         color: '#64c91c'
       - value: 900
         color: '#b9d11d'
-      title: Disk 4
+      title: Disk 4 Free
       show_icon: true
       icon: mdi:harddisk
       title_position: 'inside'
@@ -1301,15 +1411,8 @@
       max: 931
       min: 0
 
-
-
-## Speedtest
-- !include
-  - '../../lovelace/templates/header_text.yaml'
-  - content: "##### Internet"
-- type: horizontal-stack
-  cards:
-    - type: custom:mini-graph-card
+## Disk 5 Free
+    - type: custom:bar-card
       style: |
         ha-card {
           background: var(--paper-card-background-color);
@@ -1319,29 +1422,42 @@
           font-weight: bold;
           opacity: 0.8;
         }
-      entities:
-        - entity: sensor.speedtest_download
-      name: Download
-      hours_to_show: 24
-      points_per_hour: 10
-      update_interval: 30
-      aggregate_func: max
-      line_width: 2
-      smoothing: false
-      font_size: 65
-      font_size_header: 9
-      show:
-        average: true
-        extrema: true
-      color_thresholds:
-        - value: 300
-          color: "#29cf45"
-        - value: 200
-          color: "#e7ff14"
-        - value: 180
-          color: "#ff1414"
+      entities: 
+        - sensor.glances_unraid_mnt_disk5_free
+      severity:
+      - value: 700
+        color: '#fa0505'
+      - value: 800
+        color: '#de4314'
+      - value: 900
+        color: '#d1861d'
+      - value: 1000
+        color: '#d4c11c'
+      - value: 1400
+        color: '#64c91c'
+      - value: 1820
+        color: '#b9d11d'
+      title: Disk 5 Free
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+# Disk Size (2TB)
+      max: 1820
+      min: 0
+      tap_action: none
 
-    - type: custom:mini-graph-card
+## Disk 6 Free
+    - type: custom:bar-card
       style: |
         ha-card {
           background: var(--paper-card-background-color);
@@ -1350,25 +1466,82 @@
           box-shadow: {{ states('input_select.box_shadow') }};
           font-weight: bold;
           opacity: 0.8;
-        }    
-      entities:
-        - entity: sensor.speedtest_upload
-      name: Upload
-      hours_to_show: 24
-      points_per_hour: 10
-      update_interval: 30
-      aggregate_func: max
-      line_width: 2
-      smoothing: false
-      font_size: 65
-      font_size_header: 9
-      show:
-        average: true
-        extrema: true
-      color_thresholds:
-        - value: 30
-          color: "#29cf45"
-        - value: 20
-          color: "#e7ff14"
-        - value: 10
-          color: "#ff1414"
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk6_free
+      severity:
+      - value: 700
+        color: '#fa0505'
+      - value: 800
+        color: '#de4314'
+      - value: 900
+        color: '#d1861d'
+      - value: 1000
+        color: '#d4c11c'
+      - value: 1400
+        color: '#64c91c'
+      - value: 1820
+        color: '#b9d11d'
+      title: Disk 6 Free
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+# Disk Size (2TB)
+      max: 1820
+      min: 0
+      tap_action: none 
+
+## Disk 7 Free
+    - type: custom:bar-card
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.glances_unraid_mnt_disk6_free
+      severity:
+      - value: 700
+        color: '#fa0505'
+      - value: 800
+        color: '#de4314'
+      - value: 900
+        color: '#d1861d'
+      - value: 1000
+        color: '#d4c11c'
+      - value: 1400
+        color: '#64c91c'
+      - value: 1820
+        color: '#b9d11d'
+      title: Disk 7 Free
+      show_icon: true
+      icon: mdi:harddisk
+      title_position: 'inside'
+      icon_position: inside
+      direction: up
+      title_style:
+        font-size: 10px
+      value_style:
+        font-size: 10px
+      columns: 1
+      height: 160px
+      width: 100px
+      align: center
+# Disk Size (2TB)
+      max: 1820
+      min: 0
+      tap_action: none
