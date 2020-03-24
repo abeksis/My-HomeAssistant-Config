@@ -36,7 +36,7 @@
         majorTicks: ["0", "5", "10", "15", "20", "25", "30", "35"]
         minorTicks: 5
         strokeTicks: true
-        highlights: [{"from": 2.5, "to": 5.5,"color": "rgba(247, 228, 1, .75)"},{"from": 0, "to": 8.5,"color": "rgba(40, 149, 0, .75)"},{"from": 8.5, "to": 15.5,"color": "rgba(248, 123, 1, .75)"},{"from": 15.5, "to": 25.5,"color": "#7465ae"},{"from": 25.5, "to": 35,"color": "#ff2814"}]
+        highlights: [{"from": 25, "to": 35,"color": "#ff2814"}]
         borders: false
         colorPlate: transparent 
         colorMajorTicks: "#FFF" 
@@ -47,6 +47,8 @@
         colorValueBoxBackground: transparent  
         colorValueBoxShadow: transparent
         colorValueTextShadow: transparent
+        borderOuterWidth: 1
+        fontValueSize: 40
         valueBoxStroke: 0
         needleShadow: boolean
         needleType: "arrow"
@@ -82,7 +84,8 @@
         majorTicks: ["0", "5", "10", "15", "20", "25", "30", "35"]
         minorTicks: 5
         strokeTicks: true
-        highlights: [{"from": 2.5, "to": 5.5,"color": "rgba(247, 228, 1, .75)"},{"from": 0, "to": 8.5,"color": "rgba(40, 149, 0, .75)"},{"from": 8.5, "to": 15.5,"color": "rgba(248, 123, 1, .75)"},{"from": 15.5, "to": 25.5,"color": "#7465ae"},{"from": 25.5, "to": 35,"color": "#ff2814"}]
+        highlights: [{"from": 25, "to": 35,"color": "#ff2814"}]
+        #highlights: [{"from": 2.5, "to": 5.5,"color": "rgba(247, 228, 1, .75)"},{"from": 0, "to": 8.5,"color": "rgba(40, 149, 0, .75)"},{"from": 8.5, "to": 15.5,"color": "rgba(248, 123, 1, .75)"},{"from": 15.5, "to": 25.5,"color": "#7465ae"},{"from": 25.5, "to": 35,"color": "#ff2814"}]
         borders: false
         colorPlate: transparent  
         colorMajorTicks: "#FFF" 
@@ -93,6 +96,8 @@
         colorValueBoxBackground: transparent  
         colorValueBoxShadow: transparent
         colorValueTextShadow: transparent
+        borderOuterWidth: 1
+        fontValueSize: 40
         valueBoxStroke: 0
         needleShadow: boolean
         needleType: "arrow"
@@ -107,7 +112,6 @@
         colorValueBoxRectEnd: "#FFF"
         valueDec: 2
         valueInt: 2  
-
 
 - !include
   - '../../lovelace/templates/header_text.yaml'
