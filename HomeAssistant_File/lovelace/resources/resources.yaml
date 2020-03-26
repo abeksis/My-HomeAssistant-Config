@@ -131,3 +131,9 @@
     
   - url: /hacsfiles/canvas-gauge-card/canvas-gauge-card.js  
     type: module
+  
+  - url: /hacsfiles/flex-horseshoe-card/flex-horseshoe-card.js
+    type: module
+    
+  - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
+    type: module

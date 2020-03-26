@@ -60,7 +60,7 @@ homeassistant:
       icon: mdi:power-socket-eu
     
     sensor.kwh_count_yesterday:
-      friendly_name: KWH Yesterday
+      friendly_name: קילוואט־שעה (קוט"ש) (kWh) - שעון בחוץ
       icon: mdi:power-socket-eu
 
     sensor.shekel_count_all:    
@@ -130,7 +130,6 @@ input_number:
 
   shekel_number:
     name: shekel Count
-    # initial: 806
     min: 0
     max: 999999999
     step: 1
@@ -187,7 +186,7 @@ sensor:
     name: "Phaze 1 - Reactive Power"
     state_topic: "tele/electricity/SENSOR"
     value_template: "{{ value_json['ENERGY'].ReactivePower }}"
-    unit_of_measurement: "VAr"   
+    unit_of_measurement: "VAR"   
  
   - platform: template
     sensors:
@@ -195,10 +194,12 @@ sensor:
         friendly_name: "חישוב צריכה כללי"
         value_template: "{{(((states.sensor.phaze_1_total.state | float) * 54.04) / 100) | round(2) }}"
         unit_of_measurement: "₪"
+  
       power_calc_today_phaze1:
         friendly_name: "חישוב צריכה יומית"
         value_template: "{{(((states.sensor.phaze_1_today.state | float) * 54.04) / 100) | round(2) }}"
         unit_of_measurement: "₪"
+  
       power_calc_yesterday_phaze1:
         friendly_name: "חישוב צריכה יום קודם"
         value_template: "{{(((states.sensor.phaze_1_yesterday.state | float) * 54.04) / 100) | round(2) }}"
@@ -208,10 +209,12 @@ sensor:
         friendly_name: "KWH Count Total"
         value_template: "{{((states.input_number.kwh_number.state | float) + (states.sensor.phaze_1_total.state | float)) | round(2) }}"
         unit_of_measurement: "kWh"
+ 
       shekel_count_all:
         friendly_name: "shekel Count start"
         value_template: "{{((states.input_number.shekel_number.state | float) + (states.sensor.power_calc_yesterday_phaze1.state | float)) | round(2) }}"
         unit_of_measurement: "₪"        
+ 
       kwh_count_yesterday:
         friendly_name: "KWH Count Yesterday"
         value_template: "{{((states.sensor.kwh_count_all.state | float) - (states.sensor.phaze_1_yesterday.state | float)) | round(2) }}"

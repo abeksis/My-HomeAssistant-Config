@@ -442,12 +442,7 @@
         pagination:
           type: 'bullets'
           dynamicBullets: true
-#        scrollbar:
-#          hide: true
-#          draggable: true
-#          snapOnRelease: true
       cards:
-
     # CPU Usage
         - type: custom:mini-graph-card
           style: |
