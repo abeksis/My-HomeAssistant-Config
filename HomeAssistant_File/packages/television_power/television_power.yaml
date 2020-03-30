@@ -1,6 +1,6 @@
 #################################################################
 #                                                               #
-#                Packages/Server Power Calculation              #
+#                Packages/Television Power                      #
 #                                                               #
 #################################################################
 
@@ -10,28 +10,28 @@
 ################################################################# 
 sensor:
   - platform: mqtt
-    name: "Power Server Energy Today"
-    state_topic: "tele/power_server_room/SENSOR"
+    name: "Television Power Energy Today"
+    state_topic: "tele/television_power/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Today"] }}'
     unit_of_measurement: "kWh"
   - platform: mqtt
-    name: "Power Server Yesterday"
-    state_topic: "tele/power_server_room/SENSOR"
+    name: "Television Power Yesterday"
+    state_topic: "tele/television_power/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
     unit_of_measurement: "kWh"
   - platform: mqtt
-    name: "Power Server Total"
-    state_topic: "tele/power_server_room/SENSOR"
+    name: "Television Power Total"
+    state_topic: "tele/television_power/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Total"] }}'
     unit_of_measurement: "kWh"
   - platform: mqtt
-    name: "Power Server Power"
-    state_topic: "tele/power_server_room/SENSOR"
+    name: "Television Power Power"
+    state_topic: "tele/television_power/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Power"] }}'
     unit_of_measurement: "W"    
   - platform: mqtt
-    name: "Power Server Total Cost"
-    state_topic: "tele/power_server_room/SENSOR"
+    name: "Television Power Total Cost"
+    state_topic: "tele/television_power/SENSOR"
     value_template: '{{ (value_json["ENERGY"]["Total"] * 0.5246) | round(3) }}'
     unit_of_measurement: "₪"
 
@@ -42,10 +42,10 @@ sensor:
 #################################################################
 switch:
   - platform: mqtt
-    name: "Power Server Room"
-    state_topic: "stat/power_server_room/POWER"
-    command_topic: "cmnd/power_server_room/POWER"
-    availability_topic: "tele/power_server_room/LWT"
+    name: "Television Power"
+    state_topic: "stat/television_power/POWER"
+    command_topic: "cmnd/television_power/POWER"
+    availability_topic: "tele/television_power/LWT"
     qos: 1
     payload_on: "ON"
     payload_off: "OFF"
