@@ -164,7 +164,20 @@ light:
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"  
-    retain: true        
+    retain: true    
+
+#light rotem room off
+  # - platform: mqtt  
+  #   name: "Rotem Light"
+  #   command_topic: "cmnd/rotem/POWER"
+  #   state_topic: "stat/rotem/POWER"
+  #   availability_topic: "tele/rotem/LWT"   
+  #   qos: 1
+  #   payload_on: "ON"
+  #   payload_off: "OFF"
+  #   payload_available: "Online"
+  #   payload_not_available: "Offline"  
+  #   retain: true        
 
 
 script:

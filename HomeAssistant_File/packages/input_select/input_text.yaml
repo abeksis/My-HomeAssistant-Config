@@ -9,3 +9,27 @@ input_text:
     initial: Yesterday
   router:
     initial: Router
+
+### Vacuum Cleaner
+  filter_left:
+    initial: Filter Left
+  side_brush:
+    initial: Side Brush
+  dirty_sensor:
+    initial: Dirty Sensor
+  cleaning_count: 
+    initial: Cleaning Count
+  filter_left_work_hours:
+    initial: Filter Left Work hours
+  side_brush_condition:
+    initial: Side Brush Condition
+  percentage_of_sensory_dirt:
+    initial: Percentage Of Sensory Dirt
+  total_cleaning_count:
+    initial: Total Cleaning Count
+  filter:
+    initial: Filter
+    
+### Switcher    
+  elctric_current:
+    initial: (A) Current

@@ -3,11 +3,375 @@
 # customize your entire view (just turn off the other elements except for user content)!
 # The first card is an example, you can safely remove it!
 
-- type: markdown
+- type: custom:mod-card
   style: |
     ha-card {
+      height: 115px;
       border-radius: {{ states('input_select.border_radius') }};
       box-shadow: {{ states('input_select.box_shadow') }};
-    }              
-  content: >
-    User Cards Here!
+      font-weight: bold;
+      opacity: 0.8;  
+    }
+  card:
+    type: custom:vertical-stack-in-card
+    cards:
+      - type: entities
+        entities:
+          - entity: vacuum.robovac
+            type: custom:multiple-entity-row
+            name: Robovac
+            show_state: false
+            entities:
+              - attribute: status
+                name: Status
+              - attribute: battery_level
+                name: Battery
+                unit: '%'
+              # - entity: counter.vacuum_counter
+              #   name: Count
+        style: |
+          ha-card {
+            height: 70px;
+          }
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            color: auto
+            entity: vacuum.robovac
+            size: 25%
+            icon: mdi:play
+            show_name: false
+            tap_action:
+              action: call-service
+              service: vacuum.turn_on
+              service_data:
+                entity_id: vacuum.robovac
+          - type: custom:button-card
+            color: auto
+            entity: vacuum.robovac
+            size: 25%
+            icon: mdi:pause
+            show_name: false
+            tap_action:
+              action: call-service
+              service: vacuum.pause
+              service_data:
+                entity_id: vacuum.robovac
+          - type: custom:button-card
+            color: auto
+            entity: vacuum.robovac
+            size: 25%
+            icon: mdi:broom
+            show_name: false
+            tap_action:
+              action: call-service
+              service: vacuum.clean_spot
+              service_data:
+                entity_id: vacuum.robovac
+          - type: custom:button-card
+            color: auto
+            entity: vacuum.robovac
+            size: 25%
+            icon: mdi:map-marker
+            show_name: false
+            tap_action:
+              action: call-service
+              service: vacuum.locate
+              service_data:
+                entity_id: vacuum.robovac
+          - type: custom:button-card
+            color: auto
+            entity: vacuum.robovac
+            size: 25%
+            icon: mdi:home-map-marker
+            show_name: false
+            tap_action:
+              action: call-service
+              service: vacuum.return_to_base
+              service_data:
+                entity_id: vacuum.robovac
+
+########
+- type: horizontal-stack
+  cards:
+    - type: custom:swipe-card
+      parameters:
+        spaceBetween: 8
+        touchEventsTarget: 'container'
+        pagination:
+          type: 'bullets'
+          dynamicBullets: true
+      cards:
+        - type: picture-elements
+          style: |
+            ha-card {
+              background: var(--paper-card-background-color);
+              border-radius: {{ states('input_select.border_radius') }};
+              --paper-item-icon-color: var(--paper-item-icon-color);
+              box-shadow: {{ states('input_select.box_shadow') }};
+              font-weight: bold;
+            }
+          image: '/local/images/vacuum/vacuum_big1.png'
+          elements:
+            - type: state-label
+              entity: sensor.robovac_filter
+              style:
+                top: 47%
+                left: 70%
+                pointer-events: none
+                transform: initial
+                font-size: 15px
+                color: rgba(255,255,255,0.8)
+                line-height: 32px
+                padding: 0px 28px          
+
+            - type: state-label
+              entity: input_text.filter_left
+              style:
+                top: 47%
+                left: 4%
+                pointer-events: none
+                transform: initial
+                font-size: 14px
+                color: rgba(255,255,255,0.8)
+                line-height: 32px
+                padding: 0px 28px 
+
+            - type: state-label
+              entity: input_text.filter_left_work_hours
+              style:
+                top: 50%
+                left: 4%
+                pointer-events: none
+                transform: initial
+                font-size: 11px
+                color: rgba(124,124,124)
+                line-height: 32px
+                padding: 0px 28px                
+
+##-- Side Brush
+            - type: state-label
+              entity: sensor.robovac_side_brush
+              style:
+                top: 59%
+                left: 70%
+                pointer-events: none
+                transform: initial
+                font-size: 15px
+                color: rgba(255,255,255,0.8)
+                line-height: 32px
+                padding: 0px 28px          
+
+            - type: state-label
+              entity: input_text.side_brush
+              style:
+                top: 59%
+                left: 4%
+                pointer-events: none
+                transform: initial
+                font-size: 14px
+                color: rgba(255,255,255,0.8)
+                line-height: 32px
+                padding: 0px 28px 
+
+            - type: state-label
+              entity: input_text.side_brush_condition
+              style:
+                top: 62%
+                left: 4%
+                pointer-events: none
+                transform: initial
+                font-size: 11px
+                color: rgba(124,124,124)
+                line-height: 32px
+                padding: 0px 28px                 
+
+##-- Dirty Sensor
+
+            - type: state-label
+              entity: sensor.robovac_sensor_dirty
+              style:
+                top: 72%
+                left: 70%
+                pointer-events: none
+                transform: initial
+                font-size: 15px
+                color: rgba(255,255,255,0.8)
+                line-height: 32px
+                padding: 0px 28px          
+
+            - type: state-label
+              entity: input_text.dirty_sensor
+              style:
+                top: 71%
+                left: 4%
+                pointer-events: none
+                transform: initial
+                font-size: 14px
+                color: rgba(255,255,255,0.8)
+                line-height: 32px
+                padding: 0px 28px  
+    
+            - type: state-label
+              entity: input_text.percentage_of_sensory_dirt
+              style:
+                top: 74%
+                left: 4%
+                pointer-events: none
+                transform: initial
+                font-size: 11px
+                color: rgba(124,124,124)
+                line-height: 32px
+                padding: 0px 28px             
+
+##-- Cleaning Count
+
+            - type: state-label
+              entity: sensor.robovac_cleaning_count
+              style:
+                top: 84%
+                left: 70%
+                pointer-events: none
+                transform: initial
+                font-size: 15px
+                color: rgba(255,255,255,0.8)
+                line-height: 32px
+                padding: 0px 28px          
+
+            - type: state-label
+              entity: input_text.cleaning_count
+              style:
+                top: 84%
+                left: 4%
+                pointer-events: none
+                transform: initial
+                font-size: 14px
+                color: rgba(255,255,255,0.8)
+                line-height: 32px
+                padding: 0px 28px
+
+            - type: state-label
+              entity: input_text.total_cleaning_count
+              style:
+                top: 87%
+                left: 4%
+                pointer-events: none
+                transform: initial
+                font-size: 11px
+                color: rgba(124,124,124)
+                line-height: 32px
+                padding: 0px 28px                 
+ 
+ ## Filter
+        - type: horizontal-stack
+          cards: 
+            - type: picture-elements
+              style: |
+                ha-card {
+                  background: var(--paper-card-background-color);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  --paper-item-icon-color: var(--paper-item-icon-color);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-weight: bold;
+                }
+              image: '/local/images/vacuum/filter_big1.png'
+              elements:
+                - type: state-label
+                  entity: sensor.robovac_sensor_dirty
+                  style:
+                    top: 50.5%
+                    left: 41%
+                    pointer-events: none
+                    transform: initial
+                    font-size: 13px
+                    color: rgba(255,255,255,0.8)
+                    line-height: 32px
+                    padding: 0px 28px          
+    
+                - type: state-label
+                  entity: input_text.filter
+                  style:
+                    top: 50.5%
+                    left: 23%
+                    pointer-events: none
+                    transform: initial
+                    font-size: 14px
+                    color: rgba(255,255,255,0.8)
+                    line-height: 32px
+                    padding: 0px 28px 
+
+### Main Brush
+        - type: horizontal-stack
+          cards: 
+            - type: picture-elements
+              style: |
+                ha-card {
+                  background: var(--paper-card-background-color);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  --paper-item-icon-color: var(--paper-item-icon-color);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-weight: bold;
+                }
+              image: '/local/images/vacuum/main_brush_big.png'
+              elements:
+                - type: state-label
+                  entity: sensor.robovac_side_brush
+                  style:
+                    top: 50.5%
+                    left: 41%
+                    pointer-events: none
+                    transform: initial
+                    font-size: 13px
+                    color: rgba(255,255,255,0.8)
+                    line-height: 32px
+                    padding: 0px 28px          
+    
+                - type: state-label
+                  entity: input_text.filter
+                  style:
+                    top: 50.5%
+                    left: 23%
+                    pointer-events: none
+                    transform: initial
+                    font-size: 14px
+                    color: rgba(255,255,255,0.8)
+                    line-height: 32px
+                    padding: 0px 28px 
+
+### Sensor
+        - type: horizontal-stack
+          cards: 
+            - type: picture-elements
+              style: |
+                ha-card {
+                  background: var(--paper-card-background-color);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  --paper-item-icon-color: var(--paper-item-icon-color);
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-weight: bold;
+                }
+              image: '/local/images/vacuum/sensor_big.png'
+              elements:
+                - type: state-label
+                  entity: sensor.robovac_sensor_dirty
+                  style:
+                    top: 50.5%
+                    left: 41%
+                    pointer-events: none
+                    transform: initial
+                    font-size: 13px
+                    color: rgba(255,255,255,0.8)
+                    line-height: 32px
+                    padding: 0px 28px          
+    
+                - type: state-label
+                  entity: input_text.filter
+                  style:
+                    top: 50.5%
+                    left: 23%
+                    pointer-events: none
+                    transform: initial
+                    font-size: 14px
+                    color: rgba(255,255,255,0.8)
+                    line-height: 32px
+                    padding: 0px 28px

@@ -40,7 +40,7 @@
   
   # Room 2
   room_2_lights_default:
-    entities: light.living_room, light.seating_area, light.prozdor, light.service_balcony
+    entities: light.living_room, light.seating_area, light.prozdor, light.service_balcony, light.balcony
   room_2_lights_rgb:
     entities:
   room_2_lights_color_temp:

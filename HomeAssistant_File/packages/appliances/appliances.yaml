@@ -15,11 +15,13 @@ homeassistant:
     sensor.robovac_main_brush:
       icon: mdi:blender
     sensor.robovac_side_brush:
-      icon: mdi:blender
+      icon: mdi:car-defrost-rear
     sensor.robovac_filter:
       icon: mdi:filter
     sensor.robovac_cleaning_count:
       icon: mdi:counter
+    sensor.robovac_sensor_dirty:
+      icon: mdi:air-filter      
      
 ####################################################
 #   Sensors                                        #

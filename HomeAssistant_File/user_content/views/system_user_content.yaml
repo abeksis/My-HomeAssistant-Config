@@ -12,31 +12,50 @@
 #   content: >
 #     User Cards Here!
 
-- type: entities
-  style: |
-    ha-card {
-      border-radius: {{ states('input_select.border_radius') }};
-      box-shadow: {{ states('input_select.box_shadow') }};
-      font-family: Helvetica;
-      font-size: 12px;
-      opacity: 0.8;
-    }
-  entities:
-    - entity: sensor.certificate_remote
-      name: Remote
-      icon: fal:file-certificate
-    - entity: sensor.certificate_hassio
-      name: Hassio
-      icon: fal:file-certificate
-    - entity: sensor.certificate_bitwarden
-      name: Vault
-      icon: fal:file-certificate
-    - entity: sensor.certificate_plex
-      name: Plex
-      icon: fal:file-certificate
-    - entity: sensor.certificate_media
-      name: Media
-      icon: fal:file-certificate
-    - entity: sensor.certificate_valetudo  
-      name: Valetudo
-      icon: fal:file-certificate
+- type: horizontal-stack
+  cards:
+    - type: picture-elements
+      style: |
+        ha-card {
+          border-radius: {{ states('input_select.border_radius') }};
+          box-shadow: {{ states('input_select.box_shadow') }};
+          overflow: hidden;
+        }    
+      image: '/local/images/switcher/switcher_new.png'
+      elements:
+        - type: image
+          tap_action: 
+            action: toggle
+          entity: switch.boiler
+          state_image:
+            "off": /local/images/switcher/off_sun_2.png
+            "on": /local/images/switcher/on_sun.png
+          style:
+            top: 38.2%
+            left: 50.1%
+            width: 16%
+
+
+        - type: state-label
+          entity: input_text.elctric_current
+          style:
+            top: 72%
+            left: 25%
+            pointer-events: none
+            transform: initial
+            font-size: 14px
+            color: rgba(255,255,255,0.8)
+            line-height: 32px
+            padding: 0px 28px         
+
+        - type: state-label
+          entity: sensor.switcher_kis_elctric_current
+          style:
+            top: 75.8%
+            left: 57%
+            color: "#FFFFFF"
+            font-family: Helvetica
+            font-size: 15px            
+
+
+            
