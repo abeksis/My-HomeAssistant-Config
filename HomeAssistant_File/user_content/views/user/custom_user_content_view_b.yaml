@@ -3,11 +3,143 @@
 # customize your entire view (just turn off the other elements except for user content)!
 # The first card is an example, you can safely remove it!
 
-- type: markdown
-  style: |
-    ha-card {
-      border-radius: {{ states('input_select.border_radius') }};
-      box-shadow: {{ states('input_select.box_shadow') }};
-    }              
-  content: >
-    User Cards Here!
+#####################################################
+#   Boiler                                          #
+#####################################################
+
+- type: horizontal-stack
+  cards:
+    - type: picture-elements
+      style: |
+        ha-card {
+          border-radius: {{ states('input_select.border_radius') }};
+          box-shadow: {{ states('input_select.box_shadow') }};
+          overflow: hidden;
+        }    
+      image: '/local/images/switcher/switcher_new.png'
+      elements:
+        - type: image
+          tap_action: 
+            action: toggle
+          entity: switch.switcher_webapi
+          state_image:
+            "off": /local/images/switcher/off_sun_2.png
+            "on": /local/images/switcher/oמ_sun_2.png          
+          style:
+            top: 38.2%
+            left: 50.1%
+            width: 16%
+
+
+        - type: state-label
+          entity: input_text.elctric_current
+          style:
+            top: 72.5%
+            left: 19%
+            pointer-events: none
+            transform: initial
+            font-size: 14px
+            color: rgba(255,255,255,0.8)
+            line-height: 32px
+            padding: 0px 28px         
+
+        - type: state-label
+          entity: sensor.switcher_webapi_electric_current
+          style:
+            top: 77.9%
+            left: 59%
+            color: "#FFFFFF"
+            font-family: Helvetica
+            font-size: 15px
+
+        - type: state-label
+          entity: sensor.switcher_webapi_time_left
+          style:
+            top: 71.9%
+            left: 49.5%
+            color: "#FFFFFF"
+            font-family: Helvetica
+            font-size: 15px
+
+        - type: image
+          tap_action: 
+            action: toggle
+          entity: script.switcher_turn_on_15
+          state_image:
+            "off": /local/images/switcher/15_off.png
+            "on": /local/images/switcher/15_on.png
+          style:
+            top: 38.2%
+            left: 68.1%
+            width: 6%
+
+
+        - type: image
+          tap_action: 
+            action: toggle
+          entity: script.switcher_turn_on_30
+          state_image:
+            "off": /local/images/switcher/30_off.png
+            "on": /local/images/switcher/30_on.png
+          style:
+            top: 52.2%
+            left: 49.1%
+            width: 6%
+
+        - type: image
+          tap_action: 
+            action: toggle
+          entity: script.switcher_turn_on_45
+          state_image:
+            "off": /local/images/switcher/45_off.png
+            "on": /local/images/switcher/45_on.png
+          style:
+            top: 38.2%
+            left: 32.1%
+            width: 6%
+
+
+        - type: image
+          tap_action: 
+            action: toggle
+          entity: script.switcher_turn_on_60
+          state_image:
+            "off": /local/images/switcher/60_off.png
+            "on": /local/images/switcher/60_on.png
+          style:
+            top: 25.2%
+            left: 50.1%
+            width: 6%             
+
+
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - entity: sensor.switcher_webapi_power_consumption
+      hours_to_show: 24
+      points_per_hour: 2
+      line_width: 3
+      hour24: true
+      animate: true
+      decimals: 1
+      font_size: 53
+      height: 90
+      show:
+        graph: line
+        icon: false
+        fill: true
+        extrema: true
+        average: true
+      font_size_header: 12
+      line_color: red
+      name: Power            

@@ -33,3 +33,11 @@ input_text:
 ### Switcher    
   elctric_current:
     initial: (A) Current
+  turn_on_15:
+    initial: 15
+  turn_on_30:
+    initial: 30
+  turn_on_45:
+    initial: 45
+  turn_on_60:
+    initial: 60

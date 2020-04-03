@@ -1,44 +1,220 @@
-switcher_kis:
-  phone_id: !secret phone_id
-  device_id: !secret device_id
-  device_password: !secret device_pass
-  
+rest_command:
+  switcher_turn_on:
+    url: !secret switcher_on_url
+    method: "POST"
+    payload: '{"minutes": "{{ minutes }}"}'
+
+  switcher_turn_off:
+    url: !secret switcher_off_url
+    method: "POST"
+
+
 
 sensor:
+  - platform: rest
+    resource: !secret switcher_resource_url
+    name: Switcher WebAPI
+    json_attributes:
+      - state
+      - time_left
+      - auto_off
+      - power_consumption
+      - electric_current
+    value_template: 'OK'
+
   - platform: template
     sensors:
-      switcher_kis_time_left:
+      switcher_webapi_time_left:
         friendly_name: "Time Left"
         icon_template: mdi:timelapse
         value_template: >-
-          {% if not state_attr('switch.boiler', 'remaining_time') %}
+          {% if is_state("sensor.switcher_webapi_state", "off") %}
               off
           {% else %}
-              {% set hour  = states.switch.boiler.attributes.remaining_time.split(':')[0] %}
-              {% set min  = states.switch.boiler.attributes.remaining_time.split(':')[1] %}
-              {% set sec  = states.switch.boiler.attributes.remaining_time.split(':')[2] %}
+              {% set hour = states.sensor.switcher_webapi.attributes.time_left.split(':')[0] %}
+              {% set min = states.sensor.switcher_webapi.attributes.time_left.split(':')[1] %}
+              {% set sec = states.sensor.switcher_webapi.attributes.time_left.split(':')[2] %}
               {{ hour | int }}h {{ min | int }}m
           {% endif %}
-      
-      switcher_kis_auto_off_time:
+
+      switcher_webapi_auto_off_time:
         friendly_name: "Auto Off"
         icon_template: mdi:av-timer
         value_template: >-
-          {% if not state_attr('switch.boiler', 'remaining_time') %}
+          {% if is_state("sensor.switcher_webapi_state", "off") %}
               off
           {% else %}
-              {% set hour  = states.switch.boiler.attributes.remaining_time.split(':')[0] %}
-              {% set min  = states.switch.boiler.attributes.remaining_time.split(':')[1] %}
-              {% set sec  = states.switch.boiler.attributes.remaining_time.split(':')[2] %}
+              {% set hour = states.sensor.switcher_webapi.attributes.time_left.split(':')[0] %}
+              {% set min = states.sensor.switcher_webapi.attributes.time_left.split(':')[1] %}
+              {% set sec = states.sensor.switcher_webapi.attributes.time_left.split(':')[2] %}
               {% set seconds = hour | int *3600 + min | int * 60 + sec | int * 1  %}
               {{ ( now().timestamp() + seconds ) | timestamp_custom("%H:%M") }}
           {% endif %}
-      switcher_kis_elctric_current:
+
+      switcher_webapi_electric_current:
         friendly_name: "Electric Current"
         icon_template: mdi:flash
+        unit_of_measurement: A
         value_template: >-
-          {% if not state_attr('switch.boiler', 'electric_current') %}
-              0
-          {% else %}
-              {{ state_attr('switch.boiler', 'electric_current') }}
-          {% endif %}
+          {{ state_attr('sensor.switcher_webapi', 'electric_current') }}
+
+      switcher_webapi_power_consumption:
+        friendly_name: "Power Consumption"
+        icon_template: mdi:flash
+        unit_of_measurement: kW
+        value_template: >-
+          {{ state_attr('sensor.switcher_webapi', 'power_consumption') }}
+
+      switcher_webapi_state:
+        friendly_name: "State"
+        icon_template: mdi:shower
+        value_template: >-
+          {{ state_attr('sensor.switcher_webapi', 'state') }} 
+
+
+input_select:
+  switcher_timer_minutes_input_select:
+      name: Timer minutes
+      options:
+          - 15
+          - 30
+          - 45
+          - 60
+
+script:
+  switcher_turn_on_timer_script:
+      alias: On with Timer
+      sequence:
+        - service: rest_command.switcher_turn_on
+          data_template:
+            minutes: '{{ states("input_select.switcher_timer_minutes_input_select") }}'
+        - service: homeassistant.update_entity
+          entity_id: sensor.switcher_webapi
+
+  switcher_turn_on:
+      alias: Turn On
+      sequence:
+        - service: rest_command.switcher_turn_on
+        - service: homeassistant.update_entity
+          entity_id: sensor.switcher_webapi
+
+  switcher_turn_off:
+      alias: Turn Off
+      sequence:
+        - service: rest_command.switcher_turn_off
+        - service: homeassistant.update_entity
+          entity_id: sensor.switcher_webapi 
+
+#####################################################
+#   Switcher timer 15,30,45,60                      #
+#####################################################
+
+  switcher_turn_on_15:
+      alias: On with Timer 15
+      sequence:
+          - delay:
+              milliseconds: 100      
+          - service: rest_command.switcher_turn_on
+            data_template:
+              minutes: '15'
+          - service: homeassistant.update_entity
+            entity_id: sensor.switcher_webapi
+
+  switcher_turn_on_30:
+      alias: On with Timer 30
+      sequence:
+          - delay:
+              milliseconds: 100       
+          - service: rest_command.switcher_turn_on
+            data_template:
+              minutes: '30'
+          - service: homeassistant.update_entity
+            entity_id: sensor.switcher_webapi
+
+
+  switcher_turn_on_45:
+      alias: On with Timer 45
+      sequence:
+          - delay:
+              milliseconds: 100       
+          - service: rest_command.switcher_turn_on
+            data_template:
+              minutes: '45'
+          - service: homeassistant.update_entity
+            entity_id: sensor.switcher_webapi
+
+  switcher_turn_on_60:
+      alias: On with Timer 60
+      sequence:
+          - delay:
+              milliseconds: 100       
+          - service: rest_command.switcher_turn_on
+            data_template:
+              minutes: '60'
+          - service: homeassistant.update_entity
+            entity_id: sensor.switcher_webapi            
+
+
+switch:
+  - platform: template
+    switches:
+
+      switcher_webapi:
+        friendly_name: Boiler
+        icon_template: mdi:shower
+        entity_id: sensor.switcher_webapi
+        value_template: "{{ is_state_attr('sensor.switcher_webapi', 'state', 'on') }}"
+        turn_on:
+            service: script.turn_on
+            data:
+              entity_id: script.switcher_turn_on
+        turn_off:
+            service: script.turn_on
+            data:
+              entity_id: script.switcher_turn_off
+
+#### kis OLD ####
+# switcher_kis:
+#   phone_id: !secret phone_id
+#   device_id: !secret device_id
+#   device_password: !secret device_pass
+  
+
+# sensor:
+#   - platform: template
+#     sensors:
+#       switcher_kis_time_left:
+#         friendly_name: "Time Left"
+#         icon_template: mdi:timelapse
+#         value_template: >-
+#           {% if not state_attr('switch.boiler', 'remaining_time') %}
+#               off
+#           {% else %}
+#               {% set hour  = states.switch.boiler.attributes.remaining_time.split(':')[0] %}
+#               {% set min  = states.switch.boiler.attributes.remaining_time.split(':')[1] %}
+#               {% set sec  = states.switch.boiler.attributes.remaining_time.split(':')[2] %}
+#               {{ hour | int }}h {{ min | int }}m
+#           {% endif %}
+      
+#       switcher_kis_auto_off_time:
+#         friendly_name: "Auto Off"
+#         icon_template: mdi:av-timer
+#         value_template: >-
+#           {% if not state_attr('switch.boiler', 'remaining_time') %}
+#               off
+#           {% else %}
+#               {% set hour  = states.switch.boiler.attributes.remaining_time.split(':')[0] %}
+#               {% set min  = states.switch.boiler.attributes.remaining_time.split(':')[1] %}
+#               {% set sec  = states.switch.boiler.attributes.remaining_time.split(':')[2] %}
+#               {% set seconds = hour | int *3600 + min | int * 60 + sec | int * 1  %}
+#               {{ ( now().timestamp() + seconds ) | timestamp_custom("%H:%M") }}
+#           {% endif %}
+#       switcher_kis_elctric_current:
+#         friendly_name: "Electric Current"
+#         icon_template: mdi:flash
+#         value_template: >-
+#           {% if not state_attr('switch.boiler', 'electric_current') %}
+#               0
+#           {% else %}
+#               {{ state_attr('switch.boiler', 'electric_current') }}
+#           {% endif %}

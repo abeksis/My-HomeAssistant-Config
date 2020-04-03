@@ -3,10 +3,10 @@
   initial_state: 'true'
   trigger:
   - platform: state
-    entity_id: sensor.living_room_temp
+    entity_id: sensor.living_room_temp_sensor
     to: 'on'
   - platform: state
-    entity_id: sensor.living_room_temp
+    entity_id: sensor.living_room_temp_sensor
     to: 'off'
   condition:
     condition: and
@@ -44,7 +44,7 @@
   initial_state: 'on'
   trigger:
     platform: state
-    entity_id: sensor.living_room_temp
+    entity_id: sensor.living_room_temp_sensor
     to: 'on'
   condition:
     condition: and
@@ -53,7 +53,7 @@
         entity_id: 'device_tracker.avi_avi'
         state: 'not_home'
       - condition: state
-        entity_id: 'device_tracker.nurit_iphone' # מכוון לספק מידע דרך הראוטר - אמין יותר בשביל 
+        entity_id: 'device_tracker.nurit_iphone' 
         state: 'not_home'
   action:
     - service: camera.snapshot
@@ -79,13 +79,12 @@
             - file: "/config/tmp/front_house_{{ now().year }}_{{ now().month }}_{{ now().day }}_{{ now().hour }}_{{ now().minute }}.jpg"
               capture: Front House Camera   
 
-
 # THE DOOR OPEN FOR MORE 1 MIN
 - alias:  notify if the home door was open for more then 1 min
   initial_state: 'on'  
   trigger:
     platform: state
-    entity_id: sensor.living_room_temp
+    entity_id: sensor.living_room_temp_sensor
     from: 'off'
     to: 'on'
     for:

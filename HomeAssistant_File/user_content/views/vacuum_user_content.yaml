@@ -274,7 +274,7 @@
                   box-shadow: {{ states('input_select.box_shadow') }};
                   font-weight: bold;
                 }
-              image: '/local/images/vacuum/filter_big1.png'
+              image: '/local/images/vacuum/filter_big2.png'
               elements:
                 - type: state-label
                   entity: sensor.robovac_sensor_dirty

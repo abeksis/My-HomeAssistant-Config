@@ -63,7 +63,7 @@ alexa:
       - sensor.glances_unraid_core_2_temp
       - sensor.glances_unraid_core_0_temp
       - sensor.glances_unraid_core_3_temp
-      - sensor.living_room_temp_sensor
+      - sensor.living_room_temp_sensor_sensor
       - sensor.glances_it8792_1_temp
       - sensor.glances_it8792_2_temp
       - sensor.docker_tdie_temp

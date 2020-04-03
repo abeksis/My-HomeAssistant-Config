@@ -191,12 +191,12 @@ binary_sensor:
       living_room_temperature:
         friendly_name: Temp Living Room
         device_class: connectivity
-        entity_id: sensor.living_room_temp
-        value_template: "{{ is_state('sensor.living_room_temperature', 'on') }}"
+        entity_id: sensor.living_room_temp_sensor
+        value_template: "{{ is_state('sensor.living_room_temp_sensore_rature', 'on') }}"
         icon_template: >-
-          {% if is_state('sensor.living_room_temperature', 'on') %}
+          {% if is_state('sensor.living_room_temp_sensore_rature', 'on') %}
             mdi:walk
-          {% elif is_state('sensor.living_room_temperature', 'off') %}
+          {% elif is_state('sensor.living_room_temp_sensore_rature', 'off') %}
             mdi:walk         
           {% else %}
             mdi:alert
