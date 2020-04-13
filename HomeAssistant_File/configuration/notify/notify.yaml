@@ -6,4 +6,4 @@
 ## Telegram Nurit     
   - name: Nurit_Telegram
     platform: telegram
-    chat_id: !secret telgram_nurit
+    chat_id: !secret telgram_nurit 

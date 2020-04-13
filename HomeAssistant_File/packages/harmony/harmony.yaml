@@ -7,22 +7,22 @@
 
 
 #################################################################
-#                                                               #
 #                          Remote                               #
-#                                                               #
 ################################################################# 
 remote:
   - platform: harmony
     name: Living room
     host: !secret harmony_living_room_host
     port: 8088
-    
-
+    activity: Watch TV
+  - platform: harmony
+    name: Parents Bedroom
+    host: !secret harmony_parents_bedroom_host
+    port: 8088
+    activity: TV    
 
 #################################################################
-#                                                               #
 #                          switches                             #
-#                                                               #
 ################################################################# 
 
 switch:
@@ -55,8 +55,7 @@ switch:
             data:
                 entity_id: remote.living_room
                 activity: 'PowerOff'
-                
-                
+           
       yes_dvr_button:
         friendly_name: Yes
         value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'YES') }}"
@@ -69,22 +68,50 @@ switch:
             service: remote.turn_on
             data:
                 entity_id: remote.living_room
-                activity: 'PowerOff'                
+                activity: 'PowerOff'    
+
+#################################################################
+#                          Parents Bedroom                      #
+#################################################################
+
+    #   tv_bedroom_parents:
+    #     friendly_name: TV Bedroom Parents
+    #     value_template: "{{ is_state_attr('remote.parents_bedroom', 'current_activity', 'LG TV Bedroom') }}"
+    #     turn_on:
+    #         service: remote.turn_on
+    #         data:
+    #             entity_id: remote.parents_bedroom
+    #             activity: 'LG TV Bedroom'
+    #     turn_off:
+    #         service: remote.turn_on
+    #         data:
+    #             entity_id: remote.parents_bedroom
+    #             activity: 'PowerOff'
 
 
+      yes_parents_bedroom:
+        friendly_name: Yes On TV Bedroom Parents
+        value_template: "{{ is_state_attr('remote.parents_bedroom', 'current_activity', 'YES') }}"
+        turn_on:
+            service: remote.turn_on
+            data:
+                entity_id: remote.parents_bedroom
+                activity: 'YES'
+        turn_off:
+            service: remote.turn_on
+            data:
+                entity_id: remote.parents_bedroom
+                activity: 'PowerOff'    
 
-# #################################################################
-# #                                                               #
-# #                          script                               #
-# #                                                               #
-# ################################################################# 
+#################################################################
+#                          script                               #
+################################################################# 
 
 # script:
 
-# ################################################################# 
-# #                          LG TV                                #
-# #                                                               #
-# ################################################################# 
+################################################################# 
+#                          LG TV                                #
+################################################################# 
 #     lg_tv_poweron:
 #         alias: Power On
 #         sequence:

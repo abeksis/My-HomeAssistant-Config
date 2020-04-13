@@ -184,6 +184,17 @@
     - icon: mdi:motion-sensor
       name: זוהתה תנועה במרפסת עישון
 
+# Kitchen
+- type: conditional
+  conditions:
+    - entity: binary_sensor.kitchen_sensor
+      state: "on"
+  card:
+    !include
+    - '../lovelace/templates/notification_template.yaml'
+    - icon: mdi:motion-sensor
+      name: זוהתה תנועה במטבח
+
 # Vacuum Notification (Idle)
 - type: conditional
   conditions:

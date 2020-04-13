@@ -63,8 +63,9 @@ lovelace_gen:
 #####################################
 #              Required             #
 #####################################
-lovelace:
-  mode: yaml
+# lovelace:
+#   mode: yaml
+lovelace: !include lovelace.yaml
 
 #####################################################
 #              Required by home assistant           #
@@ -76,6 +77,8 @@ default_config:
 #              Required by home assistant           #
 #####################################################
 discovery:
+  ignore:
+    - harmony
 
 ####################################################
 #              Weather Dark Sky                    #

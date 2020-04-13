@@ -107,7 +107,6 @@ entities:
                     - !include ../includes/blank-card.yaml
                     - type: custom:swipe-card
                       parameters:
-                        effect: 'coverflow'
                         allowTouchMove: true
                         grabCursor: true
                         autoplay:
@@ -155,7 +154,6 @@ entities:
                     - !include ../includes/blank-card.yaml
                     - type: custom:swipe-card
                       parameters:
-                        effect: 'coverflow'
                         allowTouchMove: true
                         grabCursor: true
                         autoplay:

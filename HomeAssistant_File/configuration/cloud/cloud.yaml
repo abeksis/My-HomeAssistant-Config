@@ -63,16 +63,23 @@ alexa:
       - sensor.glances_unraid_core_2_temp
       - sensor.glances_unraid_core_0_temp
       - sensor.glances_unraid_core_3_temp
-      - sensor.living_room_temp_sensor_sensor
+      - sensor.living_room_temp_sensor
       - sensor.glances_it8792_1_temp
       - sensor.glances_it8792_2_temp
       - sensor.docker_tdie_temp
       - sensor.glances_tdie_temp
       - sensor.glances_it8792_3_temp
       - sensor.docker_tctl_temp
+      - sensor.docker_motherboard_temp
+      - sensor.unraid_disk6_temperature      
       - media_player.71f9b76c_e537905
       - media_player.71f9b76c_e5379055
-      - sensor.docker_motherboard_temp
+      - switch.tower_docker_binhex_minidlna
+      - switch.tower_docker_hassio_supervisor
+      - switch.tower_docker_tasmobackup
+      - switch.tower_docker_nextcloud
+      - switch.tower_docker_mosquitto
+      - switch.tower_docker_homeassistantcore_107
 
   entity_config:
     light.living_room:
@@ -166,3 +173,7 @@ alexa:
     switch.yes_dvr_button:
        name: הפעלת TV
        description: הפעלת טלוויזיה ישירות ליס
+       
+    switch.yes_parents_bedroom:
+       name: on TV הורים
+       description: להפעיל את הטלוויזיה בחדר הורים

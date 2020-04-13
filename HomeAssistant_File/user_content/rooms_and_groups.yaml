@@ -312,6 +312,7 @@
       - binary_sensor.washing_machine_sensor
       - binary_sensor.server_room_motion_sensor
       - binary_sensor.window_porch_sensor
+      - binary_sensor.kitchen_sensor
 
   # All Motion, Smoke, Fire and Gas Sensors
   all_motion_smoke_sensors:
