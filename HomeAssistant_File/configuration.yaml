@@ -15,6 +15,7 @@ homeassistant:
     - type: homeassistant
   whitelist_external_dirs:
     - /config/tmp    
+
 ####################################################
 #                     Enables                      #
 ####################################################
@@ -33,6 +34,10 @@ http:
 
 frontend:
   themes: !include_dir_merge_named themes/
+  extra_html_url: ## Enables Fontawesome (far:icon_name)
+    - /local/fontawesome/hass-fontawesome-solid.html 
+    - /local/fontawesome/hass-fontawesome-regular.html
+    - /local/fontawesome/hass-fontawesome-brands.html
 
 
 ########################################################
@@ -73,7 +78,7 @@ default_config:
 discovery:
 
 ####################################################
-#                      Weather Dark Sky            #
+#              Weather Dark Sky                    #
 ####################################################
 weather:
   - platform: darksky

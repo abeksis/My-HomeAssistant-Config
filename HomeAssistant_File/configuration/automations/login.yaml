@@ -1,0 +1,33 @@
+  ############################################################
+  # send notification upon failed login attempt              #
+  ############################################################
+  - alias: 'Send notification upon failed login attempt'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: persistent_notification.http_login
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state != 'none' }}"
+    action:
+      - service: notify.avi_telegram
+        data_template:
+          title: 'בוצע נסיון כניסה שנכשל!'   #Failed login attempt!
+          message: "{{ states.persistent_notification.http_login.attributes.message}}"
+
+  ############################################################
+  # send notification upon IP BAN                            #
+  ############################################################
+  - alias: 'Send notification upon IP BAN'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: persistent_notification.ip_ban
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.state != 'none' }}"
+    action:
+      - service: notify.avi_telegram
+        data_template:
+          title: 'אייפיי נחסם!'   #Failed login attempt!
+          message: "{{ states.persistent_notification.ip_ban.attributes.message}}"

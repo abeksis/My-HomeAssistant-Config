@@ -8,5 +8,7 @@
     sources:
       - livetv
       - youtube
-      - makotv
       - netflix
+      - hdmi1
+      - hdmi2
+      - hdmi3

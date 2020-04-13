@@ -1,4 +1,4 @@
-console.info(`%cCHECK-BUTTON-CARD\n%cVersion: 1.0.2`, 'color: green; font-weight: bold;', '');
+console.info(`%cCHECK-BUTTON-CARD\n%cVersion: 1.1.1`, 'color: green; font-weight: bold;', '');
 class CheckButtonCard extends HTMLElement {
     constructor() {
         super();
@@ -139,7 +139,6 @@ class CheckButtonCard extends HTMLElement {
         style.textContent = `
       ha-card {
         background-color: var(--paper-card-background-color);
-        padding: 4px;
       }
       #background {
         position: relative;
@@ -153,7 +152,7 @@ class CheckButtonCard extends HTMLElement {
         font-weight: bold;
         font-size: 13px;
         text-shadow: 1px 1px #0007;
-        border-radius: 3px;
+        border-radius: var(--ha-card-border-radius);
         width: ${config.width};
         --background-color: #000;
         right: 0;
@@ -181,7 +180,7 @@ class CheckButtonCard extends HTMLElement {
         width: 80px;
         background-color: hsl(220, 40%, 50%);
         right: 0px;
-        border-radius: 3px;
+        border-radius: var(--ha-card-border-radius);
         text-shadow: 1px 1px #0007;
         color: #FFF;
         font-size: 12px;
@@ -214,7 +213,7 @@ class CheckButtonCard extends HTMLElement {
         vertical-align: middle;
         height: ${config.height};
         line-height: ${config.height};
-        border-radius: 3px;
+        border-radius: var(--ha-card-border-radius);
         width: ${config.width};
         right: 0;
         --background-color: hsl(220, 50%, 50%);
@@ -344,7 +343,8 @@ class CheckButtonCard extends HTMLElement {
             this._showConfigBar();
         }
         if (hass.states[config.entity] != undefined) {
-            if (hass.states[config.entity].attributes.unit_of_measurement != 'timestamp' && this._configSet != true) {
+            const device_class = hass.states[config.entity].attributes.device_class != undefined ? hass.states[config.entity].attributes.device_class == 'timestamp' ? true : false : false;
+            if (!device_class) {
                 this._showConfigBar();
             }
             entityState = hass.states[config.entity].state;
@@ -562,10 +562,13 @@ class CheckButtonCard extends HTMLElement {
         let payload = {};
         payload.timestamp = timestamp;
         payload.timeout = config.timeout;
-        if (config.timeout)
-            payload.timeout_timestamp = this._convertToSeconds(config.timeout) + this._currentTimestamp;
+        if (config.timeout) {
+            payload.timeout_timestamp = this._convertToSeconds(config.timeout) + Number(timestamp);
+            payload.timeout_seconds = this._convertToSeconds(config.timeout);
+        }
         payload.severity = config.severity;
-        payload.unit_of_measurement = 'timestamp';
+        if (config.unit_of_measurement)
+            payload.unit_of_measurement = config.unit_of_measurement;
         if (config.automation)
             payload.automation = config.automation;
         payload = JSON.stringify(payload);
@@ -600,12 +603,11 @@ class CheckButtonCard extends HTMLElement {
         clearTimeout(this._clearUndo);
     }
     _setInput() {
-        const config = this._config;
         const root = this.shadowRoot;
         const minutes = root.getElementById('minutesInput').value;
         const hours = root.getElementById('hoursInput').value;
         const days = root.getElementById('daysInput').value;
-        const totalTime = minutes * 60 + hours * 3600 + days * 86400;
+        const totalTime = (minutes * 60) + (hours * 3600) + (days * 86400);
         const timestamp = Math.trunc(Date.now() / 1000) - totalTime;
         root.getElementById('inputBar').style.setProperty('visibility', 'hidden');
         root.getElementById('minutesInput').value = '';
@@ -638,7 +640,12 @@ class CheckButtonCard extends HTMLElement {
             root.getElementById('configBar').style.setProperty('--background-color', '#FF0000');
         }
         if (this._hass.states[config.entity] != undefined) {
-            if (this._hass.states[config.entity].attributes.unit_of_measurement != 'timestamp') {
+            const device_class = this._hass.states[config.entity].attributes.device_class != undefined ? this._hass.states[config.entity].attributes.device_class == 'timestamp' ? true : false : false;
+            const unit_of_measurement = this._hass.states[config.entity].attributes.unit_of_measurement != undefined ? this._hass.states[config.entity].attributes.unit_of_measurement == 'timestamp' ? true : false : false;
+            if (!device_class && unit_of_measurement) {
+                root.getElementById('configInput').textContent = 'Update Sensor Config?';
+            }
+            else {
                 root.getElementById('submitConfigButton').style.setProperty('visibility', 'hidden');
                 root.getElementById('configInput').textContent = 'Already exists. Incorrect entity type.';
                 root.getElementById('configBar').style.setProperty('--background-color', '#FF0000');
@@ -652,7 +659,7 @@ class CheckButtonCard extends HTMLElement {
             root.getElementById('buttonBlocker').style.removeProperty('visibility');
         }
         if (state == 'down') {
-            this._showInputTimeout = setTimeout(showConfig, 1000);
+            this._showInputTimeout = setTimeout(showConfig, 500);
         }
         else if (state == 'up') {
             root.getElementById('buttonBlocker').style.setProperty('visibility', 'hidden');
@@ -682,6 +689,7 @@ class CheckButtonCard extends HTMLElement {
         const root = this.shadowRoot;
         const config = this._config;
         const sensorNameArray = config.entity.split('.');
+        const sensorIcon = config.icon || 'mdi:checkbox-marked';
         const sensorName = sensorNameArray[1];
         root.getElementById('configBar').style.setProperty('visibility', 'hidden');
         const discoveryConfig = '{"value_template": "{{ value_json.timestamp }}","json_attributes_topic":"' +
@@ -696,7 +704,8 @@ class CheckButtonCard extends HTMLElement {
             sensorName +
             '","unique_id": "' +
             sensorName +
-            '_homeassistant"}';
+            '_homeassistant","icon":"' +
+            sensorIcon + '","device_class":"timestamp"}';
         if (config.remove == true) {
             this._hass.callService('mqtt', 'publish', {
                 topic: config.discovery_prefix + '/sensor/' + sensorName + '/state',
@@ -717,6 +726,7 @@ class CheckButtonCard extends HTMLElement {
             });
             this._configSet = true;
             this._action();
+            this._undo();
         }
     }
     getCardSize() {

@@ -24,7 +24,7 @@
           entity: switch.switcher_webapi
           state_image:
             "off": /local/images/switcher/off_sun_2.png
-            "on": /local/images/switcher/oמ_sun_2.png          
+            "on": /local/images/switcher/on_sun.png         
           style:
             top: 38.2%
             left: 50.1%
