@@ -53,7 +53,6 @@
 
 
 ## Speedtest
-
 - type: markdown
   style: |
     ha-card {
@@ -65,10 +64,6 @@
     }
   content: >
     ##### Internet
-
-# - !include
-#   - '../../lovelace/templates/header_text.yaml'
-#   - content: "##### Internet"
 - type: horizontal-stack
   cards:
     - type: custom:mini-graph-card
@@ -178,6 +173,129 @@
         fill: fade  
         icon: false
         
+
+- type: markdown
+  style: |
+    ha-card {
+      box-shadow: none;
+      height: 33px;
+      background: rgba(0,0,0,0.0);
+      padding: 0px 11px;
+      color: var(--category-text)
+    }
+  content: >
+    ##### Pi-Hole
+- type: horizontal-stack
+  cards:
+    - type: 'custom:mini-graph-card'
+      style: |
+        ha-card {
+          background: var(--paper-card-background-color);
+          border-radius: {{ states('input_select.border_radius') }};
+          --paper-item-icon-color: var(--paper-item-icon-color);
+          box-shadow: {{ states('input_select.box_shadow') }};
+          font-weight: bold;
+          opacity: 0.8;
+        }
+      entities: 
+        - sensor.pi_hole_ads_blocked_today
+      name: Pi-Hole Today
+      icon: far:ad
+      animate: true
+      color_thresholds:
+        - color: '#0aaf31'
+          value: 50
+        - color: '#ffee00'
+          value: 35
+        - color: '#e01a1a'
+          value: 0
+      font_size: 75
+      hours_to_show: 24
+      line_width: 1
+      show:
+        extrema: true
+        fill: fade  
+        icon: false
+
+- type: horizontal-stack
+  cards:
+    - type: custom:bar-card
+      style: |
+        :host {
+          --ha-card-background: var(--paper-card-background-color);
+          --ha-card-border-radius: {{ states('input_select.border_radius') }};
+          --ha-card-box-shadow: {{ states('input_select.box_shadow') }};
+          --ha-card-font-weight: bold;
+          --ha-card-opacity: 0.8;
+        }
+        ha-card {
+          font-size: 10px;                 
+        }
+        bar-card-value {
+          font-size: 10px;
+        }
+      entities: 
+        - entity: sensor.pi_hole_dns_queries_today
+          name: Today
+        - entity: sensor.pi_hole_domains_blocked
+          name: Total Domains
+      show_icon: true
+      height: 40px
+      stack: horizontal
+      positions:
+        title: inside
+        value: inside
+        icon: outside
+      severity:
+        - color: '#4bc726'
+          from: 0
+          to: 180000
+        - color: '#a1ba3c'
+          from: 180000
+          to: 240000
+      direction: right
+      stack: horizontal
+      tap_action: none
+
+- type: horizontal-stack
+  cards:
+    - type: custom:bar-card
+      style: |
+        :host {
+          --ha-card-background: var(--paper-card-background-color);
+          --ha-card-border-radius: {{ states('input_select.border_radius') }};
+          --ha-card-box-shadow: {{ states('input_select.box_shadow') }};
+          --ha-card-font-weight: bold;
+          --ha-card-opacity: 0.8;
+        }
+        ha-card {
+          font-size: 10px;                 
+        }
+        bar-card-value {
+          font-size: 10px;
+        }
+      entities: 
+        - entity: sensor.pi_hole_dns_unique_clients
+          name: Clients
+        - entity: sensor.pi_hole_ads_percentage_blocked_today
+          name: Percentage Blocked Today
+      show_icon: true
+      height: 40px
+      stack: horizontal
+      positions:
+        title: inside
+        value: inside
+        icon: outside
+      severity:
+        - color: '#4bc726'
+          from: 0
+          to: 30
+        - color: '#a1ba3c'
+          from: 0
+          to: 24
+      direction: right
+      stack: horizontal
+      tap_action: none
 
 
 - type: markdown
@@ -290,3 +408,4 @@
       direction: right
       stack: horizontal
       tap_action: none
+      

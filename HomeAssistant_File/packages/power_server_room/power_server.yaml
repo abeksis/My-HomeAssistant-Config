@@ -1,6 +1,6 @@
 #################################################################
 #                                                               #
-#                Packages/Server Power Calculation              #
+#                Packages/PC Yakir Power Calculation            #
 #                                                               #
 #################################################################
 
@@ -32,7 +32,7 @@ sensor:
   - platform: mqtt
     name: "Power Server Total Cost"
     state_topic: "tele/power_server_room/SENSOR"
-    value_template: '{{ (value_json["ENERGY"]["Total"] * 0.5246) | round(3) }}'
+    value_template: '{{ (value_json["ENERGY"]["Total"] * 0.5487) | round(3) }}'
     unit_of_measurement: "₪"
 
 

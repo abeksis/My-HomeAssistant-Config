@@ -71,19 +71,19 @@ binary_sensor:
             mdi:alert
           {% endif %}
           
-      washing_machine:
-        friendly_name: Washing machine
-        device_class: connectivity
-        entity_id: sensor.washing_machine
-        value_template: "{{ is_state('sensor.washing_machine', 'on') }}"
-        icon_template: >-
-          {% if is_state('sensor.washing_machine', 'on') %}
-            mdi:door-closed
-          {% elif is_state('sensor.washing_machine', 'off') %}
-            mdi:door-open         
-          {% else %}
-            mdi:alert
-          {% endif %}   
+      # washing_machine:
+      #   friendly_name: Washing machine
+      #   device_class: connectivity
+      #   entity_id: sensor.washing_machine
+      #   value_template: "{{ is_state('sensor.washing_machine', 'on') }}"
+      #   icon_template: >-
+      #     {% if is_state('sensor.washing_machine', 'on') %}
+      #       mdi:door-closed
+      #     {% elif is_state('sensor.washing_machine', 'off') %}
+      #       mdi:door-open         
+      #     {% else %}
+      #       mdi:alert
+      #     {% endif %}   
           
       laundry_dryer:
         friendly_name: Laundry Dryer
@@ -252,16 +252,16 @@ sensor:
             off
           {% endif %}
 
-      washing_machine:
-        friendly_name: "Washing Machine"
-        value_template: >-
-          {% if is_state('binary_sensor.washing_machine_sensor', 'on') %}
-            on
-          {% elif is_state('binary_sensor.washing_machine_sensor', 'off') %}
-            on
-          {% else %}
-            off
-          {% endif %} 
+      # washing_machine:
+      #   friendly_name: "Washing Machine"
+      #   value_template: >-
+      #     {% if is_state('binary_sensor.washing_machine_sensor', 'on') %}
+      #       on
+      #     {% elif is_state('binary_sensor.washing_machine_sensor', 'off') %}
+      #       on
+      #     {% else %}
+      #       off
+      #     {% endif %} 
           
       laundry_dryer:
         friendly_name: "Laundry Dryer"
@@ -295,15 +295,15 @@ sensor:
             Closed
           {% endif %}
           
-      washing_machine_status:
-        friendly_name: "דלת מכונת כביסה"
-        entity_id: binary_sensor.washing_machine_sensor
-        value_template: >-
-          {% if is_state('binary_sensor.washing_machine_sensor', 'on') %}
-            Open
-          {% elif is_state('binary_sensor.washing_machine_sensor', 'off') %}
-            Closed
-          {% endif %}  
+      # washing_machine_status:
+      #   friendly_name: "דלת מכונת כביסה"
+      #   entity_id: binary_sensor.washing_machine_sensor
+      #   value_template: >-
+      #     {% if is_state('binary_sensor.washing_machine_sensor', 'on') %}
+      #       Open
+      #     {% elif is_state('binary_sensor.washing_machine_sensor', 'off') %}
+      #       Closed
+      #     {% endif %}  
           
       air_conditioner_yakir_door_status:
         friendly_name: "מזגן יקיר"

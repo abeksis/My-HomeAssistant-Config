@@ -192,17 +192,17 @@ sensor:
     sensors:
       power_calc_total_phaze1:
         friendly_name: "חישוב צריכה כללי"
-        value_template: "{{(((states.sensor.phaze_1_total.state | float) * 52.46) / 100) | round(2) }}"
+        value_template: "{{(((states.sensor.phaze_1_total.state | float) * 54.87) / 100) | round(2) }}"
         unit_of_measurement: "₪"
   
       power_calc_today_phaze1:
         friendly_name: "חישוב צריכה יומית"
-        value_template: "{{(((states.sensor.phaze_1_today.state | float) * 52.46) / 100) | round(2) }}"
+        value_template: "{{(((states.sensor.phaze_1_today.state | float) * 54.87) / 100) | round(2) }}"
         unit_of_measurement: "₪"
   
       power_calc_yesterday_phaze1:
         friendly_name: "חישוב צריכה יום קודם"
-        value_template: "{{(((states.sensor.phaze_1_yesterday.state | float) * 52.46) / 100) | round(2) }}"
+        value_template: "{{(((states.sensor.phaze_1_yesterday.state | float) * 54.87) / 100) | round(2) }}"
         unit_of_measurement: "₪" 
 
       kwh_count_all:

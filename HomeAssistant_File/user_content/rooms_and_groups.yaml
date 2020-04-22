@@ -284,7 +284,7 @@
       - binary_sensor.front_door_sensor
       - binary_sensor.balcony_door_sensor
       - binary_sensor.laundry_dryer
-      - binary_sensor.washing_machine_sensor
+      #- binary_sensor.washing_machine_sensor
   
   # Motion Sensors
   all_motion_sensors:
@@ -309,7 +309,7 @@
       - binary_sensor.main_shower_sensor
       - binary_sensor.parents_shower_motion_sensor
       - binary_sensor.sensor_light_balcony
-      - binary_sensor.washing_machine_sensor
+      #- binary_sensor.washing_machine_sensor
       - binary_sensor.server_room_motion_sensor
       - binary_sensor.window_porch_sensor
       - binary_sensor.kitchen_sensor
