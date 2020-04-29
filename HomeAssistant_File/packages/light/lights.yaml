@@ -141,7 +141,6 @@ light:
     payload_not_available: "Offline"
     retain: true
 
-
   - platform: mqtt  
     name: "Parents Bedroom"
     state_topic: "stat/bedroom_parents/POWER"

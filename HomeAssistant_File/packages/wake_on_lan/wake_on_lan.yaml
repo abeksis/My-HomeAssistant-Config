@@ -1,0 +1,4 @@
+switch:
+  - platform: wake_on_lan
+    name: Windows PC Server
+    mac: !secret windows_pc_server
