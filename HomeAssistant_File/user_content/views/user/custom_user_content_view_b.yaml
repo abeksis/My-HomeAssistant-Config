@@ -12,8 +12,10 @@
     - type: picture-elements
       style: |
         ha-card {
-          border-radius: {{ states('input_select.border_radius') }};
-          box-shadow: {{ states('input_select.box_shadow') }};
+          background: var(--paper-card-background-color);
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
           overflow: hidden;
         }    
       image: '/local/images/switcher/switcher_new.png'
@@ -118,9 +120,9 @@
       style: |
         ha-card {
           background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
           font-weight: bold;
           opacity: 0.8;
         }
@@ -142,4 +144,4 @@
         average: true
       font_size_header: 12
       line_color: red
-      name: Power            
+      name: Power

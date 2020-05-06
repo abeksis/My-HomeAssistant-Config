@@ -13,6 +13,9 @@ input_boolean:
   settings:
   search_bar:
 
+  language_states_load:
+  icons_states_load:
+
   user_content_message:
   system_help:
   system_header_sensors:
@@ -43,6 +46,7 @@ input_boolean:
   header_secondary_security:
   header_secondary_cleaning:
   header_secondary_scene:
+  header_secondary_covers:
   header_secondary_vacuum:
   header_secondary_remote:
   header_secondary_battery:
@@ -74,6 +78,7 @@ input_boolean:
   button_vacuum_one:
   button_remote_one:
   button_battery_one:
+  button_covers_one:
   button_automation_one:
   button_download_one:
   button_energy_one:
@@ -97,6 +102,7 @@ input_boolean:
   button_custom_g_one:
   button_custom_h_one:
 
+  button_covers_two:
   button_alarm_two:
   button_climate_two:
   button_light_two:
@@ -130,6 +136,7 @@ input_boolean:
   button_custom_g_two:
   button_custom_h_two:
 
+  button_covers_three:
   button_alarm_three:
   button_climate_three:
   button_light_three:
@@ -163,6 +170,7 @@ input_boolean:
   button_custom_g_three:
   button_custom_h_three:
 
+  button_covers_four:
   button_alarm_four:
   button_climate_four:
   button_light_four:
@@ -196,138 +204,6 @@ input_boolean:
   button_custom_g_four:
   button_custom_h_four:
 
-  button_alarm_menu_one:
-  button_climate_menu_one:
-  button_light_menu_one:
-  button_device_menu_one:
-  button_security_menu_one:
-  button_cleaning_menu_one:
-  button_scene_menu_one:
-  button_vacuum_menu_one:
-  button_remote_menu_one:
-  button_battery_menu_one:
-  button_automation_menu_one:
-  button_download_menu_one:
-  button_energy_menu_one:
-  button_location_menu_one:
-  button_laundry_menu_one:
-  button_computer_menu_one:
-  button_calendar_menu_one:
-  button_system_menu_one:
-  button_floorplan_menu_one:
-  button_media_menu_one:
-  button_traffic_menu_one:
-  button_weather_menu_one:
-  button_settings_menu_one:
-  button_homeassistant_menu_one:
-  button_custom_a_menu_one:
-  button_custom_b_menu_one:
-  button_custom_c_menu_one:
-  button_custom_d_menu_one:
-  button_custom_e_menu_one:
-  button_custom_f_menu_one:
-  button_custom_g_menu_one:
-  button_custom_h_menu_one:
-
-  button_alarm_menu_two:
-  button_climate_menu_two:
-  button_light_menu_two:
-  button_device_menu_two:
-  button_security_menu_two:
-  button_cleaning_menu_two:
-  button_scene_menu_two:
-  button_vacuum_menu_two:
-  button_remote_menu_two:
-  button_battery_menu_two:
-  button_automation_menu_two:
-  button_download_menu_two:
-  button_energy_menu_two:
-  button_location_menu_two:
-  button_laundry_menu_two:
-  button_computer_menu_two:
-  button_calendar_menu_two:
-  button_system_menu_two:
-  button_floorplan_menu_two:
-  button_media_menu_two:
-  button_traffic_menu_two:
-  button_weather_menu_two:
-  button_settings_menu_two:
-  button_homeassistant_menu_two:
-  button_custom_a_menu_two:
-  button_custom_b_menu_two:
-  button_custom_c_menu_two:
-  button_custom_d_menu_two:
-  button_custom_e_menu_two:
-  button_custom_f_menu_two:
-  button_custom_g_menu_two:
-  button_custom_h_menu_two:
-
-  button_alarm_menu_three:
-  button_climate_menu_three:
-  button_light_menu_three:
-  button_device_menu_three:
-  button_security_menu_three:
-  button_cleaning_menu_three:
-  button_scene_menu_three:
-  button_vacuum_menu_three:
-  button_remote_menu_three:
-  button_battery_menu_three:
-  button_automation_menu_three:
-  button_download_menu_three:
-  button_energy_menu_three:
-  button_location_menu_three:
-  button_laundry_menu_three:
-  button_computer_menu_three:
-  button_calendar_menu_three:
-  button_system_menu_three:
-  button_floorplan_menu_three:
-  button_media_menu_three:
-  button_traffic_menu_three:
-  button_weather_menu_three:
-  button_settings_menu_three:
-  button_homeassistant_menu_three:
-  button_custom_a_menu_three:
-  button_custom_b_menu_three:
-  button_custom_c_menu_three:
-  button_custom_d_menu_three:
-  button_custom_e_menu_three:
-  button_custom_f_menu_three:
-  button_custom_g_menu_three:
-  button_custom_h_menu_three:
-
-  button_alarm_menu_four:
-  button_climate_menu_four:
-  button_light_menu_four:
-  button_device_menu_four:
-  button_security_menu_four:
-  button_cleaning_menu_four:
-  button_scene_menu_four:
-  button_vacuum_menu_four:
-  button_remote_menu_four:
-  button_battery_menu_four:
-  button_automation_menu_four:
-  button_download_menu_four:
-  button_energy_menu_four:
-  button_location_menu_four:
-  button_laundry_menu_four:
-  button_computer_menu_four:
-  button_calendar_menu_four:
-  button_system_menu_four:
-  button_floorplan_menu_four:
-  button_media_menu_four:
-  button_traffic_menu_four:
-  button_weather_menu_four:
-  button_settings_menu_four:
-  button_homeassistant_menu_four:
-  button_custom_a_menu_four:
-  button_custom_b_menu_four:
-  button_custom_c_menu_four:
-  button_custom_d_menu_four:
-  button_custom_e_menu_four:
-  button_custom_f_menu_four:
-  button_custom_g_menu_four:
-  button_custom_h_menu_four:
-
   climate_presets:
   climate_thermostat:
   climate_fans:
@@ -348,6 +224,11 @@ input_boolean:
   menu_user_content:
   menu_system:
 
+  devices_room_b1:
+  devices_room_b2:
+  devices_room_b3:
+  devices_room_b4:
+  devices_room_b5:
   devices_room_01:
   devices_room_02:
   devices_room_03:
@@ -357,7 +238,7 @@ input_boolean:
   devices_room_07:
   devices_room_08:
   devices_room_09:
-  devices_room_10:
+  devices_room_010:
   devices_room_11:
   devices_room_12:
   devices_room_13:
@@ -367,9 +248,24 @@ input_boolean:
   devices_room_17:
   devices_room_18:
   devices_room_19:
-  devices_room_20:
+  devices_room_110:
+  devices_room_21:
+  devices_room_22:
+  devices_room_23:
+  devices_room_24:
+  devices_room_25:
+  devices_room_31:
+  devices_room_32:
+  devices_room_33:
+  devices_room_34:
+  devices_room_35:
   devices_user_content:
 
+  devices_room_b1_lock:
+  devices_room_b2_lock:
+  devices_room_b3_lock:
+  devices_room_b4_lock:
+  devices_room_b5_lock:
   devices_room_01_lock:
   devices_room_02_lock:
   devices_room_03_lock:
@@ -379,7 +275,7 @@ input_boolean:
   devices_room_07_lock:
   devices_room_08_lock:
   devices_room_09_lock:
-  devices_room_10_lock:
+  devices_room_010_lock:
   devices_room_11_lock:
   devices_room_12_lock:
   devices_room_13_lock:
@@ -389,8 +285,23 @@ input_boolean:
   devices_room_17_lock:
   devices_room_18_lock:
   devices_room_19_lock:
-  devices_room_20_lock:
+  devices_room_110_lock:
+  devices_room_21_lock:
+  devices_room_22_lock:
+  devices_room_23_lock:
+  devices_room_24_lock:
+  devices_room_25_lock:
+  devices_room_31_lock:
+  devices_room_32_lock:
+  devices_room_33_lock:
+  devices_room_34_lock:
+  devices_room_35_lock:
 
+  lights_room_b1:
+  lights_room_b2:
+  lights_room_b3:
+  lights_room_b4:
+  lights_room_b5:
   lights_room_01:
   lights_room_02:
   lights_room_03:
@@ -400,7 +311,7 @@ input_boolean:
   lights_room_07:
   lights_room_08:
   lights_room_09:
-  lights_room_10:
+  lights_room_010:
   lights_room_11:
   lights_room_12:
   lights_room_13:
@@ -410,9 +321,24 @@ input_boolean:
   lights_room_17:
   lights_room_18:
   lights_room_19:
-  lights_room_20:
+  lights_room_110:
+  lights_room_21:
+  lights_room_22:
+  lights_room_23:
+  lights_room_24:
+  lights_room_25:
+  lights_room_31:
+  lights_room_32:
+  lights_room_33:
+  lights_room_34:
+  lights_room_35:
   lights_user_content:
 
+  lights_room_b1_lock:
+  lights_room_b2_lock:
+  lights_room_b3_lock:
+  lights_room_b4_lock:
+  lights_room_b5_lock:
   lights_room_01_lock:
   lights_room_02_lock:
   lights_room_03_lock:
@@ -422,7 +348,7 @@ input_boolean:
   lights_room_07_lock:
   lights_room_08_lock:
   lights_room_09_lock:
-  lights_room_10_lock:
+  lights_room_010_lock:
   lights_room_11_lock:
   lights_room_12_lock:
   lights_room_13_lock:
@@ -432,7 +358,17 @@ input_boolean:
   lights_room_17_lock:
   lights_room_18_lock:
   lights_room_19_lock:
-  lights_room_20_lock:
+  lights_room_110_lock:
+  lights_room_21_lock:
+  lights_room_22_lock:
+  lights_room_23_lock:
+  lights_room_24_lock:
+  lights_room_25_lock:
+  lights_room_31_lock:
+  lights_room_32_lock:
+  lights_room_33_lock:
+  lights_room_34_lock:
+  lights_room_35_lock:
 
   climate_thermostat_lock:
   climate_fan_lock:
@@ -460,10 +396,14 @@ input_boolean:
   alarm_user_content:
   alarm_keypad:
   laundry_user_content:
-  laundry_picture_elements:
+  laundry_picture_elements_1:
+  laundry_picture_elements_2:
+  laundry_picture_elements_3:
   automations_automations:
   automations_user_content:
   battery_battery:
+  covers_covers:
+  covers_garage_doors:
   battery_user_content:
   calendar_user_content:
   cleaning_user_content:
@@ -476,11 +416,18 @@ input_boolean:
   location_user_content:
   media_user_content:
   remote_user_content:
+  covers_user_content:
   scenes_scenes:
   scenes_user_content:
   system_user_content:
   traffic_information_user_content:
   traffic_traffic:
+
+  vacuum_status:
+  vacuum_controls:
+  vacuum_modes:
+  vacuum_presets:
+  vacuum_live_map:
   vacuum_user_content:
 
   header_advanced_mode_alarm:

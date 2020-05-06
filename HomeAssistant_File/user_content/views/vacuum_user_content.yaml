@@ -106,10 +106,9 @@
           style: |
             ha-card {
               background: var(--paper-card-background-color);
-              border-radius: {{ states('input_select.border_radius') }};
-              --paper-item-icon-color: var(--paper-item-icon-color);
-              box-shadow: {{ states('input_select.box_shadow') }};
-              font-weight: bold;
+              color: var(--primary-text-color);
+              border-radius: var(--border-radius);
+              box-shadow: var(--box-shadow)
             }
           image: '/local/images/vacuum/vacuum_big1.png'
           elements:
@@ -269,10 +268,10 @@
               style: |
                 ha-card {
                   background: var(--paper-card-background-color);
-                  border-radius: {{ states('input_select.border_radius') }};
-                  --paper-item-icon-color: var(--paper-item-icon-color);
-                  box-shadow: {{ states('input_select.box_shadow') }};
-                  font-weight: bold;
+                  color: var(--primary-text-color);
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
+                  font-weight: bold
                 }
               image: '/local/images/vacuum/filter_big2.png'
               elements:
@@ -307,9 +306,9 @@
               style: |
                 ha-card {
                   background: var(--paper-card-background-color);
-                  border-radius: {{ states('input_select.border_radius') }};
-                  --paper-item-icon-color: var(--paper-item-icon-color);
-                  box-shadow: {{ states('input_select.box_shadow') }};
+                  color: var(--primary-text-color);
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
                   font-weight: bold;
                 }
               image: '/local/images/vacuum/main_brush_big.png'
@@ -345,9 +344,9 @@
               style: |
                 ha-card {
                   background: var(--paper-card-background-color);
-                  border-radius: {{ states('input_select.border_radius') }};
-                  --paper-item-icon-color: var(--paper-item-icon-color);
-                  box-shadow: {{ states('input_select.box_shadow') }};
+                  color: var(--primary-text-color);
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
                   font-weight: bold;
                 }
               image: '/local/images/vacuum/sensor_big.png'

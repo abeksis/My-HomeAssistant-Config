@@ -5,6 +5,9 @@ lovelace_gen: !include ../../user_content/extra_settings.yaml
 
 homeassistant:
   customize_glob:
+    "input_boolean.button_covers_*":
+      friendly_name: Covers
+      icon: mdi:window-shutter
     "input_boolean.button_alarm_*":
       friendly_name: Alarm
       icon: mdi:alert
@@ -78,12 +81,13 @@ homeassistant:
       friendly_name: HA Settings
       icon: mdi:tools
 
-group: !include ../../user_content/rooms_and_groups.yaml
+group:
+  !include ../../user_content/device_counters.yaml
 
 automation:
   # State Change Automations used for device counting
-  - alias: 'group state change'
-    id: 'State changed'
+  - alias: 'group state change 1'
+    id: 'State changed 1'
     trigger:
       platform: event
       event_type: state_changed
@@ -93,24 +97,109 @@ automation:
         - condition: template
           value_template: >
             {{ trigger.event.data.entity_id in state_attr('group.all_lighting','entity_id') }}
+    action:
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_lights_on
+  - alias: 'group state change 2'
+    id: 'State changed 2'
+    trigger:
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
         - condition: template
           value_template: >
             {{ trigger.event.data.entity_id in state_attr('group.all_device_switches','entity_id') }}
+    action:
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_devices_on
+  - alias: 'group state change 3'
+    id: 'State changed 3'
+    trigger:
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
         - condition: template
           value_template: >
             {{ trigger.event.data.entity_id in state_attr('group.all_climate_entities','entity_id') }}
+    action:
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_climate_entities_on
+  - alias: 'group state change 4'
+    id: 'State changed 4'
+    trigger:
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
         - condition: template
           value_template: >
             {{ trigger.event.data.entity_id in state_attr('group.all_computers','entity_id') }}
+    action:
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_computers_on
+  - alias: 'group state change 5'
+    id: 'State changed 5'
+    trigger:
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
         - condition: template
           value_template: >
             {{ trigger.event.data.entity_id in state_attr('group.all_tvs','entity_id') }}
+    action:
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_tvs_on
+  - alias: 'group state change 6'
+    id: 'State changed 6'
+    trigger:
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
         - condition: template
           value_template: >
             {{ trigger.event.data.entity_id in state_attr('group.all_binary_sensors','entity_id') }}
+    action:
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_binary_sensors_on
+  - alias: 'group state change 7'
+    id: 'State changed 7'
+    trigger:
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
         - condition: template
           value_template: >
             {{ trigger.event.data.entity_id in state_attr('group.all_laundry_devices','entity_id') }}
+    action:
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_sensors_on
+        - sensor.current_binary_sensors_on
+  - alias: 'group state change 8'
+    id: 'State changed 8'
+    trigger:
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
         - condition: template
           value_template: >
             {{ trigger.event.data.entity_id in state_attr('group.all_door_sensors','entity_id') }}
@@ -120,353 +209,28 @@ automation:
     action:
       service: homeassistant.update_entity
       entity_id: 
-        - sensor.current_lights_on
-        - sensor.current_devices_on
-        - sensor.current_climate_entities_on
-        - sensor.current_computers_on
-        - sensor.current_tvs_on
-        - sensor.current_laundry_devices_on
-        - sensor.current_sensors_on
         - sensor.current_doors_open
         - sensor.current_windows_open
-        - sensor.current_binary_sensors_on
-  
-#  - alias: 'Room Selector Devices'
-#    trigger:
-#      - platform: state
-#        entity_id: input_select.floor_0_room_selector
-#    action:
-#      - service: input_boolean.turn_off
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_0_room_selector', '1') %}
-#              input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '2') %}
-#              input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '3') %}
-#              input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '4') %}
-#              input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '5') %}
-#              input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '6') %}
-#              input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '7') %}
-#              input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '8') %}
-#              input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '9') %}
-#              input_boolean.devices_room_10 
-#            {% else %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10 
-#            {% endif %}
-#      - service: input_boolean.turn_on
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_0_room_selector', '1') %}
-#              input_boolean.devices_room_01
-#            {% elif is_state('input_select.floor_0_room_selector', '2') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02
-#            {% elif is_state('input_select.floor_0_room_selector', '3') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03
-#            {% elif is_state('input_select.floor_0_room_selector', '4') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04
-#            {% elif is_state('input_select.floor_0_room_selector', '5') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05
-#            {% elif is_state('input_select.floor_0_room_selector', '6') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06
-#            {% elif is_state('input_select.floor_0_room_selector', '7') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07
-#            {% elif is_state('input_select.floor_0_room_selector', '8') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08
-#            {% elif is_state('input_select.floor_0_room_selector', '9') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09
-#            {% elif is_state('input_select.floor_0_room_selector', '10') %}
-#              input_boolean.devices_room_01, input_boolean.devices_room_02, input_boolean.devices_room_03, input_boolean.devices_room_04, input_boolean.devices_room_05, input_boolean.devices_room_06, input_boolean.devices_room_07, input_boolean.devices_room_08, input_boolean.devices_room_09, input_boolean.devices_room_10
-#            {% endif %}
-#
-#  - alias: 'Room Selector Devices Second Floor'
-#    trigger:
-#      - platform: state
-#        entity_id: input_select.floor_1_room_selector
-#    action:
-#      - service: input_boolean.turn_off
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_1_room_selector', '1') %}
-#              input_boolean.devices_room_12, input_boolean.devices_room_13, input_boolean.devices_room_14, input_boolean.devices_room_15, input_boolean.devices_room_16
-#            {% elif is_state('input_select.floor_1_room_selector', '2') %}
-#              input_boolean.devices_room_13, input_boolean.devices_room_14, input_boolean.devices_room_15, input_boolean.devices_room_16
-#            {% elif is_state('input_select.floor_1_room_selector', '3') %}
-#              input_boolean.devices_room_14, input_boolean.devices_room_15, input_boolean.devices_room_16
-#            {% elif is_state('input_select.floor_1_room_selector', '4') %}
-#              input_boolean.devices_room_15, input_boolean.devices_room_16
-#            {% elif is_state('input_select.floor_1_room_selector', '5') %}
-#              input_boolean.devices_room_16
-#            {% else %}
-#              input_boolean.devices_room_11, input_boolean.devices_room_12, input_boolean.devices_room_13, input_boolean.devices_room_14, input_boolean.devices_room_15, input_boolean.devices_room_16
-#            {% endif %}
-#      - service: input_boolean.turn_on
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_1_room_selector', '1') %}
-#              input_boolean.devices_room_11
-#            {% elif is_state('input_select.floor_1_room_selector', '2') %}
-#              input_boolean.devices_room_11, input_boolean.devices_room_12
-#            {% elif is_state('input_select.floor_1_room_selector', '3') %}
-#              input_boolean.devices_room_11, input_boolean.devices_room_12, input_boolean.devices_room_13
-#            {% elif is_state('input_select.floor_1_room_selector', '4') %}
-#              input_boolean.devices_room_11, input_boolean.devices_room_12, input_boolean.devices_room_13, input_boolean.devices_room_14
-#            {% elif is_state('input_select.floor_1_room_selector', '5') %}
-#              input_boolean.devices_room_11, input_boolean.devices_room_12, input_boolean.devices_room_13, input_boolean.devices_room_14, input_boolean.devices_room_15
-#            {% elif is_state('input_select.floor_1_room_selector', '6') %}
-#              input_boolean.devices_room_11, input_boolean.devices_room_12, input_boolean.devices_room_13, input_boolean.devices_room_14, input_boolean.devices_room_15, input_boolean.devices_room_16
-#            {% endif %}
-#
-#  - alias: 'Room Selector Devices Third Floor'
-#    trigger:
-#      - platform: state
-#        entity_id: input_select.floor_2_room_selector
-#    action:
-#      - service: input_boolean.turn_off
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_2_room_selector', '1') %}
-#              input_boolean.devices_room_18, input_boolean.devices_room_19, input_boolean.devices_room_20
-#            {% elif is_state('input_select.floor_2_room_selector', '2') %}
-#              input_boolean.devices_room_19, input_boolean.devices_room_20
-#            {% elif is_state('input_select.floor_2_room_selector', '3') %}
-#              input_boolean.devices_room_20
-#            {% else %}
-#              input_boolean.devices_room_17, input_boolean.devices_room_18, input_boolean.devices_room_19, input_boolean.devices_room_20
-#            {% endif %}
-#      - service: input_boolean.turn_on
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_2_room_selector', '1') %}
-#              input_boolean.devices_room_17
-#            {% elif is_state('input_select.floor_2_room_selector', '2') %}
-#              input_boolean.devices_room_17, input_boolean.devices_room_18
-#            {% elif is_state('input_select.floor_2_room_selector', '3') %}
-#              input_boolean.devices_room_17, input_boolean.devices_room_18, input_boolean.devices_room_19
-#            {% elif is_state('input_select.floor_2_room_selector', '4') %}
-#              input_boolean.devices_room_17, input_boolean.devices_room_18, input_boolean.devices_room_19, input_boolean.devices_room_20
-#            {% endif %}
-#
-#  - alias: 'Room Selector Lights'
-#    trigger:
-#      - platform: state
-#        entity_id: input_select.floor_0_room_selector
-#    action:
-#      - service: input_boolean.turn_off
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_0_room_selector', '1') %}
-#              input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '2') %}
-#              input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '3') %}
-#              input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '4') %}
-#              input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '5') %}
-#              input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '6') %}
-#              input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '7') %}
-#              input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '8') %}
-#              input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% elif is_state('input_select.floor_0_room_selector', '9') %}
-#              input_boolean.lights_room_10 
-#            {% else %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10 
-#            {% endif %}
-#      - service: input_boolean.turn_on
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_0_room_selector', '1') %}
-#              input_boolean.lights_room_01
-#            {% elif is_state('input_select.floor_0_room_selector', '2') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02
-#            {% elif is_state('input_select.floor_0_room_selector', '3') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03
-#            {% elif is_state('input_select.floor_0_room_selector', '4') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04
-#            {% elif is_state('input_select.floor_0_room_selector', '5') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05
-#            {% elif is_state('input_select.floor_0_room_selector', '6') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06
-#            {% elif is_state('input_select.floor_0_room_selector', '7') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07
-#            {% elif is_state('input_select.floor_0_room_selector', '8') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08
-#            {% elif is_state('input_select.floor_0_room_selector', '9') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09
-#            {% elif is_state('input_select.floor_0_room_selector', '10') %}
-#              input_boolean.lights_room_01, input_boolean.lights_room_02, input_boolean.lights_room_03, input_boolean.lights_room_04, input_boolean.lights_room_05, input_boolean.lights_room_06, input_boolean.lights_room_07, input_boolean.lights_room_08, input_boolean.lights_room_09, input_boolean.lights_room_10
-#            {% endif %}
-#
-#  - alias: 'Room Selector Lights Second Floor'
-#    trigger:
-#      - platform: state
-#        entity_id: input_select.floor_1_room_selector
-#    action:
-#      - service: input_boolean.turn_off
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_1_room_selector', '1') %}
-#              input_boolean.lights_room_12, input_boolean.lights_room_13, input_boolean.lights_room_14, input_boolean.lights_room_15, input_boolean.lights_room_16
-#            {% elif is_state('input_select.floor_1_room_selector', '2') %}
-#              input_boolean.lights_room_13, input_boolean.lights_room_14, input_boolean.lights_room_15, input_boolean.lights_room_16
-#            {% elif is_state('input_select.floor_1_room_selector', '3') %}
-#              input_boolean.lights_room_14, input_boolean.lights_room_15, input_boolean.lights_room_16
-#            {% elif is_state('input_select.floor_1_room_selector', '4') %}
-#              input_boolean.lights_room_15, input_boolean.lights_room_16
-#            {% elif is_state('input_select.floor_1_room_selector', '5') %}
-#              input_boolean.lights_room_16
-#            {% else %}
-#              input_boolean.lights_room_11, input_boolean.lights_room_12, input_boolean.lights_room_13, input_boolean.lights_room_14, input_boolean.lights_room_15, input_boolean.lights_room_16
-#            {% endif %}
-#      - service: input_boolean.turn_on
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_1_room_selector', '1') %}
-#              input_boolean.lights_room_11
-#            {% elif is_state('input_select.floor_1_room_selector', '2') %}
-#              input_boolean.lights_room_11, input_boolean.lights_room_12
-#            {% elif is_state('input_select.floor_1_room_selector', '3') %}
-#              input_boolean.lights_room_11, input_boolean.lights_room_12, input_boolean.lights_room_13
-#            {% elif is_state('input_select.floor_1_room_selector', '4') %}
-#              input_boolean.lights_room_11, input_boolean.lights_room_12, input_boolean.lights_room_13, input_boolean.lights_room_14
-#            {% elif is_state('input_select.floor_1_room_selector', '5') %}
-#              input_boolean.lights_room_11, input_boolean.lights_room_12, input_boolean.lights_room_13, input_boolean.lights_room_14, input_boolean.lights_room_15
-#            {% elif is_state('input_select.floor_1_room_selector', '6') %}
-#              input_boolean.lights_room_11, input_boolean.lights_room_12, input_boolean.lights_room_13, input_boolean.lights_room_14, input_boolean.lights_room_15, input_boolean.lights_room_16
-#            {% endif %}
-#
-#  - alias: 'Room Selector Lights Third Floor'
-#    trigger:
-#      - platform: state
-#        entity_id: input_select.floor_2_room_selector
-#    action:
-#      - service: input_boolean.turn_off
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_2_room_selector', '1') %}
-#              input_boolean.lights_room_18, input_boolean.lights_room_19, input_boolean.lights_room_20
-#            {% elif is_state('input_select.floor_2_room_selector', '2') %}
-#              input_boolean.lights_room_19, input_boolean.lights_room_20
-#            {% elif is_state('input_select.floor_2_room_selector', '3') %}
-#              input_boolean.lights_room_20
-#            {% else %}
-#              input_boolean.lights_room_17, input_boolean.lights_room_18, input_boolean.lights_room_19, input_boolean.lights_room_20
-#            {% endif %}
-#      - service: input_boolean.turn_on
-#        data_template:
-#          entity_id: >-
-#            {% if is_state('input_select.floor_2_room_selector', '1') %}
-#              input_boolean.lights_room_17
-#            {% elif is_state('input_select.floor_2_room_selector', '2') %}
-#              input_boolean.lights_room_17, input_boolean.lights_room_18
-#            {% elif is_state('input_select.floor_2_room_selector', '3') %}
-#              input_boolean.lights_room_17, input_boolean.lights_room_18, input_boolean.lights_room_19
-#            {% elif is_state('input_select.floor_2_room_selector', '4') %}
-#              input_boolean.lights_room_17, input_boolean.lights_room_18, input_boolean.lights_room_19, input_boolean.lights_room_20
-#            {% endif %}
 
-  - alias: 'Floor Selector Automation All Off'
+  - alias: 'group state change 9'
+    id: 'State changed 9'
     trigger:
-      - platform: state
-        entity_id: input_select.floor_selector
-        to: "Select"
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_covers','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_garage_doors','entity_id') }}
     action:
-      - service: input_select.select_option
-        data:
-          entity_id:
-            - input_select.floor_0_room_selector
-            - input_select.floor_1_room_selector
-            - input_select.floor_2_room_selector
-          option: Select
-  - alias: 'Floor Selector 2 Floor'
-    trigger:
-      - platform: state
-        entity_id: input_select.floor_selector
-        to: "1"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id:
-            - input_select.floor_1_room_selector
-            - input_select.floor_2_room_selector
-          option: Select
-  - alias: 'Floor Selector 2 Floors'
-    trigger:
-      platform: state
-      entity_id: input_select.floor_selector
-      to: "2"
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id:
-            - input_select.floor_2_room_selector
-          option: Select
-
-  - alias: 'reset hidden rooms'
-    trigger:
-      platform: state
-      entity_id: input_boolean.dummy1
-      to: 'dummy_automation'
-    action:
-      - service: input_boolean.turn_on
-        data:
-          entity_id:
-            - input_boolean.lights_room_01
-            - input_boolean.lights_room_02
-            - input_boolean.lights_room_03
-            - input_boolean.lights_room_04
-            - input_boolean.lights_room_05
-            - input_boolean.lights_room_06
-            - input_boolean.lights_room_07
-            - input_boolean.lights_room_08
-            - input_boolean.lights_room_09
-            - input_boolean.lights_room_10
-            - input_boolean.lights_room_11
-            - input_boolean.lights_room_12
-            - input_boolean.lights_room_13
-            - input_boolean.lights_room_14
-            - input_boolean.lights_room_15
-            - input_boolean.lights_room_16
-            - input_boolean.lights_room_17
-            - input_boolean.lights_room_18
-            - input_boolean.lights_room_19
-            - input_boolean.lights_room_20
-            - input_boolean.devices_room_01
-            - input_boolean.devices_room_02
-            - input_boolean.devices_room_03
-            - input_boolean.devices_room_04
-            - input_boolean.devices_room_05
-            - input_boolean.devices_room_06
-            - input_boolean.devices_room_07
-            - input_boolean.devices_room_08
-            - input_boolean.devices_room_09
-            - input_boolean.devices_room_10
-            - input_boolean.devices_room_11
-            - input_boolean.devices_room_12
-            - input_boolean.devices_room_13
-            - input_boolean.devices_room_14
-            - input_boolean.devices_room_15
-            - input_boolean.devices_room_16
-            - input_boolean.devices_room_17
-            - input_boolean.devices_room_18
-            - input_boolean.devices_room_19
-            - input_boolean.devices_room_20
-      - service: input_select.select_option
-        data:
-          entity_id: 
-            - input_select.devices_floor_selector
-            - input_select.lights_floor_selector
-          option: "0"
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_covers_open
+        - sensor.current_garage_doors_open
 
   - alias: 'hki onboarding'
     trigger:
@@ -477,6 +241,9 @@ automation:
       - service: automation.trigger
         data:
           entity_id: automation.reset_button_badge_sensors
+      - service: automation.trigger
+        data:
+          entity_id: automation.set_room_defaults
       - service: homeassistant.turn_on
         data:
           entity_id: group.header_subtitle_group
@@ -501,6 +268,11 @@ automation:
             - input_boolean.button_device_menu_two
             - input_boolean.button_light_menu_three
             - input_boolean.button_security_menu_four
+            - input_boolean.automations_automations
+            - input_boolean.battery_battery
+            - input_boolean.scenes_scenes
+            - input_boolean.covers_covers
+            - input_boolean.covers_garage_doors
             - input_boolean.climate_presets
             - input_boolean.climate_thermostat
             - input_boolean.climate_fans
@@ -524,46 +296,6 @@ automation:
             - input_boolean.scenes_scenes
             - input_boolean.traffic_traffic
             - input_boolean.settings
-            - input_boolean.lights_room_01
-            - input_boolean.lights_room_02
-            - input_boolean.lights_room_03
-            - input_boolean.lights_room_04
-            - input_boolean.lights_room_05
-            - input_boolean.lights_room_06
-            - input_boolean.lights_room_07
-            - input_boolean.lights_room_08
-            - input_boolean.lights_room_09
-            - input_boolean.lights_room_10
-            - input_boolean.lights_room_11
-            - input_boolean.lights_room_12
-            - input_boolean.lights_room_13
-            - input_boolean.lights_room_14
-            - input_boolean.lights_room_15
-            - input_boolean.lights_room_16
-            - input_boolean.lights_room_17
-            - input_boolean.lights_room_18
-            - input_boolean.lights_room_19
-            - input_boolean.lights_room_20
-            - input_boolean.devices_room_01
-            - input_boolean.devices_room_02
-            - input_boolean.devices_room_03
-            - input_boolean.devices_room_04
-            - input_boolean.devices_room_05
-            - input_boolean.devices_room_06
-            - input_boolean.devices_room_07
-            - input_boolean.devices_room_08
-            - input_boolean.devices_room_09
-            - input_boolean.devices_room_10
-            - input_boolean.devices_room_11
-            - input_boolean.devices_room_12
-            - input_boolean.devices_room_13
-            - input_boolean.devices_room_14
-            - input_boolean.devices_room_15
-            - input_boolean.devices_room_16
-            - input_boolean.devices_room_17
-            - input_boolean.devices_room_18
-            - input_boolean.devices_room_19
-            - input_boolean.devices_room_20
       - service: input_text.set_value
         data:
           entity_id:
@@ -605,7 +337,21 @@ automation:
           entity_id:
             - input_text.alarm_entity
           value: alarm_control_panel.home_alarm
-
+      - service: input_text.set_value
+        data:
+          entity_id:
+            - input_text.washing_machine_image
+          value: 'local/images/washingmachine.jpg'
+      - service: input_text.set_value
+        data:
+          entity_id:
+            - input_text.dryer_image
+          value: 'local/images/dryer.jpg'
+      - service: input_text.set_value
+        data:
+          entity_id:
+            - input_text.dishwasher_image
+          value: 'local/images/dishwasher.jpg'
 
   - alias: 'reset font size'
     trigger:
@@ -617,6 +363,7 @@ automation:
         data:
           entity_id:
             - input_select.name_font_size_selector
+            - input_select.notification_font_size_selector
           option: 12px
       - service: input_select.select_option
         data:
@@ -625,11 +372,23 @@ automation:
             - input_select.label_font_size_selector
             - input_select.badge_font_size_selector
           option: 10px
+      - service: input_select.select_option
+        data:
+          entity_id:
+            - input_select.name_font_weight
+            - input_select.state_font_weight
+          option: bold
+      - service: input_select.select_option
+        data:
+          entity_id:
+            - input_select.badge_font_weight
+            - input_select.label_font_weight
+            - input_select.notification_font_weight
+          option: normal
       - service: input_text.set_value
         data:
           entity_id: input_text.font_family
           value: Helvetica
-
 
   - alias: 'reset button badge sensors'
     trigger:
@@ -662,6 +421,7 @@ automation:
             - input_text.sensor_system
             - input_text.sensor_traffic
             - input_text.sensor_weather
+            - input_text.sensor_covers
             - input_text.sensor_button_custom_a
             - input_text.sensor_button_custom_b
             - input_text.sensor_button_custom_c
@@ -687,6 +447,335 @@ automation:
             {% else %}
               true
             {% endif %}
+
+  - alias: 'set room defaults'
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.nothing
+        to: 'nothing'
+    action:
+      - service: input_text.set_value
+        data:
+          entity_id:
+            - input_text.room_b1_standard_lights
+            - input_text.room_b1_rgb_lights
+            - input_text.room_b1_color_temperature_lights
+            - input_text.room_b1_switches
+            - input_text.room_b1_sensors
+            - input_text.room_b1_binary_sensors
+            - input_text.room_b1_climate
+            - input_text.room_b1_media_players
+            - input_text.room_b1_covers
+            - input_text.room_b2_standard_lights
+            - input_text.room_b2_rgb_lights
+            - input_text.room_b2_color_temperature_lights
+            - input_text.room_b2_switches
+            - input_text.room_b2_sensors
+            - input_text.room_b2_binary_sensors
+            - input_text.room_b2_climate
+            - input_text.room_b2_media_players
+            - input_text.room_b2_covers
+            - input_text.room_b3_standard_lights
+            - input_text.room_b3_rgb_lights
+            - input_text.room_b3_color_temperature_lights
+            - input_text.room_b3_switches
+            - input_text.room_b3_sensors
+            - input_text.room_b3_binary_sensors
+            - input_text.room_b3_climate
+            - input_text.room_b3_media_players
+            - input_text.room_b3_covers
+            - input_text.room_b4_standard_lights
+            - input_text.room_b4_rgb_lights
+            - input_text.room_b4_color_temperature_lights
+            - input_text.room_b4_switches
+            - input_text.room_b4_sensors
+            - input_text.room_b4_binary_sensors
+            - input_text.room_b4_climate
+            - input_text.room_b4_media_players
+            - input_text.room_b4_covers
+            - input_text.room_b5_standard_lights
+            - input_text.room_b5_rgb_lights
+            - input_text.room_b5_color_temperature_lights
+            - input_text.room_b5_switches
+            - input_text.room_b5_sensors
+            - input_text.room_b5_binary_sensors
+            - input_text.room_b5_climate
+            - input_text.room_b5_media_players
+            - input_text.room_b5_covers
+            - input_text.room_01_standard_lights
+            - input_text.room_01_rgb_lights
+            - input_text.room_01_color_temperature_lights
+            - input_text.room_01_switches
+            - input_text.room_01_sensors
+            - input_text.room_01_binary_sensors
+            - input_text.room_01_climate
+            - input_text.room_01_media_players
+            - input_text.room_01_covers
+            - input_text.room_02_standard_lights
+            - input_text.room_02_rgb_lights
+            - input_text.room_02_color_temperature_lights
+            - input_text.room_02_switches
+            - input_text.room_02_sensors
+            - input_text.room_02_binary_sensors
+            - input_text.room_02_climate
+            - input_text.room_02_media_players
+            - input_text.room_02_covers
+            - input_text.room_03_standard_lights
+            - input_text.room_03_rgb_lights
+            - input_text.room_03_color_temperature_lights
+            - input_text.room_03_switches
+            - input_text.room_03_sensors
+            - input_text.room_03_binary_sensors
+            - input_text.room_03_climate
+            - input_text.room_03_media_players
+            - input_text.room_03_covers
+            - input_text.room_04_standard_lights
+            - input_text.room_04_rgb_lights
+            - input_text.room_04_color_temperature_lights
+            - input_text.room_04_switches
+            - input_text.room_04_sensors
+            - input_text.room_04_binary_sensors
+            - input_text.room_04_climate
+            - input_text.room_04_media_players
+            - input_text.room_04_covers
+            - input_text.room_05_standard_lights
+            - input_text.room_05_rgb_lights
+            - input_text.room_05_color_temperature_lights
+            - input_text.room_05_switches
+            - input_text.room_05_sensors
+            - input_text.room_05_binary_sensors
+            - input_text.room_05_climate
+            - input_text.room_05_media_players
+            - input_text.room_05_covers
+            - input_text.room_06_standard_lights
+            - input_text.room_06_rgb_lights
+            - input_text.room_06_color_temperature_lights
+            - input_text.room_06_switches
+            - input_text.room_06_sensors
+            - input_text.room_06_binary_sensors
+            - input_text.room_06_climate
+            - input_text.room_06_media_players
+            - input_text.room_06_covers
+            - input_text.room_07_standard_lights
+            - input_text.room_07_rgb_lights
+            - input_text.room_07_color_temperature_lights
+            - input_text.room_07_switches
+            - input_text.room_07_sensors
+            - input_text.room_07_binary_sensors
+            - input_text.room_07_climate
+            - input_text.room_07_media_players
+            - input_text.room_07_covers
+            - input_text.room_08_standard_lights
+            - input_text.room_08_rgb_lights
+            - input_text.room_08_color_temperature_lights
+            - input_text.room_08_switches
+            - input_text.room_08_sensors
+            - input_text.room_08_binary_sensors
+            - input_text.room_08_climate
+            - input_text.room_08_media_players
+            - input_text.room_08_covers
+            - input_text.room_09_standard_lights
+            - input_text.room_09_rgb_lights
+            - input_text.room_09_color_temperature_lights
+            - input_text.room_09_switches
+            - input_text.room_09_sensors
+            - input_text.room_09_binary_sensors
+            - input_text.room_09_climate
+            - input_text.room_09_media_players
+            - input_text.room_09_covers
+            - input_text.room_010_standard_lights
+            - input_text.room_010_rgb_lights
+            - input_text.room_010_color_temperature_lights
+            - input_text.room_010_switches
+            - input_text.room_010_sensors
+            - input_text.room_010_binary_sensors
+            - input_text.room_010_climate
+            - input_text.room_010_media_players
+            - input_text.room_010_covers
+            - input_text.room_11_standard_lights
+            - input_text.room_11_rgb_lights
+            - input_text.room_11_color_temperature_lights
+            - input_text.room_11_switches
+            - input_text.room_11_sensors
+            - input_text.room_11_binary_sensors
+            - input_text.room_11_climate
+            - input_text.room_11_media_players
+            - input_text.room_11_covers
+            - input_text.room_12_standard_lights
+            - input_text.room_12_rgb_lights
+            - input_text.room_12_color_temperature_lights
+            - input_text.room_12_switches
+            - input_text.room_12_sensors
+            - input_text.room_12_binary_sensors
+            - input_text.room_12_climate
+            - input_text.room_12_media_players
+            - input_text.room_12_covers
+            - input_text.room_13_standard_lights
+            - input_text.room_13_rgb_lights
+            - input_text.room_13_color_temperature_lights
+            - input_text.room_13_switches
+            - input_text.room_13_sensors
+            - input_text.room_13_binary_sensors
+            - input_text.room_13_climate
+            - input_text.room_13_media_players
+            - input_text.room_13_covers
+            - input_text.room_14_standard_lights
+            - input_text.room_14_rgb_lights
+            - input_text.room_14_color_temperature_lights
+            - input_text.room_14_switches
+            - input_text.room_14_sensors
+            - input_text.room_14_binary_sensors
+            - input_text.room_14_climate
+            - input_text.room_14_media_players
+            - input_text.room_14_covers
+            - input_text.room_15_standard_lights
+            - input_text.room_15_rgb_lights
+            - input_text.room_15_color_temperature_lights
+            - input_text.room_15_switches
+            - input_text.room_15_sensors
+            - input_text.room_15_binary_sensors
+            - input_text.room_15_climate
+            - input_text.room_15_media_players
+            - input_text.room_15_covers
+            - input_text.room_16_standard_lights
+            - input_text.room_16_rgb_lights
+            - input_text.room_16_color_temperature_lights
+            - input_text.room_16_switches
+            - input_text.room_16_sensors
+            - input_text.room_16_binary_sensors
+            - input_text.room_16_climate
+            - input_text.room_16_media_players
+            - input_text.room_16_covers
+            - input_text.room_17_standard_lights
+            - input_text.room_17_rgb_lights
+            - input_text.room_17_color_temperature_lights
+            - input_text.room_17_switches
+            - input_text.room_17_sensors
+            - input_text.room_17_binary_sensors
+            - input_text.room_17_climate
+            - input_text.room_17_media_players
+            - input_text.room_17_covers
+            - input_text.room_18_standard_lights
+            - input_text.room_18_rgb_lights
+            - input_text.room_18_color_temperature_lights
+            - input_text.room_18_switches
+            - input_text.room_18_sensors
+            - input_text.room_18_binary_sensors
+            - input_text.room_18_climate
+            - input_text.room_18_media_players
+            - input_text.room_18_covers
+            - input_text.room_19_standard_lights
+            - input_text.room_19_rgb_lights
+            - input_text.room_19_color_temperature_lights
+            - input_text.room_19_switches
+            - input_text.room_19_sensors
+            - input_text.room_19_binary_sensors
+            - input_text.room_19_climate
+            - input_text.room_19_media_players
+            - input_text.room_19_covers
+            - input_text.room_110_standard_lights
+            - input_text.room_110_rgb_lights
+            - input_text.room_110_color_temperature_lights
+            - input_text.room_110_switches
+            - input_text.room_110_sensors
+            - input_text.room_110_binary_sensors
+            - input_text.room_110_climate
+            - input_text.room_110_media_players
+            - input_text.room_110_covers
+            - input_text.room_21_standard_lights
+            - input_text.room_21_rgb_lights
+            - input_text.room_21_color_temperature_lights
+            - input_text.room_21_switches
+            - input_text.room_21_sensors
+            - input_text.room_21_binary_sensors
+            - input_text.room_21_climate
+            - input_text.room_21_media_players
+            - input_text.room_21_covers
+            - input_text.room_22_standard_lights
+            - input_text.room_22_rgb_lights
+            - input_text.room_22_color_temperature_lights
+            - input_text.room_22_switches
+            - input_text.room_22_sensors
+            - input_text.room_22_binary_sensors
+            - input_text.room_22_climate
+            - input_text.room_22_media_players
+            - input_text.room_22_covers
+            - input_text.room_23_standard_lights
+            - input_text.room_23_rgb_lights
+            - input_text.room_23_color_temperature_lights
+            - input_text.room_23_switches
+            - input_text.room_23_sensors
+            - input_text.room_23_binary_sensors
+            - input_text.room_23_climate
+            - input_text.room_23_media_players
+            - input_text.room_23_covers
+            - input_text.room_24_standard_lights
+            - input_text.room_24_rgb_lights
+            - input_text.room_24_color_temperature_lights
+            - input_text.room_24_switches
+            - input_text.room_24_sensors
+            - input_text.room_24_binary_sensors
+            - input_text.room_24_climate
+            - input_text.room_24_media_players
+            - input_text.room_24_covers
+            - input_text.room_25_standard_lights
+            - input_text.room_25_rgb_lights
+            - input_text.room_25_color_temperature_lights
+            - input_text.room_25_switches
+            - input_text.room_25_sensors
+            - input_text.room_25_binary_sensors
+            - input_text.room_25_climate
+            - input_text.room_25_media_players
+            - input_text.room_25_covers
+            - input_text.room_31_standard_lights
+            - input_text.room_31_rgb_lights
+            - input_text.room_31_color_temperature_lights
+            - input_text.room_31_switches
+            - input_text.room_31_sensors
+            - input_text.room_31_binary_sensors
+            - input_text.room_31_climate
+            - input_text.room_31_media_players
+            - input_text.room_31_covers
+            - input_text.room_32_standard_lights
+            - input_text.room_32_rgb_lights
+            - input_text.room_32_color_temperature_lights
+            - input_text.room_32_switches
+            - input_text.room_32_sensors
+            - input_text.room_32_binary_sensors
+            - input_text.room_32_climate
+            - input_text.room_32_media_players
+            - input_text.room_32_covers
+            - input_text.room_33_standard_lights
+            - input_text.room_33_rgb_lights
+            - input_text.room_33_color_temperature_lights
+            - input_text.room_33_switches
+            - input_text.room_33_sensors
+            - input_text.room_33_binary_sensors
+            - input_text.room_33_climate
+            - input_text.room_33_media_players
+            - input_text.room_33_covers
+            - input_text.room_34_standard_lights
+            - input_text.room_34_rgb_lights
+            - input_text.room_34_color_temperature_lights
+            - input_text.room_34_switches
+            - input_text.room_34_sensors
+            - input_text.room_34_binary_sensors
+            - input_text.room_34_climate
+            - input_text.room_34_media_players
+            - input_text.room_34_covers
+            - input_text.room_35_standard_lights
+            - input_text.room_35_rgb_lights
+            - input_text.room_35_color_temperature_lights
+            - input_text.room_35_switches
+            - input_text.room_35_sensors
+            - input_text.room_35_binary_sensors
+            - input_text.room_35_climate
+            - input_text.room_35_media_players
+            - input_text.room_35_covers
+          value: switch.empty
+
+
   # Theme Selector
   - alias: 'themes'
     initial_state: 'true'
@@ -714,48 +803,6 @@ automation:
             {% else %}
               {{ states('input_select.theme_selector') }}
             {% endif %}
-  
-  # Box Shadow Selector
-  - alias: input select beautifier box-shadow
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.box_shadow_selector
-    action:
-      service: input_select.select_option
-      data_template:
-        entity_id: input_select.box_shadow
-        option: >
-          {% if is_state('input_select.box_shadow_selector', 'None') %}
-            none
-          {% elif is_state('input_select.box_shadow_selector', 'Small') %}
-            1px 1px 1px 0px rgba(0,0,0,0.5)
-          {% elif is_state('input_select.box_shadow_selector', 'Standard') %}
-            2px 2px 2px 0px rgba(0,0,0,0.5)
-          {% elif is_state('input_select.box_shadow_selector', 'Large') %}
-            3px 3px 3px 0px rgba(0,0,0,0.5)
-          {% endif %}
-  
-  # Border Radius Selector
-  - alias: input select beautifier border-radius
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.border_radius_selector
-    action:
-      service: input_select.select_option
-      data_template:
-        entity_id: input_select.border_radius
-        option: >
-          {% if is_state('input_select.border_radius_selector', 'None') %}
-            0px
-          {% elif is_state('input_select.border_radius_selector', 'Small') %}
-            6px
-          {% elif is_state('input_select.border_radius_selector', 'Standard') %}
-            12px
-          {% elif is_state('input_select.border_radius_selector', 'Large') %}
-            18px
-          {% endif %}
 
 ### Notification Badge Templates (needed for the badges to appear on buttons!)
 ### Please do NOT touch this!!!!
@@ -802,9 +849,38 @@ sensor:
         friendly_name: All Laundry Devices Currently On
         value_template: >-
           {{ states|selectattr('entity_id','in',state_attr('group.all_laundry_devices','entity_id'))|selectattr('state','eq','on')|list|count }}   
+      current_covers_open:
+        friendly_name: All Covers Currently Open
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_covers','entity_id'))|selectattr('state','eq','on')|list|count }}   
+      current_garage_doors_open:
+        friendly_name: All Garage Doors Currently Open
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_garage_doors','entity_id'))|selectattr('state','eq','on')|list|count }}   
+  - platform: template
+    sensors:
+      greeting:
+        friendly_name: Greeting
+        value_template: >-
+          {% set time = states('sensor.time') %}
+          {% if '00:00' < time < '06:00' %}
+            {{ states.input_text.name_good_night.state }}
+          {% elif '06:00' < time < '12:00' %}
+            {{ states.input_text.name_good_morning.state }}
+          {% elif '12:00' < time < '18:00' %}
+            {{ states.input_text.name_good_afternoon.state }}
+          {% else %}
+            {{ states.input_text.name_good_evening.state }}
+          {% endif %}
+
 
   - platform: scrape
     name: HKI Latest Version
     resource: https://jimz011.github.io/homekit-infused/version
     select: ".current-version h1"
     value_template: '{{ value.split(":")[1] }}'
+
+shell_command:
+  language_file: cp /config/packages/hki_languages/{{commands}}.txt /config/packages/hki_languages/selected_language.txt
+  icons_file: cp /config/packages/hki_icons/{{icons}}.txt /config/packages/hki_icons/selected_icons.txt
+  

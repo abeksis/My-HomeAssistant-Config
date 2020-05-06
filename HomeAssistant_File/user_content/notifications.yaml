@@ -54,7 +54,7 @@
   #   state: "off"      
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:check-box-outline
       name: All clear, No notifications
 
@@ -65,7 +65,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:smoke-detector
       name: זוהה עשן בבית
       spin: true
@@ -77,7 +77,7 @@
       state: "triggered"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:alert
       name: האזעקה פועלת
 
@@ -90,7 +90,7 @@
       state_not: pending
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:alert
       name: אזהרה| האזעקה עובדת
 
@@ -103,7 +103,7 @@
       state_not: home
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:exclamation
       name: אין אף אחד בבית הפעל אזעקה
 
@@ -114,7 +114,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:door-open
       name: דלת הבית פתוחה
 
@@ -125,7 +125,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:motion-sensor
       name: זוהתה תנועה בחדר שרתים 
 
@@ -136,7 +136,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:motion-sensor
       name: זוהתה תנועה בחדר כביסה
 
@@ -147,7 +147,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:motion-sensor
       name: זוהתה תנועה במקלחת הראשית
 
@@ -158,7 +158,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:motion-sensor
       name: זוהתה תנועה במקלחת הורים
 
@@ -169,7 +169,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:motion-sensor
       name: זוהתה תנועה בשירותי אורחים
 
@@ -180,7 +180,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:motion-sensor
       name: זוהתה תנועה במרפסת עישון
 
@@ -191,7 +191,7 @@
       state: "on"
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:motion-sensor
       name: זוהתה תנועה במטבח
 
@@ -204,7 +204,7 @@
       state: disarmed
   card:
     !include
-    - '../lovelace/templates/notification_template.yaml'
+    - '../dashboards/templates/notification_template.yaml'
     - icon: mdi:robot-vacuum
       name: "[[[ return `The vacuum cleaner is ${states['vacuum.robovac'].state}` ]]]"
 
@@ -217,7 +217,7 @@
 #       state: "on"
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:motion-sensor
 #       name: Movement detected in the office!
 
@@ -230,7 +230,7 @@
 #       state: disarmed
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:ring
 #       name: "[[[ return `Congratulations, we are married for ${states['sensor.anniversary_trouwdag'].attributes.years} years!` ]]]"
 #       spin: true
@@ -244,7 +244,7 @@
 #       state: disarmed
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:ring
 #       name: "[[[ return `Congratulations, we are together for ${states['sensor.anniversary_anniversary'].attributes.years} years!` ]]]"
 #       spin: true
@@ -258,7 +258,7 @@
 #       state: disarmed
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:fan
 #       name: The kitchen hood is on
 #       spin: true
@@ -271,7 +271,7 @@
 #       state: "on"
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:door-open
 #       name: The livingroom door is open!
 # Slaapkamer Deur
@@ -281,7 +281,7 @@
 #       state: "on"
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:door-open
 #       name: The bedroom door is open!
 # Droger
@@ -293,7 +293,7 @@
 #       state: disarmed
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:tumble-dryer
 #       name: The tumble dryer is ready!
 # Wasmachine
@@ -305,7 +305,7 @@
 #       state: disarmed
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:washing-machine
 #       name: The washing machine is ready!
 # Vaatwasser
@@ -317,7 +317,7 @@
 #       state: disarmed
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:dishwasher
 #       name: The dishwasher is ready!
 # Hond dog
@@ -327,6 +327,6 @@
 #       state_not: home
 #   card:
 #     !include
-#     - '../lovelace/templates/notification_template.yaml'
+#     - '../dashboards/templates/notification_template.yaml'
 #     - icon: mdi:dog-side
 #       name: The dog is not home!

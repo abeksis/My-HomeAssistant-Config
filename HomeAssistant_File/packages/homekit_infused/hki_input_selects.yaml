@@ -37,43 +37,15 @@ input_select:
       - Sweet Pink
       - Valentine
 
-  # Border Radius used in border-radius templates,
-  # you can adjust border size to be selected here
-  border_radius:
-    name: Border Radius
+  justify_self:
     options:
-      - 0px
-      - 6px
-      - 12px
-      - 18px
-  
-  # Border Radius selector to show in the interface
-  border_radius_selector:
-    name: Border Radius Selector
+      - start
+      - end
+
+  badge_justify_self:
     options:
-      - None 
-      - Small
-      - Standard
-      - Large
-  
-  # Box Shadow used in box-shadow templates, you can adjust
-  # how the box shadow looks in here
-  box_shadow:
-    name: Box Shadow
-    options:
-      - none
-      - 1px 1px 1px 0px rgba(0,0,0,0.5)
-      - 2px 2px 2px 0px rgba(0,0,0,0.5)
-      - 3px 3px 3px 0px rgba(0,0,0,0.5)
-   
-  # Box Shadow selector to show in the interface
-  box_shadow_selector:
-    name: Box Shadow Selector
-    options:
-      - None
-      - Small
-      - Standard
-      - Large
+      - right
+      - left
 
   # Layout Selectors
   person_selector:
@@ -85,24 +57,6 @@ input_select:
       - Three Persons
       - Four Persons
   
-  menu_button_selector:
-    options:
-      - Three Columns
-      - Four Columns
-  
-  menu_button_editor:
-    options:
-      - First Column
-      - Second Column
-      - Third Column
-      - Fourth Column
-
-  frontpage_button_selector:
-    name: Frontpage Button Selector
-    options:
-      - Three Columns
-      - Four Columns
-  
   frontpage_button_editor:
     options:
       - First Column
@@ -110,11 +64,13 @@ input_select:
       - Third Column
       - Fourth Column
 
-  edit_mode_floor_selector:
+  floor_selector_details:
     options:
+      - Basement
       - Ground Floor
       - First Floor
       - Second Floor
+      - Third Floor
 
   floor_selector:
     options:
@@ -122,21 +78,36 @@ input_select:
       - 1
       - 2
       - 3
+      - 4
+      - 5
 
   lights_floor_selector:
     options:
       - Select
+      - '-1'
       - '0'
       - 1
       - 2
+      - 3
 
   devices_floor_selector:
     options:
       - Select
+      - '-1'
       - '0'
       - 1
       - 2
-  
+      - 3
+
+  floor_b_room_selector:
+    options:
+      - Select
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+
   floor_0_room_selector:
     options:
       - Select
@@ -160,6 +131,10 @@ input_select:
       - 4
       - 5
       - 6
+      - 7
+      - 8
+      - 9
+      - 10
 
   floor_2_room_selector:
     options:
@@ -168,6 +143,16 @@ input_select:
       - 2
       - 3
       - 4
+      - 5
+
+  floor_3_room_selector:
+    options:
+      - Select
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
 
   settings:
     options:
@@ -224,6 +209,12 @@ input_select:
       - Location
       - Vehicle
     initial: Overview
+
+  # Calendar View
+  calendar_view:
+    options:
+      - Family Calendar
+      - Birthdays
   
   # Xiaomi Vacuum
   xiaomi_vacuum:
@@ -246,20 +237,30 @@ input_select:
       - Select
       - English
       - Español
+      - Español (Alternativo)
+      - Deutsch
       - Français
+      - עִבְרִית
       - Italiano
       - Nederlands
+      - Norsk
       - Português do Brasil
+      - Română
   
   language_selector_backend:
     options:
       - Select
+      - Deutsch
       - English
       - Espanol
       - Francais
+      - Hebrew
       - Italiano
       - Nederlands
+      - Norsk
       - Portuguesebrasil
+      - Romanian
+      - Spanish
 
   name_font_size_selector:
     options:
@@ -312,6 +313,23 @@ input_select:
       - 19px
       - 20px
 
+  notification_font_size_selector:
+    options:
+      - 7px
+      - 8px
+      - 9px
+      - 10px
+      - 11px
+      - 12px
+      - 13px
+      - 14px
+      - 15px
+      - 16px
+      - 17px
+      - 18px
+      - 19px
+      - 20px
+
   badge_font_size_selector:
     options:
       - 7px
@@ -319,6 +337,34 @@ input_select:
       - 9px
       - 10px
       - 11px
+
+  notification_font_weight:
+    options:
+      - normal
+      - bold
+      - bolder
+      - lighter
+
+  state_font_weight:
+    options:
+      - normal
+      - bold
+      - bolder
+      - lighter
+
+  name_font_weight:
+    options:
+      - normal
+      - bold
+      - bolder
+      - lighter
+
+  label_font_weight:
+    options:
+      - normal
+      - bold
+      - bolder
+      - lighter
 
   badge_text_transform:
     options:
@@ -487,8 +533,6 @@ input_select:
     options:
       - Introduction
       - Language and Icons
-      - Persons
-      - Rooms
       - Finish
     initial: Introduction
 
@@ -536,3 +580,12 @@ input_select:
     options:
       - 3
       - 4
+
+  room_20_devices_view:
+    options:
+      - 'No'
+      - 'Yes'
+  room_20_lights_view:
+    options:
+      - 'No'
+      - 'Yes'

@@ -6,7 +6,11 @@ Home Assistant:
   # Lovelace Header Text
   header-color: 'White'
   category-text: 'Black'
-  
+
+  # Border Radius and Box Shadow
+  border-radius: !include ../user_content/theme_settings/border-radius.yaml
+  box-shadow: !include ../user_content/theme_settings/box-shadow.yaml
+
   # Notification Badge
   notification-badge-color: 'black'
   notification-popup-action-color: 'white'

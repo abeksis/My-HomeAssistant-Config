@@ -11,8 +11,10 @@
 - type: picture-elements
   style: |
     ha-card {
-      border-radius: {{ states('input_select.border_radius') }};
-      box-shadow: {{ states('input_select.box_shadow') }};
+      background: var(--paper-card-background-color);
+      color: var(--primary-text-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
       overflow: hidden;
     }
   image: '/local/images/network/network.jpg'
@@ -43,7 +45,7 @@
       entity: sensor.openwrt_uptime
       style:
         top: 60%
-        left: -4%
+        left: 0%
         pointer-events: none
         transform: initial
         font-size: 12px
@@ -70,9 +72,9 @@
       style: |
         ha-card {
           background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
           font-weight: bold;
           opacity: 0.8;
         }
@@ -102,9 +104,9 @@
       style: |
         ha-card {
           background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
           font-weight: bold;
           opacity: 0.8;
         }    
@@ -147,12 +149,12 @@
       style: |
         ha-card {
           background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
           font-weight: bold;
           opacity: 0.8;
-        }
+        }    
       entities: 
         - sensor.openwrt_lan
       name: OpenWRT Lan Use
@@ -191,12 +193,12 @@
       style: |
         ha-card {
           background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
           font-weight: bold;
           opacity: 0.8;
-        }
+        }    
       entities: 
         - sensor.pi_hole_ads_blocked_today
       name: Pi-Hole Today
@@ -221,12 +223,13 @@
   cards:
     - type: custom:bar-card
       style: |
-        :host {
-          --ha-card-background: var(--paper-card-background-color);
-          --ha-card-border-radius: {{ states('input_select.border_radius') }};
-          --ha-card-box-shadow: {{ states('input_select.box_shadow') }};
-          --ha-card-font-weight: bold;
-          --ha-card-opacity: 0.8;
+        ha-card {
+          background: var(--paper-card-background-color);
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+          font-weight: bold;
+          opacity: 0.8;
         }
         ha-card {
           font-size: 10px;                 
@@ -238,7 +241,7 @@
         - entity: sensor.pi_hole_dns_queries_today
           name: Today
         - entity: sensor.pi_hole_domains_blocked
-          name: Total Domains
+          name: Domains
       show_icon: true
       height: 40px
       stack: horizontal
@@ -261,12 +264,13 @@
   cards:
     - type: custom:bar-card
       style: |
-        :host {
-          --ha-card-background: var(--paper-card-background-color);
-          --ha-card-border-radius: {{ states('input_select.border_radius') }};
-          --ha-card-box-shadow: {{ states('input_select.box_shadow') }};
-          --ha-card-font-weight: bold;
-          --ha-card-opacity: 0.8;
+        ha-card {
+          background: var(--paper-card-background-color);
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+          font-weight: bold;
+          opacity: 0.8;
         }
         ha-card {
           font-size: 10px;                 
@@ -278,7 +282,7 @@
         - entity: sensor.pi_hole_dns_unique_clients
           name: Clients
         - entity: sensor.pi_hole_ads_percentage_blocked_today
-          name: Percentage Blocked Today
+          name: Blocked Today
       show_icon: true
       height: 40px
       stack: horizontal
@@ -317,9 +321,9 @@
       style: |
         ha-card {
           background: var(--paper-card-background-color);
-          border-radius: {{ states('input_select.border_radius') }};
-          --paper-item-icon-color: var(--paper-item-icon-color);
-          box-shadow: {{ states('input_select.box_shadow') }};
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
           font-weight: bold;
           opacity: 0.8;
         }
@@ -340,12 +344,13 @@
   cards:
     - type: custom:bar-card
       style: |
-        :host {
-          --ha-card-background: var(--paper-card-background-color);
-          --ha-card-border-radius: {{ states('input_select.border_radius') }};
-          --ha-card-box-shadow: {{ states('input_select.box_shadow') }};
-          --ha-card-font-weight: bold;
-          --ha-card-opacity: 0.8;
+        ha-card {
+          background: var(--paper-card-background-color);
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+          font-weight: bold;
+          opacity: 0.8;
         }
         ha-card {
           font-size: 10px;                 
@@ -380,12 +385,13 @@
   cards:
     - type: custom:bar-card
       style: |
-        :host {
-          --ha-card-background: var(--paper-card-background-color);
-          --ha-card-border-radius: {{ states('input_select.border_radius') }};
-          --ha-card-box-shadow: {{ states('input_select.box_shadow') }};
-          --ha-card-font-weight: bold;
-          --ha-card-opacity: 0.8;
+        ha-card {
+          background: var(--paper-card-background-color);
+          color: var(--primary-text-color);
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+          font-weight: bold;
+          opacity: 0.8;
         }
         ha-card {
           font-size: 10px;                 
@@ -408,4 +414,3 @@
       direction: right
       stack: horizontal
       tap_action: none
-      

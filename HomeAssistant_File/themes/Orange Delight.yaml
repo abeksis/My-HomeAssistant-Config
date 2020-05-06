@@ -10,6 +10,10 @@ Orange Delight:
   header-color: 'white'
   category-text: 'black'
   
+  # Border Radius and Box Shadow
+  border-radius: !include ../user_content/theme_settings/border-radius.yaml
+  box-shadow: !include ../user_content/theme_settings/box-shadow.yaml
+
   # Notification Badge
   notification-badge-color: 'black'
   notification-popup-action-color: 'black'

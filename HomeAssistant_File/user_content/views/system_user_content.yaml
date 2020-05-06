@@ -3,12 +3,4 @@
 # customize your entire view (just turn off the other elements except for user content)!
 # The first card is an example, you can safely remove it!
 
-- type: markdown
-  style: |
-    ha-card {
-      border-radius: {{ states('input_select.border_radius') }};
-      box-shadow: {{ states('input_select.box_shadow') }};
-    }              
-  content: >
-    User Cards Here!
-    
+ 

@@ -35,7 +35,7 @@
 
 
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Total Payment"
 
 - type: horizontal-stack
@@ -71,7 +71,7 @@
 
 
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Calculate By Day & Day Before"
 
 # Daily Energy Cost
@@ -238,7 +238,7 @@
 
 ##### Server Power Calculation
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Television Power Calculation"
 - type: horizontal-stack
   cards:
@@ -425,7 +425,7 @@
 
 ##### Server Power Calculation
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Server Power Calculation"
 - type: horizontal-stack
   cards:
@@ -721,7 +721,7 @@
 #         valueInt: 2
 
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Power"
 - type: horizontal-stack
   cards:
@@ -757,7 +757,7 @@
 
    
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Energy kWh" 
 - type: horizontal-stack
   cards:
@@ -796,7 +796,7 @@
         extrema: true
 
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Energy kWh" 
 - type: horizontal-stack
   cards:
@@ -859,7 +859,7 @@
         fill: fade  
         icon: false
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Apparent VA" 
 - type: horizontal-stack
   cards:
@@ -896,7 +896,7 @@
         
 
 - !include
-  - '../../lovelace/templates/header_text.yaml'
+  - '../../dashboards/templates/header_text.yaml'
   - content: "##### Electricity" 
 - type: horizontal-stack
   cards:
@@ -931,5 +931,4 @@
       font_size_header: 9
       show:
         average: true
-        extrema: true        
-              
+        extrema: true

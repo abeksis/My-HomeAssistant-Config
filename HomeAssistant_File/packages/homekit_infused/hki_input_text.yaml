@@ -1,25 +1,4 @@
 input_text:
-  room_1:
-  room_2:
-  room_3:
-  room_4:
-  room_5:
-  room_6:
-  room_7:
-  room_8:
-  room_9:
-  room_10:
-  room_11:
-  room_12:
-  room_13:
-  room_14:
-  room_15:
-  room_16:
-  room_17:
-  room_18:
-  room_19:
-  room_20:
-
   font_family:
 
   frost_protection_temperature:
@@ -151,7 +130,34 @@ input_text:
   waste_vfg_name:
 
   alarm_entity:
- 
+  alarm_code:
+    mode: password
+
+  vacuum_entity:
+  vacuum_map_entity:
+  vacuum_error_sensor_entity:
+  vacuum_battery_entity:
+  vacuum_cleaning_count_entity:
+  vacuum_total_cleaned_area_entity:
+  vacuum_total_cleaning_time_entity:
+  vacuum_main_brush_time_left_entity:
+  vacuum_side_brush_time_left_entity:
+  vacuum_filter_time_left_entity:
+  vacuum_sensor_dirty_time_left_entity:
+
+  vacuum_preset_button_1_name:
+  vacuum_preset_button_1_icon:
+  vacuum_preset_button_1_coordinates:
+  vacuum_preset_button_2_name:
+  vacuum_preset_button_2_icon:
+  vacuum_preset_button_2_coordinates:
+  vacuum_preset_button_3_name:
+  vacuum_preset_button_3_icon:
+  vacuum_preset_button_3_coordinates:
+  vacuum_preset_button_4_name:
+  vacuum_preset_button_4_icon:
+  vacuum_preset_button_4_coordinates:
+
   sensor_alarm:
   sensor_battery:
   sensor_climate:
@@ -159,6 +165,7 @@ input_text:
   sensor_device:
   sensor_security:
   sensor_cleaning:
+  sensor_covers:
   sensor_scene:
   sensor_vacuum:
   sensor_remote:
@@ -175,7 +182,8 @@ input_text:
   sensor_traffic:
   sensor_weather:
 
-  house_calendar_entity:
+  birthday_calendar_entity:
+  family_calendar_entity:
   person_1_calendar_entity:
   person_2_calendar_entity:
   person_3_calendar_entity:

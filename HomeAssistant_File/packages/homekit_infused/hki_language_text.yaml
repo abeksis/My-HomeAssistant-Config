@@ -25,6 +25,7 @@ input_text:
   name_header_secondary_menu:
   name_header_secondary_alarm:
   name_header_secondary_download:
+  name_header_secondary_covers:
 
   name_header_climate:
   name_header_lights:
@@ -38,6 +39,7 @@ input_text:
   name_header_settings:
   name_header_alarm:
   name_header_weather:
+  name_header_covers:
 
   name_header_about:
   name_header_automations:
@@ -74,6 +76,9 @@ input_text:
   name_windows:
   name_motion:
   name_other:
+
+  name_controls:
+  name_mode:
 
   name_good_morning:
   name_good_afternoon:
@@ -145,6 +150,35 @@ input_text:
 
   name_alarm:
   name_alarm_label:
+
+  name_covers:
+  name_covers_label:
+
+# vacuum
+  name_status_information:
+  name_start:
+  name_pause:
+  name_stop:
+  name_find_me:
+
+  name_quiet:
+  name_turbo:
+  name_max:
+  name_balanced:
+  name_mop:
+
+  name_vacuum_error_sensor:
+  name_vacuum_battery:
+  name_cleaning_count:
+  name_total_cleaned_area:
+  name_total_cleaning_time:
+  name_main_brush_time_left:
+  name_side_brush_time_left:
+  name_filter_time_left:
+  name_sensor_dirty_time_left:
+
+# Garage Door
+  name_garage_doors:
 
 
 
