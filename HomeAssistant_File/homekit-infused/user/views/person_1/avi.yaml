@@ -1,0 +1,234 @@
+- type: conditional
+  conditions:
+    - entity: input_select.person_1
+      state: "Location"
+  card:
+    type: custom:mod-card
+    style: |
+      ha-card {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    card:
+      type: custom:layout-card
+      max_columns: 3
+      cards:
+        - type: vertical-stack
+          cards:
+            - !include
+              - '../../../base/templates/other/title-text.yaml'
+              - name: Travel Times
+            - type: horizontal-stack
+              cards:
+                - type: custom:ha-card-waze-travel-time
+                  style: |
+                    ha-card {
+                      background: var(--paper-card-background-color);
+                      --paper-item-icon-color: var(--paper-item-icon-color);
+                      border-radius: var(--border-radius);
+                      box-shadow: var(--box-shadow);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                      overflow: hidden;
+                    }
+                    .ha-card-waze td {
+                      color: var(--primary-text-color) !important;
+                    }
+                  unit: km
+                  columns:
+                    - to
+                    - duration
+                    - distance
+                    - icon
+                  header: 'false'
+                  destinations:
+                    - entity: sensor.travel_time_avi_home
+                      to: "Home"
+                    - entity: sensor.travel_time_avi_work
+                      to: "Work"
+        - type: vertical-stack
+          cards:
+            - !include
+              - '../../../base/templates/other/title-text.yaml'
+              - name: Current Location
+            - type: horizontal-stack
+              cards:
+                - type: map
+                  style: |
+                    ha-card {
+                      border-radius: var(--border-radius);
+                      box-shadow: var(--box-shadow);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                      overflow: hidden;
+                    }
+                  aspect_ratio: 4x5
+                  default_zoom: 15
+                  entities:
+                    - person.avi_abeksis
+
+- type: conditional
+  conditions:
+    - entity: input_select.person_1
+      state: "Calendar"
+  card:
+    type: custom:mod-card
+    style: |
+      ha-card {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    card:
+      type: custom:layout-card
+      max_columns: 3
+      cards:
+        - type: vertical-stack
+          cards:
+            - !include
+              - '../../../base/templates/other/title-text.yaml'
+              - name: Personal Agenda
+            - type: horizontal-stack
+              cards:
+                - type: "custom:atomic-calendar-revive"
+                  style: |
+                    ha-card {
+                      border-radius: var(--border-radius);
+                      box-shadow: var(--box-shadow);
+                      font-family: Helvetica;
+                      font-size: 13px;
+                      opacity: 0.8;
+                      overflow: hidden;
+                    }
+                  entities:
+                    - entity: calendar.work
+                      icon: 'mdi:home-heart'
+                      color: 'white'        
+                    - entity: calendar.avi_abeksis
+                    - entity: calendar.khgym_byshrl
+                  enableModeChange: true
+                  defaultMode: Calendar
+
+
+- type: conditional
+  conditions:
+    - entity: input_select.person_1
+      state: "Overview"
+  card:
+    type: custom:mod-card
+    style: |
+      ha-card {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    card:
+      type: custom:layout-card
+      max_columns: 3
+      cards:
+        - type: vertical-stack
+          cards:
+            - !include
+              - '../../../base/templates/other/title-text.yaml'
+              - name: Spotify Player
+            - type: horizontal-stack
+              cards:
+                - type: media-control
+                  style: |
+                    ha-card {
+                      border-radius: var(--border-radius);
+                      box-shadow: var(--box-shadow);
+                    }
+                  entity: media_player.spotify_avi_abeksis
+
+        - type: vertical-stack
+          cards:
+            - !include
+              - '../../../base/templates/other/title-text.yaml'
+              - name: Playlists
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:spotify-card'
+
+
+
+
+- type: conditional
+  conditions:
+    - entity: input_select.person_1
+      state: "Vehicle"
+  card:
+    type: custom:mod-card
+    style: |
+      ha-card {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    card:
+      type: custom:layout-card
+      max_columns: 3
+      cards:
+        - type: vertical-stack
+          cards:
+            - !include
+              - '../../../base/templates/other/title-text.yaml'
+              - name: General Information
+            - type: horizontal-stack
+              cards:
+                - type: markdown
+                  style: |
+                    ha-card {
+                      border-radius: var(--border-radius);
+                      box-shadow: var(--box-shadow);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                    }
+                  content: >
+                    **Test:** 16-7-2021
+  
+                    **Insured:** 30-6-2021   
+                    
+                    **Fee:** 2412 ₪
+        
+                    **Model:** NS74KX
+  
+                    **Engine Model:** CZD
+  
+        - type: vertical-stack
+          cards:
+            - !include
+              - '../../../base/templates/other/title-text.yaml'
+              - name: Where is the vehicle?
+            - type: horizontal-stack
+              cards:
+                - type: 'custom:vertical-stack-in-card'
+                  cards:
+                    - type: "custom:content-card-ituran"
+                      entity: ituran.skoda                
+  
+        - type: vertical-stack
+          cards:
+            - !include
+              - '../../../base/templates/other/title-text.yaml'
+              - name: Help
+            - type: horizontal-stack
+              cards:
+                - type: entities
+                  style: |
+                    ha-card {
+                      border-radius: var(--border-radius);
+                      box-shadow: var(--box-shadow);
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                    }
+                  entities:              
+                    - type: weblink
+                      style: |
+                        a {
+                          color: var(--primary-text-color) !important;
+                        }
+                      name: Memad Skoda | הבדיל 21, עמק שרה
+                      url: tel:08-6276104
+                      icon: 'mdi:phone'

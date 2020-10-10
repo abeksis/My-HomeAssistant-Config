@@ -1,0 +1,83 @@
+#################################################################
+#   High temperatures over 30 degrees                           #
+#################################################################
+  - alias: 'Hot Temperature Alert Living Room'
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.sensibo_temp 
+      above: 30
+    action:
+    - service: notify.nurit_telegram
+      data:
+        title: 'מד טמפרטורה'
+        message: 'הטמפרטורה בבית מעל 30 מעלות'
+
+
+#################################################################
+#                    כיבוי המזגן אחרי השעה 00:30                  #
+#################################################################
+
+  # - alias: 'Living Room AC OFF after 1 hour'
+  #   trigger:
+  #     - platform: state
+  #       entity_id: climate.living_room
+  #       to: "not_off"
+  #       for:
+  #         minutes: 60
+  #   condition:
+  #     condition: time
+  #     after: '00:00:00'
+  #     before: '06:00:00'
+  #   action:
+  #     - service: climate.set_hvac_mode
+  #       data:
+  #           entity_id: climate.living_room
+  #           hvac_mode: "off"          
+
+##################################################################
+#       הפעלת המזגן החל משעה 12 בלילה וכיבוי בשעה 22:00            #
+##################################################################
+
+  # - id: living_room_ac_on
+  #   initial_state: 'on'  
+  #   alias: 'Living Room AC ON'
+  #   trigger:
+  #     platform: time
+  #     at: '22:30:00'
+  #   condition:
+  #   action:
+  #   - data:
+  #       entity_id: switch.sensibo_living_room_cool
+  #     service: switch.turn_on 
+
+
+  # - id: living_room_ac_off
+  #   initial_state: 'on'  
+  #   alias: 'Living Room AC OFF'
+  #   trigger:
+  #     platform: time
+  #     at: '01:30:00'
+  #   condition:
+  #   action:
+  #   - data:
+  #       entity_id: switch.sensibo_living_room_cool
+  #     service: switch.turn_off
+
+##################################################################
+#                     כיבוי המזגן גם לאחר שנדלק ידני                 #
+##################################################################
+     
+  # - id: Turn_off_ac_manually
+  #   initial_state: 'on'  
+  #   alias: 'Turn off the air conditioner after turning it on manually'
+  #   trigger:
+  #     platform: time
+  #     at: '02:45:00'
+  #   condition:
+  #   action:
+  #   - data:
+  #       entity_id: switch.sensibo_living_room_cool
+  #     service: switch.turn_off     
+            
+          

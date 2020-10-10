@@ -1,0 +1,34 @@
+- type: conditional
+  conditions:
+    - entity: input_select.media_view_selector
+      state: "Media Players"
+  card:
+    type: custom:mod-card
+    style: |
+      ha-card {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    card:
+      type: vertical-stack
+      cards:
+        - !include
+          - '../../../base/templates/other/title-text.yaml'
+          - name: Spotify
+        - type: media-control
+          style: |
+            ha-card {
+              border-radius: var(--border-radius);
+              box-shadow: var(--box-shadow);
+            }
+          entity: media_player.spotify_avi_abeksis
+        - !include
+          - '../../../base/templates/other/title-text.yaml'
+          - name: Tv          
+        - type: media-control
+          style: |
+            ha-card {
+              border-radius: var(--border-radius);
+              box-shadow: var(--box-shadow);
+            }
+          entity: media_player.living_room_tv     

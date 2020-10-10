@@ -1,0 +1,8 @@
+switch:
+  - platform: mqtt
+    name: "shelly1 ac yakir"
+    state_topic: "shellies/shelly1-E0A119/relay/0"
+    command_topic: "shellies/shelly1-E0A119/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false

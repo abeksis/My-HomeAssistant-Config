@@ -1,0 +1,19 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - '../../../base/templates/other/title-text.yaml'
+        - name: Smoke
+      - type: horizontal-stack
+        cards:
+          - !include
+            - '../../../base/templates/button/sensors.yaml'
+            - entity: binary_sensor.lumi_sensor_smoke
+          - !include ../../../base/includes/empty-button.yaml
+          - !include ../../../base/includes/empty-button.yaml

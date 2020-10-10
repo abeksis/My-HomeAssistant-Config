@@ -1,13 +1,8 @@
-#################################################################
-#                                                               #
-#                      Packages/Cameras                         #
-#                                                               #
-#################################################################
-
 camera:
-#################################################################
-#   Camera                                                      #
-#################################################################
+#     - platform: ffmpeg
+#       name: Xiaomi Dafang Hacks
+#       input: !secret rtsp_xiaomi_dafang_hack
+
     - platform: mjpeg
       mjpeg_url: !secret smoking
       name: Smoking
@@ -26,25 +21,10 @@ camera:
     - platform: mjpeg
       mjpeg_url: !secret laundry
       name: Laundry
-      authentication: basic  
+      authentication: basic
 
-
-#################################################################
-#   Groups                                                      #
-#################################################################
-group:
-  Outside the home:
-    name: Outside Camera
-    #view: no
-    entities:
-      - camera.entrance_to_the_building
-      - camera.laundry
-      - camera.home
-      - camera.smoking
-
-
-  inside the home:
-    name: Home Fornt Dor Camera 
-    #view: no
-    entities:
-      - camera.home
+    - platform: mjpeg
+      mjpeg_url: !secret dogs
+      name: Dogs
+      authentication: basic      
+      

@@ -1,0 +1,19 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - '../../../base/templates/other/title-text.yaml'
+        - name: Motion
+      - type: horizontal-stack
+        cards:
+          - !include
+            - '../../../base/templates/auto-fill/auto-fill-sensors-template.yaml'
+            - type: motion
+              columns: 3
+              sort: name

@@ -1,0 +1,375 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Home Power - Total Payment
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.shekel_count_all
+                  name: Payment
+                  points_per_hour: 0.5
+                  line_width: 1
+                  hour24: true
+                  animate: true
+                  decimals: 2
+                  font_size: 53
+                  height: 90
+                  graph_type: line
+                  show_icon: false
+                  show_fill: true
+                  show_extrema: true
+                  show_average: true
+                  font_size_header: 9
+                  color_thresholds:
+                    - value: 1400
+                      color: "#f39c12"
+                    - value: 1800
+                      color: "#d35400"
+                    - value: 2000
+                      color: "#c0392b"
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_calc_today_phaze1
+                  name: Total Payment - Today
+                  line_color: '"#c0392b"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65        
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_calc_yesterday_phaze1
+                  name: Total Payment - Yesterday
+                  line_color: '"#c0392b"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65        
+
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Server - Total Payment
+          - type: horizontal-stack   
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_server_calc_total
+                  name: Server
+                  line_color: '"#336699"'
+                  line_width: 1
+                  graph_type: line
+                  show_extrema: true
+                  hour24: true
+                  decimals: 3
+                  font_size: 65 
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_server_calc_today
+                  name: Total Payment - Server Today
+                  line_color: '"#336699"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65 
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_server_calc_yesterday
+                  name: Total Payment - Server Yesterday
+                  line_color: '"#336699"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+
+
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Microwave - Total Payment
+          - type: horizontal-stack   
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.microwave_calc_total
+                  name: Microwave
+                  line_color: '"#000000"'
+                  line_width: 1
+                  graph_type: line
+                  show_extrema: true
+                  hour24: true
+                  decimals: 3
+                  font_size: 65 
+                  
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.microwave_calc_today
+                  name: Total Payment - Microwave Today
+                  line_color: '"#000000"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65 
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.microwave_calc_yesterday
+                  name: Total Payment - Microwave Yesterday
+                  line_color: '"#000000"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+
+
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:        
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: TV - Total Payment
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.television_power_calc_total
+                  name: Total Payment - TV
+                  line_color: '"#32cd32"'
+                  line_width: 1
+                  graph_type: line
+                  show_extrema: true
+                  hour24: true
+                  points_per_hour: 0.5
+                  decimals: 3
+                  font_size: 65
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.television_power_energy_calc_today
+                  name: Total Payment - TV  Today
+                  line_color: '"#32cd32"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65 
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.television_power_calc_yesterday
+                  name: Total Payment - TV Yesterday
+                  line_color: '"#32cd32"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+
+
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Switcher - Boiler
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.switcher_webapi_power_consumption
+                  name: Switcher - kw
+                  line_color: '"#462066"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65 
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.switcher_webapi_electric_current
+                  name: Switcher - A
+                  line_color: '"#462066"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+        
+
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Home Power - Total Power (W)
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_server_power
+                  name: Server - Watt (W)
+                  line_color: '"#00d8ff"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65        
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_tv_energy_power
+                  name: TV - Watt (W)
+                  line_color: '"#00d8ff"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+                  
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.phaze_1_power
+                  name: Power
+                  line_color: '"#00d8ff"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: 'Total Usage kWh'
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.phaze_1_today
+                  name: Today
+                  line_color: '"#ee00ff"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.phaze_1_yesterday
+                  name: Yesterday
+                  line_color: '"#ee00ff"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+                  
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_server_total
+                  name: Total
+                  line_color: '"#ee00ff"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65
+
+
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: 'Voltage'
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.phaze_1_voltage
+                  name: Home - Voltage
+                  line_color: '"#f2d98c"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 0
+                  font_size: 65
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.power_tv_energy_voltage
+                  name: TV - Voltage
+                  line_color: '"#f2d98c"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 0
+                  font_size: 65

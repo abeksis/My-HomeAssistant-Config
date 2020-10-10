@@ -1,0 +1,21 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - '../../../base/templates/other/title-text.yaml'
+        - name: Doors
+      - type: horizontal-stack
+        cards:
+          - !include
+            - '../../../base/templates/button/sensors.yaml'
+            - entity: binary_sensor.balcony_door_sensor
+          - !include
+            - '../../../base/templates/button/sensors.yaml'
+            - entity: binary_sensor.front_door_sensor
+          - !include ../../../base/includes/empty-button.yaml

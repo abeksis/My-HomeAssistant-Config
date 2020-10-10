@@ -1,0 +1,77 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - !include
+            - '../../../base/templates/button/button-badge.yaml'
+            - name: Climate
+              label: Control
+              icon: mdi:thermometer
+              navigation_path: /homekit-infused/climate
+              notification: "[[[ if (states['sensor.sensibo_temp'].state == 0) return '&nbsp'; else return `${states['sensor.sensibo_temp'].state}`; ]]]"
+              background_color: "[[[ if (states['sensor.sensibo_temp'].state == 0) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"  
+          - !include
+            - '../../../base/templates/button/button-badge.yaml'
+            - name: Devices
+              label: Overview
+              icon: mdi:power-plug
+              navigation_path: /homekit-infused/devices
+              notification: "[[[ if (states['sensor.current_devices_on'].state == 0) return '&nbsp'; else return `${states['sensor.current_devices_on'].state}`; ]]]"
+              background_color: "[[[ if (states['sensor.current_devices_on'].state == 0) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"                                             
+          - !include
+            - '../../../base/templates/button/button-badge.yaml'
+            - name: Lights
+              label: Overview
+              icon: mdi:floor-lamp
+              navigation_path: /homekit-infused/lights
+              notification: "[[[ if (states['sensor.current_lights_on'].state == 0) return '&nbsp'; else return `${states['sensor.current_lights_on'].state}`; ]]]"
+              background_color: "[[[ if (states['sensor.current_lights_on'].state == 0) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"   
+          - !include
+            - '../../../base/templates/button/button-badge.yaml'
+            - name: Security
+              label: Panel
+              icon: mdi:cctv
+              navigation_path: /homekit-infused/security
+              notification: "[[[ if (states['sensor.current_binary_sensors_on'].state == 0) return '&nbsp'; else return `${states['sensor.current_binary_sensors_on'].state}`; ]]]"
+              background_color: "[[[ if (states['sensor.current_binary_sensors_on'].state == 0) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]" 
+      - type: horizontal-stack
+        cards:
+          - !include
+            - '../../../base/templates/button/button-badge.yaml'
+            - name: Energy
+              label: Overview
+              icon: mdi:chart-line
+              navigation_path: /homekit-infused/energy
+              notification: "[[[ if (states['sensor.phaze_1_power'].state == 0) return '&nbsp'; else return `${states['sensor.phaze_1_power'].state}`; ]]]"
+              background_color: "[[[ if (states['sensor.phaze_1_power'].state == 0) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"  
+          - !include
+            - '../../../base/templates/button/button-badge.yaml'
+            - name: switcher
+              label: Control
+              icon: mdi:water-boiler
+              navigation_path: /homekit-infused/custom_1
+              notification: "[[[ if ( states['switch.switcher_webapi'].state == 'on') return states['sensor.switcher_webapi_time_left_short'].state; else return 'off'; ]]]"
+              background_color: "[[[ if (states['sensor.switcher_webapi_state'].state == 0) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"    
+          - !include
+            - '../../../base/templates/button/button-badge.yaml'
+            - name: Media
+              label: Center
+              icon: mdi:plex
+              navigation_path: /homekit-infused/media
+              notification: "[[[ if (states['media_player.living_room_tv'].state == 0) return '&nbsp'; else return `${states['media_player.living_room_tv'].state}`; ]]]"
+              background_color: "[[[ if (states['media_player.living_room_tv'].state == 0) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"     
+          - !include
+            - '../../../base/templates/button/button-badge.yaml'
+            - name: Vacuum
+              label: Control
+              icon: mdi:robot-vacuum
+              navigation_path: /homekit-infused/vacuum
+              notification: "[[[ if (states['vacuum.rockrobo'].state == 0) return '&nbsp'; else return `${states['vacuum.rockrobo'].state}`; ]]]"
+              background_color: "[[[ if (states['vacuum.rockrobo'].state == 0) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"

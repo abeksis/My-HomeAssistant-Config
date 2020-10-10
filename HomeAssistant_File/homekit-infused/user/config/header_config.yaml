@@ -1,0 +1,133 @@
+# Header Configuration File
+header:
+# This file will change the Header Properties, do NOT delete or comment any of
+# these lines. Titles can NOT have templates, subtitles CAN have JS templates.
+# e.g. "[[[ if (states['sensor.current_lights_on'].state == 0) return `All lights are off`; if (states['sensor.current_lights_on'].state == 1) return `There is 1 light on`; else return `There are ${states['sensor.current_lights_on'].state} lights on`; ]]]"
+# To change the language you can either do this manually or download the appropriate language file for predefined names in your language.
+
+
+# ========================= Alarm Entity ====================================== #
+  alarm_entity: alarm_control_panel.home_alarm
+# ============================================================================= #
+
+# ========================= Top Left Header Icons ============================= #
+  door_sensor: mdi:door
+  window_sensor: mdi:window-closed
+  motion_sensor: mdi:motion-sensor
+# ============================================================================= #
+
+# ========================= Person Titles ===================================== #
+  person_1_title: Person 1
+  person_1_subtitle: Overview
+
+  person_2_title: Person 2
+  person_2_subtitle: Overview
+
+  person_3_title: Person 3
+  person_3_subtitle: Overview
+
+  person_4_title: Person 4
+  person_4_subtitle: Overview
+
+# ============================================================================= #
+
+# ========================= Headers Titles ==================================== #
+  devices_title: Device
+  devices_subtitle: "[[[ if (states['sensor.current_devices_on'].state == 0) return `All devices are turned off`; if (states['sensor.current_devices_on'].state == 1) return `1 device is turned on`; else return `${states['sensor.current_devices_on'].state} devices are turned on`; ]]]"
+  
+  automations_title: Automations
+  automations_subtitle: Overview
+  
+  climate_title: Climate
+  climate_subtitle: "[[[ return `The current average temperature is ${states['sensor.sensibo_temp'].state}` ]]]"
+  
+  battery_title: Battery
+  battery_subtitle: Overview
+  
+  security_title: Security
+  security_subtitle: Panel
+  
+  waste_title: Waste
+  waste_subtitle: Schedule
+  
+  certificates_title: Certificates
+  certificates_subtitle: Overview
+  
+  computers_title: Computers
+  computers_subtitle: Overview
+  
+  energy_title: Energy
+  energy_subtitle: "[[[ return `The current energy usage is ${states['sensor.phaze_1_power'].state}`; ]]]"
+  
+  calendar_title: Calendar
+  calendar_subtitle: Overview
+  
+  lights_title: Light
+  lights_subtitle: "[[[ if (states['sensor.current_lights_on'].state == 0) return `All lights are turned off`; if (states['sensor.current_lights_on'].state == 1) return `1 light is turned on`; else return `${states['sensor.current_lights_on'].state} lights are turned on`; ]]]"
+  
+  location_title: Location
+  location_subtitle: "[[[ if (states['device_tracker.life360_nurit'].state == 'בית') return `Nurit is home`; else return `Nurit is away!`; ]]]"
+  
+  media_title: Media
+  media_subtitle: "[[[ if (states['sensor.media_players_playing'].state == 'Playing') return `A media player is playing right now`; else return `All mediaplayers have stopped playing`; ]]]"
+  
+  floorplan_title: Floorplan
+  floorplan_subtitle: Overview
+  
+  scenes_title: Scenes
+  scenes_subtitle: Control
+  
+  vacuum_title: Vacuum
+  vacuum_subtitle: "[[[ return `The current status is ${states['vacuum.rockrobo'].state}`; ]]]"
+  
+  traffic_title: Traffic
+  traffic_subtitle: Information
+  
+  cleaning_title: Cleaning
+  cleaning_subtitle: Lists
+  
+  weather_title: Weather
+  weather_subtitle: "[[[ return `${states['weather.dark_sky'].state}`; ]]]"
+  
+  about_title: About
+  about_subtitle: FAQ
+  
+  theme_title: Theme
+  theme_subtitle: Settings
+  
+  ha_title: Home Assistant
+  ha_subtitle: Settings
+
+  covers_title: Covers
+  covers_subtitle: "[[[ return `The current status is ${states['sensor.current_position'].state}`; ]]]"
+# ============================================================================= #
+
+# ========================= Subtitle Icons ==================================== #
+  person_1_icon: mdi:account
+  person_2_icon: mdi:account
+  person_3_icon: mdi:account
+  person_4_icon: mdi:account
+  devices_icon: mdi:power-plug
+  automations_icon: mdi:alpha-a-box
+  climate_icon: mdi:thermometer
+  battery_icon: mdi:battery-50
+  security_icon: mdi:cctv
+  waste_icon: mdi:trash-can
+  covers_icon: mdi:window-shutter
+  certificates_icon: mdi:certificate
+  computers_icon: mdi:desktop-tower-monitor
+  energy_icon: mdi:chart-line
+  calendar_icon: mdi:calendar
+  light_icon: mdi:floor-lamp
+  location_icon: mdi:map-marker
+  media_icon: mdi:plex
+  floorplan_icon: mdi:floor-plan
+  scenes_icon: mdi:arrange-send-backward
+  vacuum_icon: mdi:robot-vacuum
+  traffic_icon: mdi:waze
+  cleaning_icon: mdi:broom
+  weather_icon: mdi:weather-partly-cloudy
+  about_icon: mdi:help-circle
+  hki_settings_icon: mdi:palette
+  ha_settings_icon: mdi:home-assistant
+# ============================================================================= #

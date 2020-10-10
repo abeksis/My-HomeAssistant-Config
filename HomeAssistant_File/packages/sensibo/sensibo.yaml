@@ -1,15 +1,6 @@
-
-#################################################################
-#                                                               #
-#                    Packages/Sensibo                           #
-#                                                               #
-#                                                               #
-#                                                               #
-#################################################################
-
 climate:
   - platform: sensibo
-    api_key: !secret sensibo_api_key
+    api_key: !secret sensibo
 
 
 #################################################################
@@ -75,90 +66,7 @@ script:
             temperature: "{{ (state_attr('climate.living_room', 'temperature')|round(0)) - 1 }}" 
 
             
-#################################################################
-#    Switch                                                     #
-#################################################################
-# switch:
-
-#   - platform: template
-#     switches:
-#       ## -- OLD -- ##
-#       # sensibo_living_room:
-#       #   friendly_name: climate.living_room_friendly_name
-#       #   icon_template: climate.living_room_icon
-#       #   value_template: "{{ is_state('climate.living_room', 'cool') or is_state('climate.living_room', 'heat') or is_state('climate.living_room', 'dry') or is_state('climate.living_room', 'auto') or is_state('climate.living_room', 'fan_only')}}"
-#       #   turn_on:
-#       #       service: climate.turn_on
-#       #       data:
-#       #           entity_id: climate.living_room
-#       #   turn_off:
-#       #       service: climate.turn_off
-#       #       data:
-#       #           entity_id: climate.living_room
-                  
-
-
-#       # Sensibo Dima #
-#       sensibo_living_room_cool:
-#           friendly_name: "Living Room AC Cool"
-#           icon_template: mdi:snowflake
-#           value_template: "{{ is_state('climate.living_room', 'cool') }}"
-#           turn_on:
-#               service: climate.set_hvac_mode
-#               data:
-#                   entity_id: climate.living_room
-#                   hvac_mode: "cool"
-#           turn_off:
-#               service: climate.set_hvac_mode
-#               data:
-#                   entity_id: climate.living_room
-#                   hvac_mode: "off"     
-
-#       sensibo_living_room_heat:
-#           friendly_name: "Living Room AC Heat"
-#           icon_template: mdi:fire
-#           value_template: "{{ is_state('climate.living_room', 'heat') }}"
-#           turn_on:
-#               service: climate.set_hvac_mode
-#               data:
-#                   entity_id: climate.living_room
-#                   hvac_mode: "heat"
-#           turn_off:
-#               service: climate.set_hvac_mode
-#               data:
-#                   entity_id: climate.living_room
-#                   hvac_mode: "off"  
-
-#       sensibo_living_room_fan_only:
-#           friendly_name: "Living Room AC Fan"
-#           icon_template: mdi:fan
-#           value_template: "{{ is_state('climate.living_room', 'fan_only') }}"
-#           turn_on:
-#               service: climate.set_hvac_mode
-#               data:
-#                   entity_id: climate.living_room
-#                   hvac_mode: "fan_only"
-#           turn_off:
-#               service: climate.set_hvac_mode
-#               data:
-#                   entity_id: climate.living_room
-#                   hvac_mode: "off"
-                  
-#       sensibo_living_room_heat_cool:
-#           friendly_name: "Living Room AC Auto"
-#           icon_template: mdi:brightness-auto
-#           value_template: "{{ is_state('climate.living_room', 'heat_cool') }}"
-#           turn_on:
-#               service: climate.set_hvac_mode
-#               data:
-#                   entity_id: climate.living_room
-#                   hvac_mode: "heat_cool"
-#           turn_off:
-#               service: climate.set_hvac_mode
-#               data:
-#                   entity_id: climate.living_room
-#                   hvac_mode: "off"                  
-
+                
 ##########################################################
 #   Sensor                                               #
 ########################################################## 
@@ -174,7 +82,6 @@ sensor:
         friendly_name: 'humidity living room sensibo'
         value_template: '{{ states.climate.living_room.attributes.current_humidity }}'
         unit_of_measurement: "%"
-        entity_id: climate.living_room
 
       sensibo_target_temp:
         friendly_name: "Target Temperature"
@@ -183,7 +90,6 @@ sensor:
         value_template: >-
           {{ states.climate.living_room.attributes.temperature }}
 
-          
       sensibo_living_room_operation:
         friendly_name: "Operation Mode"
         icon_template: mdi:air-filter
@@ -194,99 +100,4 @@ sensor:
         friendly_name: "Fan Mode"
         icon_template: mdi:fan
         value_template: >-
-          {{ states.climate.living_room.attributes.fan_mode }} 
- 
-
-##########################################################
-#   Automation                                           #
-########################################################## 
-
-automation:        
-
-  - alias: 'Hot temperature alert LivingRoom'
-    initial_state: 'on'
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.sensibo_temp 
-      above: 30
-      # below: 25
-    action:
-    - service: notify.nurit_telegram
-      data:
-        title: 'מד טמפרטורה'
-        message: 'הטמפרטוה בבית מעל 30 מעלות'
-
-  
-  
-##########################################################
-#   Toggle livingRoom enternce BOTH  on single press     #
-########################################################## 
-  - alias: 'Toggle livingRoom enternce BOTH on single press after 6AM and turn off living room AC'
-    initial_state: 'on'
-    trigger:
-      platform: event
-      event_type: xiaomi_aqara.click
-      event_data:
-        entity_id: binary_sensor.switch_158d0001f36255
-        click_type: both
-    condition:
-      condition: and
-      conditions:
-        - condition: time 
-          after: '06:00:01'
-        - condition: or
-          conditions: #"operation_list": ["dry","auto","heat","fan_only","cool"]
-            - condition: state 
-              entity_id: climate.living_room
-              state: 'dry' 
-            - condition: state 
-              entity_id: climate.living_room
-              state: 'auto' 
-            - condition: state 
-              entity_id: climate.living_room
-              state: 'heat' 
-            - condition: state 
-              entity_id: climate.living_room
-              state: 'fan_only'  
-            - condition: state 
-              entity_id: climate.living_room
-              state: 'cool'
-    action:
-      - service: climate.turn_off
-        entity_id: climate.living_room
-      - service: homeassistant.turn_off
-        entity_id: group.allmylights                              
-
-
-#################################################################
-#   AC Xiaomi Click   - לא בשימוש עוד, אבל הקווד תקי               #
-#################################################################  
- 
-#Toggle living room lights on single press (ROUND) LivingRoomSwitch
-
-  # - alias: 'Turn ON living room AC on single press LivingRoomSwitch'
-  #   initial_state: 'on'
-  #   trigger:
-  #     platform: event
-  #     event_type: xiaomi_aqara.click
-  #     event_data:
-  #       entity_id: binary_sensor.switch_158d0001f36255
-  #       click_type: single
-  #   action:
-  #   - service: climate.turn_on
-  #     entity_id: climate.living_room
-
-
-#Turn OFF living room AC on double click LivingRoomSwitch
-
-  # - alias: 'Turn OFF living room AC on double click LivingRoomSwitch'
-  #   initial_state: 'on'
-  #   trigger:
-  #     platform: event
-  #     event_type: xiaomi_aqara.click
-  #     event_data:
-  #       entity_id: binary_sensor.switch_158d0001f36255
-  #       click_type: double
-  #   action:
-  #   - service: climate.turn_off
-  #     entity_id: climate.living_room        
+          {{ states.climate.living_room.attributes.fan_mode }}

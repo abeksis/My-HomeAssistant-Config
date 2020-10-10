@@ -1,12 +1,68 @@
 Slate:
+  ### Theme Slate for Homekit Infused
 
-  # Lovelace Header Text
-  header-color: 'White'
-  category-text: 'White'
+  ## User Settings
 
-  # Border Radius and Box Shadow
-  border-radius: !include ../user_content/theme_settings/border-radius.yaml
-  box-shadow: !include ../user_content/theme_settings/box-shadow.yaml
+  ### Background image (can be an image or a color)
+  background-image: "#222222"
+
+  ### Header Title and Subtitle/Notifications
+  header-text-color: 'White'
+  header-font-size: 15px
+  header-font-weight: normal
+  header-shadow: 0px 14px 21px -15px rgba(0,0,0,0.75)
+
+  subtitle-text-color: 'White'
+  subtitle-font-size: 12px
+  subtitle-font-weight: normal
+
+  ### Title Text Addon
+  title-text-color: 'White'
+  title-text-font-size: 12px
+  title-text-font-weight: bolder
+
+  ### Display a gap at the left and right side of cards on a smartphone
+  display-gap: 10px
+
+  ### Border Radius and Box Shadow
+  border-radius: 12px
+  box-shadow: var(--ha-card-box-shadow, 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12) )
+  bar-card-border-radius: 12px
+
+  ### Button Colors
+  button-color: '#292929'
+
+  button-on-color: '#FFFFFF'
+  button-on-name-color: black
+  button-on-state-color: black
+  button-on-label-color: gray
+  button-on-lock-color: gray
+   
+  button-on-opacity: 1.0
+  button-on-box-shadow: none
+
+  ### Fonts
+  font-family: Roboto
+
+  name-font-size: 12px
+  name-font-weight: bold
+
+  label-font-size: 10px
+  label-font-weight: normal
+
+  state-font-size: 10px
+  state-font-weight: bold
+
+  ### Badges
+  badge-font-size: 10px
+  badge-font-weight: normal
+  badge-text-transform: capitalize
+  
+
+  #######################################################################################################################################################
+  ## Main Home Assistant Colors (ANYTHING YOU CHANGE PAST THIS LINE, IS AT YOUR OWN RISK!)
+
+  paper-toast-background-color: '#821414'
 
   # Notification Badge
   notification-badge-color: 'black'
@@ -38,7 +94,8 @@ Slate:
   paper-grey-200: '#222222'
   # Paper card
   paper-card-header-color: '#2980b9'
-  paper-card-background-color: '#292929'
+  ha-card-background: 'var(--button-color)'
+  paper-card-background-color: "var(--ha-card-background)"
   paper-dialog-background-color: '#292929'
   paper-item-icon-color: 'var(--primary-text-color)'
   paper-item-icon-active-color: '#b58e31'

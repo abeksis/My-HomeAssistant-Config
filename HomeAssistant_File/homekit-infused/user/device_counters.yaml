@@ -1,0 +1,94 @@
+# Homekit Infused Device Counters
+
+# Fill this file to have the badges and device counters work in HKI.
+# You can use these sensors in your badges.
+
+
+# All Radiator Valves or Climate entities (ONLY climate entities can be used here!, if you have a single thermostat put it here as well)
+all_climate_entities:
+  entities:
+    - climate.living_room
+
+# All Fans (Enter all your fans in here)
+all_fan_entities:
+  entities:
+
+# Window Sensors
+all_window_sensor_entities:
+  entities:
+    - binary_sensor.window_out_on_the_porch 
+
+# Door Sensors
+all_door_sensor_entities:
+  entities:
+    - binary_sensor.front_door_sensor
+    - binary_sensor.balcony_door_sensor
+
+# Motion Sensors
+all_motion_sensor_entities:
+  entities:
+    - binary_sensor.kitchen_motion_sensor
+    - binary_sensor.server_room_motion_sensor
+    - binary_sensor.sensor_light_balcony
+    - binary_sensor.main_shower_sensor
+    - binary_sensor.bathroom_motion_sensor
+    - binary_sensor.parents_shower_sensor
+    - binary_sensor.laundry_room_motion
+
+# All Detectors (smoke/gas/fire etc)
+all_detector_entities:
+  entities:
+    - binary_sensor.lumi_sensor_smoke
+
+# All Binary Sensors (put all your binary sensors here e.g. smoke/gas/fire/door/window/motion etc. You can use this as a counter on the security button)
+all_binary_sensor_entities:
+  entities:
+    - binary_sensor.balcony_door_sensor
+    - binary_sensor.front_door_ding
+    - binary_sensor.front_door_motion
+    - binary_sensor.window_out_on_the_porch 
+    
+# All Lights
+all_light_entities:
+  entities:
+    - light.kitchen
+    - light.kitchen_strip_lamp
+    - light.yeelight_poop
+    - light.living_room
+    - light.seating_area
+    - light.smoking_balcony
+    - light.prozdor
+    - light.service_balcony
+    - light.miklahat
+    - light.laundry_room_lighting
+    - light.liran_room
+    - light.stairs
+    - light.computer_room
+    - light.bedroom_parents
+    - light.parents_shower
+    - light.room_area_light_1 
+    - light.room_area_light_2 
+    - light.room_area_light_3
+    - light.room_area_light_4    
+    - light.tradfri_remote_control_35
+
+# All Devices
+all_device_switch_entities:
+  entities:
+    - switch.fan
+    - switch.switcher_webapi
+    - switch.power_server_room
+    - switch.power_tv
+    - switch.microwave
+    - switch.tami_4
+    - switch.shelly1_ac_yakir
+
+    
+# All Covers
+all_cover_entities:
+  entities:
+    - cover.shutters  
+
+# All Garage Doors
+all_garage_door_entities:
+  entities:

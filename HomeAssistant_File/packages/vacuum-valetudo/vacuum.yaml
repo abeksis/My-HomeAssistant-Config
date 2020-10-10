@@ -1,0 +1,21 @@
+automation:
+  - alias: Weekly cleaning
+    trigger:
+    - at: '08:00:00'
+      platform: time
+    - at: '15:00:00'
+      platform: time   
+    - at: '19:00:00'
+      platform: time
+    condition:
+    - condition: time
+      weekday:
+      - sun
+      - mon
+      - tue
+      - wed
+      - thu
+    action:
+    - data:
+        entity_id: vacuum.rockrobo
+      service: vacuum.start

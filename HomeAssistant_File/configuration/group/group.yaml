@@ -1,5 +1,0 @@
-device_status:
-  name: Status and Location
-  entities:
-    - person.avi
-    - person.nurit

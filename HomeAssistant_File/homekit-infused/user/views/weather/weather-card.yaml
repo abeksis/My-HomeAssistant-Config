@@ -1,0 +1,24 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: horizontal-stack
+    cards:
+      - type: custom:weather-card
+        style: |
+          ha-card {
+            font-size: 12px;
+            font-family: Helvetica;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0.8;
+          }
+        entity: weather.dark_sky
+        current: true
+        details: true
+        forecast: true
+        hourly_forecast: false
+        number_of_forecasts: 5

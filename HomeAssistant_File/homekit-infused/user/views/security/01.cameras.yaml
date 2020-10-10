@@ -1,0 +1,16 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - '../../../base/templates/other/title-text.yaml'
+        - name: Camera        
+      - !include
+        - '../../../base/templates/auto-fill/auto-fill-camera-template.yaml'
+        - aspect_ratio: 16x9
+          columns: 1

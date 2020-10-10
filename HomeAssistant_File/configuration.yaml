@@ -1,165 +1,136 @@
 homeassistant:
-  name: !secret name
-  temperature_unit: C
-  time_zone: !secret timezone
-  latitude: !secret latitude
-  longitude: !secret longitude
-  unit_system: metric
-  elevation: 169
-  packages: !include_dir_named packages/
   customize: !include customize.yaml
-  auth_providers:
-    - type: trusted_networks
-      trusted_networks:
-        - 192.168.1.0/24
-    - type: homeassistant
-  whitelist_external_dirs:
-    - /config/tmp    
+  packages: !include_dir_named packages/
 
-####################################################
-#                     Enables                      #
-####################################################
 
-http:
-  base_url: !secret base_url
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-  use_x_forwarded_for: true
-  trusted_proxies:
-  - 127.0.0.1
-  - !secret home_router
-  - !secret letsencrypt_container
-  - !secret database_server
-  - !secret docker_something_or_othe    
 
-frontend:
-  themes: !include_dir_merge_named themes/
-  extra_html_url: ## Enables Fontawesome (far:icon_name)
-    - /local/fontawesome/hass-fontawesome-solid.html 
-    - /local/fontawesome/hass-fontawesome-regular.html
-    - /local/fontawesome/hass-fontawesome-brands.html
+#######################################################
+#   MQTT                                              #
+#######################################################
+mqtt: 
+  password: !secret http_password
+  broker:  !secret broker_host
+  username: !secret http_username
+
+########################################################
+#   Required by home assistant                         #
+########################################################
+default_config:
 
 
 ########################################################
-# Speedtest.net                                        #
+#   Home Assistant Mobile App Support                  #
 ########################################################
-speedtestdotnet:
+mobile_app:
 
 ########################################################
 # Browser-mod makes the browser more useful + required #
 ########################################################
-browser_mod:
+# browser_mod:
 
 ########################################################
-# Home Assistant Mobile App Support                    #
+#   Home Assistant                                     #
 ########################################################
-mobile_app:
+media_source:
 
-# #######################################################
-# # improve the lovelace yaml parser for Home Assistant #
-# #######################################################
-# lovelace_gen:
-
-#####################################
-#              Required             #
-#####################################
-lovelace:
-  mode: yaml
-  resources: 
-    !include_dir_merge_list dashboards/resources/
-  dashboards:
-    homekit-infused:
-      mode: yaml
-      title: HKI
-      icon: mdi:cellphone
-      show_in_sidebar: true
-      filename: homekit_infused.yaml
-    hki-settings:
-      mode: yaml
-      title: HKI Settings
-      icon: mdi:tools
-      show_in_sidebar: true
-      filename: homekit_infused_settings.yaml
-
-
-#####################################################
-#              Required by home assistant           #
-#####################################################
-default_config:
-
-
-#####################################################
-#              Required by home assistant           #
-#####################################################
-discovery:
-  ignore:
-    - harmony
-
-####################################################
-#              Weather Dark Sky                    #
-####################################################
-weather:
-  - platform: darksky
-    mode: daily
-    api_key: !secret darksky_api
-
-
-####################################################
-#              Wake on LAN add Buy Me              #
-####################################################
-wake_on_lan:
-
-####################################################
-#                      xiaomi                      #
-####################################################
-xiaomi_aqara:
-  discovery_retry: 10
-  gateways:
-    - key: !secret xiaomi
-
-####################################################
-#                Google  Calendar                  #
-####################################################
-google:
-  client_id: !secret client_id
-  client_secret: !secret client_secret 
-
-
-####################################################
-#                    Telegram Bot                  #
-#################################################### 
+########################################################
+#   Telegram                                           #
+########################################################
 telegram_bot:
   - platform: polling
     api_key: !secret TelegramBotApiKey
     allowed_chat_ids:
       - !secret telgram_avi   
-      - !secret telgram_nurit  
+      - !secret telgram_nurit 
+
+########################################################
+#   Telegram Avi/Nurit                                 #
+######################################################## 
+notify:
+  - name: Avi_Telegram
+    platform: telegram
+    chat_id: !secret telgram_avi
+    
+  - name: Nurit_Telegram
+    platform: telegram
+    chat_id: !secret telgram_nurit
+    
+
+########################################################
+#   Spotify                                            #
+######################################################## 
+spotify:
+  client_id: !secret spotify_id
+  client_secret: !secret spotify_secret
+  
+spotcast:
+  sp_dc: !secret sp_dc
+  sp_key: !secret sp_key  
+  
+  
+########################################################
+#   ituran                                             #
+######################################################## 
+ituran:
+  skoda:
+    name: Skoda
+    username: !secret skodakodiaq_username
+    password: !secret skodakodiaq_password
+    update_interval: 180  
+
+########################################################
+#   Text to speech                                     #
+########################################################
+tts:
+  - platform: google_translate
 
 
-####################################################
-#                      MQTT                        #
-####################################################
-mqtt: 
-  password: !secret http_password
-  broker:  !secret broker_host
-  username: !secret http_username  
-
-####################################################
-#                      Hacs                        #
-####################################################
+########################################################
+#   Hacs                                               #
+########################################################
 hacs:
-  token: !secret my_github_access_token  
+  token: !secret my_github_access_token
+
+  
+
+########################################################
+#   Required                                           #
+########################################################
+lovelace:
+  mode: storage
 
 
-####################################################
-#                      include                     #
-####################################################
-automation: !include_dir_merge_list configuration/automations/ #place every automation in this folder
-notify: !include configuration/notify/notify.yaml # by home assistent
-alarm_control_panel: !include configuration/alarm_control_panel/alarms.yaml # Alarm Panel
-webostv: !include configuration/webostv/webostv.yaml # LG TV
-group: !include configuration/group/group.yaml # jimz011/homekit
-cloud: !include configuration/cloud/cloud.yaml # amazon alexa
-zone: !include configuration/zone/zone.yaml # place every zone in this folder
-switch: !include configuration/switch/switch.yaml # for tami 4 and mor
-sensor: !include_dir_merge_list configuration/sensor/ #place every sensor in this folder
+########################################################
+#   Weather Dark Sky                                   #
+########################################################
+weather:
+  - platform: darksky
+    mode: daily
+    api_key: !secret darksky_api
+
+########################################################
+#        show the sunrise and sunset times             #
+########################################################
+sun: 
+
+########################################################
+#   Google Calendar                                    #
+########################################################
+google:
+    client_id: !secret client_id
+    client_secret: !secret client_secret 
+    track_new_calendar: true
+    # client_id: !secret client_id_nurit
+    # client_secret: !secret client_secret_nurit     
+
+
+########################################################
+#   include                                            #
+########################################################
+automation: !include_dir_merge_list configuration/automations/
+alarm_control_panel: !include configuration/alarm_control_panel/alarms.yaml
+sensor: !include_dir_merge_list configuration/sensor/
+group: !include_dir_merge_named configuration/groups/
+cloud: !include configuration/cloud/cloud.yaml
+zone: !include configuration/zone/zone.yaml
+webostv: !include configuration/webostv/webostv.yaml

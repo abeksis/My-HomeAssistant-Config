@@ -1,0 +1,28 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - '../../../base/templates/other/title-text.yaml'
+        - name: Live Map
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+              }
+            entity: camera.vrockrobo_map
+            show_name: false
+            show_state: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            camera_view: live

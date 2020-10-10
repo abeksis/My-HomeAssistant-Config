@@ -1,0 +1,20 @@
+- type: horizontal-stack
+  cards:
+    - !include ../../../base/includes/gap.yaml
+    - type: custom:layout-card
+      cards:
+        - type: custom:auto-entities
+          filter:
+            include:
+              - domain: automation
+          sort:
+            method: name
+            numeric: true
+          card:
+            type: entities
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+              }
+    - !include ../../../base/includes/gap.yaml

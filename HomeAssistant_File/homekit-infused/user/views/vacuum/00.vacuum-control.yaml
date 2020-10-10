@@ -1,0 +1,15 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - '../../../base/templates/other/title-text.yaml'
+        - name: Controls
+      - !include
+        - '../../../base/templates/vacuum/controls.yaml'
+        - entity: vacuum.rockrobo

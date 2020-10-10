@@ -1,0 +1,44 @@
+# lovelace_gen
+- type: conditional
+  conditions:
+    - entity: input_select.floor_selector
+      state: "0"
+  card:
+    type: custom:mod-card
+    style: |
+      ha-card {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    card:
+      type: custom:layout-card
+      max_columns: 3
+      cards:
+        {% for rooms in _global.devices_rooms_floor_0 %}
+        - !include
+          - '../../../base/templates/auto-fill/auto-fill-devices-template.yaml'
+          - rooms: {{ rooms }}
+            columns: 3
+        {% endfor %}
+
+- type: conditional
+  conditions:
+    - entity: input_select.floor_selector
+      state: "1"
+  card:
+    type: custom:mod-card
+    style: |
+      ha-card {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    card:
+      type: custom:layout-card
+      max_columns: 3
+      cards:
+        {% for rooms in _global.devices_rooms_floor_1 %}
+        - !include
+          - '../../../base/templates/auto-fill/auto-fill-devices-template.yaml'
+          - rooms: {{ rooms }}
+            columns: 3
+        {% endfor %}

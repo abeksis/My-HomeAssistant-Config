@@ -1,0 +1,143 @@
+- type: conditional
+  conditions:
+    - entity: input_select.person_2
+      state: "Location"
+  card:
+    type: custom:layout-card
+    max_columns: 3
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Travel Times
+          - type: horizontal-stack
+            cards:
+              - !include ../../../base/includes/gap.yaml
+              - type: custom:ha-card-waze-travel-time
+                style: |
+                  ha-card { border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    font-family: Helvetica;
+                    font-size: 12px;
+                    opacity: 0.8;
+                    overflow: hidden;
+                  }
+                  .ha-card-waze td {
+                    color: var(--primary-text-color) !important;
+                  }
+                unit: km
+                columns:
+                  - to
+                  - duration
+                  - distance
+                  - icon
+                header: 'false'
+                destinations:
+                  - entity: sensor.travel_time_nurit_work
+                    to: "Home"
+                  - entity: sensor.travel_time_nurit_home
+                    to: "Work"
+              - !include ../../../base/includes/gap.yaml
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Current Location
+          - type: horizontal-stack
+            cards:
+              - !include ../../../base/includes/gap.yaml
+              - type: map
+                style: |
+                  ha-card {
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    font-family: Helvetica;
+                    font-size: 12px;
+                    opacity: 0.8;
+                    overflow: hidden;
+                  }
+                aspect_ratio: 4x5
+                default_zoom: 15
+                entities:
+                  - device_tracker.life360_nurit
+              - !include ../../../base/includes/gap.yaml  
+
+
+- type: conditional
+  conditions:
+    - entity: input_select.person_2
+      state: "Vehicle"
+  card:
+    type: custom:layout-card
+    max_columns: 3
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: General Information
+          - type: horizontal-stack
+            cards:
+              - !include ../../../base/includes/gap.yaml
+              - type: markdown
+                style: |
+                  ha-card {
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    font-family: Helvetica;
+                    font-size: 12px;
+                    opacity: 0.8;
+                  }
+                content: >
+                  **Test:** 16-7-2021
+
+                  **Insured:** 30-6-2021   
+                  
+                  **Fee:** 2412 ₪
+      
+                  **Model:** NS74KX
+
+                  **Engine Model:** CZD
+              - !include ../../../base/includes/gap.yaml
+
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Where is the vehicle?
+          - type: horizontal-stack
+            cards:
+              - !include ../../../base/includes/gap.yaml
+              - type: 'custom:vertical-stack-in-card'
+                cards:
+                  - type: "custom:content-card-ituran"
+                    entity: ituran.skoda                
+              - !include ../../../base/includes/gap.yaml
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Help
+          - type: horizontal-stack
+            cards:
+              - !include ../../../base/includes/gap.yaml
+              - type: entities
+                style: |
+                  ha-card {
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    font-family: Helvetica;
+                    font-size: 12px;
+                    opacity: 0.8;
+                  }
+                entities:              
+                  - type: weblink
+                    style: |
+                      a {
+                        color: var(--primary-text-color) !important;
+                      }
+                    name: Memad Skoda | הבדיל 21, עמק שרה
+                    url: tel:08-6276104
+                    icon: 'mdi:phone'  
+              - !include ../../../base/includes/gap.yaml              

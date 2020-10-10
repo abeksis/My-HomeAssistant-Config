@@ -1,0 +1,22 @@
+- type: horizontal-stack
+  cards:
+    - !include ../../../base/includes/gap.yaml
+    - type: map                    
+      style: |
+        ha-card {
+          --paper-item-icon-color: black;
+          color: black;
+          border-radius: var(--border-radius);
+          box-shadow: var(--box-shadow);
+          font-family: Helvetica;
+          font-size: 12px;
+          opacity: 0.8;
+          overflow: hidden;
+        }                      
+      default_zoom: 15
+      aspect_ratio: 4x6
+      entities:
+        - device_tracker.life360_nurit
+        - device_tracker.life360_avi_abeksis
+        - device_tracker.life360_yakir
+    - !include ../../../base/includes/gap.yaml

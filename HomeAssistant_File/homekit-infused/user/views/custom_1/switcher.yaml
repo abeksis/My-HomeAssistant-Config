@@ -1,0 +1,112 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Switcher - Boiler
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/button/button.yaml'
+                - entity: script.switcher_turn_on
+                  show_last_changed: true
+                  show_label: false
+                  lock: true            
+                  tap_action: toggle
+                  icon: mdi:water-boiler
+              - !include
+                - '../../../base/templates/button/button.yaml'
+                - type: custom:button-card
+                  color_type: blank-card
+                  aspect_ratio: 1/1        
+              - !include
+                - '../../../base/templates/button/button.yaml'
+                - entity: script.switcher_turn_off
+                  show_last_changed: true
+                  show_label: false
+                  lock: true            
+                  tap_action: toggle
+                  icon: mdi:water-boiler-off
+      
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/button/button.yaml'
+                - entity: script.switcher_turn_on_15
+                  show_last_changed: true
+                  lock: true
+                  name: 15 Min
+                  show_label: false
+                  tap_action: toggle
+                  icon: mdi:camera-timer
+              - !include
+                - '../../../base/templates/button/button.yaml'
+                - entity: script.switcher_turn_on_30
+                  show_last_changed: true
+                  lock: true            
+                  name: 30 Min
+                  show_label: false
+                  tap_action: toggle
+                  icon: mdi:camera-timer
+              - !include
+                - '../../../base/templates/button/button.yaml'
+                - entity: script.switcher_turn_on_45
+                  show_last_changed: true
+                  lock: true            
+                  name: 45 Min        
+                  show_label: false
+                  tap_action: toggle
+                  icon: mdi:camera-timer
+              - !include
+                - '../../../base/templates/button/button.yaml'
+                - entity: script.switcher_turn_on_60
+                  show_last_changed: true
+                  lock: true            
+                  name: 60 Min              
+                  show_label: false
+                  tap_action: toggle
+                  icon: mdi:camera-timer
+
+
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - !include
+            - '../../../base/templates/other/title-text.yaml'
+            - name: Switcher - Boiler
+          - type: horizontal-stack
+            cards:
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.switcher_webapi_power_consumption
+                  name: Switcher - kw
+                  line_color: '"#462066"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65 
+              - !include
+                - '../../../base/templates/other/mini-graph.yaml'
+                - entity: sensor.switcher_webapi_electric_current
+                  name: Switcher - A
+                  line_color: '"#462066"'
+                  graph_type: line
+                  show_extrema: true
+                  decimals: 3
+                  font_size: 65

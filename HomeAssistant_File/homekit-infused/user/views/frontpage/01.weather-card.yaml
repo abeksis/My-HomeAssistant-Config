@@ -1,0 +1,24 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:simple-weather-card                    
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0.8;
+            font-size: 12px;
+            font-family: var(--font-family);
+          }                      
+        entity: weather.home
+        name: beer-sheva
+        backdrop: false
+        tap_action:
+          action: navigate
+          navigation_path: /homekit-infused/weather

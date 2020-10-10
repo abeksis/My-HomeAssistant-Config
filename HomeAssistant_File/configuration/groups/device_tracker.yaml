@@ -1,0 +1,14 @@
+# Device Trackers and Person Groups
+
+device_status:
+  name: Status and Locatie
+  entities:
+    - person.avi_abeksis
+    - person.nurit
+    - person.yakir
+
+device_status_2:
+  name: Phone Tracker
+  entities:
+    - device_tracker.samsung_mobile
+    - device_tracker.nurit_iphone

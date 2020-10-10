@@ -1,0 +1,27 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: horizontal-stack
+    cards:
+      - type: "custom:atomic-calendar-revive"
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            font-family: Helvetica;
+            font-size: 13px;
+            opacity: 0.8;
+            overflow: hidden;
+          }
+        entities:
+          - entity: calendar.work
+            icon: 'mdi:home-heart'
+            color: 'white'        
+          - entity: calendar.avi_abeksis
+          - entity: calendar.khgym_byshrl
+        enableModeChange: true
+        defaultMode: Calendar

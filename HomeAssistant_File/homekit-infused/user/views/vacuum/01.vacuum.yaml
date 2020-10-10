@@ -1,0 +1,40 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: 'custom:vacuum-card'
+    entity: vacuum.rockrobo
+    stats:
+      default:
+        - attribute: filter_left
+          unit: hours
+          subtitle: Filter
+        - attribute: side_brush_left
+          unit: hours
+          subtitle: Side brush
+        - attribute: main_brush_left
+          unit: hours
+          subtitle: Main brush
+        - attribute: sensor_dirty_left
+          unit: hours
+          subtitle: Sensors
+      cleaning:
+        - attribute: cleaned_area
+          unit: m2
+          subtitle: Cleaning area
+        - attribute: cleaning_time
+          unit: minutes
+          subtitle: Cleaning time
+    # actions:
+    #   - name: Clean living room
+    #     service: script.clean_living_room
+    #     icon: 'mdi:sofa'
+    #   - name: Clean bedroom
+    #     service: script.clean_bedroom
+    #     icon: 'mdi:bed-empty'
+    #   - name: Clean kitchen
+    #     service: script.clean_kitchen
+    #     icon: 'mdi:silverware-fork-knife'

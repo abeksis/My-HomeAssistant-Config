@@ -1,0 +1,18 @@
+#################################################################
+#   Sync Tasmota states on Start UP                             #
+#################################################################
+- alias: 'Sync Tasmota states on start-up'
+  initial_state: 'on'  
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/tasmotas/power"
+        payload: "check"
+
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/shutters/POWER3"
+        payload: "check"

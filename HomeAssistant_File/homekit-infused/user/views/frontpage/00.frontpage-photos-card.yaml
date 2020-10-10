@@ -1,0 +1,29 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: horizontal-stack
+    cards:
+      - !include
+        - '../../../base/templates/picture-elements/frontpage-photo.yaml'
+        - person: person.avi_abeksis
+          image_path: /local/images/person/avi_new.jpg
+          navigation_path: person_1
+          alignment: left
+          text_color: black
+          phone_battery_sensor: sensor.life360_avi_battery
+          travel_time_to_home: sensor.travel_time_avi_home
+          travel_time_to_work: sensor.travel_time_avi_work
+      - !include
+        - '../../../base/templates/picture-elements/frontpage-photo.yaml'
+        - person: person.nurit
+          image_path: /local/images/person/nurit_01.jpg
+          navigation_path: person_2
+          alignment: right
+          text_color: black
+          phone_battery_sensor: sensor.life360_nurit_battery
+          travel_time_to_home: sensor.travel_time_nurit_home
+          travel_time_to_work: sensor.travel_time_nurit_work

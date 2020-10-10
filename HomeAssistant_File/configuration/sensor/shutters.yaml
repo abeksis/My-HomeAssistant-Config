@@ -1,0 +1,13 @@
+#################################################################
+#   Shows the correct position of the tris                      #
+#################################################################
+  - platform: template
+    sensors:
+      current_position:
+        friendly_name: 'current position'
+        value_template: >-
+            {% if (states['cover.shutters'].state == 'closed') %}
+              closed
+            {% else %}
+              {{ state_attr ('cover.shutters','current_position') }}%
+            {% endif %}

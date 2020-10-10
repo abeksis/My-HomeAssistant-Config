@@ -1,4 +1,0 @@
-# Example configuration.yaml entry
-ring:
-  username: !secret ring_username
-  password: !secret ring_password

@@ -35,6 +35,8 @@ class SearchCard extends ct.LitElement {
 
     this.active_actions = [];
     this.max_results = this.config.max_results || 10;
+    
+    this.search_text = this.config.search_text || "Type to search...";
 
     this.actions = BUILTIN_ACTIONS.concat(this.config.actions || []);
   }
@@ -52,15 +54,15 @@ class SearchCard extends ct.LitElement {
         <div id="searchContainer">
           <paper-input id="searchText"
                        @value-changed="${this._valueChanged}"
-                       no-label-float
-                       label="Type to search...">
-            <iron-icon icon="mdi:magnify"
-                       slot="prefix"></iron-icon>
-            <paper-icon-button slot="suffix"
+                       no-label-float type="text" autocomplete="off"
+                       label="${this.search_text}">
+            <ha-icon icon="mdi:magnify" id="searchIcon"
+                       slot="prefix"></ha-icon>
+            <ha-icon-button slot="suffix"
                                @click="${this._clearInput}"
                                icon="mdi:close"
                                alt="Clear"
-                               title="Clear"></paper-icon-button>
+                               title="Clear"></ha-icon-button>
           </paper-input>
           ${results.length > 0 ?
               ct.LitHtml `<div id="count">Showing ${results.length} of ${this.results.length} results</div>`
@@ -176,6 +178,9 @@ class SearchCard extends ct.LitElement {
         margin-top: 15px;
         margin-left: auto;
         margin-right: auto;
+      }
+      #searchIcon {
+        padding: 10px;
       }
     `;
   }

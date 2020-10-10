@@ -1,0 +1,22 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: horizontal-stack
+    cards:
+      - type: 'custom:shutter-card'
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+          }
+        title: Shutter
+        entities:
+         - entity: cover.shutters
+           name: Living room
+           buttons_position: left
+           title_position: bottom

@@ -1,7 +1,0 @@
-#   - platform: plex_recently_added
-#     name: Recently Added Movies
-#     token: !secret plex_token
-#     host: !secret plex_host
-#     port: 32400
-#     section_types:
-#     - movie

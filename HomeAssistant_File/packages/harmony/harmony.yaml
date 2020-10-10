@@ -1,12 +1,4 @@
 #################################################################
-#                                                               #
-#                     Packages/Harmony                          #
-#                                                               #
-#################################################################
- 
-
-
-#################################################################
 #                          Remote                               #
 ################################################################# 
 remote:
@@ -15,11 +7,11 @@ remote:
     host: !secret harmony_living_room_host
     port: 8088
     activity: Watch TV
-  - platform: harmony
-    name: Parents Bedroom
-    host: !secret harmony_parents_bedroom_host
-    port: 8088
-    activity: TV    
+#   - platform: harmony
+#     name: Parents Bedroom
+#     host: !secret harmony_parents_bedroom_host
+#     port: 8088
+#     activity: TV    
 
 #################################################################
 #                          switches                             #
@@ -89,19 +81,19 @@ switch:
     #             activity: 'PowerOff'
 
 
-      yes_parents_bedroom:
-        friendly_name: Yes On TV Bedroom Parents
-        value_template: "{{ is_state_attr('remote.parents_bedroom', 'current_activity', 'YES') }}"
-        turn_on:
-            service: remote.turn_on
-            data:
-                entity_id: remote.parents_bedroom
-                activity: 'YES'
-        turn_off:
-            service: remote.turn_on
-            data:
-                entity_id: remote.parents_bedroom
-                activity: 'PowerOff'    
+    #   yes_parents_bedroom:
+    #     friendly_name: Yes On TV Bedroom Parents
+    #     value_template: "{{ is_state_attr('remote.parents_bedroom', 'current_activity', 'YES') }}"
+    #     turn_on:
+    #         service: remote.turn_on
+    #         data:
+    #             entity_id: remote.parents_bedroom
+    #             activity: 'YES'
+    #     turn_off:
+    #         service: remote.turn_on
+    #         data:
+    #             entity_id: remote.parents_bedroom
+    #             activity: 'PowerOff'    
 
 #################################################################
 #                          script                               #

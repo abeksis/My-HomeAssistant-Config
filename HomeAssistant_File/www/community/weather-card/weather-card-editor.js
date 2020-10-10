@@ -18,13 +18,15 @@ if (
   customElements.define("ha-switch", customElements.get("paper-toggle-button"));
 }
 
-const LitElement = Object.getPrototypeOf(customElements.get("hui-view"));
+const LitElement = customElements.get("hui-masonry-view") ? Object.getPrototypeOf(customElements.get("hui-masonry-view")) : Object.getPrototypeOf(customElements.get("hui-view"));
 const html = LitElement.prototype.html;
 const css = LitElement.prototype.css;
 
+const HELPERS = window.loadCardHelpers();
+
 export class WeatherCardEditor extends LitElement {
   setConfig(config) {
-    this._config = config;
+    this._config = { ...config };
   }
 
   static get properties() {
@@ -55,6 +57,22 @@ export class WeatherCardEditor extends LitElement {
     return this._config.forecast !== false;
   }
 
+  get _hourly_forecast() {
+    return this._config.hourly_forecast !== false;
+  }
+
+  get _number_of_forecasts() {
+    return this._config.number_of_forecasts || 5;
+  }
+
+  firstUpdated() {
+    HELPERS.then(help => {
+      if (help.importMoreInfoControl) {
+        help.importMoreInfoControl("fan");
+      }
+    })
+  }
+  
   render() {
     if (!this.hass) {
       return html``;
@@ -101,31 +119,54 @@ export class WeatherCardEditor extends LitElement {
                     .selected="${entities.indexOf(this._entity)}"
                   >
                     ${entities.map((entity) => {
-                      return html`
-                        <paper-item>${entity}</paper-item>
-                      `;
+                      return html` <paper-item>${entity}</paper-item> `;
                     })}
                   </paper-listbox>
                 </paper-dropdown-menu>
               `}
-          <ha-switch
-            .checked=${this._current}
-            .configValue="${"current"}"
-            @change="${this._valueChanged}"
-            >Show current</ha-switch
-          >
-          <ha-switch
-            .checked=${this._details}
-            .configValue="${"details"}"
-            @change="${this._valueChanged}"
-            >Show details</ha-switch
-          >
-          <ha-switch
-            .checked=${this._forecast}
-            .configValue="${"forecast"}"
-            @change="${this._valueChanged}"
-            >Show forecast</ha-switch
-          >
+          <div class="switches">
+            <div class="switch">
+              <ha-switch
+                .checked=${this._current}
+                .configValue="${"current"}"
+                @change="${this._valueChanged}"
+              ></ha-switch
+              ><span>Show current</span>
+            </div>
+            <div class="switch">
+              <ha-switch
+                .checked=${this._details}
+                .configValue="${"details"}"
+                @change="${this._valueChanged}"
+              ></ha-switch
+              ><span>Show details</span>
+            </div>
+            <div class="switch">
+              <ha-switch
+                .checked=${this._forecast}
+                .configValue="${"forecast"}"
+                @change="${this._valueChanged}"
+              ></ha-switch
+              ><span>Show forecast</span>
+            </div>
+            <div class="switch">
+              <ha-switch
+                .checked=${this._hourly_forecast}
+                .configValue="${"hourly_forecast"}"
+                @change="${this._valueChanged}"
+              ></ha-switch
+              ><span>Show hourly forecast</span>
+            </div>
+          </div>
+          <paper-input
+            label="Number of future forcasts"
+            type="number"
+            min="1"
+            max="8"
+            value=${this._number_of_forecasts}
+            .configValue="${"number_of_forecasts"}"
+            @value-changed="${this._valueChanged}"
+          ></paper-input>
         </div>
       </div>
     `;
@@ -155,15 +196,18 @@ export class WeatherCardEditor extends LitElement {
 
   static get styles() {
     return css`
-      ha-switch {
-        padding-top: 16px;
-      }
-      .side-by-side {
+      .switches {
+        margin: 8px 0;
         display: flex;
+        justify-content: space-between;
       }
-      .side-by-side > * {
-        flex: 1;
-        padding-right: 4px;
+      .switch {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+      }
+      .switches span {
+        padding: 0 16px;
       }
     `;
   }
