@@ -71,7 +71,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 
 <hr --- </hr> 
 
-<table>
+<!-- <table>
 <thead>
 <tr>
 <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HomeAssistant_File/ui-lovelace.yaml">Lovelace UI</a></th>
@@ -81,7 +81,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 <!-- <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HomeAssistant_File/config/groups.yaml">Groups</a></th> -->
 <!-- <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HomeAssistant_File/config/automation/automations.yaml">Automations</a></th> -->
 </tr>
-</thead></table>
+</thead></table> -->
 
 <!-- <table>
 <thead>
