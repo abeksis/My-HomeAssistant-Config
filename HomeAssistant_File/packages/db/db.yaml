@@ -1,0 +1,20 @@
+sensor:
+############################################################################
+#   HA DB Information                                                      #
+############################################################################
+
+  - platform: sql
+    db_url: !secret db_homeassistant
+    queries:
+      - name: DB size
+        query: 'SELECT table_schema "smarthome", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="smarthome" GROUP BY table_schema;'
+        column: 'value'
+        unit_of_measurement: MB
+      - name: Events size
+        query: 'SELECT table_schema "smarthome", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="smarthome" and table_name="events" GROUP BY table_schema;'
+        column: 'value'
+        unit_of_measurement: MB
+      - name: States size
+        query: 'SELECT table_schema "smarthome", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="smarthome" and table_name="states" GROUP BY table_schema;'
+        column: 'value'
+        unit_of_measurement: MB

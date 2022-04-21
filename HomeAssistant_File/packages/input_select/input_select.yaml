@@ -1,0 +1,15 @@
+input_select:
+  status_person:
+    name: 'Status • Person'
+    options:
+      - home
+      - snooker
+      - Work
+      - not_home
+
+  # vacuum_room_select:
+  #   name: Choose a room to clean
+  #   options:
+  #     - Kitchen
+  #     - Living Room
+  #     - Lobby

@@ -1,0 +1,128 @@
+##############################################################################################
+################ DON'T FORGET TO CHANGE THE NOTIFICATION SERVICE IN LINE 112! ################
+##############################################################################################
+
+########################################################################
+####### Please set the following initial values for the helpers: #######
+########################################################################
+####### 1. input_text.power_nis_per_kwh = 0.50661                #######
+####### 2. input_text.power_monthly_additional_cost = 60         #######
+####### 3. input_text.energy_total_previous_bill = 0             #######
+####### 4. input_text.energy_total_yesterday = 0                 #######
+####### 5. Set the day and months your bill closes. For example: #######
+#######    if your bill closes on months 1,3,5,7,9,11 on the     #######
+#######    third day of each month,                              #######
+#######    set input_select.power_bill_cutoff_month = Odd        #######
+#######    and set input_number.power_bill_cutoff_day = 3        #######
+########################################################################
+
+input_text:
+  power_nis_per_kwh: 
+    name: תעריף חיוב
+  power_monthly_additional_cost:
+    name: 'תשלום בסיס '
+  energy_total_previous_bill:
+    name: ' חשבון קודם'
+  energy_total_yesterday:
+    name: ' אנרגיה אתמול'
+
+input_number:
+  power_bill_cutoff_day:
+    name: Bill Cutoff Day
+    min: 1
+    max: 31
+    step: 1
+
+input_select:
+  power_bill_cutoff_month:
+    name: Power Bill Cutoff Month
+    options:
+      - Odd
+      - Even
+
+sensor:
+  - platform: template
+    sensors:
+      power_total:
+        friendly_name: "צריכה"
+        unit_of_measurement: 'watt'
+        value_template: "{{ (states('sensor.electric_home_power_channel_a_power_factor') | float + states('sensor.electric_home_power_power_channel_a_power') | float  + states('sensor.electric_home_power_channel_c_power') | float) | round(2)}}"
+
+  - platform: template
+    sensors:
+      power_cost_per_hour:
+        friendly_name: "תשלום לפי שעה"
+        unit_of_measurement: '₪'
+        value_template: "{{ (states('sensor.power_total') | float / 1000 * states('input_text.power_nis_per_kwh') | float)|round(2) }}"
+
+  - platform: template
+    sensors:
+      energy_total:
+        friendly_name: "אנרגיה כללית"
+        unit_of_measurement: 'kWh'
+        value_template: "{{ states('sensor.electric_home_power_channel_a_energy') | float + states('sensor.electric_home_power_channel_b_energy') | float  + states('sensor.electric_home_power_channel_c_energy') | float}}"
+
+  - platform: template
+    sensors:
+      energy_total_next_bill:
+        friendly_name: "סה״כ תשלום עתידי"
+        value_template: "{{ (states('sensor.energy_total') | float) - (states('input_text.energy_total_previous_bill') | float) }}"
+        unit_of_measurement: "kWh"
+
+  - platform: template
+    sensors:
+      energy_total_next_bill_cost:
+        friendly_name: "תשלום עתידי"
+        value_template: "{{ ((states('sensor.energy_total_next_bill') | float) * (states('input_text.power_nis_per_kwh') | float) + (states('input_text.power_monthly_additional_cost') | int ))|round(1)}}"
+        unit_of_measurement: "₪"
+
+  - platform: template
+    sensors:
+      energy_total_today:
+        friendly_name: "צריכה יומית"
+        value_template: "{{ (states('sensor.energy_total') | float) - (states('input_text.energy_total_yesterday') | float) }}"
+        unit_of_measurement: "kWh"
+
+  - platform: template
+    sensors:
+      energy_total_today_cost:
+        friendly_name: "תשלום יומי"
+        value_template: "{{ ((states('sensor.energy_total_today') | float) * (states('input_text.power_nis_per_kwh') | float))|round(1) }}"
+        unit_of_measurement: "₪"
+
+  - platform: template
+    sensors:
+      power_nis_per_kwh:
+        friendly_name: תעריף
+        value_template: "{{ states('input_text.power_nis_per_kwh') | float }}"
+        unit_of_measurement: "₪"
+
+automation:
+  - alias: Energy save previous bill
+    trigger:
+      - platform: time
+        at: "00:00:00"
+    condition:
+      # Allow automation to run only on a certain day, at an even or odd month
+      - condition: template
+        value_template: >
+          {% set month_odd_even = 0 if (states('input_select.power_bill_cutoff_month') == 'Even') else 1 %}
+          {{ now().month % 2 == month_odd_even and now().day == states('input_number.power_bill_cutoff_day') | int }}
+    action:
+      - service: notify.avi_telegram
+        data:
+            message: "The upcoming electricity bill will be approximately {{ states('sensor.energy_total_next_bill_cost') }} NIS. A new bill starts today."
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.energy_total_previous_bill
+          value: "{{ states('sensor.energy_total') }}"
+
+  - alias: Energy save yesterday
+    trigger:
+      - platform: time
+        at: "00:00:00"
+    action:
+      service: input_text.set_value
+      data:
+        entity_id: input_text.energy_total_yesterday
+        value: "{{ states('sensor.energy_total') }}"

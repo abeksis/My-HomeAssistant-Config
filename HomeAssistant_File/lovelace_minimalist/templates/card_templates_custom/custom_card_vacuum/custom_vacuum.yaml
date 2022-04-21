@@ -1,0 +1,179 @@
+custom_vacuum:
+  variables:
+    ulm_card_vacuum_entity:
+    ulm_card_vacuum_state_input_select: 
+    ulm_card_vacuum_fan_speed_sensor : 
+    name: Default name
+  template: 
+    - "ulm_custom_card_vacuum_language_variables"
+  styles:
+    card:
+      - border-radius: 20px
+      - box-shadow: var(--box-shadow)
+      - padding: 12px
+    grid:
+      - grid-template-areas: '"item1" "item2"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: min-content min-content
+      - row-gap: 12px
+  custom_fields:
+    item1:
+      card:
+        template: 
+          - list_items_only_one
+        type: custom:button-card 
+        custom_fields:
+          item1:
+            card:
+              type: custom:button-card
+              entity: '[[[ return variables.ulm_card_vacuum_entity ]]]'
+              name: '[[[ return variables.name ]]]' 
+              triggers_update:
+                - '[[[ return variables.ulm_card_vacuum_state_input_select ]]]'
+                - '[[[ return variables.ulm_card_vacuum_fan_speed_sensor ]]]'
+              template:
+                - icon_info
+                - popup_vacuum 
+                - ulm_custom_card_vacuum_language_variables
+              variables:
+                ulm_card_vacuum_entity: '[[[ return variables.ulm_card_vacuum_entity ]]]'
+                ulm_card_vacuum_state_input_select: '[[[ return variables.ulm_card_vacuum_state_input_select ]]]'           
+                ulm_card_vacuum_fan_speed_sensor : '[[[return variables.ulm_card_vacuum_fan_speed_sensor ]]]'
+              icon: mdi:robot-vacuum
+              label: |-
+                [[[ 
+                  var battery_level =states[variables.ulm_card_vacuum_entity].attributes.battery_level;
+                  var status = variables.unknown;
+                  var vacuum_state = states[variables.ulm_card_vacuum_state_input_select].state;
+                  if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level == '100'){
+                      status = variables.docked;
+                  }
+                  else if (vacuum_state.toUpperCase() === 'CHARGING' ||
+                          (vacuum_state.toUpperCase() === 'DOCKED' && battery_level !== '100')){
+                      status = variables.charging;
+                  }
+                  else if (vacuum_state.toUpperCase() == 'CLEANING'){
+                      status = variables.cleaning;
+                  }
+                  else if (vacuum_state.toUpperCase() == 'RETURNING HOME'){
+                      status = variables.returning_home;
+                  }
+                  else if (vacuum_state.toUpperCase() == 'PAUSED'){
+                      status = variables.pause;
+                  }
+                  else if (vacuum_state.toUpperCase() == 'IDLE'){
+                      status = variables.idle;
+                  }
+                  return status + ' • ' + battery_level + '%';      
+                ]]]
+              styles:
+                icon:
+                  - color: |-
+                      [[[ 
+                        var battery_level =states[variables.ulm_card_vacuum_entity].attributes.battery_level;
+                        var vacuum_state = states[variables.ulm_card_vacuum_state_input_select].state;
+                        if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level == '100'){
+                            return 'rgba(var(--color-theme),1)';
+                        }
+                        else if (vacuum_state.toUpperCase() == 'CHARGING' ||
+                                (vacuum_state.toUpperCase() === 'DOCKED' && battery_level !== '100')){
+                            return  'rgba(var(--color-green),1)';
+                        }
+                        else if (vacuum_state.toUpperCase() == 'CLEANING'){
+                            return  'rgba(var(--color-yellow),1)';
+                        }
+                        else if (vacuum_state.toUpperCase() == 'RETURNING HOME'){
+                            return  'rgba(var(--color-purple),1)';
+                        }
+                        else if (vacuum_state.toUpperCase() == 'PAUSED' ||
+                                 vacuum_state.toUpperCase() == 'IDLE'){
+                            return  'rgba(var(--color-blue),1)';
+                        }
+                        else{
+                            return 'rgba(var(--color-theme),1)';
+                        }
+                      ]]]
+                img_cell:
+                  - background-color: |-
+                      [[[ 
+                        var battery_level =states[variables.ulm_card_vacuum_entity].attributes.battery_level;
+                        var vacuum_state = states[variables.ulm_card_vacuum_state_input_select].state;
+                        if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level == '100'){
+                            return 'rgba(var(--color-theme),0.2)';
+                        }
+                        else if (vacuum_state.toUpperCase() == 'CHARGING'||
+                                (vacuum_state.toUpperCase() === 'DOCKED' && battery_level !== '100')){
+                            return  'rgba(var(--color-green),0.2)';
+                        }
+                        else if (vacuum_state.toUpperCase() == 'CLEANING'){
+                            return  'rgba(var(--color-yellow),0.2)';
+                        }
+                        else if (vacuum_state.toUpperCase() == 'RETURNING HOME'){
+                            return  'rgba(var(--color-purple),0.2)';
+                        }
+                        else if (vacuum_state.toUpperCase() == 'PAUSED' ||
+                                 vacuum_state.toUpperCase() == 'IDLE'){
+                            return  'rgba(var(--color-blue),0.2)';
+                        }
+                        else{
+                            return 'rgba(var(--color-theme),0.2)';
+                        }
+                      ]]]
+                  
+    item2:
+      card:
+        template: list_items
+        type: custom:button-card
+        custom_fields:
+          item1:
+            card:
+              icon: |-
+                [[[ 
+                  if (states[variables.ulm_card_vacuum_state_input_select].state.toUpperCase() == 'DOCKED' ||
+                      states[variables.ulm_card_vacuum_state_input_select].state.toUpperCase() == 'CHARGING' ||
+                      states[variables.ulm_card_vacuum_state_input_select].state.toUpperCase() == 'PAUSED'){
+                      return 'mdi:play';
+                  }
+                  else{
+                      return 'mdi:pause';
+                  }
+                ]]]
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.start_ou_pause_aspirateur
+              type: custom:button-card
+              template: widget_icon
+          item2:
+            card:
+              icon: mdi:home-battery
+              tap_action:
+                action: call-service
+                service: script.turn_on
+                service_data:
+                  entity_id: script.aspirateur_retour_a_la_base
+              type: custom:button-card
+              template: widget_icon
+          item3:
+            card:
+              icon: mdi:cog
+              template:
+                - widget_icon 
+                - popup_vacuum 
+              variables:
+                ulm_card_vacuum_entity: '[[[ return variables.ulm_card_vacuum_entity ]]]'
+                ulm_card_vacuum_state_input_select: '[[[ return variables.ulm_card_vacuum_state_input_select ]]]'           
+                ulm_card_vacuum_fan_speed_sensor : '[[[return variables.ulm_card_vacuum_fan_speed_sensor ]]]'
+              type: custom:button-card   
+
+list_items_only_one:
+  styles:
+    card:
+      - box-shadow: none
+      - padding: 0px
+    grid:
+      - grid-template-areas: '"item1"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: min-content
+      - column-gap: 7px

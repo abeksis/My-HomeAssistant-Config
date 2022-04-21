@@ -1,0 +1,231 @@
+title: home
+icon: 'mdi:home-assistant'
+path: home
+type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr
+  grid-template-rows: auto
+  mediaquery:
+    "(min-width: 800px)":
+      grid-template-columns: 700px
+cards:
+  - type: custom:layout-card
+    layout_type: grid
+    cards:
+      - type: custom:button-card
+        template: edge
+      - type: "custom:button-card"
+        template: "card_esh_welcome"
+        triggers_update: "input_boolean.welcome_card"
+        variables:
+          ulm_card_esh_welcome_collapse: "input_boolean.welcome_card"
+          ulm_weather: "weather.beer_sheva"
+          entity_1:
+            nav: "house"
+            icon: "mdi:home"
+            name: "House"
+            color: "blue"
+          entity_2:
+            nav: "lights"
+            icon: "mdi:lightbulb"
+            name: "Lights"
+            color: "yellow"
+          entity_3:
+            nav: "security"
+            icon: "mdi:shield"
+            name: Secure
+            color: "green"
+          entity_4:
+            nav: "lab"
+            icon: "mdi:flask"            
+            name: "Lab"
+            color: "purple"
+          entity_5:
+            nav: "nas"
+            icon: "mdi:nas"           
+            name: "Nas"
+            color: "red"
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: title
+            name: Devices
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+        cards:
+
+          - type: "custom:button-card"
+            template: custom_card_imswel_person
+            variables:
+              ulm_card_imswel_person_entity: person.avi
+              ulm_card_imswel_person_wifi_tracker: device_tracker.avi_phone
+              ulm_card_imswel_person_gps_tracker: device_tracker.avi_phone
+              ulm_card_imswel_person_findmy_script: script.finding_my_phone
+              ulm_card_person_battery: sensor.samsung_battery_level              
+              ulm_card_imswel_person_use_entity_picture: true
+              ulm_card_imswel_person_zones:
+                - zone.work
+                - zone.home
+ 
+          - type: "custom:button-card"
+            template: custom_card_imswel_person
+            variables:
+              ulm_card_imswel_person_entity: person.nurit
+              ulm_card_imswel_person_wifi_tracker: sensor.nurit_iphone_connection_type
+              ulm_card_imswel_person_gps_tracker: device_tracker.life360_nurit
+              ulm_card_imswel_person_findmy_script: script.finding_my_iphone_nurit_ui
+              ulm_card_person_battery: sensor.life360_nurit_battery           
+              ulm_card_imswel_person_use_entity_picture: true
+              ulm_card_imswel_person_zones:
+                - zone.work
+                - zone.home
+
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr
+        cards:
+              - type: "custom:button-card"
+                template: custom_card_imswel_person
+                variables:
+                  ulm_card_imswel_person_entity: person.yakir
+                  ulm_card_imswel_person_wifi_tracker: device_tracker.wifi_oneplus_6t
+                  ulm_card_imswel_person_gps_tracker: device_tracker.life360_yakir
+                  ulm_card_imswel_person_findmy_script: script.find_my_oneplus_6t
+                  ulm_card_person_battery: sensor.life360_yakir_battery
+                  ulm_card_imswel_person_use_entity_picture: true
+                  ulm_card_imswel_person_zones:
+                    - zone.home
+                    - zone.school
+  
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: edge
+          - type: custom:button-card
+            template: title
+            name: Rooms
+          - type: custom:button-card
+            template: edge 
+
+      - type: "custom:mod-card"
+        style:
+          layout-card$:
+            grid-layout$: |
+              #root {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                justify-content: center !important;
+              }
+        card:
+          type: custom:layout-card
+          layout_type: grid
+          layout_options:
+            grid-template-columns: 1fr
+            grid-template-rows: auto
+            mediaquery:
+              "(min-width: 800px)":
+                grid-template-columns: 700px
+          cards:
+
+            - type: vertical-stack
+              cards:
+                - type: custom:layout-card
+                  layout_type: grid
+                  layout_options:
+                    grid-template-columns: 1fr 1fr
+                    grid-template-rows: auto
+                    grid-gap: 0px 4px
+                    mediaquery:
+                      "(max-width: 450px)":
+                        grid-template-columns: 1fr 1fr
+                  cards:
+                  
+                    # Living Room
+                    - type: custom:button-card
+                      template: card_room_two_rows
+                      variables:
+                        ulm_card_room_two_rows_navigate_path: /lovelace-minimalist/living_room
+                        ulm_card_room_two_rows_name: Living Room
+                        ulm_card_room_two_rows_icon: mdi:sofa
+                        ulm_card_room_two_rows_light: light.living_room
+                        ulm_card_room_two_rows_temp: sensor.sensibo_temp
+                        # ulm_card_room_two_rows_sensor: binary_sensor.motion_living_room
+                        ulm_card_room_two_rows_lights_on: light.living_room_group
+
+
+                    # Kitchen
+                    - type: custom:button-card
+                      template: card_room_two_rows
+                      variables:
+                        ulm_card_room_two_rows_navigate_path: /lovelace-minimalist/kitchen
+                        ulm_card_room_two_rows_name: Kitchen
+                        ulm_card_room_two_rows_icon: mdi:silverware-fork-knife
+                        ulm_card_room_two_rows_light: light.kitchen
+                        # ulm_card_room_two_rows_sensor: group.kitchen_motion_sensors
+                        ulm_card_room_two_rows_lights_on: light.kitchen_group
+
+                    # Bathroom
+                    - type: custom:button-card
+                      template: card_room_two_rows
+                      variables:
+                        ulm_card_room_two_rows_navigate_path: /lovelace-minimalist/bathroom
+                        ulm_card_room_two_rows_name: Bathroom
+                        ulm_card_room_two_rows_icon: mdi:bathtub
+                        ulm_card_room_two_rows_light: light.guests_bathroom
+                        ulm_card_room_two_rows_sensor: group.bathroom_motion_sensors
+                        ulm_card_room_two_rows_lights_on: light.bathroom
+
+                    # Rooms
+                    - type: custom:button-card
+                      template: card_room_two_rows
+                      variables:
+                        ulm_card_room_two_rows_navigate_path: '/lovelace-minimalist/rooms'
+                        ulm_card_room_two_rows_name: Rooms
+                        ulm_card_room_two_rows_icon: mdi:bed
+                        ulm_card_room_two_rows_light: light.closets
+                        ulm_card_room_two_rows_sensor: group.rooms_motion
+                        ulm_card_room_two_rows_lights_on: light.rooms
+                    
+                    # Outside
+                    - type: custom:button-card
+                      template: card_room_two_rows
+                      variables:
+                        ulm_card_room_two_rows_navigate_path: '/lovelace-minimalist/outside'
+                        ulm_card_room_two_rows_name: Outside
+                        ulm_card_room_two_rows_icon: mdi:flower
+                        ulm_card_room_two_rows_light: light.sing_family
+                        ulm_card_room_two_rows_sensor: group.outside_motion
+                        ulm_card_room_two_rows_lights_on: light.outside
+
+                    # Electricity Use
+                    - type: custom:button-card
+                      template: card_room_two_rows
+                      variables:
+                        ulm_card_room_two_rows_navigate_path: '/lovelace-minimalist/electricity'
+                        ulm_card_room_two_rows_name: Electricity
+                        ulm_card_room_two_rows_icon: mdi:kettle-alert-outline
+                        ulm_card_room_two_rows_light: light.gateway_light
+                        ulm_card_room_two_rows_sensor: binary_sensor.group_motion_laundry
+                        ulm_card_room_two_rows_lights_on: light.laundry_room_light

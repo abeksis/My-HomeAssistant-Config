@@ -1,0 +1,194 @@
+---
+### התווסף על ידי אבי ###
+custom_card_scences_ipad:
+  template:
+    - ulm_custom_card_paddy_welcome_language_variables
+  show_icon: false
+  show_name: false
+  show_label: false
+  styles:
+    grid:
+      - grid-template-areas: "'item1'"
+      - grid-template-columns: 1fr
+      - grid-template-rows: min-content min-content
+      - row-gap: 12px
+    card:
+      - border-radius: var(--border-radius)
+      - box-shadow: var(--box-shadow)
+      - padding: 12px
+  custom_fields:
+    item1:
+      card:
+        type: "custom:button-card"
+        template: card_scenes
+        styles:
+          card:
+            - border-radius: none
+            - box-shadow: none
+            - padding: 12px
+        variables:
+          entity_1: scene.bad_time
+          entity_2: scene.builaer
+          entity_3: scene.lights_off
+          # entity_4: scene.bed_time
+          # entity_5: scene.night
+          color_1: red
+          color_2: blue
+          color_3: green
+          color_4: teal
+          color_5: purple
+  card_title_welcome:
+    tap_action:
+      action: none
+    show_icon: false
+    show_label: true
+    show_name: true
+    styles:
+      card:
+        - background-color: rgba(0,0,0,0)
+        - box-shadow: none
+        - height: auto
+        - width: auto
+        - margin-top: '-10px'
+        - margin-left: 16px
+        - margin-bottom: '-15px'
+      grid:
+        - grid-template-areas: '''n'' ''l'''
+        - grid-template-columns: 1fr
+        - grid-template-rows: min-content min-content
+      name:
+        - justify-self: start
+        - font-weight: bold
+        - font-size: 20px
+      label:
+        - justify-self: start
+        - font-weight: bold
+        - font-size: 1rem
+        - opacity: '0.4'
+  card_scenes:
+    show_icon: false
+    show_name: true
+    show_label: false
+    styles:
+      grid:
+        - grid-template-areas: '''item1 item2 item3 item4 item5'''
+        - grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+        - grid-template-rows: min-content
+        - justify-items: center
+        - column-gap: auto
+      card:
+        - border-radius: var(--border-radius)
+        - box-shadow: var(--box-shadow)
+        - padding: 12px
+    custom_fields:
+      item1:
+        card:
+          type: "custom:button-card"
+          template: card_scenes_pill
+          entity: '[[[ return variables.entity_1 ]]]'
+          styles:
+            icon:
+              - color: '[[[ return `rgba(var(--color-${variables.color_1}), 1)`;]]]'
+            img_cell:
+              - background-color: '[[[ return `rgba(var(--color-${variables.color_1}), 0.20)`;]]]'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: '[[[ return variables.entity_1 ]]]'
+      item2:
+        card:
+          type: "custom:button-card"
+          template: card_scenes_pill
+          entity: '[[[ return variables.entity_2 ]]]'
+          styles:
+            icon:
+              - color: '[[[ return `rgba(var(--color-${variables.color_2}), 1)`;]]]'
+            img_cell:
+              - background-color: '[[[ return `rgba(var(--color-${variables.color_2}), 0.20)`;]]]'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: '[[[ return variables.entity_2 ]]]'
+      item3:
+        card:
+          type: "custom:button-card"
+          template: card_scenes_pill
+          entity: '[[[ return variables.entity_3 ]]]'
+          styles:
+            icon:
+              - color: '[[[ return `rgba(var(--color-${variables.color_3}), 1)`;]]]'
+            img_cell:
+              - background-color: '[[[ return `rgba(var(--color-${variables.color_3}), 0.20)`;]]]'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: '[[[ return variables.entity_3 ]]]'
+      item4:
+        card:
+          type: "custom:button-card"
+          template: card_scenes_pill
+          entity: '[[[ return variables.entity_4 ]]]'
+          styles:
+            icon:
+              - color: '[[[ return `rgba(var(--color-${variables.color_4}), 1)`;]]]'
+            img_cell:
+              - background-color: '[[[ return `rgba(var(--color-${variables.color_4}), 0.20)`;]]]'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: '[[[ return variables.entity_4 ]]]'
+      item5:
+        card:
+          type: "custom:button-card"
+          template: card_scenes_pill
+          entity: '[[[ return variables.entity_5 ]]]'
+          styles:
+            icon:
+              - color: '[[[ return `rgba(var(--color-${variables.color_5}), 1)`;]]]'
+            img_cell:
+              - background-color: '[[[ return `rgba(var(--color-${variables.color_5}), 0.20)`;]]]'
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: '[[[ return variables.entity_5 ]]]'
+  card_scenes_pill:
+    show_icon: true
+    show_label: false
+    show_name: true
+    styles:
+      grid:
+        - grid-template-areas: '''i'' ''n'''
+        - grid-template-columns: min-content
+        - grid-template-rows: 1fr 1fr
+        - row-gap: 12px
+        - justify-items: center
+        - column-gap: auto
+      card:
+        - box-shadow: none
+        - padding: 5px
+        - box-shadow: var(--box-shadow)
+        - border-radius: 50px
+        - place-self: center
+        - width: 52px
+        - height: 84px
+      icon:
+        - color: '[[[ return `rgba(var(--color-theme), 0.20)`;]]]'
+        - width: 20px
+      img_cell:
+        - background-color: '[[[ return `rgba(var(--color-theme), 0.05)`;]]] '
+        - border-radius: 50%
+        - width: 42px
+        - height: 42px
+      name:
+        - font-weight: bold
+        - font-size: 9.5px
+        - width: 33px
+        - padding-bottom: 7px
+      state:
+        - color: rgba(var(--color-theme),0.9)
+    color: var(--google-grey)

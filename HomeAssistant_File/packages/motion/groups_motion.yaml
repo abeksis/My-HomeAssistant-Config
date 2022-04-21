@@ -1,0 +1,39 @@
+group:
+
+############################################################################
+#                                                                          #
+#   Outside                                                                #
+#                                                                          #
+############################################################################
+
+  outside_motion:
+    name: Outside Motion
+    entities:
+      - binary_sensor.warehouse_motion_sensor
+
+
+############################################################################
+#                                                                          #
+#   Bathroom                                                               #
+#                                                                          #
+############################################################################
+
+  bathroom_motion_sensors:
+    name: Guests Bathroom
+    entities:
+      - binary_sensor.guests_bathroom
+      - binary_sensor.kids_shower_motion_ikea
+      - binary_sensor.shower_parents_motion
+
+
+############################################################################
+#                                                                          #
+#   rooms                                                                  #
+#                                                                          #
+############################################################################
+
+  rooms_motion:
+    name: Rooms
+    entities:
+      - binary_sensor.closet_room
+      - binary_sensor.laundry_room_motion

@@ -1,0 +1,15 @@
+script:
+
+############################################################################
+#                                                                          #
+#   Lights Scenes                                                          #
+#                                                                          #
+############################################################################
+
+  lights_off:
+      alias: Lights Off
+      sequence:
+          - service: scene.turn_on
+            data:
+              entity_id: 
+                  - scene.lights_off

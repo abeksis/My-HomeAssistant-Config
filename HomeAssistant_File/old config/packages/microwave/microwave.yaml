@@ -1,0 +1,71 @@
+#################################################################
+#   input Number                                                #
+#################################################################
+
+input_number:
+  microwave_total:
+    name: microwave Count
+    min: 0
+    max: 999999999
+    step: 1
+    mode: box
+    
+#################################################################
+#   Sensor                                                      #
+#################################################################
+
+sensor:
+  - platform: template
+    sensors:
+      microwave_calc_total:
+        friendly_name: "microwave Total"
+        value_template: "{{(((states.sensor.microwave_energy_total.state | float) * 52.46) / 100) | round(2) }}"
+        unit_of_measurement: "₪"
+  
+      microwave_calc_today:
+        friendly_name: "microwave Today"
+        value_template: "{{(((states.sensor.microwave_energy_today.state | float) * 52.46) / 100) | round(2) }}"
+        unit_of_measurement: "₪"
+        
+
+      microwave_calc_yesterday:
+        friendly_name: "microwave Day Before"
+        value_template: "{{(((states.sensor.microwave_energy_yesterday.state | float) * 52.46) / 100) | round(2) }}"
+        unit_of_measurement: "₪"
+
+      microwave_calc_all:
+        friendly_name: "microwave Count start"
+        value_template: "{{((states.input_number.microwave_total.state | float) + (states.sensor.microwave_energy_yesterday.state | float)) | round(2) }}"
+        unit_of_measurement: "₪"
+
+#################################################################
+#   Automations                                                 #
+#################################################################
+automation:
+  - alias: Set Microwave Power Total
+    initial_state: 'on'
+    trigger:
+      platform: time
+      at: '00:05:00'
+
+    action:
+      service: input_number.set_value
+      data_template:
+        entity_id: input_number.microwave_total
+        value: "{{ states.sensor.microwave_calc_total.state | float }}"
+
+#################################################################
+#   Swithcs                                                     #
+#################################################################
+# switch:
+#   - platform: mqtt
+#     name: "Microwave Power"
+#     state_topic: "stat/microwave/POWER"
+#     command_topic: "cmnd/microwave/POWER"
+#     availability_topic: "tele/microwave/LWT"
+#     qos: 1
+#     payload_on: "ON"
+#     payload_off: "OFF"
+#     payload_available: "Online"
+#     payload_not_available: "Offline"
+#     retain: true 

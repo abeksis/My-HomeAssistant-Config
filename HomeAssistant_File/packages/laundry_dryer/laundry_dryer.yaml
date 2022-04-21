@@ -1,0 +1,7 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      laundry_dryer:
+        friendly_name: "Laundry Dryer"
+        value_template: >-
+          {{ states('sensor.laundry_dryer_energy_power')|float > 13 }}

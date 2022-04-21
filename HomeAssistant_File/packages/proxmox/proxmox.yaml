@@ -1,0 +1,39 @@
+proxmoxve:
+  - host: 192.168.1.204
+    port: 8006
+    verify_ssl: false
+    realm: pam  
+    username: root
+    password: 76qq2311
+    nodes:
+      - node: pve
+        vms:
+          - 300
+          - 100
+          - 101
+          - 102
+          - 102
+        # containers:
+        #   - CONTAINER_ID
+
+
+# proxmoxve:
+#   - host: pve.XXXX.tk
+#     port: 8006
+#     verify_ssl: true
+#     realm: pam
+#     username: !secret proxmoxuser
+#     password: !secret proxmoxpassword
+#     nodes:
+#       - node: pve
+#         vms:
+#           - 100
+#           - 103
+#           - 106
+#           - 108
+#           - 111
+#         containers:
+#           - 101
+#           - 102
+#           - 105
+#           - 107

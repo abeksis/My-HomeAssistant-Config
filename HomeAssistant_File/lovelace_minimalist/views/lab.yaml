@@ -1,0 +1,523 @@
+title: lab
+icon: 'mdi:bottle-tonic-skull'
+path: lab
+type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr
+  grid-template-rows: auto
+  mediaquery:
+    "(min-width: 800px)":
+      grid-template-columns: 700px
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: edge
+
+      # Home Back    
+      - type: 'custom:button-card'
+        template: chip_back
+        variables:
+          ulm_chip_back_path: /lovelace-minimalist/home
+
+  - type: vertical-stack
+    cards:
+      - type: custom:layout-card
+        layout_type: grid
+        cards:
+          - type: 'custom:button-card'
+            template: card_homeassistant
+            variables:
+              ulm_card_homeassistant_entity: 'binary_sensor.ha_update_available'
+              ulm_card_homeassistant_curr_version: 'sensor.ha_current_version'
+              ulm_card_homeassistant_latest_version: 'sensor.ha_available_version'
+              ulm_card_homeassistant_update_script: 'script.update_homeassistant_container'
+
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+
+            layout_options:
+              grid-template-columns: 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+              mediaquery:
+                "(max-width: 450px)":
+                  grid-template-columns: 1fr 1fr
+            cards:
+              - type: 'custom:button-card'
+                template: card_generic
+                entity: sensor.db_size
+
+              - type: 'custom:button-card'
+                template: card_generic
+                entity: sensor.homeassistant_uptime
+
+ 
+  - type: vertical-stack
+    cards:     
+      - type: "custom:button-card"
+        template: "card_title"
+        name: "Tasmota"
+        # label: "Version"    
+      - type: custom:layout-card
+        layout_type: grid
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr
+        cards:
+          - type: 'custom:button-card'
+            template: card_tasmota_with_power
+            variables:
+              ulm_card_tasmota_entity: switch.dishwasher
+              ulm_card_tasmota_uptime: sensor.tasmota_dishwasher_power_socket_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_dishwasher_power_socket_wi_fi_quality
+              ulm_card_tasmota_version: sensor.tasmota_dishwasher_version
+              ulm_card_tasmota_icon: mdi:power-socket-eu
+              ulm_card_tasmota_name: Dishwasher
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest
+              ulm_card_tasmota_current: sensor.dishwasher_energy_total
+              ulm_card_tasmota_energy_today: sensor.dishwasher_energy_today
+              ulm_card_tasmota_power: sensor.dishwasher_energy_power
+              ulm_card_tasmota_latest_voltage: sensor.mqtt_dishwasher_voltage
+
+          - type: 'custom:button-card'
+            template: card_tasmota_with_power
+            variables:
+              ulm_card_tasmota_entity: switch.washing_machine
+              ulm_card_tasmota_uptime: sensor.tasmota_washing_machine_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_washing_machine_wi_fi_quality
+              ulm_card_tasmota_version: sensor.tasmota_washing_machine_version
+              ulm_card_tasmota_icon: mdi:power-socket-eu
+              ulm_card_tasmota_name: Washing Machine
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest
+              ulm_card_tasmota_current: sensor.washing_machine_energy_total
+              ulm_card_tasmota_energy_today: sensor.washing_machine_energy_today
+              ulm_card_tasmota_power: sensor.washing_machine_energy_power
+              ulm_card_tasmota_latest_voltage: sensor.mqtt_washing_machine_voltage
+
+
+          - type: 'custom:button-card'
+            template: card_tasmota_with_power
+            variables:
+              ulm_card_tasmota_entity: switch.laundry_dryer
+              ulm_card_tasmota_uptime: sensor.tasmota_laundry_dryer_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_laundry_dryer_wi_fi_quality
+              ulm_card_tasmota_version: sensor.tasmota_laundry_dryer_version
+              ulm_card_tasmota_icon: mdi:power-socket-eu
+              ulm_card_tasmota_name: Laundry Dryer
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest
+              ulm_card_tasmota_current: sensor.mqtt_laundry_dryer_current
+              ulm_card_tasmota_energy_today: sensor.mqtt_laundry_dryer_energy_today
+              ulm_card_tasmota_power: sensor.mqtt_laundry_dryer_power
+              ulm_card_tasmota_latest_voltage: sensor.mqtt_laundry_dryer_voltage
+
+
+          - type: 'custom:button-card'
+            template: card_tasmota_with_power
+            variables:
+              ulm_card_tasmota_entity: switch.steam
+              ulm_card_tasmota_uptime: sensor.tasmota_steam_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_steam_wi_fi_quality
+              ulm_card_tasmota_version: sensor.tasmota_steam_version
+              ulm_card_tasmota_icon: mdi:power-socket-eu
+              ulm_card_tasmota_name: Steam
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest
+              ulm_card_tasmota_current: sensor.mqtt_steam_current
+              ulm_card_tasmota_energy_today: sensor.mqtt_steam_energy_today
+              ulm_card_tasmota_power: sensor.mqtt_steam_power
+              ulm_card_tasmota_latest_voltage: sensor.mqtt_steam_voltage
+
+
+  - type: vertical-stack
+    cards:
+      - type: custom:layout-card
+        layout_type: grid
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+        cards:
+          - type: 'custom:button-card'
+            template: card_tasmota
+            variables:
+              ulm_card_tasmota_entity: light.closets
+              ulm_card_tasmota_uptime: sensor.tasmota_closets_room_light_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_closets_room_wi_fi_light_quality
+              ulm_card_tasmota_version: sensor.tasmota_closets_room_light_version
+              ulm_card_tasmota_icon: mdi:light-switch
+              ulm_card_tasmota_name: Closets
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest  
+
+          - type: 'custom:button-card'
+            template: card_tasmota
+            variables:
+              ulm_card_tasmota_entity: light.yakir_room
+              ulm_card_tasmota_uptime: sensor.tasmota_yakir_room_light_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_yakir_room_wi_fi_light_quality
+              ulm_card_tasmota_version: sensor.tasmota_yakir_room_light_version
+              ulm_card_tasmota_icon: mdi:light-switch
+              ulm_card_tasmota_name: Yakir
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest  
+
+          - type: 'custom:button-card'
+            template: card_tasmota
+            variables:
+              ulm_card_tasmota_entity: light.liran_room
+              ulm_card_tasmota_uptime: sensor.tasmota_liran_room_light_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_liran_room_wi_fi_light_quality
+              ulm_card_tasmota_version: sensor.tasmota_liran_room_light_version
+              ulm_card_tasmota_icon: mdi:light-switch
+              ulm_card_tasmota_name: Liran
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest
+
+          - type: 'custom:button-card'
+            template: card_tasmota
+            variables:
+              ulm_card_tasmota_entity: light.guests_bathroom
+              ulm_card_tasmota_uptime: sensor.tasmota_guests_bathroom_light_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_guests_bathroom_wi_fi_light_quality
+              ulm_card_tasmota_version: sensor.tasmota_guests_bathroom_light_version
+              ulm_card_tasmota_icon: mdi:light-switch
+              ulm_card_tasmota_name: Bathroom
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest 
+
+          - type: 'custom:button-card'
+            template: card_tasmota
+            variables:
+              ulm_card_tasmota_entity: light.living_room
+              ulm_card_tasmota_uptime: sensor.tasmota_living_room_light_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_living_room_wi_fi_light_quality
+              ulm_card_tasmota_version: sensor.tasmota_living_room_light_version
+              ulm_card_tasmota_icon: mdi:light-switch
+              ulm_card_tasmota_name: Living Room
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest 
+
+          - type: 'custom:button-card'
+            template: card_tasmota
+            variables:
+              ulm_card_tasmota_entity: light.rotem_room
+              ulm_card_tasmota_uptime: sensor.tasmota_rotem_room_light_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_rotem_room_wi_fi_light_quality
+              ulm_card_tasmota_version: sensor.tasmota_rotem_room_light_version
+              ulm_card_tasmota_icon: mdi:light-switch
+              ulm_card_tasmota_name: Rotem
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest
+
+
+          - type: 'custom:button-card'
+            template: card_tasmota
+            variables:
+              ulm_card_tasmota_entity: switch.johnson
+              ulm_card_tasmota_uptime: sensor.tasmota_johnson_switch_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_johnson_switch_wi_fi_quality
+              ulm_card_tasmota_version: sensor.tasmota_johnson_switch_version
+              ulm_card_tasmota_icon: mdi:light-switch
+              ulm_card_tasmota_name: johnson
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest
+
+          - type: 'custom:button-card'
+            template: card_tasmota
+            variables:
+              ulm_card_tasmota_entity: switch.light_garden
+              ulm_card_tasmota_uptime: sensor.tasmota_garden_light_uptime
+              ulm_card_tasmota_wi_fi_quality: sensor.tasmota_garden_wi_fi_light_quality
+              ulm_card_tasmota_version: sensor.tasmota_garden_light_version
+              ulm_card_tasmota_icon: mdi:light-switch
+              ulm_card_tasmota_name: Garden
+              ulm_card_tasmota_latest_version: sensor.tasmota_latest
+
+  - type: vertical-stack
+    cards:
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr
+        cards:
+          - type: 'custom:button-card'
+            template: card_tasmota_version
+            variables:
+              ulm_card_tasmota_entity: 'sensor.number_of_tasmota_versions_old'
+              ulm_card_tasmota_latest_version: 'sensor.tasmota_latest'
+              ulm_card_tasmota_sync_script: 'script.tasmotas_state_sync'
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: title
+            name: Home Assistant PC
+
+  - type: vertical-stack
+    cards:
+      - type: custom:layout-card
+        layout_type: grid
+        cards:
+
+          - type: custom:button-card
+            show_icon: false
+            show_name: false
+            show_label: false
+            styles:
+              grid:
+                - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3'"
+                - grid-template-columns: 1fr
+                - grid-template-rows: "min-content min-content min-content"
+                - row-gap: 5px
+              card:
+                - border-radius: var(--border-radius)
+                - box-shadow: var(--box-shadow)
+                - padding: 10px
+            custom_fields:
+              item1:
+                card:
+                  type: custom:button-card
+                  template: list_2_items
+                  custom_fields:
+                    item1:
+                      card:
+                        type: 'custom:button-card'
+                        template: custom_card_bar_avi
+                        variables:
+                          ulm_custom_card_bar_card_entity: sensor.cpu_temperature
+                          ulm_custom_card_bar_card_name: CPU Temp
+                          ulm_custom_card_bar_card_value: false
+                          ulm_custom_card_bar_card_indicator: false
+
+                    item2:
+                      card:
+                        type: 'custom:button-card'
+                        template: custom_card_bar_avi
+                        variables:
+                          ulm_custom_card_bar_card_entity: sensor.disk_use_home
+                          ulm_custom_card_bar_card_name: Disk Use
+                          ulm_custom_card_bar_card_value: false
+                          ulm_custom_card_bar_card_indicator: false
+                    # item3:
+                    #   card:
+                    #     type: 'custom:button-card'
+                    #     template: custom_card_bar_avi
+                    #     variables:
+                    #       ulm_custom_card_bar_card_entity: sensor.disk_free_home
+                    #       ulm_custom_card_bar_card_name: Disk Free
+                    #       ulm_custom_card_bar_card_value: false
+                    #       ulm_custom_card_bar_card_indicator: false
+
+                    # item4:
+                    #   card:
+                    #     type: 'custom:button-card'
+                    #     template: custom_card_bar_avi
+                    #     variables:
+                    #       ulm_custom_card_bar_card_entity: sensor.disk_use_percent_home
+                    #       ulm_custom_card_bar_card_name: Disk Percent
+                    #       ulm_custom_card_bar_card_value: false
+                    #       ulm_custom_card_bar_card_indicator: false
+
+
+              item2:
+                card:
+                  type: custom:button-card
+                  template: list_2_items
+                  custom_fields:
+                    item1:
+                      card:
+                        type: custom:button-card
+                        template: card_generic
+                        entity: sensor.load_15m
+                        icon: "mdi:server-minus"
+                        styles:
+                          icon:
+                            - color: "rgba(var(--color-green),0.8)"
+                          img_cell:
+                            - background-color: "rgba(var(--color-green),.05)"
+                          card:
+                            - box-shadow: none
+
+                    item2:
+                      card:
+                        type: custom:button-card
+                        template: card_generic
+                        entity: sensor.memory_use_percent
+                        icon: "mdi:cpu-64-bit"
+                        styles:
+                          icon:
+                            - color: "rgba(var(--color-pink),0.8)"
+                          img_cell:
+                            - background-color: "rgba(var(--color-pink),.05)"
+                          card:
+                            - box-shadow: none
+              item3:
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      template: card_graph
+                      variables:
+                        ulm_card_graph_color: "var(--google-blue)"
+                        ulm_card_graph_entity: sensor.processor_use
+                        ulm_card_graph_hours: 60
+                        ulm_card_graph_name: Processor Use
+                        ulm_card_graph_type: CPU
+                      styles:
+                        card:
+                          - box-shadow: "none"
+
+                    - type: custom:button-card
+                      template: card_graph
+                      variables:
+                        ulm_card_graph_color: "var(--google-green)"
+                        ulm_card_graph_entity: sensor.memory_free
+                        ulm_card_graph_hours: 60
+                        ulm_card_graph_name: Memory Free
+                        ulm_card_graph_type: Memory
+                      styles:
+                        card:
+                          - box-shadow: "none"    
+
+  # - type: vertical-stack
+  #   cards:
+  #     - type: custom:layout-card
+  #       layout_type: grid
+  #       layout_options:
+  #         grid-template-columns: 1fr 1fr
+  #         grid-template-rows: auto
+  #         grid-gap: 0px 4px
+  #         mediaquery:
+  #           "(max-width: 450px)":
+  #             grid-template-columns: 1fr
+  #       cards:
+  #         - type: "custom:button-card"
+  #           template: "custom_card_apexcharts"
+  #           variables:
+  #             chart_type: "radialBar"
+  #             graph_span: "1d"
+  #             entity_1:
+  #               entity_id: "sensor.speedtest_download"
+  #               icon: ''
+  #               name: "Download"
+  #               color: "blue"
+  #               max_value: 500
+  #             entity_2:
+  #               entity_id: "sensor.speedtest_upload"
+  #               icon: ''
+  #               name: "Upload"
+  #               color: "yellow"
+  #               max_value: 50
+  #             entity_3:
+  #               entity_id: "sensor.speedtest_ping"
+  #               icon: ''
+  #               name: "Ping"
+  #               color: "green"
+  #               max_value: 30
+
+
+
+#####
+
+
+          # - type: "custom:button-card"
+          #   template: "custom_card_apexcharts"
+          #   variables:
+          #     chart_type: "radialBar"
+          #     graph_span: "1d"
+          #     entity_1:
+          #       entity_id: "sensor.speedtest_download"
+          #       icon: ''
+          #       name: "Download"
+          #       color: "blue"
+          #       max_value: 500
+          #     entity_2:
+          #       entity_id: "sensor.speedtest_upload"
+          #       icon: ''
+          #       name: "Upload"
+          #       color: "yellow"
+          #       max_value: 50
+          #     entity_3:
+          #       entity_id: "sensor.speedtest_ping"
+          #       icon: ''
+          #       name: "Ping"
+          #       color: "green"
+          #       max_value: 30
+
+          # - type: custom:button-card
+          #   show_icon: false
+          #   show_name: false
+          #   show_label: false
+          #   styles:
+          #     grid:
+          #       - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3'"
+          #       - grid-template-columns: 1fr 1fr
+          #       - grid-template-rows: "min-content min-content min-content"
+          #       - row-gap: 5px
+          #     card:
+          #       - border-radius: var(--border-radius)
+          #       - box-shadow: var(--box-shadow)
+          #       - padding: 10px
+          #   custom_fields:
+          #     item1:
+          #       card:
+          #         type: custom:button-card
+          #         template: card_title
+          #         label: '[[[ return "He is currently doing " + states["sensor.sensibo_temp"].state + "°C in home." ]]]'
+          #     item2:
+          #       card:
+          #         type: custom:button-card
+          #         template: list_2_items
+          #         custom_fields:
+          #           item1:
+          #             card:
+          #               type: custom:button-card
+          #               template: card_generic
+          #               entity: sensor.glances_cpu_load
+          #               icon: "mdi:server-minus"
+          #               styles:
+          #                 icon:
+          #                   - color: "rgba(var(--color-green),0.8)"
+          #                 img_cell:
+          #                   - background-color: "rgba(var(--color-green),.05)"
+          #                 card:
+          #                   - box-shadow: none
+
+          #           item2:
+          #             card:
+          #               type: custom:button-card
+          #               template: card_generic
+          #               entity: sensor.glances_cpu_used
+          #               icon: "mdi:server-plus"
+          #               styles:
+          #                 icon:
+          #                   - color: "rgba(var(--color-pink),0.8)"
+          #                 img_cell:
+          #                   - background-color: "rgba(var(--color-pink),.05)"
+          #                 card:
+          #                   - box-shadow: none
+          #     item3:
+          #       card:
+          #         type: horizontal-stack
+          #         cards:
+          #           - type: custom:button-card
+          #             template: card_graph
+          #             variables:
+          #               ulm_card_graph_color: "var(--google-red)"
+          #               ulm_card_graph_name: Temperature
+          #               ulm_card_graph_entity: sensor.glances_tctl_temperature
+          #           - type: custom:button-card
+          #             template: card_graph
+          #             variables:
+          #               ulm_card_graph_color: "var(--google-blue)"
+          #               ulm_card_graph_name: Humidity
+          #               ulm_card_graph_entity: sensor.sensibo_humidity

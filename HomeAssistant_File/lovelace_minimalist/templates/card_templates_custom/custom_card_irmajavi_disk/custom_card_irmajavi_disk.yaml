@@ -1,0 +1,242 @@
+---
+custom_card_irmajavi_disk:
+  template:
+    - ulm_language_variables
+  triggers_update: all
+  show_icon: false
+  show_name: false
+  show_label: false
+  styles:
+    grid:
+      - grid-template-areas: '''item1'' ''item2'' ''item3'' ''item4'''
+      - grid-template-columns: 1fr
+      - grid-template-rows: min-content min-content
+      - row-gap: 12px
+    card:
+      - border-radius: none
+      - box-shadow: none
+      - padding: 12px
+      - height: 160px
+  custom_fields:
+    # item1:
+    #   card:
+    #     type: custom:button-card
+    #     color: var(--google-grey)
+    #     show_icon: false
+    #     show_label: true
+    #     show_name: true
+    #     styles:
+    #       name:
+    #         - align-self: start
+    #         - justify-self: start
+    #         - font-weight: bold
+    #         - font-size: 14px
+    #         - margin-left: 12px
+    #       grid:
+    #         - grid-template-areas: '"n" "l"'
+    #         - grid-template-columns: min-content auto min-content
+    #         - grid-template-rows: min-content min-content
+    #       card:
+    #         - box-shadow: none
+    #         - border-radius: 20px
+    #         - border: 2px solid var(--google-grey)
+    #         - height: 70px
+    #       label:
+    #         - justify-self: start
+    #         - align-self: end
+    #         - font-weight: bold
+    #         - font-size: 14px
+    #         - filter: opacity(40%)
+    #         - margin-left: 35px
+    #     name: |
+    #       [[[
+    #         var icon = '👽';
+    #         if (variables.ulm_custom_card_irmajavi_entities_icon){
+    #           var icon = variables.ulm_custom_card_irmajavi_entities_icon;
+    #         }
+    #         return icon + ' ' + variables.ulm_custom_card_irmajavi_entities_name;
+    #       ]]]
+    #     label: |
+    #       [[[
+    #         return states[variables.ulm_custom_card_irmajavi_entities].state
+    #       ]]]
+    item2:
+      card:
+        type: custom:button-card
+        template: list_4_items
+        custom_fields:
+          item1:
+            card:
+              type: custom:button-card
+              template:
+                - "icon_info_disk"
+                - "custom_widget_irmaj_disk"
+              entity: >-
+                [[[ return variables.ulm_custom_card_irmajavi_entities_entity_1;
+                ]]]
+              name: >-
+                [[[ return variables.ulm_custom_card_irmajavi_entities_name_1
+                ]]]
+          item2:
+            card:
+              type: custom:button-card
+              template:
+                - "icon_info_disk"
+                - "custom_widget_irmaj_disk"
+              entity: >-
+                [[[ return variables.ulm_custom_card_irmajavi_entities_entity_2;
+                ]]]
+              name: >-
+                [[[ return variables.ulm_custom_card_irmajavi_entities_name_2
+                ]]]
+          item3:
+            card:
+              type: custom:button-card
+              template:
+                - "icon_info_disk"
+                - "custom_widget_irmaj_disk"
+              entity: >-
+                [[[ return variables.ulm_custom_card_irmajavi_entities_entity_3;
+                ]]]
+              name: >-
+                [[[ return variables.ulm_custom_card_irmajavi_entities_name_3
+                ]]]
+          item4:
+            card:
+              type: custom:button-card
+              template:
+                - "icon_info_disk"
+                - "custom_widget_irmaj_disk"
+              entity: >-
+                [[[ return variables.ulm_custom_card_irmajavi_entities_entity_4;
+                ]]]
+              name: >-
+                [[[ return variables.ulm_custom_card_irmajavi_entities_name_4
+                ]]]
+              # color: >-
+              #   [[[ return ulm_custom_card_bar_card_color
+              #   ]]]
+              # icon: mdi:home-assistant         
+
+
+custom_widget_irmaj_disk:
+  show_label: true
+  show_icon: true
+  label: |
+    [[[
+      var unit = entity.attributes.unit_of_measurement != null ? ' ' + entity.attributes.unit_of_measurement : ''
+      if (entity.state == 'on') {
+        return variables.ulm_on;
+      } else if (entity.state == 'off') {
+        return variables.ulm_off;
+      } else if (entity.state == 'unavailable') {
+        return variables.ulm_unavailable;
+      } else if (entity.state == 'idle') {
+        return variables.ulm_idle;
+      } else if (entity.state == 'open') {
+        return variables.ulm_open;
+      } else if (entity.state == 'closed') {
+        return variables.ulm_closed;
+      } else {
+        return entity.state + unit;
+      }
+    ]]]
+  styles:
+    name:
+      - margin-top: -42px    
+      - justify-self: center
+      - align-self: start
+      - font-weight: bolder
+      - font-size: 12px
+      - margin-left: 35px
+      - filter: opacity(40%)
+    label:
+      - margin-top: 80px   
+      - justify-self: center
+      - font-weight: bold
+      - font-size: 14px
+      - margin-left: 40px
+      - filter: opacity(80%)
+      - max-width: 120px
+    grid:
+      - grid-template-areas: '"l" "n"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: min-content min-content
+    card:
+      - box-shadow: none
+    icon:
+      - color: "var(--google-green)"
+
+### Icon Info ###
+icon_info_disk:
+  color: "var(--google-green)"
+  show_icon: true
+  show_label: true
+  show_name: true
+  state:
+    - styles:
+        custom_fields:
+          notification:
+            - border-radius: "50%"
+            - position: "absolute"
+            - left: "24px"
+            - top: "-2px"
+            - height: "16px"
+            - width: "16px"
+            - border: "2px solid var(--card-background-color)"
+            - font-size: "12px"
+            - line-height: "14px"
+            - background-color: >
+                [[[
+                  return "rgba(var(--color-red),1)";
+                ]]]
+      value: "unavailable"
+  styles:
+    icon:
+      - color: "rgba(var(--color-theme),0.2)"
+    label:
+      - justify-self: "start"
+      - align-self: "start"
+      - font-weight: "bolder"
+      - font-size: "12px"
+      - filter: "opacity(40%)"
+      - margin-left: "12px"
+    name:
+      - align-self: "end"
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "14px"
+      - margin-left: "12px"    
+    state:
+      - justify-self: "start"
+      - align-self: "start"
+      - font-weight: "bolder"
+      - font-size: "12px"
+      - filter: "opacity(40%)"
+      - margin-left: "12px"
+    img_cell:
+      # - background-color: "rgba(var(--color-theme),0.05)"
+      # - background-color: "var(--google-green)"      
+      - border-radius: "50%"
+      - place-self: "center"
+      - width: "42px"
+      - height: "42px"
+      - right: "26px"
+      - top: "-88px"      
+    grid:
+      - grid-template-areas: "'i n' 'i l'"
+      - grid-template-columns: "min-content auto"
+      - grid-template-rows: "min-content min-content"
+    card:
+      - border-radius: "21px 8px 8px 21px"
+      - box-shadow: "none"
+      - padding: "0px"
+      # - background-color: "rgba(var(--color-theme),0)"
+  custom_fields:
+    notification: >
+      [[[
+        if (entity.state =="unavailable"){
+          return `<ha-icon icon="mdi:exclamation" style="width: 12px; height: 12px; color: var(--primary-background-color);"></ha-icon>`
+        }
+      ]]]
+  size: "40px"

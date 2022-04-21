@@ -1,0 +1,14 @@
+sensor:
+    - platform: template
+      sensors:
+        shutter_dining_room_position:
+          friendly_name: "Shutter Dining Room Position"
+          unit_of_measurement: "%"
+          value_template: "{{ state_attr('cover.shutter_dining_room', 'current_position') }}"
+
+    - platform: template
+      sensors:
+        shutter_in_parents_position:
+          friendly_name: "Shutter Parents Position"
+          unit_of_measurement: "%"
+          value_template: "{{ state_attr('cover.shutter_in_parents', 'current_position') }}"   

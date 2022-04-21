@@ -1,0 +1,103 @@
+climate:
+  - platform: sensibo
+    api_key: !secret sensibo
+
+
+#################################################################
+#   input_select                                                #
+#################################################################
+    
+input_select:
+    sensibo_living_room_operation:
+      name: Operation
+      icon: mdi:air-filter
+      options:
+          - "dry"
+          - "heat_cool"
+          - "heat"
+          - "fan_only"
+          - "cool"
+    
+    sensibo_living_room_fan:
+      name: Fan
+      icon: mdi:fan
+      options:
+          - "low"
+          - "medium"
+          - "high"
+          - "auto"
+
+#################################################################
+#   input_number                                                #
+#################################################################
+input_number:
+
+  sensibo_living_room:
+    name: Target Temperature
+    min: 17
+    max: 30
+    step: 1
+    mode: slider
+    icon: mdi:thermometer
+
+#################################################################
+#   Script                                                      #
+#################################################################
+
+script:
+  sensibo_increase_target_temp:
+    alias: Increase
+    sequence:
+        - delay:
+            milliseconds: 100
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.living_room
+            temperature: "{{ (state_attr('climate.living_room', 'temperature')|round(0)) + 1 }}"
+              
+  sensibo_decrease_target_temp:
+    alias: Decrease
+    sequence:
+        - delay:
+            milliseconds: 100    
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.living_room
+            temperature: "{{ (state_attr('climate.living_room', 'temperature')|round(0)) - 1 }}" 
+
+            
+                
+##########################################################
+#   Sensor                                               #
+########################################################## 
+sensor:
+  - platform: template
+    sensors:
+      sensibo_temp:
+        friendly_name: 'temperature living room sensibo'
+        value_template: '{{ states.climate.living_room.attributes.current_temperature }}'
+        unit_of_measurement: "°C"
+
+      sensibo_humidity:
+        friendly_name: 'humidity living room sensibo'
+        value_template: '{{ states.climate.living_room.attributes.current_humidity }}'
+        unit_of_measurement: "%"
+
+      sensibo_target_temp:
+        friendly_name: "Target Temperature"
+        unit_of_measurement: "°C"
+        icon_template: mdi:thermometer
+        value_template: >-
+          {{ states.climate.living_room.attributes.temperature }}
+
+      sensibo_living_room_operation:
+        friendly_name: "Operation Mode"
+        icon_template: mdi:air-filter
+        value_template: >-
+          {{ states.climate.living_room.attributes.operation_mode }}  
+          
+      sensibo_living_room_fan:
+        friendly_name: "Fan Mode"
+        icon_template: mdi:fan
+        value_template: >-
+          {{ states.climate.living_room.attributes.fan_mode }}

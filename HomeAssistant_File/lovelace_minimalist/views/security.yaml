@@ -1,0 +1,244 @@
+title: Security
+icon: 'mdi:shield-home'
+path: security
+type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr
+  grid-template-rows: auto
+  mediaquery:
+    "(min-width: 800px)":
+      grid-template-columns: 700px
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: edge
+
+      # Home Back    
+      - type: 'custom:button-card'
+        template: chip_back
+        variables:
+          ulm_chip_back_path: /lovelace-minimalist/home
+
+  - type: vertical-stack
+    cards:
+      - card:
+          entity: alarm_control_panel.home_alarm
+          states:
+            - arm_home
+          style:
+            .: |
+              ha-card > ha-label-badge{
+                --alarm-state-color: var(--google-green-500) !important;
+              }
+              ha-card{
+                padding-top: 16px;
+                padding-bottom: 12px !important;
+                border-radius: 21px;
+              }
+              ha-card > h1{
+                padding-top: 0;
+                color: transparent;
+              }
+              ha-card > h1::before{
+                content: "Désactivée";
+                color: var(--google-green-500);
+                position: absolute;
+                font-variant: small-caps;
+              }
+              #alarmCode{
+                display: none;
+              }
+              #keypad{
+                display: none !important;
+              }
+            '#armActions':
+              mwc-button:
+                $: |
+                  #button > span.slot-container{
+                    color: transparent;
+                    position: absolute;
+
+                  }
+                  #button{
+                    width: 150px;
+                    border-radius: 21px;
+                  }
+                  #button > span.slot-container::before{
+                    color: var(--mdc-theme-primary, #6200ee);
+                    content: "Activer";
+                    margin: 0 0 0 50%;
+                  }
+          title: Alarme
+          type: alarm-panel
+        conditions:
+          - entity: alarm_control_panel.home_alarm
+            state: disarmed
+        type: conditional
+      - card:
+          entity: alarm_control_panel.home_alarm
+          states:
+            - arm_home
+          title: Alarme
+          type: alarm-panel
+          style:
+            .: |
+              ha-card > ha-label-badge{
+                --alarm-state-color: var(--google-red-500) !important;
+              }
+              ha-card{
+                padding-top: 16px;
+                padding-bottom: 12px !important;
+                border-radius: 21px;
+              }
+              ha-card > h1{
+                padding-top: 0;
+                color: transparent;
+              }
+              ha-card > h1::before{
+                content: "Activée";
+                color: var(--google-red-500);
+                position: absolute;
+                font-variant: small-caps;
+              }
+            '#armActions':
+              mwc-button:
+                $: |
+                  #button > span.slot-container{
+                    color: transparent;
+                    position: absolute;    
+                  }
+                  #button{
+                    width: 150px;
+                    border-radius: 21px;
+                  }
+                  #button > span.slot-container::before{
+                    color: var(--mdc-theme-primary, #6200ee);
+                    content: "Désactiver";
+                    margin: 0 0 0 50%;
+                  }
+            '#keypad':
+              mwc-button:
+                $: |
+                  #button{
+                    border-radius: 12px
+                  }
+        conditions:
+          - entity: alarm_control_panel.home_alarm
+            state_not: disarmed
+        type: conditional
+
+
+
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: edge
+          - type: custom:button-card
+            template: title
+            name:  Camera
+          - type: custom:button-card
+            template: edge
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+
+        cards:
+
+          - type: custom:button-card
+            entity: camera.blueiris_a_garden
+            size: 90%
+            show_state: false
+            show_label: false
+            show_name: false
+            show_entity_picture: true              
+
+          - type: custom:button-card
+            entity: camera.blueiris_electric_gate
+            size: 92%
+            show_state: false
+            show_label: false
+            show_name: false
+            show_entity_picture: true
+
+          - type: custom:button-card
+            entity: camera.blueiris_front_gate
+            size: 90%
+            show_state: false
+            show_label: false
+            show_name: false
+            show_entity_picture: true
+
+          - type: custom:button-card
+            entity: camera.blueiris_warehouse
+            size: 92%
+            show_state: false
+            show_label: false
+            show_name: false
+            show_entity_picture: true
+
+  - type: vertical-stack
+    cards:
+ 
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: edge
+          - type: custom:button-card
+            template: title
+            name:  Motion
+          - type: custom:button-card
+            template: edge
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+
+        cards:
+          - type: 'custom:button-card'
+            template: card_binary_sensor
+            icon: mdi:door
+            variables:
+              - ulm_card_binary_sensor_alert: true
+            entity: binary_sensor.motion_sensor_front_door
+            show_last_changed: true
+
+          - type: 'custom:button-card'
+            template: card_binary_sensor_alert
+            variables:
+              - ulm_card_binary_sensor_alert: true
+            entity: binary_sensor.front_gate_on_off
+            show_last_changed: true
+
+          - type: 'custom:button-card'
+            template: card_binary_sensor_alert
+            variables:
+              - ulm_card_binary_sensor_alert: true
+            entity: binary_sensor.motion_sensor_warehouse_motion_sensor
+            show_last_changed: true
+
+          - type: 'custom:button-card'
+            template: card_binary_sensor_alert
+            variables:
+              - ulm_card_binary_sensor_alert: true
+            entity: binary_sensor.motion_sensor_second_floor_lobby
+            show_last_changed: true
+
+          # Red Alert
+          - type: 'custom:button-card'
+            template: card_red_alert

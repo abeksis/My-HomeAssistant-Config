@@ -1,23 +1,23 @@
-  - platform: waze_travel_time
-    name: Travel time Avi Home
-    origin: person.avi_abeksis
-    destination: zone.home
-    region: 'IL'
+#   - platform: waze_travel_time
+#     name: Travel time Avi Home
+#     origin: person.avi_abeksis
+#     destination: zone.home
+#     region: 'IL'
 
-  - platform: waze_travel_time
-    name: Travel time Avi Work
-    origin: person.avi_abeksis
-    destination: zone.work
-    region: 'IL'
+#   - platform: waze_travel_time
+#     name: Travel time Avi Work
+#     origin: person.avi_abeksis
+#     destination: zone.work
+#     region: 'IL'
 
-  - platform: waze_travel_time
-    name: Travel time Nurit home
-    origin: person.nurit
-    destination: zone.home
-    region: 'IL'
+#   - platform: waze_travel_time
+#     name: Travel time Nurit home
+#     origin: person.nurit
+#     destination: zone.home
+#     region: 'IL'
 
-  - platform: waze_travel_time
-    name: Travel time Nurit Work
-    origin: person.nurit
-    destination: zone.work
-    region: 'IL'
+#   - platform: waze_travel_time
+#     name: Travel time Nurit Work
+#     origin: person.nurit
+#     destination: zone.work
+#     region: 'IL'

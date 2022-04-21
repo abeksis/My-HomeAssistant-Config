@@ -1,0 +1,104 @@
+title: kitchen
+icon: 'mdi:fridge'
+path: kitchen
+type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr
+  grid-template-rows: auto
+  mediaquery:
+    "(min-width: 800px)":
+      grid-template-columns: 700px
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: edge
+
+      # Home Back    
+      - type: 'custom:button-card'
+        template: chip_back
+        variables:
+          ulm_chip_back_path: /lovelace-minimalist/home
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+
+            # layout_options:
+            #   grid-template-columns: 1fr 1fr
+            #   grid-template-rows: auto
+            #   grid-gap: 0px 4px
+            #   mediaquery:
+            #     "(max-width: 450px)":
+            #       grid-template-columns: 1fr
+            cards:
+              - type: "custom:button-card"
+                template: "custom_card_apexcharts"
+                variables:
+                  chart_type: "radialBar"
+                  graph_span: "1d"
+                  entity_1:
+                    entity_id: "sensor.dishwasher_energy_today"
+                    icon: 'mdi:tumble-dryer'
+                    name: "Today"
+                    color: "blue"
+                    max_value: 2
+                  entity_2:
+                    entity_id: "sensor.dishwasher_energy_yesterday"
+                    icon: 'mdi:tumble-dryer-alert'
+                    name: "Yesterday"
+                    color: "yellow"
+                    max_value: 10
+                  entity_3:
+                    entity_id: "sensor.dishwasher_energy_total"
+                    icon: 'mdi:tumble-dryer-off'
+                    name: "Total"
+                    color: "green"
+                    max_value: 40
+
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: edge
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+        cards:
+          - type: 'custom:button-card'
+            template: card_light
+            entity: light.kitchen
+            variables: 
+              ulm_card_light_name: Kitchen
+
+          - type: 'custom:button-card'
+            template: card_light
+            entity: light.island
+            variables: 
+              ulm_card_light_name: island
+
+          - type: "custom:button-card"
+            template: "custom_card_vncntdev_device_tracker"
+            entity: binary_sensor.dishwasher
+            variables:
+              custom_card_vncntdev_device_tracker_name: "Dishwasher State"
+
+          - type: "custom:button-card"
+            template: "custom_card_vncntdev_device_tracker"
+            entity: switch.dishwasher
+            variables:
+              custom_card_vncntdev_device_tracker_name: "on/off Dishwasher"

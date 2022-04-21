@@ -1,0 +1,7 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      dishwasher:
+        friendly_name: "Dishwasher"
+        value_template: >-
+          {{ states('sensor.dishwasher_energy_power')|float > 5 }}

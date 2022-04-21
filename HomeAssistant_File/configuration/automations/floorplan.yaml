@@ -1,0 +1,86 @@
+##############################################      
+################# IR Blaster ################# 
+##############################################
+
+#### Homekit make toggle a button:
+#### This controls my IR blaster to send volume commands, so I can just keep tapping the button like it was an actual remote in Homekit.
+
+  # - alias: Sound Up
+  #   # hide_entity: true
+  #   trigger:
+  #     - platform: state
+  #       entity_id: switch.lg_tv_button
+  #       to: 'on'
+  #   action:
+  #     service:  switch.turn_off
+  #     entity_id: switch.lg_tv_button
+
+  # - alias: Sound Down
+  #   # hide_entity: true
+  #   trigger:
+  #     - platform: state
+  #       entity_id: switch.speakers_down
+  #       to: 'on'
+  #   action:
+  #     service: switch.turn_off
+  #     entity_id: switch.speakers_down
+
+
+  # - alias: ui_sound_on
+  #   # hide_entity: true
+  #   trigger:
+  #   - platform: state
+  #     entity_id:
+  #       ['light.kitchen', 'light.kitchen_strip_lamp', 'light.prozdor']
+  #     from: 'off'
+  #     to: 'on'
+  #   action:
+  #   - service: media_player.play_media
+  #     data:
+  #       entity_id: media_player.living_room_tv
+  #       media_content_id: /local/sound/on.m4a
+  #       media_content_type: music
+
+  # - alias: ui_sound_off
+  #   # hide_entity: true
+  #   trigger:
+  #   - platform: state
+  #     entity_id:
+  #       ['light.kitchen', 'light.kitchen_strip_lamp', 'light.prozdor']
+  #     from: 'on'
+  #     to: 'off'
+  #   action:
+  #   - service: media_player.play_media
+  #     data:
+  #       entity_id: media_player.living_room_tv
+  #       media_content_id: /local/sound/off.m4a
+  #       media_content_type: music
+
+  # - alias: ui_sound_popup
+  #   # hide_entity: true
+  #   trigger:
+  #     platform: event
+  #     event_type: call_service
+  #     event_data: 
+  #       domain: browser_mod
+  #       service: popup
+  #   action:
+  #   - service: media_player.play_media
+  #     data:
+  #       entity_id: media_player.living_room_tv
+  #       media_content_id: /local/sound/popup.m4a
+  #       media_content_type: music
+        
+  # - alias: ui_sound_view
+  #   # hide_entity: true
+  #   trigger:
+  #     platform: state
+  #     entity_id: sensor.tablet_view
+  #   action:
+  #   - service: media_player.play_media
+  #     data:
+  #       entity_id: media_player.living_room_tv
+  #       media_content_id: /local/sound/popup.m4a
+  #       media_content_type: music     
+          
+                

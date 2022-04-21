@@ -1,0 +1,222 @@
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 900;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 700;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 800;
+	src: url(/local/fonts/OpenSansHebrew-ExtraBoldItalic.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 200;
+	src: url(/local/fonts/OpenSansHebrew-Light.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 500;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 400;
+	src: url(/local/fonts/OpenSansHebrew-Regular.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 600;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 300;
+	src: url(/local/fonts/OpenSansHebrew-Light.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 100;
+	src: url(/local/fonts/OpenSansHebrew-Light.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 700;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 700;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-BoldItalic.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 800;
+	src: url(/local/fonts/OpenSansHebrew-ExtraBold.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 800;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-ExtraBoldItalic.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 200;
+	src: url(/local/fonts/OpenSansHebrew-Light.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 200;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-LightItalic.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 500;
+	src: url(/local/fonts/OpenSansHebrew-Regular.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 500;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-Italic.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 400;
+	src: url(/local/fonts/OpenSansHebrew-Regular.ttff)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 400;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-Italic.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 600;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 600;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-BoldItalic.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 100;
+	src: url(/local/fonts/OpenSansHebrew-Light.ttf)
+}
+
+@font-face {
+	font-family: Open Sans Hebrew;
+	font-weight: 100;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-LightItalic.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 700;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 700;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-BoldItalic.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 800;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 800;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-BoldItalic.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 200;
+	src: url(/local/fonts/OpenSansHebrew-Light.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 200;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-LightItalic.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 500;
+	src: url(/local/fonts/OpenSansHebrew-Light.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 500;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-LightItalic.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 400;
+	src: url(/local/fonts/OpenSansHebrew-Regular.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 400;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-Italic.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 600;
+	src: url(/local/fonts/OpenSansHebrew-Bold.ttf)
+}
+
+@font-face {
+	font-family: sf mono;
+	font-weight: 600;
+	font-style: italic;
+	src: url(/local/fonts/OpenSansHebrew-LightItalic.ttf)
+}

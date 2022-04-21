@@ -1,0 +1,19 @@
+template:
+  - sensor:
+      - name: Switcher Mini 
+        state: >
+          {% if states("sensor.switcher_mini")|float == 0  %}
+            Off
+          {% elif states("sensor.switcher_mini")|float <= 2 %}
+            Standby
+          {% else %}
+            Active
+          {% endif %}
+        icon: >
+          {% if states("switch.switcher_mini") == "off"  %}
+          mdi:water-boiler-off
+          {% elif states("sensor.switcher_mini_power")|float <= 2  %}
+          mdi:water-boiler
+          {% else %}
+          mdi:water-boiler
+          {% endif %}

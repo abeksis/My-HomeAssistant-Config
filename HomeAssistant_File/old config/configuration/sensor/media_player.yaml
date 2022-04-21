@@ -1,0 +1,11 @@
+  - platform: template
+    sensors:
+      media_players_playing:
+        value_template: >
+            {% if (states['media_player.spotify_avi_abeksis'].state == 'playing') %}
+              Playing
+            {% elif (states['media_player.spotify_avi_abeksis'].state == 'paused') %}
+              Paused
+            {% else %}
+              Stopped
+            {% endif %}

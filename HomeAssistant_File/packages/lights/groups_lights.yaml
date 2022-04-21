@@ -1,0 +1,139 @@
+# group:
+
+############################################################################
+#                                                                          #
+#   Living Room                                                            #
+#                                                                          #
+############################################################################
+
+  # living_room_lights:
+  #   name: Living Room Lights
+  #   entities:
+  #     - light.living_room
+  #     - light.dining_room
+  #     - light.door_light
+
+
+
+############################################################################
+#                                                                          #
+#   Kitchen                                                                #
+#                                                                          #
+############################################################################
+
+  # kitchen_lights:
+  #   name: Kitchen Lights
+  #   entities:
+  #     - light.kitchen
+  #     - light.island
+
+
+############################################################################
+#                                                                          #
+#   kids                                                                   #
+#                                                                          #
+############################################################################
+
+  # kids_lights:
+  #   name: Kids Lights
+  #   entities:
+  #     - light.liran_room
+  #     - light.yakir_room
+  #     - light.rotem_room
+      
+
+
+############################################################################
+#                                                                          #
+#   Xiaomi Philips Lobby                                                   #
+#                                                                          #
+############################################################################
+
+  # lobby_lights:
+  #   name: Philips Lobby Lights
+  #   entities:
+  #     - light.philips_1
+  #     - light.philips_2
+
+############################################################################
+#                                                                          #
+#   Closets Room                                                           #
+#                                                                          #
+############################################################################
+
+  # closets_lights:
+  #   name: Closets Room Lights
+  #   entities:
+  #     - light.closets
+
+
+############################################################################
+#                                                                          #
+#   Rotem Room                                                             #
+#                                                                          #
+############################################################################
+
+  # rotem_lights:
+  #   name: Rotem Room Lights
+  #   entities:
+  #     - light.rotem_room
+
+############################################################################
+#                                                                          #
+#   outside                                                                #
+#                                                                          #
+############################################################################
+
+  # outside_light:
+  #   name: Outside Light
+  #   entities:
+  #     - light.sing_family
+  #     - light.outdoor_light
+  #     - light.garden
+
+
+############################################################################
+#                                                                          #
+#   Rooms                                                                  #
+#                                                                          #
+############################################################################
+
+  # rooms_light:
+  #   name: Rooms
+  #   entities:
+  #     - light.rotem_room
+  #     - light.liran_room
+  #     - light.garden
+  #     - light.yakir_room
+  #     - light.closets
+  #     - light.parents_light_mirror
+  #     - switch.parents
+
+############################################################################
+#                                                                          #
+#   Bathroom                                                               #
+#                                                                          #
+############################################################################
+
+  # bathroom_lights:
+  #   name: Bathroom Lights
+  #   entities:
+  #     - light.guests_bathroom
+  #     - light.kids_shower_light
+  #     - light.shower_parents_light    
+      
+############################################################################
+#                                                                          #
+#    All Shutter                                                           #
+#                                                                          #
+############################################################################
+
+  # all_shutter:
+  #   name: All Shutter
+  #   entities:
+  #     - cover.shutter_dining_room
+  #     - cover.shutter_in_parents
+      
+
+
+      

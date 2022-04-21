@@ -1,0 +1,46 @@
+script:
+    navigate_to_lights:
+      alias: 'Navigate - Lights'
+      sequence:
+        - service: browser_mod.navigate
+          data:
+            navigation_path: /lovelace-floorplan/1
+            deviceID:
+              - tablet
+    
+    
+    navigate_to_cleanup:
+      alias: 'Navigate - Cleanup'
+      sequence:
+        - service: browser_mod.navigate
+          data:
+            navigation_path: /lovelace-floorplan/2
+            deviceID:
+              - tablet
+    
+    navigate_to_media:
+      alias: 'Navigate - Media'
+      sequence:
+        - service: browser_mod.navigate
+          data:
+            navigation_path: /lovelace-floorplan/3
+            deviceID:
+              - tablet
+    
+    navigate_to_weather:
+      alias: 'Navigate - Weather'
+      sequence:
+        - service: browser_mod.navigate
+          data:
+            navigation_path: /lovelace-floorplan/4
+            deviceID:
+              - tablet
+    
+    navigate_to_health:
+      alias: 'Navigate - Camera'
+      sequence:
+        - service: browser_mod.navigate
+          data:
+            navigation_path: /lovelace-floorplan/5
+            deviceID:
+              - tablet

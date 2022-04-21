@@ -1,0 +1,166 @@
+sensor:
+  # - platform: systemmonitor
+  #   resources:
+  #     - type: disk_use_percent
+  #     - type: disk_use
+  #     - type: disk_free
+  #     - type: memory_use_percent
+  #     - type: memory_free
+  #     - type: processor_use
+  #     - type: memory_use
+  #     - type: swap_use
+
+
+# COMMANDLine
+  - platform: command_line
+    name: Ubuntu HA CPU Temperature Core Zone 0
+    command: "cat /sys/devices/virtual/thermal/thermal_zone0/temp"
+    value_template: '{{ value | multiply(0.001) | round(2) }}'
+    unit_of_measurement: '°C'
+
+  - platform: command_line
+    name: Ubuntu HA CPU Temperature Core Zone 2
+    command: "cat /sys/devices/virtual/thermal/thermal_zone2/temp"
+    value_template: '{{ value | multiply(0.001) | round(2) }}'
+    unit_of_measurement: '°C'
+
+  - platform: command_line
+    name: Ubuntu HA CPU Frequency 0
+    command: "cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq"
+    value_template: '{{ value | multiply(0.000001) | round(2) }}'
+    unit_of_measurement: 'GHz'
+
+  - platform: command_line
+    name: Ubuntu HA CPU Frequency 1
+    command: "cat /sys/devices/system/cpu/cpufreq/policy1/scaling_cur_freq"
+    value_template: '{{ value | multiply(0.000001) | round(2) }}'
+    unit_of_measurement: 'GHz'
+
+  - platform: command_line
+    name: Linux version
+    command: "cat /proc/version"
+    value_template: '{{value|truncate(30,True)}}'
+
+  - platform: command_line
+    name: Ubuntu HA CPU Governor
+    command: "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+
+  - platform: command_line
+    name: Ubuntu HA CPU min. frequency
+    command: "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq"
+    value_template: '{{ value | multiply(0.001) | round(2) }}'
+    unit_of_measurement: 'MHz - Min Freq'
+
+  - platform: command_line
+    name: Ubuntu HA CPU max. frequency
+    command: "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq"
+    value_template: '{{ value | multiply(0.001) | round(2) }}'
+    unit_of_measurement: 'MHz - Max Freq'
+
+  # - platform: command_line
+  #   name: BIOS Vendor
+  #   command: "cat /sys/class/dmi/id/bios_vendor"
+  #   value_template: '{{value|truncate(45,True)}}'
+
+  # - platform: command_line
+  #   name: SYS Vendor
+  #   command: "cat /sys/class/dmi/id/product_name"
+  #   value_template: '{{value|truncate(45,True)}}'
+
+  # - platform: command_line
+  #   name: CPU online
+  #   command: "cat /sys/devices/system/cpu/online"
+  #   value_template: '{{value|truncate(45,True)}}'
+
+  # - platform: command_line
+  #   name: CPU offline
+  #   command: "cat /sys/devices/system/cpu/offline"
+  #   value_template: '{{value|truncate(45,True)}}'
+
+  # - platform: command_line
+  #   name: Ubuntu HA Bios version
+  #   command: "cat /sys/class/dmi/id/bios_version"
+
+  # - platform: command_line
+  #   name: Ubuntu HA board name
+  #   command: "cat /sys/class/dmi/id/board_name"
+
+# SystemMonitor
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: disk_use
+        arg: /home
+      - type: disk_free
+        arg: /home
+      - type: memory_free
+      - type: memory_use
+      - type: memory_use_percent
+      - type: swap_use_percent
+      - type: swap_use
+      - type: swap_free
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+      - type: processor_use
+      - type: last_boot      
+      # - type: network_in
+      #   arg: enp2s0
+      # - type: network_out
+      #   arg: enp3s0
+      # - type: throughput_network_in
+      #   arg: enp3s0
+      # - type: throughput_network_out
+      #   arg: enp3s0
+      # - type: packets_in
+      #   arg: enp3s0
+      # - type: packets_out
+      #   arg: enp3s0
+      # - type: ipv6_address
+      #   arg: enp3s0      
+      # - type: ipv4_address
+      #   arg: enp3s0
+
+
+#  # Example configuration.yaml entry
+# sensor:
+#   - platform: systemmonitor
+#     resources:
+#       - type: disk_use
+#         arg: /dev
+#       - type: disk_use
+#         arg: /dev/shm 
+  
+  - platform: command_line
+    name: "cpu_temperature"
+    command: "cat /sys/class/thermal/thermal_zone2/temp"
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) | round(2) }}'  
+  
+  # - platform: uptime
+  #   name: "uptime"
+  
+  - platform: template
+    sensors:
+      disk_total:
+        value_template: "{{ ( states('sensor.disk_use')|float + states('sensor.disk_free_home')|float )| round (1) }}"
+      homeassistant_uptime:
+        friendly_name: HA Uptime
+        value_template: >-      
+          {%- set up_time = as_timestamp(now())-as_timestamp(states('sensor.uptime')) %}
+
+          {%- macro phrase(name, divisor, mod=None) %}
+            {%- set value = ((up_time // divisor) % (mod if mod else divisor)) | int %}
+            {%- set end = 's' if value > 1 else '' %}
+            {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}
+          {%- endmacro %}
+          
+          {%- set values = [ 
+                     phrase('week', 60*60*24*7), 
+                     phrase('day', 60*60*24, 7), 
+                     phrase('hour', 60*60, 24),
+                     phrase('min', 60)
+                 ] | select('!=','') | list %}
+                        
+          {{ values[:-1] | join(', ') ~ ' and ' ~ values[-1] if values | length > 1 else values | first }}

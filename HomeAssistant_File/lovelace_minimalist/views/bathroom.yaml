@@ -1,0 +1,252 @@
+title: Bathroom
+icon: 'mdi:bathtub'
+path: bathroom
+type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr
+  grid-template-rows: auto
+  mediaquery:
+    "(min-width: 800px)":
+      grid-template-columns: 700px
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: edge
+
+      # Home Back    
+      - type: 'custom:button-card'
+        template: chip_back
+        variables:
+          ulm_chip_back_path: /lovelace-minimalist/home
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: edge
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+        cards:
+          - type: 'custom:button-card'
+            template: card_graph
+            variables:
+              ulm_card_graph_color: "var(--google-blue)"
+              ulm_card_graph_name: Guest
+              ulm_card_graph_entity: 'sensor.motion_guest_bathroom_illuminance'
+              ulm_card_graph_type: fill
+              ulm_card_graph_hours: 24
+
+          - type: 'custom:button-card'
+            template: card_graph
+            variables:
+              ulm_card_graph_color: "var(--google-blue)"
+              ulm_card_graph_name: Parents
+              ulm_card_graph_entity: 'sensor.shower_parents_motion_illumination'
+              ulm_card_graph_type: fill
+              ulm_card_graph_hours: 24
+       
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: title
+            name: Devices
+
+
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+            cards:
+            # Switcher
+              - type: 'custom:button-card'
+                template: 
+                  - card_switcher
+                variables:
+                  ulm_card_switcher_entity: switch.switcher_mini
+                  ulm_card_switcher_timer_script: script.switcher_turn_on_timer_script
+                  ulm_card_switcher_time_left: sensor.switcher_mini_remaining_time
+                  ulm_card_switcher_timer_minutes: input_select.switcher_timer_minutes_input_select
+                  ulm_card_switcher_electric_current: sensor.switcher_mini_electric_current
+                  ulm_card_switcher_auto_off: sensor.switcher_mini_auto_shutdown
+
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+        cards:
+          - type: 'custom:button-card'
+            template: card_light
+            entity: light.guests_bathroom
+            variables: 
+              ulm_card_light_name: Guests
+
+          - type: 'custom:button-card'
+            template: card_light
+            entity: light.kids_shower_light
+            variables: 
+              ulm_card_light_name: Kids
+
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+
+            layout_options:
+              grid-template-columns: 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+              mediaquery:
+                "(max-width: 450px)":
+                  grid-template-columns: 1fr 1fr
+            cards:
+              - type: 'custom:button-card'
+                template: card_light
+                entity: light.shower_parents_light
+                variables: 
+                  ulm_card_light_name: Parents
+
+              - type: 'custom:button-card'
+                template: ventilo_buttons
+                variables:
+                  entity: switch.shower_parents_fan
+                  name: Parents
+
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+
+            layout_options:
+              grid-template-columns: 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+              mediaquery:
+                "(max-width: 450px)":
+                  grid-template-columns: 1fr 1fr
+            cards:
+              - type: 'custom:button-card'
+                template: ventilo_buttons
+                variables:
+                  entity: light.fan_guests_bathroom
+                  name: Guests
+ 
+              - type: 'custom:button-card'
+                template: card_light
+                entity: switch.johnson
+                variables: 
+                  ulm_card_light_name: Johnson
+                  ulm_card_light_icon: mdi:spray
+
+
+
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: title
+            name: Sensors
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+        cards:
+
+          ## Bathroom 
+          - type: 'custom:button-card'
+            template: card_binary_sensor
+            icon: mdi:door
+            variables:
+              - ulm_card_binary_sensor_alert: true
+            entity: binary_sensor.bathroom_door_sensor
+            show_last_changed: true
+
+          ## Bathroom
+          - type: 'custom:button-card'
+            template: card_battery
+            entity: sensor.bathroom_door_battery
+            variables:
+                ulm_card_battery_charger_type_entity_id: sensor.bathroom_door_battery
+                ulm_card_battery_battery_level_danger: 30
+                ulm_card_battery_battery_level_warning: 80
+
+          ## Shower_parents
+          - type: 'custom:button-card'
+            template: card_binary_sensor
+            variables:
+              - ulm_card_binary_sensor_alert: true
+            entity: binary_sensor.shower_parents_motion
+            show_last_changed: true
+
+          ## Shower_parents
+          - type: 'custom:button-card'
+            template: card_battery
+            entity: sensor.shower_parents_motion_battery
+            variables:
+                ulm_card_battery_charger_type_entity_id: sensor.shower_parents_motion_battery
+                ulm_card_battery_battery_level_danger: 30
+                ulm_card_battery_battery_level_warning: 80
+
+          ## guests bathroom
+          - type: 'custom:button-card'
+            template: card_binary_sensor
+            icon: mdi:door
+            variables:
+              - ulm_card_binary_sensor_alert: true
+            entity: binary_sensor.guests_bathroom
+            show_last_changed: true
+
+          ## Guests bathroom
+          - type: 'custom:button-card'
+            template: card_battery
+            entity: sensor.guests_bathroom_battery
+            variables:
+                ulm_card_battery_charger_type_entity_id: sensor.guests_bathroom_battery
+                ulm_card_battery_battery_level_danger: 30
+                ulm_card_battery_battery_level_warning: 80
+
+          ## Kids bathroom
+          - type: 'custom:button-card'
+            template: card_binary_sensor
+            variables:
+              - ulm_card_binary_sensor_alert: true
+            entity: binary_sensor.kids_shower_motion_ikea
+            show_last_changed: true
+
+          ## Guests bathroom
+          - type: 'custom:button-card'
+            template: card_battery
+            entity: sensor.ikea_of_sweden_tradfri_motion_sensor_binary
+            variables:
+                ulm_card_battery_charger_type_entity_id: sensor.ikea_of_sweden_tradfri_motion_sensor_binary
+                ulm_card_battery_battery_level_danger: 30
+                ulm_card_battery_battery_level_warning: 80

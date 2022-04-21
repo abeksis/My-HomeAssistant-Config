@@ -1,17 +1,20 @@
 #################################################################
 #   High temperatures over 30 degrees                           #
 #################################################################
-  - alias: 'Hot Temperature Alert Living Room'
-    initial_state: 'on'
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.sensibo_temp 
-      above: 30
-    action:
-    - service: notify.nurit_telegram
-      data:
-        title: 'מד טמפרטורה'
-        message: 'הטמפרטורה בבית מעל 30 מעלות'
+  # עבר לממשק ויזואלי - UI
+  # 28/8/21
+  
+  # - alias: 'Hot Temperature Alert Living Room'
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: numeric_state
+  #     entity_id: sensor.sensibo_temp
+  #     above: 30
+  #   action:
+  #   - service: notify.nurit_telegram
+  #     data:
+  #       title: 'מד טמפרטורה'
+  #       message: 'הטמפרטורה בבית מעל 30 מעלות'
 
 
 #################################################################

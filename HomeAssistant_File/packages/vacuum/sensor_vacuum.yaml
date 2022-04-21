@@ -1,0 +1,6 @@
+# sensor:
+#   - platform: template
+#     sensors: 
+#       vacuum_fan_speed:
+#       friendly_name: Robot vacuum speed
+#       value_template: '{{ states.vacuum.mi_robot_vacuum.fan_speed.lower() }}'

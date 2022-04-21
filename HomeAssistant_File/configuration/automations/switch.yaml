@@ -2,24 +2,24 @@
 #   Switch                              #
 #########################################
 
-  - alias: 'Turn Off Tami 4 In Night'
-    initial_state: 'on'  
-    trigger:
-      platform: time
-      at: '23:00:00'
-    condition:
-    action:
-    - data:
-        entity_id: switch.tami_4
-      service: switch.turn_off
+#   - alias: 'Turn Off Tami 4 In Night'
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '23:00:00'
+#     condition:
+#     action:
+#     - data:
+#         entity_id: switch.tami_4
+#       service: switch.turn_off
       
-  - alias: 'Turn On tami 4 in Mornning'
-    initial_state: 'on'  
-    trigger:
-      platform: time
-      at: '05:45:00'
-    condition:
-    action:
-    - data:
-        entity_id: switch.tami_4
-      service: switch.turn_on
+#   - alias: 'Turn On tami 4 in Mornning'
+#     initial_state: 'on'  
+#     trigger:
+#       platform: time
+#       at: '05:45:00'
+#     condition:
+#     action:
+#     - data:
+#         entity_id: switch.tami_4
+#       service: switch.turn_on

@@ -1,0 +1,49 @@
+# utility_meter:
+#   daily_shelly_channel_a:
+#     source: sensor.electric_home_power_power_channel_a_power
+#     name: Daily Energy
+#     cycle: daily
+#     tariffs:
+#       - peak
+#       - offpeak
+#   monthly_shelly_channel_a:
+#     source: sensor.electric_home_power_power_channel_a_power
+#     name: Monthly Energy
+#     cycle: monthly
+#     tariffs:
+#       - peak
+#       - offpeak
+      
+
+utility_meter:
+  daily_shelly_channel_a:
+    source: sensor.electric_home_power_power_channel_a_power
+    cycle: daily
+  weekly_shelly_channel_a:
+    source: sensor.electric_home_power_power_channel_a_power
+    cycle: weekly
+  monthly_shelly_channel_a:
+    source: sensor.electric_home_power_power_channel_a_power
+    cycle: monthly  
+
+
+  daily_shelly_channel_b:
+    source: sensor.electric_home_power_channel_b_power
+    cycle: daily
+  weekly_shelly_channel_b:
+    source: sensor.electric_home_power_channel_b_power
+    cycle: weekly
+  monthly_shelly_channel_b:
+    source: sensor.electric_home_power_channel_b_power
+    cycle: monthly  
+
+
+  daily_shelly_channel_c:
+    source: sensor.electric_home_power_channel_c_power
+    cycle: daily
+  weekly_shelly_channel_c:
+    source: sensor.electric_home_power_channel_c_power
+    cycle: weekly
+  monthly_shelly_channel_c:
+    source: sensor.electric_home_power_channel_c_power
+    cycle: monthly    

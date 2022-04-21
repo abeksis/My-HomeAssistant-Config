@@ -1,0 +1,16 @@
+sensor:
+  - platform: template
+    sensors:
+      outside_temperature:
+        friendly_name: "Outside Temperature"
+        unit_of_measurement: "°C"
+        icon_template: mdi:thermometer
+        value_template: >-
+          {{ state_attr('weather.beer_sheva', 'temperature') }}
+          
+      outside_humidity:
+        friendly_name: "Outside Humidity"
+        unit_of_measurement: "%"
+        icon_template: mdi:water-percent
+        value_template: >-
+          {{ state_attr('weather.beer_sheva', 'humidity') }}

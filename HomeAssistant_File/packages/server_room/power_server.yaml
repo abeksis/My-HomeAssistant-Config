@@ -2,92 +2,92 @@
 #   input Number                                                #
 #################################################################
 
-input_number:
-  power_server_total:
-    name: Server Count
-    min: 0
-    max: 999999999
-    step: 1
-    mode: box     
+# input_number:
+#   power_server_total:
+#     name: Server Count
+#     min: 0
+#     max: 999999999
+#     step: 1
+#     mode: box     
 
 #################################################################
 #   Sensor                                                      #
 #################################################################
 
-sensor:
-  - platform: mqtt
-    name: "Power Server Energy Today"
-    state_topic: "tele/server_socket/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Today"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Power Server Yesterday"
-    state_topic: "tele/server_socket/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Power Server Total"
-    state_topic: "tele/server_socket/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Total"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Power Server Power"
-    state_topic: "tele/server_socket/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Power"] }}'
-    unit_of_measurement: "W"
+# sensor:
+#   - platform: mqtt
+#     name: "Power Server Energy Today"
+#     state_topic: "tele/server_socket/SENSOR"
+#     value_template: '{{ value_json["ENERGY"]["Today"] }}'
+#     unit_of_measurement: "kWh"
+#   - platform: mqtt
+#     name: "Power Server Yesterday"
+#     state_topic: "tele/server_socket/SENSOR"
+#     value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
+#     unit_of_measurement: "kWh"
+#   - platform: mqtt
+#     name: "Power Server Total"
+#     state_topic: "tele/server_socket/SENSOR"
+#     value_template: '{{ value_json["ENERGY"]["Total"] }}'
+#     unit_of_measurement: "kWh"
+#   - platform: mqtt
+#     name: "Power Server Power"
+#     state_topic: "tele/server_socket/SENSOR"
+#     value_template: '{{ value_json["ENERGY"]["Power"] }}'
+#     unit_of_measurement: "W"
 
 
-  - platform: template
-    sensors:
-      power_server_calc_total:
-        friendly_name: "Server Power Total"
-        value_template: "{{(((states.sensor.power_server_total.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪"
+  # - platform: template
+  #   sensors:
+  #     power_server_calc_total:
+  #       friendly_name: "Server Power Total"
+  #       value_template: "{{(((states.sensor.power_server_total.state | float) * 52.46) / 100) | round(2) }}"
+  #       unit_of_measurement: "₪"
 
-      power_server_calc_today:
-        friendly_name: "Server Power Today"
-        value_template: "{{(((states.sensor.power_server_energy_today.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪"
+  #     power_server_calc_today:
+  #       friendly_name: "Server Power Today"
+  #       value_template: "{{(((states.sensor.power_server_energy_today.state | float) * 52.46) / 100) | round(2) }}"
+  #       unit_of_measurement: "₪"
   
-      power_server_calc_yesterday:
-        friendly_name: "Server Power Day Before"
-        value_template: "{{(((states.sensor.power_server_yesterday.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪"
+  #     power_server_calc_yesterday:
+  #       friendly_name: "Server Power Day Before"
+  #       value_template: "{{(((states.sensor.power_server_yesterday.state | float) * 52.46) / 100) | round(2) }}"
+  #       unit_of_measurement: "₪"
 
-      power_server_calc_all:
-        friendly_name: "Power Server Count start"
-        value_template: "{{((states.input_number.power_server_total.state | float) + (states.sensor.power_server_calc_yesterday.state | float)) | round(2) }}"
-        unit_of_measurement: "₪"        
+  #     power_server_calc_all:
+  #       friendly_name: "Power Server Count start"
+  #       value_template: "{{((states.input_number.power_server_total.state | float) + (states.sensor.power_server_calc_yesterday.state | float)) | round(2) }}"
+  #       unit_of_measurement: "₪"        
  
 
 #################################################################
 #   Automations                                                 #
 #################################################################
-automation:
-  - alias: Set Power Server Total
-    initial_state: 'on'
-    trigger:
-      platform: time
-      at: '00:05:00'
+# automation:
+#   - alias: Set Power Server Total
+#     initial_state: 'on'
+#     trigger:
+#       platform: time
+#       at: '00:05:00'
 
-    action:
-      service: input_number.set_value
-      data_template:
-        entity_id: input_number.power_server_total
-        value: "{{ states.sensor.power_server_total.state | float }}"      
+#     action:
+#       service: input_number.set_value
+#       data_template:
+#         entity_id: input_number.power_server_total
+#         value: "{{ states.sensor.power_server_total.state | float }}"      
 
 #################################################################
 #   Swithcs                                                     #
 #################################################################
-switch:
-  - platform: mqtt
-    name: "Power Server Room"
-    state_topic: "stat/server_socket/POWER"
-    command_topic: "cmnd/server_socket/POWER"
-    availability_topic: "tele/server_socket/LWT"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    retain: false
+# switch:
+#   - platform: mqtt
+#     name: "Power Server Room"
+#     state_topic: "stat/server_socket/POWER"
+#     command_topic: "cmnd/server_socket/POWER"
+#     availability_topic: "tele/server_socket/LWT"
+#     qos: 1
+#     payload_on: "ON"
+#     payload_off: "OFF"
+#     payload_available: "Online"
+#     payload_not_available: "Offline"
+#     retain: false

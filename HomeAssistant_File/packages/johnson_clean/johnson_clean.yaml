@@ -1,0 +1,28 @@
+# input_number:
+#   bathroom_fragranc:
+#     name: johnson timer
+#     min: 0
+#     max: 3
+#     step: 1
+#     icon: mdi:thermometer    
+    
+# #################################################################
+# #   Script                                                      #
+# #################################################################
+
+# script:
+#   fragrance_livingroom:
+#     sequence:
+#     - type: turn_on
+#       entity_id: switch.johnson
+#       domain: switch
+#     - delay:
+#         hours: 0
+#         minutes: 0
+#         seconds: '{{ states(''input_number.johnson_timer'') | int }}'
+#         milliseconds: 0
+#     - type: turn_off
+#       entity_id: switch.johnson
+#       domain: switch
+#     mode: single
+#     alias: Bathroom Fragrance Distributor

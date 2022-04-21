@@ -1,0 +1,60 @@
+script: 
+  sonos_say_in_hebrew: ### sonos ###
+    alias: 'sonos say in hebrew'
+    sequence:
+      - service: sonos.snapshot
+        data:
+          entity_id: '{{ sonos_entity }}'
+      - service: sonos.unjoin
+        data:
+          entity_id: '{{ sonos_entity }}'
+      - service: media_player.volume_set
+        data:
+          entity_id: '{{ sonos_entity }}'
+          volume_level: '{{ volume }}'
+      - service: tts.reversotts_say
+        data:
+          entity_id: '{{ sonos_entity }}'
+          message: '{{ message }}'
+      - delay: '{{ delay }}'
+      - service: sonos.restore
+        data:
+          entity_id: '{{ sonos_entity }}'
+      - service: tts.clear_cache
+    mode: single
+
+
+  # עבר לממשק ויזואלי - UI
+  # 01/9/21
+# automation:
+  # - alias: Welcome Home Nurit
+  #   trigger:
+  #   - entity_id: device_tracker.life360_nurit
+  #     from: not_home
+  #     platform: state
+  #     to: Home
+  #   condition: []
+  #   action:
+  #   - service: script.sonos_say_in_hebrew
+    # data:
+    #   sonos_entity: media_player.sonos_living_room
+    #   volume: 0.7
+    #   message: הַי נוּרִית . בְּרוּכָה הַבָּאָה . הַבַּיְתָה
+    #   delay: '00:00:05'
+
+
+
+  # - alias: Welcome Home Avi
+  #   trigger:
+  #   - entity_id: device_tracker.life360_avi_abeksis
+  #     from: not_home
+  #     platform: state
+  #     to: Home
+  #   condition: []
+  #   action:
+  #   - service: script.sonos_say_in_hebrew
+  #     data:
+  #       sonos_entity: media_player.sonos_living_room
+  #       volume: 0.7
+  #       message: הַי אָבִי . בָּרוּךְ הַבָּא . הַבַּיְתָה
+  #       delay: '00:00:08'

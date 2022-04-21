@@ -1,0 +1,7 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      washing_machine:
+        friendly_name: "Washing Machine"
+        value_template: >-
+          {{ states('sensor.washing_machine_energy_power')|float > 5 }}

@@ -1,0 +1,55 @@
+script:
+
+############################################################################
+#                                                                          #
+#   Turn ON with timer from Input Select                                   #
+#                                                                          #
+############################################################################
+
+  switcher_turn_on_timer_script:
+      alias: On with Timer
+      sequence:
+          - delay:
+              milliseconds: 100
+          - service: switcher_kis.turn_on_with_timer
+            data_template:
+              timer_minutes: '{{ states("input_select.switcher_timer_minutes_input_select") }}'            
+              # switcher_web_api_ip: !secret switcher_web_api_ip
+              # switcher_web_api_port: !secret switcher_web_api_port
+              # switcher_device_id: !secret switcher_device_id
+              # switcher_ip: !secret switcher_local_ip_addr
+          # - service: homeassistant.update_entity
+          #   entity_id: sensor.switcher_webapi
+            target:
+              entity_id: switch.switcher_mini
+
+
+############################################################################
+#                                                                          #
+#   Turn ON and OFF without timer for the Switch                           #
+#                                                                          #
+############################################################################
+
+  # switcher_turn_on:
+  #     alias: Turn On
+  #     sequence:
+  #         - service: rest_command.switcher_turn_on
+  #           data_template:
+  #             switcher_web_api_ip: !secret switcher_web_api_ip
+  #             switcher_web_api_port: !secret switcher_web_api_port
+  #             switcher_device_id: !secret switcher_device_id
+  #             switcher_ip: !secret switcher_local_ip_addr
+  #         - service: homeassistant.update_entity
+  #           entity_id: sensor.switcher_webapi
+
+  # switcher_turn_off:
+  #     alias: Turn Off
+  #     sequence:
+  #         - service: rest_command.switcher_turn_off
+  #           data_template:
+  #             switcher_web_api_ip: !secret switcher_web_api_ip
+  #             switcher_web_api_port: !secret switcher_web_api_port
+  #             switcher_device_id: !secret switcher_device_id
+  #             switcher_ip: !secret switcher_local_ip_addr
+  #         - service: homeassistant.update_entity
+  #           entity_id: sensor.switcher_webapi

@@ -1,0 +1,18 @@
+binary_sensor:
+  - platform: command_line
+    name: plex_availability
+    command: !secret plex_availability
+    scan_interval: 300
+    device_class: connectivity
+
+  # - platform: command_line
+  #   name: monitors_mute_state
+  #   scan_interval: 86400
+  #   command: !secret monitors_mute_state
+  #   payload_on: 'true'
+  #   payload_off: 'false'
+  #   device_class: sound
+
+  # - platform: ping
+  #   name: nas_internet_access
+  #   host: 192.168.1.125

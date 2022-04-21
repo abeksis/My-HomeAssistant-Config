@@ -1,69 +1,255 @@
+input_text:
+  energy_total_steam_collector_yesterday:
+    name: ' קולט אדים - אנרגיה אתמול'
+
+  energy_total_washing_machine_yesterday:
+    name: ' מכונת כביסה - אנרגיה אתמול'
+
+  energy_total_laundry_dryer_yesterday:
+    name: ' מייבש כביסה - אנרגיה אתמול'
+
+  energy_total_dishwasher_yesterday:
+    name: ' מדיח כלים - אנרגיה אתמול'
+
+  energy_total_oven_yesterday:
+    name: ' תנור אפייה - אנרגיה אתמול'
+
+  power_monthly_cost:
+    name: ' תשלום חודשי - מוצרי חשמל'  
+
+input_select:
+  power_bill_socket_cutoff_for_month:
+    name: Power Bill Socket Cutoff for Month
+    options:
+      - Odd
+      - Even
+
+#################################################################
+#   קולט אדים - צריכת חשמל בכסף                                 #
+#################################################################
+sensor:
+  - platform: template
+    sensors:
+      power_calc_total_steam:
+        friendly_name: "קולט אדים - תשלום חודשי"
+        value_template: "{{ ((states('sensor.tasmota_energy_total') | float) * (states('input_text.power_nis_per_kwh') | float) + (states('input_text.power_monthly_cost') | int ))|round(1)}}"
+        unit_of_measurement: "₪"
+
+
+  - platform: template
+    sensors:
+      power_calc_today_steam:
+        friendly_name: "קולט אדים - תשלום יומי"
+        value_template: "{{ ((states('sensor.tasmota_energy_today') | float) * (states('input_text.power_nis_per_kwh') | float))|round(1) }}"
+        unit_of_measurement: "₪"
+
+
+  - platform: template
+    sensors:
+      power_calc_yesterday_steam:
+        friendly_name: "קולט אדים - אתמול"
+        value_template: "{{ ((states('sensor.tasmota_energy_yesterday') | float) * (states('input_text.power_nis_per_kwh') | float))|round(2) }}"
+        unit_of_measurement: "₪"      
+
+#################################################################
+#    מכונת כביסה - צריכת חשמל בכסף                              #
+#################################################################
+
+  - platform: template
+    sensors:
+      power_calc_total_washing_machine:
+        friendly_name: "מכונת כביסה - תשלום חודשי"
+        value_template: "{{ ((states('sensor.washing_machine_energy_total') | float) * (states('input_text.power_nis_per_kwh') | float) + (states('input_text.power_monthly_cost') | int ))|round(1)}}"
+        unit_of_measurement: "₪"
+
+  - platform: template
+    sensors:
+      power_calc_today_washing_machine:
+        friendly_name: "מכונת כביסה - תשלום יומי"
+        value_template: "{{ ((states('sensor.washing_machine_energy_today') | float) * (states('input_text.power_nis_per_kwh') | float))|round(1) }}"
+        unit_of_measurement: "₪"
+
+  - platform: template
+    sensors:
+      power_calc_yesterday_washing_machine:
+        friendly_name: "מכונת כביסה - אתמול"
+        value_template: "{{ ((states('sensor.washing_machine_energy_yesterday') | float) * (states('input_text.power_nis_per_kwh') | float))|round(2) }}"
+        unit_of_measurement: "₪"
+        
+
+#################################################################
+#  מייבש כביסה - צריכת חשמל בכסף                                #
+#################################################################
+
+  - platform: template
+    sensors:
+      power_calc_total_laundry_dryer:
+        friendly_name: "מייבש כביסה - תשלום חודשי"
+        value_template: "{{ ((states('sensor.laundry_dryer_energy_total') | float) * (states('input_text.power_nis_per_kwh') | float) + (states('input_text.power_monthly_cost') | int ))|round(1)}}"
+        unit_of_measurement: "₪"
+
+  - platform: template
+    sensors:
+      power_calc_today_laundry_dryer:
+        friendly_name: "מייבש כביסה - תשלום יומי"
+        value_template: "{{ ((states('sensor.laundry_dryer_energy_today') | float) * (states('input_text.power_nis_per_kwh') | float))|round(1) }}"
+        unit_of_measurement: "₪"
+
+
+  - platform: template
+    sensors:
+      power_calc_yesterday_laundry_dryer:
+        friendly_name: "מייבש כביסה - אתמול"
+        value_template: "{{ ((states('sensor.laundry_dryer_energy_yesterday') | float) * (states('input_text.power_nis_per_kwh') | float))|round(2) }}"
+        unit_of_measurement: "₪"
+
+
+
+#################################################################
+#  מדיח כלים - צריכת חשמל בכסף                                  #
+#################################################################
+
+  - platform: template
+    sensors:
+      power_calc_total_dishwasher:
+        friendly_name: "מדיח כלים - תשלום חודשי"
+        value_template: "{{ ((states('sensor.dishwasher_energy_total') | float) * (states('input_text.power_nis_per_kwh') | float) + (states('input_text.power_monthly_cost') | int ))|round(1)}}"
+        unit_of_measurement: "₪"
+
+  - platform: template
+    sensors:
+      power_calc_today_dishwasher:
+        friendly_name: "מדיח כלים - תשלום יומי"
+        value_template: "{{ ((states('sensor.dishwasher_energy_today') | float) * (states('input_text.power_nis_per_kwh') | float))|round(1) }}"
+        unit_of_measurement: "₪"
+
+
+  - platform: template
+    sensors:
+      power_calc_yesterday_dishwasher:
+        friendly_name: " מדיח כלים - אתמול"
+        value_template: "{{ ((states('sensor.dishwasher_energy_yesterday') | float) * (states('input_text.power_nis_per_kwh') | float))|round(2) }}"
+        unit_of_measurement: "₪"
+
+
+#################################################################
+# תנור אפייה - צריכת חשמל בכסף                                  #
+#################################################################
+
+  - platform: template
+    sensors:
+      power_calc_total_oven:
+        friendly_name: "תנור אפייה - תשלום חודשי"
+        value_template: "{{ ((states('sensor.oven_energy_total') | float) * (states('input_text.power_nis_per_kwh') | float) + (states('input_text.power_monthly_cost') | int ))|round(1)}}"
+        unit_of_measurement: "₪"
+
+  - platform: template
+    sensors:
+      power_calc_today_oven:
+        friendly_name: "תנור אפייה - תשלום יומי"
+        value_template: "{{ ((states('sensor.oven_energy_today') | float) * (states('input_text.power_nis_per_kwh') | float))|round(1) }}"
+        unit_of_measurement: "₪"
+
+  - platform: template
+    sensors:
+      power_calc_yesterday_oven:
+        friendly_name: "תנור אפייה - אתמול"
+        value_template: "{{ ((states('sensor.oven_energy_yesterday') | float) * (states('input_text.power_nis_per_kwh') | float))|round(2) }}"
+        unit_of_measurement: "₪"
+
+# automation:
+  # - alias: Energy save Per Day Steam
+  #   trigger:
+  #     - platform: time
+  #       at: "00:00:00"
+  #   action:
+  #     service: input_text.set_value
+  #     data:
+  #       entity_id: energy_total_steam_collector_yesterday
+  #       value: "{{ states('sensor.power_calc_total_steam') }}"
+
+  # - alias: Energy save Per Day Washing Machine
+  #   trigger:
+  #     - platform: time
+  #       at: "00:00:00"
+  #   action:
+  #     service: input_text.set_value
+  #     data:
+  #       entity_id: energy_total_washing_machine_yesterday
+  #       value: "{{ states('sensor.washing_machine_energy_total') }}"
+
+
+
+
+
+#### יובל - ישן #####
+
 #################################################################
 #                                                               #
 #                          Customize                            #
 #                                                               #
 #################################################################
 
-homeassistant:
-  customize:
-    sensor.phaze_1_total:
-      friendly_name: שימוש כללי
-      icon: mdi:power-cycle
+# homeassistant:
+#   customize:
+#     sensor.phaze_1_total:
+#       friendly_name: שימוש כללי
+#       icon: mdi:power-cycle
     
-    sensor.phaze_1_current:  
-      friendly_name: Ampere
-      icon: mdi:flash-circle
+#     sensor.phaze_1_current:  
+#       friendly_name: Ampere
+#       icon: mdi:flash-circle
     
-    sensor.phaze_1_today:
-      friendly_name: שימוש יומי
-      icon: mdi:camera-timer
+#     sensor.phaze_1_today:
+#       friendly_name: שימוש יומי
+#       icon: mdi:camera-timer
       
-    sensor.phaze_1_yesterday:
-      friendly_name: שימוש בעבר
-      icon: mdi:calendar-blank
+#     sensor.phaze_1_yesterday:
+#       friendly_name: שימוש בעבר
+#       icon: mdi:calendar-blank
     
-    sensor.phaze_1_voltage:
-      friendly_name: מתח
-      icon: mdi:alpha-v-box-outline
+#     sensor.phaze_1_voltage:
+#       friendly_name: מתח
+#       icon: mdi:alpha-v-box-outline
 
-    sensor.phaze_1_power_factor:
-      friendly_name: הפרש הספק
-      icon: mdi:altimeter
+#     sensor.phaze_1_power_factor:
+#       friendly_name: הפרש הספק
+#       icon: mdi:altimeter
     
-    sensor.power_calc_total_phaze1:  
-      icon: mdi:flash-circle
+#     sensor.power_calc_total_phaze1:  
+#       icon: mdi:flash-circle
       
-    sensor.power_calc_today_phaze1:
-      icon: mdi:cash
+#     sensor.power_calc_today_phaze1:
+#       icon: mdi:cash
     
-    sensor.power_calc_yesterday_phaze1:
-      icon: mdi:cash-usd
+#     sensor.power_calc_yesterday_phaze1:
+#       icon: mdi:cash-usd
 
-    sensor.phaze_1_power:
-      friendly_name: Electric power      
+#     sensor.phaze_1_power:
+#       friendly_name: Electric power      
 
-    sensor.phaze_1_reactive_power:
-      friendly_name: צריכה תגובתית      
-      icon: mdi:arrow-decision-auto
+#     sensor.phaze_1_reactive_power:
+#       friendly_name: צריכה תגובתית      
+#       icon: mdi:arrow-decision-auto
     
-    sensor.phaze_1_apparent_power:
-      friendly_name: צריכה הסתברותית
+#     sensor.phaze_1_apparent_power:
+#       friendly_name: צריכה הסתברותית
       
-    sensor.kwh_count_all: 
-      friendly_name: Total KWH
-      icon: mdi:power-socket-eu
+#     sensor.kwh_count_all: 
+#       friendly_name: Total KWH
+#       icon: mdi:power-socket-eu
     
-    sensor.kwh_count_yesterday:
-      friendly_name: קילוואט־שעה (קוט"ש) (kWh) - שעון בחוץ
-      icon: mdi:power-socket-eu
+#     sensor.kwh_count_yesterday:
+#       friendly_name: קילוואט־שעה (קוט"ש) (kWh) - שעון בחוץ
+#       icon: mdi:power-socket-eu
 
-    sensor.shekel_count_all:    
-      friendly_name: Total This Month
-      icon: mdi:currency-usd
+#     sensor.shekel_count_all:    
+#       friendly_name: Total This Month
+#       icon: mdi:currency-usd
 
-    input_number.shekel_number:
-      friendly_name: Total Day Before  
-      icon: mdi:calendar-today    
+#     input_number.shekel_number:
+#       friendly_name: Total Day Before  
+#       icon: mdi:calendar-today    
 
 
 #################################################################
@@ -71,21 +257,24 @@ homeassistant:
 #                          input number                         #
 #                                                               #
 #################################################################
-input_number:
-  kwh_number:
-    name: KW/H Count
-    initial: 27210
-    min: 0
-    max: 999999999
-    step: 1
-    mode: box 
+# input_number:
+#   kwh_number:
+#     name: KW/H Count
+#     initial: 27210
+#     min: 0
+#     max: 999999999
+#     step: 1
+#     mode: box 
 
-  shekel_number:
-    name: shekel Count
-    min: 0
-    max: 999999999
-    step: 1
-    mode: box      
+#   shekel_number:
+#     name: shekel Count
+#     min: 0
+#     max: 999999999
+#     step: 1
+#     mode: box
+
+#   kwh_price:
+   
 
 #################################################################
 #                                                               #
@@ -93,98 +282,98 @@ input_number:
 #                                                               #
 ################################################################# 
 
-sensor:
-  - platform: mqtt
-    name: "Phaze 1 - Voltage"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Voltage }}"
-    unit_of_measurement: "V"
-  - platform: mqtt
-    name: "Phaze 1 - Current"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Current }}"
-    unit_of_measurement: "A"
-  - platform: mqtt
-    name: "Phaze 1 - Power"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Power }}"
-    unit_of_measurement: "W"
-  - platform: mqtt
-    name: "Phaze 1 - Power Factor"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Period }}"
-    unit_of_measurement: "PF"
-  - platform: mqtt
-    name: "Phaze 1 - Today"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Today }}"
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Phaze 1 - Yesterday"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Yesterday }}"
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Phaze 1 - Total"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].Total }}"
-    unit_of_measurement: "kWh" 
-  - platform: mqtt
-    name: "Phaze 1 - Apparent Power"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].ApparentPower }}"
-    unit_of_measurement: "VA"
-  - platform: mqtt
-    name: "Phaze 1 - Reactive Power"
-    state_topic: "tele/electricity/SENSOR"
-    value_template: "{{ value_json['ENERGY'].ReactivePower }}"
-    unit_of_measurement: "VAR"   
+# sensor:
+#   - platform: mqtt
+#     name: "Phaze 1 - Voltage"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].Voltage }}"
+#     unit_of_measurement: "V"
+#   - platform: mqtt
+#     name: "Phaze 1 - Current"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].Current }}"
+#     unit_of_measurement: "A"
+#   - platform: mqtt
+#     name: "Phaze 1 - Power"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].Power }}"
+#     unit_of_measurement: "W"
+#   - platform: mqtt
+#     name: "Phaze 1 - Power Factor"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].Period }}"
+#     unit_of_measurement: "PF"
+#   - platform: mqtt
+#     name: "Phaze 1 - Today"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].Today }}"
+#     unit_of_measurement: "kWh"
+#   - platform: mqtt
+#     name: "Phaze 1 - Yesterday"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].Yesterday }}"
+#     unit_of_measurement: "kWh"
+#   - platform: mqtt
+#     name: "Phaze 1 - Total"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].Total }}"
+#     unit_of_measurement: "kWh" 
+#   - platform: mqtt
+#     name: "Phaze 1 - Apparent Power"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].ApparentPower }}"
+#     unit_of_measurement: "VA"
+#   - platform: mqtt
+#     name: "Phaze 1 - Reactive Power"
+#     state_topic: "tele/electricity/SENSOR"
+#     value_template: "{{ value_json['ENERGY'].ReactivePower }}"
+#     unit_of_measurement: "VAR"   
  
-  - platform: template
-    sensors:
-      power_calc_total_phaze1:
-        friendly_name: "חישוב צריכה כללי"
-        value_template: "{{(((states.sensor.phaze_1_total.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪"
+#   - platform: template
+#     sensors:
+#       power_calc_total_phaze1:
+#         friendly_name: "חישוב צריכה כללי"
+#         value_template: "{{(((states.sensor.phaze_1_total.state | float) * 52.46) / 100) | round(2) }}"
+#         unit_of_measurement: "₪"
   
-      power_calc_today_phaze1:
-        friendly_name: "חישוב צריכה יומית"
-        value_template: "{{(((states.sensor.phaze_1_today.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪"
+#       power_calc_today_phaze1:
+#         friendly_name: "חישוב צריכה יומית"
+#         value_template: "{{(((states.sensor.phaze_1_today.state | float) * 52.46) / 100) | round(2) }}"
+#         unit_of_measurement: "₪"
   
-      power_calc_yesterday_phaze1:
-        friendly_name: "חישוב צריכה יום קודם"
-        value_template: "{{(((states.sensor.phaze_1_yesterday.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪" 
+#       power_calc_yesterday_phaze1:
+#         friendly_name: "חישוב צריכה יום קודם"
+#         value_template: "{{(((states.sensor.phaze_1_yesterday.state | float) * 52.46) / 100) | round(2) }}"
+#         unit_of_measurement: "₪" 
 
-      kwh_count_all:
-        friendly_name: "KWH Count Total"
-        value_template: "{{((states.input_number.kwh_number.state | float) + (states.sensor.phaze_1_total.state | float)) | round(2) }}"
-        unit_of_measurement: "kWh"
+#       kwh_count_all:
+#         friendly_name: "KWH Count Total"
+#         value_template: "{{((states.input_number.kwh_number.state | float) + (states.sensor.phaze_1_total.state | float)) | round(2) }}"
+#         unit_of_measurement: "kWh"
  
-      shekel_count_all:
-        friendly_name: "shekel Count start"
-        value_template: "{{((states.input_number.shekel_number.state | float) + (states.sensor.power_calc_yesterday_phaze1.state | float)) | round(2) }}"
-        unit_of_measurement: "₪"        
+#       shekel_count_all:
+#         friendly_name: "shekel Count start"
+#         value_template: "{{((states.input_number.shekel_number.state | float) + (states.sensor.power_calc_yesterday_phaze1.state | float)) | round(2) }}"
+#         unit_of_measurement: "₪"        
  
-      kwh_count_yesterday:
-        friendly_name: "KWH Count Yesterday"
-        value_template: "{{((states.sensor.kwh_count_all.state | float) - (states.sensor.phaze_1_yesterday.state | float)) | round(2) }}"
-        unit_of_measurement: "kWh"        
+#       kwh_count_yesterday:
+#         friendly_name: "KWH Count Yesterday"
+#         value_template: "{{((states.sensor.kwh_count_all.state | float) - (states.sensor.phaze_1_yesterday.state | float)) | round(2) }}"
+#         unit_of_measurement: "kWh"        
        
 
 #################################################################
 #   Automations                                                 #
 #################################################################
-automation:
-  - alias: Set shekel_number
-    initial_state: 'on'
-    trigger:
-      platform: time
-      at: '03:14:00'
+# automation:
+#   - alias: Set shekel_number
+#     initial_state: 'on'
+#     trigger:
+#       platform: time
+#       at: '03:14:00'
 
-    action:
-      service: input_number.set_value
-      data_template:
-        entity_id: input_number.shekel_number
-        value: "{{ states.sensor.shekel_count_all.state | float }}"
+#     action:
+#       service: input_number.set_value
+#       data_template:
+#         entity_id: input_number.shekel_number
+#         value: "{{ states.sensor.shekel_count_all.state | float }}"

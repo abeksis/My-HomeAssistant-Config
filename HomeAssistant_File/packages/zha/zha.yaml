@@ -1,0 +1,5 @@
+zha:
+  zigpy_config:
+    network:
+      channel: 11             # What channel the radio should try to use.
+      channels: [15, 20, 25]  # Channel mask

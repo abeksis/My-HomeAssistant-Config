@@ -1,0 +1,18 @@
+# זה חתימה של הצהרת בריאות עבודה
+# - alias: 'Havid sign'
+#   initial_state: 'true'
+#   trigger:
+#     - platform: time
+#       at: "06:00:00"
+#   condition:
+#     condition: time
+#     weekday:
+#       - sun
+#       - mon
+#       - tue
+#       - wed
+#       - thu
+#       - fri
+#       - sat
+#   action:
+#     - service: script.sign_and_download_havid

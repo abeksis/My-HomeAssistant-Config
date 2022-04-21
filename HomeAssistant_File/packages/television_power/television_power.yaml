@@ -2,79 +2,79 @@
 #   input Number                                                #
 #################################################################
 
-input_number:
-  television_total:
-    name: Television Count
-    min: 0
-    max: 999999999
-    step: 1
-    mode: box
+# input_number:
+#   television_total:
+#     name: Television Count
+#     min: 0
+#     max: 999999999
+#     step: 1
+#     mode: box
     
 #################################################################
 #   Sensor                                                      #
 #################################################################
 
-sensor:
-  - platform: mqtt
-    name: "Television Power Energy Today"
-    state_topic: "tele/socket_power_tv/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Today"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Television Power Yesterday"
-    state_topic: "tele/socket_power_tv/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Television Power Total"
-    state_topic: "tele/socket_power_tv/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Total"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Television Power Power"
-    state_topic: "tele/socket_power_tv/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Power"] }}'
-    unit_of_measurement: "W"
+# sensor:
+#   - platform: mqtt
+#     name: "Television Power Energy Today"
+#     state_topic: "tele/socket_power_tv/SENSOR"
+#     value_template: '{{ value_json["ENERGY"]["Today"] }}'
+#     unit_of_measurement: "kWh"
+#   - platform: mqtt
+#     name: "Television Power Yesterday"
+#     state_topic: "tele/socket_power_tv/SENSOR"
+#     value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
+#     unit_of_measurement: "kWh"
+#   - platform: mqtt
+#     name: "Television Power Total"
+#     state_topic: "tele/socket_power_tv/SENSOR"
+#     value_template: '{{ value_json["ENERGY"]["Total"] }}'
+#     unit_of_measurement: "kWh"
+#   - platform: mqtt
+#     name: "Television Power Power"
+#     state_topic: "tele/socket_power_tv/SENSOR"
+#     value_template: '{{ value_json["ENERGY"]["Power"] }}'
+#     unit_of_measurement: "W"
 
 
-  - platform: template
-    sensors:
-      television_power_calc_total:
-        friendly_name: "Television Total"
-        value_template: "{{(((states.sensor.television_power_total.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪"
+#   - platform: template
+#     sensors:
+#       television_power_calc_total:
+#         friendly_name: "Television Total"
+#         value_template: "{{(((states.sensor.television_power_total.state | float) * 52.46) / 100) | round(2) }}"
+#         unit_of_measurement: "₪"
   
-      television_power_energy_calc_today:
-        friendly_name: "Television Today"
-        value_template: "{{(((states.sensor.television_power_energy_today.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪"
+#       television_power_energy_calc_today:
+#         friendly_name: "Television Today"
+#         value_template: "{{(((states.sensor.television_power_energy_today.state | float) * 52.46) / 100) | round(2) }}"
+#         unit_of_measurement: "₪"
         
 
-      television_power_calc_yesterday:
-        friendly_name: "Television Day Before"
-        value_template: "{{(((states.sensor.television_power_yesterday.state | float) * 52.46) / 100) | round(2) }}"
-        unit_of_measurement: "₪"
+#       television_power_calc_yesterday:
+#         friendly_name: "Television Day Before"
+#         value_template: "{{(((states.sensor.television_power_yesterday.state | float) * 52.46) / 100) | round(2) }}"
+#         unit_of_measurement: "₪"
 
-      television_power_calc_all:
-        friendly_name: "Television Count start"
-        value_template: "{{((states.input_number.television_total.state | float) + (states.sensor.television_power_calc_yesterday.state | float)) | round(2) }}"
-        unit_of_measurement: "₪"
+#       television_power_calc_all:
+#         friendly_name: "Television Count start"
+#         value_template: "{{((states.input_number.television_total.state | float) + (states.sensor.television_power_calc_yesterday.state | float)) | round(2) }}"
+#         unit_of_measurement: "₪"
 
 #################################################################
 #   Automations                                                 #
 #################################################################
-automation:
-  - alias: Set Television Power Total
-    initial_state: 'on'
-    trigger:
-      platform: time
-      at: '00:05:00'
+# automation:
+#   - alias: Set Television Power Total
+#     initial_state: 'on'
+#     trigger:
+#       platform: time
+#       at: '00:05:00'
 
-    action:
-      service: input_number.set_value
-      data_template:
-        entity_id: input_number.television_total
-        value: "{{ states.sensor.television_power_total.state | float }}"
+#     action:
+#       service: input_number.set_value
+#       data_template:
+#         entity_id: input_number.television_total
+#         value: "{{ states.sensor.television_power_total.state | float }}"
 
 #################################################################
 #   Swithcs                                                     #

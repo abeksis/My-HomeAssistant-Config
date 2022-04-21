@@ -1,0 +1,680 @@
+title: electricity
+icon: 'mdi:kettle-alert-outline'
+path: electricity
+type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr
+  grid-template-rows: auto
+  mediaquery:
+    "(min-width: 800px)":
+      grid-template-columns: 700px
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: edge
+
+      # Home Back    
+      - type: 'custom:button-card'
+        template: chip_back
+        variables:
+          ulm_chip_back_path: /lovelace-minimalist/home
+
+  ###----- קולט אדים -----####
+  - type: vertical-stack
+    cards:
+      - type: 'custom:swipe-card'
+        title: Backyard
+        card_width: 100%
+        start_card: 2
+        parameters:
+          effect: coverflow
+          grabCursor: true
+          centeredSlides: true
+          slidesPerView: auto
+          autoplay:
+            delay: 20000000
+          coverflowEffect:
+            rotate: 50
+            stretch: 0
+            depth: 100
+            modifier: 1
+            slideShadows: false
+          pagination:
+            type: bullets
+        cards:
+        - type: custom:layout-card
+          layout_type: grid
+
+          layout_options:
+            grid-template-columns: 1fr
+            grid-template-rows: auto
+            grid-gap: 0px 4px
+            mediaquery:
+              "(max-width: 450px)":
+                grid-template-columns: 1fr
+          cards:
+            - type: custom:button-card
+              template: edge
+            - type: custom:button-card
+              show_icon: false
+              show_name: false
+              show_label: false
+              styles:
+                grid:
+                  - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3' 'item4 item4' 'item5 item5'"
+                  - grid-template-columns: 1fr 1fr
+                  - grid-template-rows: "min-content min-content min-content"
+                  - row-gap: 10px
+                card:
+                  - border-radius: var(--border-radius)
+                  - box-shadow: var(--box-shadow)
+                  - padding: 10px
+              custom_fields:
+                item1:
+                  card:
+                    type: custom:button-card
+                    template: card_title
+                    name: Steam Collector
+                    label: '[[[ return "it has " + states["sensor.power_calc_total_steam"].state + "₪ Shekel." ]]]'
+                item2:
+                  card:
+                    type: custom:button-card
+                    entity: sensor.power_calc_total_steam
+                    show_entity_picture: true
+                    show_icon: false
+                    show_name: false
+                    entity_picture: /local/steam_collector.png
+                    style:
+                      - padding: 0px
+                    styles:
+                      card:
+                        - box-shadow: "none"
+                      entity_picture:
+                        - width: 89%
+                        - padding-bottom: 0%
+                item3:
+                  card:
+                    type: custom:button-card
+                    template: list_2_items
+                    custom_fields:
+                      item1:
+                        card:
+                          type: custom:button-card
+                          template: card_power_outlet
+                          entity: sensor.power_calc_today_steam
+                          name: Today
+                          styles:
+                            card:
+                              - box-shadow: "none"  
+                      item2:
+                        card:
+                          type: custom:button-card
+                          template: card_power_outlet
+                          entity: sensor.power_calc_yesterday_steam
+                          name: Yesterday
+                          styles:
+                            card:
+                              - box-shadow: "none"  
+                item4:
+                  card:
+                    type: custom:button-card
+                    template: list_2_items
+                    custom_fields:
+                      item1:
+                        card:
+                          type: custom:button-card
+                          template: card_graph
+                          variables:
+                            ulm_card_graph_color: "var(--google-blue)"
+                            ulm_card_graph_entity: sensor.tasmota_energy_power
+                            ulm_card_graph_hours: 60
+                            ulm_card_graph_type: Reichweite
+                            ulm_card_graph_name: Total
+                          styles:
+                            card:
+                              - box-shadow: "none"
+    
+                      item2:
+                        card:
+                          type: custom:button-card
+                          template: card_graph
+                          variables:
+                            ulm_card_graph_color: "var(--google-green)"
+                            ulm_card_graph_entity: sensor.tasmota_steam_wi_fi_quality
+                            ulm_card_graph_hours: 60
+                            ulm_card_graph_name: Reichweite
+                            ulm_card_graph_type: WiFi
+                          styles:
+                            card:
+                              - box-shadow: "none"
+                item5:
+                  card:
+                    type: custom:button-card
+                    template: card_script
+                    variables:
+                      ulm_card_script_title: 'Steam Collector'
+                      ulm_card_script_icon: 'mdi:pot-steam'
+                    tap_action:
+                      action: call-service
+                      service: script.turn_off
+                      service_data:
+                        entity_id: switch.steam
+                    styles:
+                      card:
+                        - box-shadow: "none"
+
+      ##----- מדיח כלים
+        - type: vertical-stack
+          cards:
+            - type: custom:layout-card
+              layout_type: grid
+              layout_options:
+                grid-template-columns: 1fr
+                grid-template-rows: auto
+                grid-gap: 0px 4px
+                mediaquery:
+                  "(max-width: 450px)":
+                    grid-template-columns: 1fr              
+              cards:
+                - type: custom:button-card
+                  show_icon: false
+                  show_name: false
+                  show_label: false
+                  styles:
+                    grid:
+                      - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3' 'item4 item4' 'item5 item5'"
+                      - grid-template-columns: 1fr 1fr
+                      - grid-template-rows: "min-content min-content min-content"
+                      - row-gap: 10px
+                    card:
+                      - border-radius: var(--border-radius)
+                      - box-shadow: var(--box-shadow)
+                      - padding: 10px
+                  custom_fields:
+                    item1:
+                      card:
+                        type: custom:button-card
+                        template: card_title
+                        name: Dishwasher
+                        label: '[[[ return "it has " + states["sensor.power_calc_total_dishwasher"].state + "₪ Shekel." ]]]'
+                    item2:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.power_calc_total_dishwasher
+                        show_entity_picture: true
+                        show_icon: false
+                        show_name: false
+                        entity_picture: /local/dishwasher_01.png
+                        style:
+                          - padding: 0px
+                        styles:
+                          card:
+                            - box-shadow: "none"
+                          entity_picture:
+                            - width: 50%
+                            - padding-bottom: 0%
+                    item3:
+                      card:
+                        type: custom:button-card
+                        template: list_2_items
+                        custom_fields:
+                          item1:
+                            card:
+                              type: custom:button-card
+                              template: card_power_outlet
+                              entity: sensor.power_calc_today_dishwasher
+                              name: Today
+                              styles:
+                                card:
+                                  - box-shadow: "none"  
+                          item2:
+                            card:
+                              type: custom:button-card
+                              template: card_power_outlet
+                              entity: sensor.power_calc_yesterday_dishwasher
+                              name: Yesterday
+                              styles:
+                                card:
+                                  - box-shadow: "none"  
+                    item4:
+                      card:
+                        type: custom:button-card
+                        template: list_2_items
+                        custom_fields:
+                          item1:
+                            card:
+                              type: custom:button-card
+                              template: card_graph
+                              variables:
+                                ulm_card_graph_color: "var(--google-blue)"
+                                ulm_card_graph_entity: sensor.dishwasher_energy_power
+                                ulm_card_graph_hours: 60
+                                ulm_card_graph_type: Reichweite
+                                ulm_card_graph_name: Total
+                              styles:
+                                card:
+                                  - box-shadow: "none"
+
+                          item2:
+                            card:
+                              type: custom:button-card
+                              template: card_graph
+                              variables:
+                                ulm_card_graph_color: "var(--google-green)"
+                                ulm_card_graph_entity: sensor.tasmota_dishwasher_power_socket_wi_fi_quality
+                                ulm_card_graph_hours: 60
+                                ulm_card_graph_name: Reichweite
+                                ulm_card_graph_type: WiFi
+                              styles:
+                                card:
+                                  - box-shadow: "none"
+                    item5:
+                      card:
+                        type: custom:button-card
+                        template: card_script
+                        variables:
+                          ulm_card_script_title: 'Dishwasher'
+                          ulm_card_script_icon: 'mdi:dishwasher'
+                        tap_action:
+                          action: call-service
+                          service: script.turn_off
+                          service_data:
+                            entity_id: switch.dishwasher
+                        styles:
+                          card:
+                            - box-shadow: "none"
+
+
+        ###----- מכונת כביסה
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: edge   
+            - type: custom:layout-card
+              layout_type: grid
+              layout_options:
+                grid-template-columns: 1fr
+                grid-template-rows: auto
+                grid-gap: 0px 4px
+                mediaquery:
+                  "(max-width: 450px)":
+                    grid-template-columns: 1fr
+              cards:
+                - type: custom:button-card
+                  template: edge
+                - type: custom:button-card
+                  show_icon: false
+                  show_name: false
+                  show_label: false
+                  styles:
+                    grid:
+                      - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3' 'item4 item4' 'item5 item5'"
+                      - grid-template-columns: 1fr 1fr
+                      - grid-template-rows: "min-content min-content min-content"
+                      - row-gap: 10px
+                    card:
+                      - border-radius: var(--border-radius)
+                      - box-shadow: var(--box-shadow)
+                      - padding: 10px
+                  custom_fields:
+                    item1:
+                      card:
+                        type: custom:button-card
+                        template: card_title
+                        name: Washing Machine
+                        label: '[[[ return "it has " + states["sensor.power_calc_total_washing_machine"].state + "₪ Shekel." ]]]'
+                    item2:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.power_calc_total_washing_machine
+                        show_entity_picture: true
+                        show_icon: false
+                        show_name: false
+                        entity_picture: /local/washing_machine.png
+                        style:
+                          - padding: 0px
+                        styles:
+                          card:
+                            - box-shadow: "none"
+                          entity_picture:
+                            - width: 38%
+                            - padding-bottom: 0%
+                    item3:
+                      card:
+                        type: custom:button-card
+                        template: list_2_items
+                        custom_fields:
+                          item1:
+                            card:
+                              type: custom:button-card
+                              template: card_power_outlet
+                              entity: sensor.power_calc_today_washing_machine
+                              name: Today
+                              styles:
+                                card:
+                                  - box-shadow: "none"  
+                          item2:
+                            card:
+                              type: custom:button-card
+                              template: card_power_outlet
+                              entity: sensor.power_calc_yesterday_washing_machine
+                              name: Yesterday
+                              styles:
+                                card:
+                                  - box-shadow: "none"  
+                    item4:
+                      card:
+                        type: custom:button-card
+                        template: list_2_items
+                        custom_fields:
+                          item1:
+                            card:
+                              type: custom:button-card
+                              template: card_graph
+                              variables:
+                                ulm_card_graph_color: "var(--google-blue)"
+                                ulm_card_graph_entity: sensor.washing_machine_energy_power
+                                ulm_card_graph_hours: 60
+                                ulm_card_graph_type: Reichweite
+                                ulm_card_graph_name: Total
+                              styles:
+                                card:
+                                  - box-shadow: "none"
+        
+                          item2:
+                            card:
+                              type: custom:button-card
+                              template: card_graph
+                              variables:
+                                ulm_card_graph_color: "var(--google-green)"
+                                ulm_card_graph_entity: sensor.tasmota_washing_machine_wi_fi_quality
+                                ulm_card_graph_hours: 60
+                                ulm_card_graph_name: Reichweite
+                                ulm_card_graph_type: WiFi
+                              styles:
+                                card:
+                                  - box-shadow: "none"
+                    item5:
+                      card:
+                        type: custom:button-card
+                        template: card_script
+                        variables:
+                          ulm_card_script_title: 'Washing Machine'
+                          ulm_card_script_icon: 'mdi:washing-machine'
+                        tap_action:
+                          action: call-service
+                          service: script.turn_off
+                          service_data:
+                            entity_id: switch.washing_machine
+                        styles:
+                          card:
+                            - box-shadow: "none"
+
+
+        ###----- מייבש כביסה
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: edge  
+            - type: custom:layout-card
+              layout_type: grid
+              layout_options:
+                grid-template-columns: 1fr
+                grid-template-rows: auto
+                grid-gap: 0px 4px
+                mediaquery:
+                  "(max-width: 450px)":
+                    grid-template-columns: 1fr
+              cards:
+                - type: custom:button-card
+                  template: edge
+                - type: custom:button-card
+                  show_icon: false
+                  show_name: false
+                  show_label: false
+                  styles:
+                    grid:
+                      - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3' 'item4 item4' 'item5 item5'"
+                      - grid-template-columns: 1fr 1fr
+                      - grid-template-rows: "min-content min-content min-content"
+                      - row-gap: 10px
+                    card:
+                      - border-radius: var(--border-radius)
+                      - box-shadow: var(--box-shadow)
+                      - padding: 10px
+                  custom_fields:
+                    item1:
+                      card:
+                        type: custom:button-card
+                        template: card_title
+                        name: Clothes Dryer
+                        label: '[[[ return "it has " + states["sensor.power_calc_total_laundry_dryer"].state + "₪ Shekel." ]]]'
+                    item2:
+                      card:
+                        type: custom:button-card
+                        entity: sensor.power_calc_total_laundry_dryer
+                        show_entity_picture: true
+                        show_icon: false
+                        show_name: false
+                        entity_picture: /local/clothes_dryer.png
+                        style:
+                          - padding: 0px
+                        styles:
+                          card:
+                            - box-shadow: "none"
+                          entity_picture:
+                            - width: 35%
+                            - padding-bottom: 0%
+                    item3:
+                      card:
+                        type: custom:button-card
+                        template: list_2_items
+                        custom_fields:
+                          item1:
+                            card:
+                              type: custom:button-card
+                              template: card_power_outlet
+                              entity: sensor.power_calc_today_laundry_dryer
+                              name: Today
+                              styles:
+                                card:
+                                  - box-shadow: "none"  
+                          item2:
+                            card:
+                              type: custom:button-card
+                              template: card_power_outlet
+                              entity: sensor.power_calc_yesterday_laundry_dryer
+                              name: Yesterday
+                              styles:
+                                card:
+                                  - box-shadow: "none"  
+                    item4:
+                      card:
+                        type: custom:button-card
+                        template: list_2_items
+                        custom_fields:
+                          item1:
+                            card:
+                              type: custom:button-card
+                              template: card_graph
+                              variables:
+                                ulm_card_graph_color: "var(--google-blue)"
+                                ulm_card_graph_entity: sensor.washing_machine_energy_power
+                                ulm_card_graph_hours: 60
+                                ulm_card_graph_type: Reichweite
+                                ulm_card_graph_name: Total
+                              styles:
+                                card:
+                                  - box-shadow: "none"
+        
+                          item2:
+                            card:
+                              type: custom:button-card
+                              template: card_graph
+                              variables:
+                                ulm_card_graph_color: "var(--google-green)"
+                                ulm_card_graph_entity: sensor.tasmota_washing_machine_wi_fi_quality
+                                ulm_card_graph_hours: 60
+                                ulm_card_graph_name: Reichweite
+                                ulm_card_graph_type: WiFi
+                              styles:
+                                card:
+                                  - box-shadow: "none"
+                    item5:
+                      card:
+                        type: custom:button-card
+                        template: card_script
+                        variables:
+                          ulm_card_script_title: 'Clothes Dryer'
+                          ulm_card_script_icon: 'mdi:hanger'
+                        tap_action:
+                          action: call-service
+                          service: script.turn_off
+                          service_data:
+                            entity_id: switch.washing_machine
+                        styles:
+                          card:
+                            - box-shadow: "none"
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: title
+            label: Electric Company
+            name: '[[[ return "The Total Bill is " + states["sensor.energy_total_next_bill_cost"].state + "₪ Shekel." ]]]' 
+
+  - type: vertical-stack
+    cards:
+      - type: custom:layout-card
+        layout_type: grid
+        cards:
+
+          - type: custom:button-card
+            show_icon: false
+            show_name: false
+            show_label: false
+            styles:
+              grid:
+                - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3'"
+                - grid-template-columns: 1fr
+                - grid-template-rows: "min-content min-content min-content"
+                - row-gap: 5px
+              card:
+                - border-radius: var(--border-radius)
+                - box-shadow: var(--box-shadow)
+                - padding: 10px
+            custom_fields:
+              item1:
+                card:
+                  type: custom:button-card
+                  template: list_2_items
+                  custom_fields:
+                    item1:
+                      card:
+                        type: custom:button-card
+                        template: card_title
+                        name: Baking Oven
+                        label: '[[[ return "it has " + states["sensor.power_calc_total_oven"].state + "₪ Shekel." ]]]'                    
+                      # card:
+                      #   type: 'custom:button-card'
+                      #   template: custom_card_bar_avi
+                      #   variables:
+                      #     ulm_custom_card_bar_card_entity: sensor.cpu_temperature
+                      #     ulm_custom_card_bar_card_name: CPU Temp
+                      #     ulm_custom_card_bar_card_value: false
+                      #     ulm_custom_card_bar_card_indicator: false
+
+                    # item2:
+                    #   card:
+                    #     type: 'custom:button-card'
+                    #     template: custom_card_bar_avi
+                    #     variables:
+                    #       ulm_custom_card_bar_card_entity: sensor.disk_use_home
+                    #       ulm_custom_card_bar_card_name: Disk Use
+                    #       ulm_custom_card_bar_card_value: false
+                    #       ulm_custom_card_bar_card_indicator: false
+                    # item3:
+                    #   card:
+                    #     type: 'custom:button-card'
+                    #     template: custom_card_bar_avi
+                    #     variables:
+                    #       ulm_custom_card_bar_card_entity: sensor.disk_free_home
+                    #       ulm_custom_card_bar_card_name: Disk Free
+                    #       ulm_custom_card_bar_card_value: false
+                    #       ulm_custom_card_bar_card_indicator: false
+
+                    # item4:
+                    #   card:
+                    #     type: 'custom:button-card'
+                    #     template: custom_card_bar_avi
+                    #     variables:
+                    #       ulm_custom_card_bar_card_entity: sensor.disk_use_percent_home
+                    #       ulm_custom_card_bar_card_name: Disk Percent
+                    #       ulm_custom_card_bar_card_value: false
+                    #       ulm_custom_card_bar_card_indicator: false
+
+
+              item2:
+                card:
+                  type: custom:button-card
+                  template: list_2_items
+                  custom_fields:
+                    item1:
+                      card:
+                        type: custom:button-card
+                        template: card_generic
+                        entity: sensor.power_calc_today_oven
+                        name: Today Oven
+                        icon: "mdi:stove"
+                        styles:
+                          icon:
+                            - color: "rgba(var(--color-green),0.8)"
+                          img_cell:
+                            - background-color: "rgba(var(--color-green),.05)"
+                          card:
+                            - box-shadow: none
+
+                    item2:
+                      card:
+                        type: custom:button-card
+                        template: card_generic
+                        entity: sensor.power_calc_yesterday_oven
+                        name: Yesterday Oven                        
+                        icon: "mdi:stove"
+                        styles:
+                          icon:
+                            - color: "rgba(var(--color-pink),0.8)"
+                          img_cell:
+                            - background-color: "rgba(var(--color-pink),.05)"
+                          card:
+                            - box-shadow: none
+              item3:
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      template: card_graph
+                      variables:
+                        ulm_card_graph_color: "var(--google-blue)"
+                        ulm_card_graph_entity: sensor.oven_energy_power
+                        ulm_card_graph_hours: 24
+                        ulm_card_graph_name: Power
+                        ulm_card_graph_type: Energy Power
+                      styles:
+                        card:
+                          - box-shadow: "none"
+
+                    - type: custom:button-card
+                      template: card_graph
+                      variables:
+                        ulm_card_graph_color: "var(--google-green)"
+                        ulm_card_graph_entity: sensor.oven_signal
+                        ulm_card_graph_hours: 60
+                        ulm_card_graph_name: WiFi Signal
+                        ulm_card_graph_type: WiFi
+                      styles:
+                        card:
+                          - box-shadow: "none"

@@ -1,0 +1,18 @@
+---
+button_card_templates: !include_dir_merge_named "lovelace_minimalist/templates/"
+
+title: "UI Lovelace Minimalist"
+theme: "minimalist-desktop"
+background: "var(--background-image)"
+views:
+  - !include /config/lovelace_minimalist/views/home.yaml
+  - !include /config/lovelace_minimalist/views/living_room.yaml
+  - !include /config/lovelace_minimalist/views/kitchen.yaml
+  - !include /config/lovelace_minimalist/views/bathroom.yaml
+  - !include /config/lovelace_minimalist/views/outside.yaml
+  - !include /config/lovelace_minimalist/views/lights.yaml
+  - !include /config/lovelace_minimalist/views/rooms.yaml 
+  - !include /config/lovelace_minimalist/views/lab.yaml
+  - !include /config/lovelace_minimalist/views/security.yaml
+  - !include /config/lovelace_minimalist/views/electricity.yaml
+  - !include /config/lovelace_minimalist/views/nas.yaml  

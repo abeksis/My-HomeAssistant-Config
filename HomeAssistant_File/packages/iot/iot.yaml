@@ -1,0 +1,67 @@
+sensor:
+  - platform: mqtt
+    name: "My Computer - HDD Total Size (C)"
+    state_topic: "iotlink/workgroup/desktop-npqraj3/windows-monitor/stats/hard-drive/c/total-size"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-npqraj3/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "My Computer - HDD Total Free Space (C)"
+    state_topic: "iotlink/workgroup/desktop-npqraj3/windows-monitor/stats/hard-drive/c/total-free-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-npqraj3/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+  - platform: mqtt
+    name: "My Computer - HDD Used Space (C)"
+    state_topic: "iotlink/workgroup/desktop-npqraj3/windows-monitor/stats/hard-drive/c/used-space"
+    unit_of_measurement: 'GB'
+    icon: mdi:harddisk
+    value_template: "{{ value }}"
+    availability_topic: "iotlink/workgroup/desktop-npqraj3/lwt"
+    payload_available: "ON"
+    payload_not_available: "OFF"
+    qos: 1
+
+
+#   - platform: mqtt
+#     name: "My Computer - HDD Free Space (C)"
+#     state_topic: "iotlink/workgroup/desktop-npqraj3/windows-monitor/stats/hard-drive/c/available-free-space"
+#     unit_of_measurement: 'GB'
+#     icon: mdi:harddisk
+#     value_template: "{{ value }}"
+#     availability_topic: "iotlink/workgroup/desktop-npqraj3/lwt"
+#     payload_available: "ON"
+#     payload_not_available: "OFF"
+#     qos: 1
+
+#   - platform: mqtt
+#     name: "My Computer - HDD Format (C)"
+#     state_topic: "iotlink/workgroup/desktop-npqraj3/windows-monitor/stats/hard-drive/c/drive-format"
+#     unit_of_measurement: ''
+#     icon: mdi:harddisk
+#     value_template: "{{ value }}"
+#     availability_topic: "iotlink/workgroup/desktop-npqraj3/lwt"
+#     payload_available: "ON"
+#     payload_not_available: "OFF"
+#     qos: 1
+
+#   - platform: mqtt
+#     name: "My Computer - HDD Label (C)"
+#     state_topic: "iotlink/workgroup/desktop-npqraj3/windows-monitor/stats/hard-drive/c/volume-label"
+#     unit_of_measurement: ''
+#     icon: mdi:harddisk
+#     value_template: "{{ value }}"
+#     availability_topic: "iotlink/workgroup/desktop-npqraj3/lwt"
+#     payload_available: "ON"
+#     payload_not_available: "OFF"
+#     qos: 1

@@ -1,0 +1,104 @@
+---
+### התווסף על ידי אבי ###
+custom_card_generic_dual_entity:
+    show_label: false
+    show_name: false
+    show_icon: false
+    variables:
+      ulm_custom_card_generic_dual_entity_1_color: blue
+      ulm_custom_card_generic_dual_entity_2_color: yellow
+      ulm_custom_card_generic_dual_entity_3_color: blue
+    styles:
+      card:
+        - border-radius: var(--border-radius)
+        - box-shadow: var(--box-shadow)
+        - padding: 12px
+      grid:
+        - grid-template-areas: '"item1 item2 item3"'
+        - grid-template-columns: auto
+        - grid-template-rows: min-content
+    custom_fields:
+      item1:
+        card:
+          type: custom:button-card
+          template: custom_card_generic
+          entity: '[[[ return variables.ulm_custom_card_generic_dual_entity_1; ]]]'
+          icon: mdi:transmission-tower
+          name: Per Month
+      item2:
+        card:
+          type: custom:button-card
+          template: custom_card_generic
+          entity: '[[[ return variables.ulm_custom_card_generic_dual_entity_2; ]]]'
+          icon: mdi:transmission-tower
+          name: Per Day
+      item3:
+        card:
+          type: custom:button-card
+          template: custom_card_generic
+          entity: '[[[ return variables.ulm_custom_card_generic_dual_entity_3; ]]]'
+          icon: mdi:transmission-tower
+          name: Per Hour         
+custom_card_generic:
+    template:
+      - ulm_language_variables
+    triggers_update: all
+    show_label: true
+    variables:
+      color: blue
+    label: |
+      [[[
+        var unit = entity.attributes.unit_of_measurement != null ? " " + entity.attributes.unit_of_measurement : ""
+        if (entity.state == "on") {
+          return variables.ulm_on;
+        } else if (entity.state == "off") {
+          return variables.ulm_off;
+        } else if (entity.state == "unavailable") {
+          return variables.ulm_unavailable;
+        } else if (entity.state == "idle") {
+          return variables.ulm_idle;
+        } else if (entity.state == "open") {
+          return variables.ulm_open;
+        } else if (entity.state == "closed") {
+          return variables.ulm_closed;
+        } else {
+          return entity.state + unit;
+        }
+      ]]]
+    custom_fields:
+      item1: |
+        [[[
+          return `</ha-icon><span>Power</span></span>`
+        ]]]
+    styles:
+      icon:
+        - color: rgba(var(--color-yellow),1)
+        - width: 25px
+      label:
+        - place-self: center
+        - font-size: 15px
+        - font-weight: bold
+      name:
+        - place-self: center
+        - font-size: 14px
+      state:
+        - place-self: center
+        - font-weight: bold
+        - font-size: 14px
+      img_cell:
+        - background-color: rgba(var(--color-yellow),0.2)
+        - border-radius: 50%
+        - place-self: center
+        - width: 42px
+        - height: 42px
+      grid:
+        - grid-template-areas: '''i n'' ''i l'' ''i item1'''
+        - grid-template-columns: auto
+        - grid-template-rows: min-content min-content min-content
+      card:
+        - box-shadow: none
+        - padding: 0px
+      custom_fields:
+        item1:
+          - font-size: 10px
+          - place-self: center

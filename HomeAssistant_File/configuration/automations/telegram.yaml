@@ -1,99 +1,99 @@
 #################################################################
 #   whohome                                                     #
 #################################################################
-- alias: Telegram whohome
-  description: 'Sends a command to the telegram to see whos at home'
-  trigger:
-  - platform: event
-    event_data:
-      command: /whohome
-    event_type: telegram_callback
-  condition: []
-  action:
-  - service: telegram_bot.send_message
-    data:
-      message: 'Avi: {{ states.device_tracker.life360_avi_abeksis.state }}.
+# - alias: Telegram whohome
+#   description: 'Sends a command to the telegram to see whos at home'
+#   trigger:
+#   - platform: event
+#     event_data:
+#       command: /whohome
+#     event_type: telegram_callback
+#   condition: []
+#   action:
+#   - service: telegram_bot.send_message
+#     data:
+#       message: 'Avi: {{ states.device_tracker.life360_avi_abeksis.state }}.
 
-        Nurit: {{states.device_tracker.life360_nurit.state }}.
+#         Nurit: {{states.device_tracker.life360_nurit.state }}.
 
-        '
-      target: 609066523
-      parse_mode: markdown
-  mode: single
+#         '
+#       target: 609066523
+#       parse_mode: markdown
+#   mode: single
 
 #################################################################
 #   Hello                                                       #
 #################################################################
-- alias: Telegram Hello
-  description: 'Executes a command to activate a set of buttons in the telegram'
-  trigger:
-  - platform: event
-    event_type: telegram_command
-    event_data:
-      command: /start
-  condition: []
-  action:
-  - service: telegram_bot.send_message
-    data:
-      message: hi
-      target: 609066523
-      parse_mode: html
-      inline_keyboard:
-      - Electricity Data:/electricity
-      - Who Is Home?:/whohome
-      - Switches states:/switches
-  mode: single  
+# - alias: Telegram Hello
+#   description: 'Executes a command to activate a set of buttons in the telegram'
+#   trigger:
+#   - platform: event
+#     event_type: telegram_command
+#     event_data:
+#       command: /start
+#   condition: []
+#   action:
+#   - service: telegram_bot.send_message
+#     data:
+#       message: hi
+#       target: 609066523
+#       parse_mode: html
+#       inline_keyboard:
+#       - Electricity Data:/electricity
+#       - Who Is Home?:/whohome
+#       - Switches states:/switches
+#   mode: single  
 
 
 #################################################################
 #   switches                                                    #
 #################################################################
-- alias: Telegram switches
-  description: 'Provides information about the switches that work - displayed via telegram'
-  trigger:
-  - platform: event
-    event_data:
-      command: /switches
-    event_type: telegram_callback
-  condition: []
-  action:
-  - service: telegram_bot.send_message
-    data:
-      target: 609066523
-      parse_mode: html
-      message: "<b>Switches States:</b>\n{% for state in states.switch -%} {%- if\
-        \ state.entity_id != 'switch.air_cond_api' and state.entity_id != 'switch.friendly_name_restart'\
-        \ %} \n{{ state.name }} : {{state.state_with_unit}} {% endif -%}\n{%- endfor\
-        \ %}\n"
-  mode: single  
+# - alias: Telegram switches
+#   description: 'Provides information about the switches that work - displayed via telegram'
+#   trigger:
+#   - platform: event
+#     event_data:
+#       command: /switches
+#     event_type: telegram_callback
+#   condition: []
+#   action:
+#   - service: telegram_bot.send_message
+#     data:
+#       target: 609066523
+#       parse_mode: html
+#       message: "<b>Switches States:</b>\n{% for state in states.switch -%} {%- if\
+#         \ state.entity_id != 'switch.air_cond_api' and state.entity_id != 'switch.friendly_name_restart'\
+#         \ %} \n{{ state.name }} : {{state.state_with_unit}} {% endif -%}\n{%- endfor\
+#         \ %}\n"
+#   mode: single  
 
 
 #################################################################
 #   Electricity                                                 #
 #################################################################
-- alias: Telegram Electricity
-  description: 'Provides information about the Electricity  - displayed via telegram'
-  trigger:
-  - platform: event
-    event_data:
-      command: /electricity
-    event_type: telegram_callback
-  condition: []
-  action:
-  - service: telegram_bot.send_message
-    data:
-      message: 'Current: {{ states.sensor.phaze_1_current.state }} A
+# - alias: Telegram Electricity
+#   description: 'Provides information about the Electricity  - displayed via telegram'
+#   trigger:
+#   - platform: event
+#     event_data:
+#       command: /electricity
+#     event_type: telegram_callback
+#   condition: []
+#   action:
+#   - service: telegram_bot.send_message
+#     data:
+#       message: 'Current: {{ states.sensor.phaze_1_current.state }} A
 
-        Voltage: {{states.sensor.phaze_1_voltage.state }} v
+#         Voltage: {{states.sensor.phaze_1_voltage.state }} v
 
-        Power: {{states.sensor.phaze_1_power.state }} KWh
+#         Power: {{states.sensor.phaze_1_power.state }} KWh
 
-        Price for period: {{states.sensor.shekel_count_all.state }} ₪
+#         Price for period: {{states.sensor.shekel_count_all.state }} ₪
 
-        '
-      target: 609066523
-      parse_mode: markdown
-  mode: single  
+#         '
+#       target: 609066523
+#       parse_mode: markdown
+#   mode: single  
 
 
 #################################################################

@@ -1,0 +1,300 @@
+sensor:
+
+  - platform: template
+    sensors:
+
+############################################################################
+#                                                                          #
+#   Number of Lights On                                                    #
+#                                                                          #
+############################################################################
+
+      number_of_lights_on:
+        friendly_name: "Number of lights on"
+        icon_template: mdi:lightbulb
+        value_template: >-
+          {% set count = namespace(value=0) %}
+          {% for entity_id in state_attr('group.all_light_entities','entity_id') %}
+            {% if (states(entity_id) == 'on') %}
+              {% set count.value = count.value + 1 %}
+            {% endif %}
+          {% endfor %}
+          {{ count.value }}
+
+
+############################################################################
+#                                                                          #
+#   Only Light On                                                          #
+#                                                                          #
+############################################################################
+
+      only_light_on:
+        friendly_name: "Only Light On"
+        icon_template: mdi:lightbulb
+        value_template: >-
+          {% for entity_id in state_attr('group.all_light_entities','entity_id') %}
+            {% if (states(entity_id) == 'on') %}
+              {{ states[entity_id].attributes.friendly_name }}
+            {% endif %}
+          {% endfor %}
+
+
+############################################################################
+#                                                                          #
+#   Number of Lights On - Kitchen                                          #
+#                                                                          #
+############################################################################
+
+      number_of_lights_on_kitchen:
+        friendly_name: "Number of lights on Kitchen"
+        icon_template: mdi:lightbulb
+        value_template: >-
+          {% set count = namespace(value=0) %}
+          {% for entity_id in state_attr('light.kitchen_group','entity_id') %}
+            {% if (states(entity_id) == 'on') %}
+              {% set count.value = count.value + 1 %}
+            {% endif %}
+          {% endfor %}
+          {{ count.value }}
+
+
+############################################################################
+#                                                                          #
+#   Number of Climates On                                                  #
+#                                                                          #
+############################################################################
+
+      number_of_climate_entities_on:
+        friendly_name: "Number of Climates On"
+        icon_template: mdi:thermometer
+        value_template: >-
+          {% set count = namespace(value=0) %}
+          {% for entity_id in state_attr('group.all_climate_entities','entity_id') %}
+            {% if (states(entity_id) == 'on' or states(entity_id) == 'heat' or states(entity_id) == 'cool' or states(entity_id) == 'heat_cool') %}
+              {% set count.value = count.value + 1 %}
+            {% endif %}
+          {% endfor %}
+          {{ count.value }}
+
+
+############################################################################
+#                                                                          #
+#   Only Climate On                                                        #
+#                                                                          #
+############################################################################
+
+      only_climate_on:
+        friendly_name: "Only Climate On"
+        icon_template: mdi:thermometer
+        value_template: >-
+          {% for entity_id in state_attr('group.all_climate_entities','entity_id') %}
+            {% if (states(entity_id) == 'on' or states(entity_id) == 'heat' or states(entity_id) == 'cool' or states(entity_id) == 'heat_cool') %}
+              {{ states[entity_id].attributes.friendly_name }}
+            {% endif %}
+          {% endfor %}
+
+
+############################################################################
+#                                                                          #
+#   Number of Devices On                                                   #
+#                                                                          #
+############################################################################
+
+      # number_of_devices_on:
+      #   friendly_name: "Number of Devices On"
+      #   icon_template: mdi:power-plug
+      #   value_template: >-
+      #     {% set count = namespace(value=0) %}
+      #     {% for entity_id in state_attr('group.all_device_switch_entities','entity_id') %}
+      #       {% if (states(entity_id) == 'on') %}
+      #         {% set count.value = count.value + 1 %}
+      #       {% endif %}
+      #     {% endfor %}
+      #     {{ count.value }}
+
+
+############################################################################
+#                                                                          #
+#   Number of Motion Sensors On                                            #
+#                                                                          #
+############################################################################
+
+      number_of_motion_sensors_on:
+        friendly_name: "Number of Motion Sensors On"
+        icon_template: mdi:run
+        value_template: >-
+          {% set count = namespace(value=0) %}
+          {% for entity_id in state_attr('group.all_motion_sensor_entities','entity_id') %}
+            {% if (states(entity_id) == 'on') %}
+              {% set count.value = count.value + 1 %}
+            {% endif %}
+          {% endfor %}
+          {{ count.value }}
+
+
+# ############################################################################
+# #                                                                          #
+# #    Number of Covers Open                                                 #
+# #                                                                          #
+# ############################################################################
+
+#       number_of_shutter_open:
+#         friendly_name: "Number of shutter oepn"
+#         icon_template: mdi:window-shutter
+#         value_template: >-
+#           {% set count = namespace(value=0) %}
+#           {% for entity_id in state_attr('group.all_device_shutter_entities','entity_id') %}
+#             {% if (states(entity_id) == 'open') %}
+#               {% set count.value = count.value + 1 %}
+#             {% endif %}
+#           {% endfor %}
+#           {{ count.value }}
+          
+          
+############################################################################
+#                                                                          #
+#   Number of Covers Open                                                  #
+#                                                                          #
+############################################################################
+
+      number_of_covers_open:
+        friendly_name: "Number of covers open"
+        icon_template: mdi:window-shutter
+        value_template: >-
+          {% set count = namespace(value=0) %}
+          {% for entity_id in state_attr('group.all_cover_entities','entity_id') %}
+            {% if (states(entity_id) == 'open') %}
+              {% set count.value = count.value + 1 %}
+            {% endif %}
+          {% endfor %}
+          {{ count.value }}
+
+
+############################################################################
+#                                                                          #
+#   Only Cover Open                                                        #
+#                                                                          #
+############################################################################
+
+      only_cover_open:
+        friendly_name: "Only Cover Open"
+        icon_template: mdi:window-shutter
+        value_template: >-
+          {% for entity_id in state_attr('group.all_cover_entities','entity_id') %}
+            {% if (states(entity_id) == 'open') %}
+              {{ states[entity_id].attributes.friendly_name }}
+            {% endif %}
+          {% endfor %}
+
+          
+
+############################################################################
+#                                                                          #
+#   Only Motion Sensor On                                                  #
+#                                                                          #
+############################################################################
+
+      only_motion_sensor_on:
+        friendly_name: "Only Motion Sensor On"
+        icon_template: mdi:run
+        value_template: >-
+          {% for entity_id in state_attr('group.all_motion_sensor_entities','entity_id') %}
+            {% if (states(entity_id) == 'on') %}
+              {{ states[entity_id].attributes.friendly_name }}
+            {% endif %}
+          {% endfor %}
+
+
+############################################################################
+#                                                                          #
+#   Number of Batteries Low                                                #
+#                                                                          #
+############################################################################
+
+      number_of_batteries_low:
+        friendly_name: "Number of Batteries Low"
+        icon_template: mdi:battery
+        value_template: >-
+            {% set count = namespace(value=0) %}
+            {% for entity_id in states.group.all_batteries_sensor_entities.attributes.entity_id %}
+              {% if (states(entity_id) | int) < 10 %}
+                {% set count.value = count.value + 1 %}
+              {% endif %}
+            {% endfor %}
+            {{ count.value }}
+
+
+
+############################################################################
+#                                                                          #
+#   Number of Media On                                                     #
+#                                                                          #
+############################################################################
+
+      # number_of_media_on:
+      #   friendly_name: "Number of Media Devices On"
+      #   icon_template: mdi:play-box-multiple
+      #   value_template: >-
+      #     {% set count = namespace(value=0) %}
+      #     {% for entity_id in state_attr('group.all_media_entities','entity_id') %}
+      #       {% if (states(entity_id) == 'on') %}
+      #         {% set count.value = count.value + 1 %}
+      #       {% endif %}
+      #     {% endfor %}
+      #     {{ count.value }}
+
+
+
+############################################################################
+#                                                                          #
+#   Number of Persons Home                                                 #
+#                                                                          #
+############################################################################
+
+      number_of_persons_home:
+        friendly_name: "Number of persons home"
+        icon_template: mdi:account-circle
+        value_template: >-
+          {% set count = namespace(value=0) %}
+          {% for entity_id in state_attr('group.all_person_entities','entity_id') %}
+            {% if (states(entity_id) == 'home') %}
+              {% set count.value = count.value + 1 %}
+            {% endif %}
+          {% endfor %}
+          {{ count.value }}
+
+
+############################################################################
+#                                                                          #
+#   Only Person On                                                         #
+#                                                                          #
+############################################################################
+
+      only_person_home:
+        friendly_name: "Only Person Home"
+        icon_template: mdi:account-circle
+        value_template: >-
+          {% for entity_id in state_attr('group.all_person_entities','entity_id') %}
+            {% if (states(entity_id) == 'home') %}
+              {{ states[entity_id].attributes.friendly_name }}
+            {% endif %}
+          {% endfor %}
+
+
+############################################################################
+#                                                                          #
+#   Number of Tasmota Versions old                                         #
+#                                                                          #
+############################################################################
+
+      # number_of_tasmota_versions_old:
+      #   friendly_name: "Number of Tasmota Versions old"
+      #   icon_template: mdi:thermometer
+      #   value_template: >-
+      #     {% set count = namespace(value=0) %}
+      #     {% for entity_id in state_attr('group.all_tasmota_versions','entity_id') %}
+      #       {% if ( states(entity_id).split('(')[0] != states('sensor.tasmota_latest').split('v')[1] ) %}
+      #         {% set count.value = count.value + 1 %}
+      #       {% endif %}
+      #     {% endfor %}
+      #     {{ count.value }}

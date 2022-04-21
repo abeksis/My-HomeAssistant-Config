@@ -1,0 +1,136 @@
+homeassistant:
+  customize: !include customize.yaml
+  packages: !include_dir_named packages/
+
+
+
+#######################################################
+#   MQTT                                              #
+#######################################################
+mqtt: 
+  password: !secret http_password
+  broker:  !secret broker_host
+  username: !secret http_username
+
+########################################################
+#   Required by home assistant                         #
+########################################################
+default_config:
+
+
+########################################################
+#   Home Assistant Mobile App Support                  #
+########################################################
+mobile_app:
+
+########################################################
+# Browser-mod makes the browser more useful + required #
+########################################################
+# browser_mod:
+
+########################################################
+#   Home Assistant                                     #
+########################################################
+media_source:
+
+########################################################
+#   Telegram                                           #
+########################################################
+telegram_bot:
+  - platform: polling
+    api_key: !secret TelegramBotApiKey
+    allowed_chat_ids:
+      - !secret telgram_avi   
+      - !secret telgram_nurit 
+
+########################################################
+#   Telegram Avi/Nurit                                 #
+######################################################## 
+notify:
+  - name: Avi_Telegram
+    platform: telegram
+    chat_id: !secret telgram_avi
+    
+  - name: Nurit_Telegram
+    platform: telegram
+    chat_id: !secret telgram_nurit
+    
+
+########################################################
+#   Spotify                                            #
+######################################################## 
+spotify:
+  client_id: !secret spotify_id
+  client_secret: !secret spotify_secret
+  
+spotcast:
+  sp_dc: !secret sp_dc
+  sp_key: !secret sp_key  
+  
+  
+########################################################
+#   ituran                                             #
+######################################################## 
+ituran:
+  skoda:
+    name: Skoda
+    username: !secret skodakodiaq_username
+    password: !secret skodakodiaq_password
+    update_interval: 180  
+
+########################################################
+#   Text to speech                                     #
+########################################################
+tts:
+  - platform: google_translate
+
+
+########################################################
+#   Hacs                                               #
+########################################################
+hacs:
+  token: !secret my_github_access_token
+
+  
+
+########################################################
+#   Required                                           #
+########################################################
+lovelace:
+  mode: storage
+
+
+########################################################
+#   Weather Dark Sky                                   #
+########################################################
+weather:
+  - platform: darksky
+    mode: daily
+    api_key: !secret darksky_api
+
+########################################################
+#        show the sunrise and sunset times             #
+########################################################
+sun: 
+
+########################################################
+#   Google Calendar                                    #
+########################################################
+google:
+    client_id: !secret client_id
+    client_secret: !secret client_secret 
+    track_new_calendar: true
+    # client_id: !secret client_id_nurit
+    # client_secret: !secret client_secret_nurit     
+
+
+########################################################
+#   include                                            #
+########################################################
+automation: !include_dir_merge_list configuration/automations/
+alarm_control_panel: !include configuration/alarm_control_panel/alarms.yaml
+sensor: !include_dir_merge_list configuration/sensor/
+group: !include_dir_merge_named configuration/groups/
+cloud: !include configuration/cloud/cloud.yaml
+zone: !include configuration/zone/zone.yaml
+webostv: !include configuration/webostv/webostv.yaml

@@ -1,0 +1,166 @@
+run_action:
+  name: Run Action
+  description: Execute the action of a schedule, optionally at a given time.
+  fields:
+    entity_id:
+      name: Entity
+      description: Identifier of the scheduler entity.
+      example: "switch.schedule_abcdef"
+      required: true
+      selector:
+        entity:
+          integration: scheduler
+          domain: switch
+    time:
+      name: Time
+      description: Time for which to evaluate the action (only useful for schedules with multiple timeslot)
+      example: '"12:00"'
+      required: false
+      selector:
+        time:
+
+remove:
+  name: Remove
+  description: Remove a schedule entity
+  fields:
+    entity_id:
+      name: Entity
+      description: Identifier of the scheduler entity.
+      example: "switch.schedule_abcdef"
+      required: true
+      selector:
+        entity:
+          integration: scheduler
+          domain: switch
+
+add:
+  name: Add
+  description: Create a new schedule entity
+  fields:
+    weekdays:
+      name: Weekdays
+      description: Days of the week for which the schedule should be repeated
+      example: '["daily"]'
+      required: false
+      selector:
+        object:
+    start_date:
+      name: Start date
+      description: Date from which schedule should be executed
+      example: '["2021-01-01"]'
+      required: false
+      selector:
+        object:
+    end_date:
+      name: End date
+      description: Date until which schedule should be executed
+      example: '["2021-12-31"]'
+      required: false
+      selector:
+        object:
+    timeslots:
+      name: Timeslots
+      description: list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots)
+      example: '[{start: "12:00", stop: "13:00", actions: [{service: "light.turn_on", entity_id: "light.my_lamp", service_data: {brightness: 200}}]}]'
+      required: true
+      selector:
+        object:
+    repeat_type:
+      name: Repeat Type
+      description: Control what happens after the schedule is triggered
+      example: '"repeat"'
+      required: true
+      selector:
+        select:
+          options:
+            - repeat
+            - single
+            - pause
+    name:
+      name: Name
+      description: Friendly name for the schedule
+      required: false
+      example: "My schedule"
+      selector:
+        text:
+
+edit:
+  name: Edit
+  description: Edit a schedule entity
+  fields:
+    entity_id:
+      name: Entity
+      description: Identifier of the scheduler entity.
+      example: "switch.schedule_abcdef"
+      required: true
+      selector:
+        entity:
+          integration: scheduler
+          domain: switch
+    weekdays:
+      name: Weekdays
+      description: Days of the week for which the schedule should be repeated
+      example: '["daily"]'
+      required: false
+      selector:
+        object:
+    start_date:
+      name: Start date
+      description: Date from which schedule should be executed
+      example: '["2021-01-01"]'
+      required: false
+      selector:
+        object:
+    end_date:
+      name: End date
+      description: Date until which schedule should be executed
+      example: '["2021-12-31"]'
+      required: false
+      selector:
+        object:
+    timeslots:
+      name: Timeslots
+      description: list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots)
+      example: '[{start: "12:00", stop: "13:00", actions: [{service: "light.turn_on", entity_id: "light.my_lamp", service_data: {brightness: 200}}]}]'
+      required: false
+      selector:
+        object:
+    repeat_type:
+      name: Repeat Type
+      description: Control what happens after the schedule is triggered
+      example: '"repeat"'
+      required: false
+      selector:
+        select:
+          options:
+            - repeat
+            - single
+            - pause
+    name:
+      name: Name
+      description: Friendly name for the schedule
+      required: false
+      example: "My schedule"
+      selector:
+        text:
+
+copy:
+  name: Copy
+  description: Duplicate a schedule entity
+  fields:
+    entity_id:
+      name: Entity
+      description: Identifier of the scheduler entity.
+      example: "switch.schedule_abcdef"
+      required: true
+      selector:
+        entity:
+          integration: scheduler
+          domain: switch
+    name:
+      name: Name
+      description: Friendly name for the copied schedule
+      required: false
+      example: "My schedule"
+      selector:
+        text:

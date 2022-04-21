@@ -4,20 +4,20 @@
 
 yeelight:
   devices:
-    !secret yeelight_poop:
-      name: Yeelight Poop
-      transition: 1000
-      use_music_mode: true
-      save_on_change: true
+    # !secret yeelight_poop:
+    #   name: Yeelight Poop
+    #   transition: 1000
+    #   use_music_mode: true
+    #   save_on_change: true
       
     !secret yeelight_computer_room:
       name: computer room
       transition: 1000
             
-    !secret yeelight_kitchen_strip_lamp:
-      name: Kitchen strip Lamp
-      transition: 1000 
+    # !secret yeelight_kitchen_strip_lamp:
+    #   name: Kitchen strip Lamp
+    #   transition: 1000 
 
-    !secret yeelight_laundry_room_lighting:
-      name: Laundry Room lighting
-      transition: 1000
+    # !secret yeelight_laundry_room_lighting:
+    #   name: Laundry Room lighting
+    #   transition: 1000

@@ -1,0 +1,15 @@
+sensor:
+  platform: feedparser
+  name: Ynet Feed
+  feed_url: 'http://www.ynet.co.il/Integration/StoryRss2.xml'
+  date_format: '%a, %d %b %Y %H:%M:%S %Z'
+  scan_interval:
+    hours: 1
+  inclusions:
+    - title
+    # - link
+    - description
+    # - image
+    - pubDate
+  exclusions:
+    - language

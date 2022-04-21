@@ -1,0 +1,156 @@
+alexa:
+  filter:
+    include_entities: ## להציג ##
+      - light.computer_room
+      - light.kitchen
+      - light.kitchen_strip_lamp
+      - light.laundry_room_lighting
+      - light.gateway_light_34ce008d4e2e
+      - light.liran_room
+      - light.miklahat
+      - light.parents_shower
+      - light.bedroom_parents
+      - light.prozdor
+      - light.room_area_light_1
+      - light.room_area_light_2
+      - light.room_area_light_3
+      - light.room_area_light_4
+      - light.service_balcony
+      - light.smoking_balcony
+      - light.stairs
+      - light.tradfri_remote_control_35
+      - light.yeelight_poop
+      - switch.tami_4
+      - switch.fan
+      - switch.power_tv
+      - switch.lg_tv_button
+      - switch.whizz_button
+    include_domains:
+      - switch
+      - media_player
+      - lights
+      - sensor
+    exclude_entities: ## לא להציג ##
+      - switch.shutters3
+      - media_player.cfa4e7d8_db286a06
+      - media_player.living_room_tv
+      - sensor.sensibo_temp
+      - sensor.stairs_am2301_temperature
+      - sensor.sensibo_target_temp
+      - sensor.stairs_am2301_dewpoint
+      - switch.power_server_room
+      - climate.living_room
+
+  entity_config:
+    light.living_room:
+      name: אור בסלון
+      description: להדליק את האור בסלון
+
+    light.kitchen:
+      name: תאורה
+      description: תאורה במטבח
+
+    light.kitchen_strip_lamp:
+      name: לד במטבח
+      description: תאורה לדים במטבח
+
+    light.gateway_light_34ce008d4e2e:
+      name: אור של שיאומי
+      description:  תאורת שיאומי במטבח
+
+    light.yeelight_poop:
+      name: שירותי אורחים
+      description: תאורת שירותי אורחים
+
+    light.seating_area:
+      name: פינת ישיבה
+      description: תאורת בפינת ישיבה בסלון
+
+    light.room_area_light_1:
+      name: אזור חדרים תאורה 1
+      description: תאורת איקאה 1
+
+    light.room_area_light_2:
+      name: אזור חדרים תאורה 2
+      description: תאורת איקאה 2
+    
+    light.room_area_light_3:
+      name: אזור חדרים תאורה 3
+      description: תאורת איקאה 3
+      
+    light.room_area_light_4:
+      name: אזור חדדרים תאורה 4
+      description: תאורת איקאה 4
+ 
+    light.tradfri_remote_control_35:
+      name: תאורה איקאה
+      description: כפתור תאורה לאיקאה
+
+    light.smoking_balcony:
+      name: מרפסת עישון
+      description: תאורת מרפסת עישון
+      
+    light.miklahat:
+      name: מקלחת 
+      description: תאורה במקלחת ראשית
+     
+    light.laundry_room_lighting:
+      name: חדר כביסה
+      description: תאורה בחדר כביסה
+      
+    light.stairs:
+      name: מדרגות
+      description: תאורה מדרגות
+    
+    light.computer_room:
+      name: חדר שרתים
+      description: תאורה בחדר שרתים
+     
+    light.bedroom_parents:
+      name: חדר הורים
+      description: תאורה בחדר הורים
+    
+    light.parents_shower:
+      name: מקלחת הורים
+      description: תאורה במקלחת הורים
+    
+    light.service_balcony:
+      name: מרפסת שירות
+      description: תאורה מרפסת שירות
+
+    light.liran_room:
+      name: לירן
+      description: תאורה בחדר לירן
+   
+    light.prozdor:
+      name: פרוזור
+      description: תאורה בפרזודור
+    
+    switch.tami_4: 
+      name: להפעיל את תמי 4
+      description: להפעיל את תמי 4 או לכבות
+    
+    switch.fan:
+      name: מאוורר בחדר מחשבים
+      description: שליטה על מאוורר בחדר מחשבים
+    
+    switch.power_tv:
+      name: שקע חשמל טלוויזיה
+      description: שקע חשמל
+
+    switch.lg_tv_button:
+      name: LG מעבר
+      description: מעבר דרך ארמוני לטלוויזיה
+      
+    switch.whizz_button:
+      name: xiaomi
+      description: לעבורי לסטרימר      
+
+    switch.yes_dvr_button:
+       name: הפעלת TV
+       description: הפעלת טלוויזיה ישירות ליס
+    
+    media_player.spotify_avi_abeksis:
+      name: ספוטיפיי
+      description: שליטת ספוטיפיי
+      

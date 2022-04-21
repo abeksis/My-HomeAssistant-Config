@@ -1,8 +1,15 @@
 homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages/
-
-
+  time_zone: !secret time_zone
+  unit_system: metric
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude  
+  currency: ILS
+  allowlist_external_dirs:
+    - "/config/tmp"
+    - "/config/www"
+    - "/config"
 
 #######################################################
 #   MQTT                                              #
@@ -11,6 +18,72 @@ mqtt:
   password: !secret http_password
   broker:  !secret broker_host
   username: !secret http_username
+
+#######################################################
+#   Recorder DB                                       #
+#######################################################
+recorder:
+  auto_purge: true
+  purge_keep_days: 5
+  db_url: !secret db_homeassistant
+  include: #-- לכלול --#
+    domains:
+      - switch
+      - sensor
+      - person
+      - input_select
+      - input_number
+      - input_boolean
+      - script
+      - light
+      - climate
+      - binary_sensor
+      - group
+  exclude: #-- לא לכלול --##
+    domains:
+      - automation
+      - updater
+      - docker_monitor
+      - image_processing
+    entities:
+      - sun.sun
+      - sensor.date
+      - sensor.date_string
+      - weather.beer_sheva
+    event_types:
+      - service_removed
+      - service_executed
+      - platform_discovered
+      - homeassistant_start
+      - homeassistant_stop      
+      - feedreader
+      - service_registered
+      - call_service
+      - component_loaded
+      - logbook_entry
+      - system_log_event
+      - automation_triggered
+      - script_started
+      - timer_out_of_sync
+      - panels_updated
+      - persistent_notifications_updated
+      - config_entry_discovered
+  
+#######################################################
+#   Alexa                                              #
+#######################################################
+alexa:
+  smart_home:  
+  
+#######################################################
+#   http                                              #
+#######################################################
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.1.125  
+    - 127.0.0.1
+    - ::1
 
 ########################################################
 #   Required by home assistant                         #
@@ -23,10 +96,13 @@ default_config:
 ########################################################
 mobile_app:
 
+
 ########################################################
 # Browser-mod makes the browser more useful + required #
 ########################################################
-# browser_mod:
+browser_mod:
+  disable:
+    - all
 
 ########################################################
 #   Home Assistant                                     #
@@ -54,6 +130,9 @@ notify:
   - name: Nurit_Telegram
     platform: telegram
     chat_id: !secret telgram_nurit
+
+  # - name: alexa_media
+  #   platform: alexa_media
     
 
 ########################################################
@@ -69,14 +148,14 @@ spotcast:
   
   
 ########################################################
-#   ituran                                             #
+#   themes                                             #
 ######################################################## 
-ituran:
-  skoda:
-    name: Skoda
-    username: !secret skodakodiaq_username
-    password: !secret skodakodiaq_password
-    update_interval: 180  
+frontend:
+  themes: 
+    !include_dir_merge_named themes
+  extra_module_url:
+    - /hacsfiles/lovelace-card-mod/card-mod.js
+
 
 ########################################################
 #   Text to speech                                     #
@@ -84,6 +163,12 @@ ituran:
 tts:
   - platform: google_translate
 
+  - platform: reversotts
+    cache: false
+    cache_dir: /tmp/tts
+    language: 'he-IL-Asaf-Hebrew'
+    pitch: "100"
+    bitrate: "128k"
 
 ########################################################
 #   Hacs                                               #
@@ -91,27 +176,61 @@ tts:
 hacs:
   token: !secret my_github_access_token
 
-  
+
+########################################################
+#   Mibox Android                                      #
+########################################################
+media_player:
+  - platform: androidtv
+    name: mibox
+    host: 192.168.1.132
+    adb_server_ip: 192.168.1.107
+    exclude_unnamed_apps: true
 
 ########################################################
 #   Required                                           #
 ########################################################
+# lovelace:
+#   mode: storage
+
+
 lovelace:
-  mode: storage
+  mode: yaml
+  resources: !include /config/lovelace/resources.yaml
+  dashboards:
+    lovelace-minimalist:
+      mode: yaml
+      title: "Minimalist"
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
+      filename: ui-minimalist.yaml
 
+    designing-a-lovelace-ui:
+      mode: yaml
+      title: "Designing a Lovelace UI"
+      icon: mdi:tablet-cellphone
+      show_in_sidebar: true
+      filename: ui-lovelace.yaml
 
 ########################################################
-#   Weather Dark Sky                                   #
-########################################################
-weather:
-  - platform: darksky
-    mode: daily
-    api_key: !secret darksky_api
-
-########################################################
-#        show the sunrise and sunset times             #
+#   show the sunrise and sunset times                  #
 ########################################################
 sun: 
+
+########################################################
+#   Stream Camera                                      #
+########################################################
+ffmpeg:
+
+camera:
+  - platform: xiaomi_cloud_map_extractor
+    host: !secret vacuum.xiaomi_ip
+    token: !secret vacuum.xiaomi_token
+    username: !secret xiaomi_cloud_username
+    password: !secret xiaomi_cloud_password
+    draw: ['all']
+    attributes:
+      - calibration_points
 
 ########################################################
 #   Google Calendar                                    #
@@ -125,12 +244,74 @@ google:
 
 
 ########################################################
+#   Amazon                                             #
+########################################################
+alexa_media:
+  accounts:
+    - email: !secret amazon_user
+      password: !secret amazon_password
+      url: amazon.com
+
+########################################################
+#   scene                                              # 
+########################################################
+scene: !include scenes.yaml
+
+########################################################
+#   zone                                               # 
+########################################################
+
+zone:
+  - name: Home
+    latitude: !secret home_latitude
+    longitude: !secret home_longitude
+    radius: 10
+    icon: mdi:account-multiple
+
+  - name: Work
+    latitude: !secret avi_work_latitude
+    longitude: !secret avi_work_longitude 
+    radius: 10
+    icon: mdi:factory
+    
+  - name: Work
+    latitude: !secret nurit_work_latitude
+    longitude: !secret nurit_work_longitude 
+    radius: 10
+    icon: mdi:chair-rolling    
+      
+  - name: Snooker
+    latitude: !secret snooker_latitude
+    longitude: !secret snooker_longitude 
+    radius: 10
+    icon: mdi:factory
+    
+  - name: Clalit
+    latitude: !secret hmo_latitude
+    longitude: !secret hmo_longitude 
+    radius: 10
+    icon: mdi:emoticon-sick-outline    
+
+  - name: School
+    latitude: !secret yakir_school_latitude
+    longitude: !secret yakir_school_longitude 
+    radius: 10
+    icon: mdi:school-outline
+
+  - name: Shopping
+    latitude: !secret nurit_shopping_latitude
+    longitude: !secret nurit_shopping_longitude
+    radius: 10
+    icon: mdi:cart
+            
+########################################################
 #   include                                            #
 ########################################################
-automation: !include_dir_merge_list configuration/automations/
-alarm_control_panel: !include configuration/alarm_control_panel/alarms.yaml
+automation ui: !include automations.yaml
+script: !include scripts.yaml
 sensor: !include_dir_merge_list configuration/sensor/
 group: !include_dir_merge_named configuration/groups/
 cloud: !include configuration/cloud/cloud.yaml
-zone: !include configuration/zone/zone.yaml
-webostv: !include configuration/webostv/webostv.yaml
+#zone: !include configuration/zone/zone.yaml
+#webostv: !include configuration/webostv/webostv.yaml
+homekit: !include homekit.yaml

@@ -1,0 +1,33 @@
+input_boolean:
+  laundry_display:
+
+  computer_lock:
+    name: Avstängningslås
+    icon: custom:lock
+
+input_number:
+  monitors_volume:
+    name: Volume
+    icon: mdi:volume-high
+    initial: 20
+    min: 7
+    max: 75
+    unit_of_measurement: '%'
+
+  wemo_fan_timer:
+    name: Close after
+    icon: mdi:timer-outline
+    initial: 12
+    min: 1
+    max: 12
+    unit_of_measurement: h
+
+input_select:
+  conditional_media:
+    initial: Last downloaded
+    options:
+      - Last downloaded
+      # - Living room
+      # - Bedroom
+      - Spotify
+      # - Google Nest Mini

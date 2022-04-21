@@ -1,12 +1,12 @@
 #################################################################
 #                          Remote                               #
 ################################################################# 
-remote:
-  - platform: harmony
-    name: Living room
-    host: !secret harmony_living_room_host
-    port: 8088
-    activity: Watch TV
+# remote:
+#   - platform: harmony
+#     name: Living room
+#     host: !secret harmony_living_room_host
+#     port: 8088
+#     activity: Watch TV
 #   - platform: harmony
 #     name: Parents Bedroom
 #     host: !secret harmony_parents_bedroom_host
@@ -17,50 +17,50 @@ remote:
 #                          switches                             #
 ################################################################# 
 
-switch:
-  - platform: template
-    switches:
-      lg_tv_button:
-        friendly_name: LG TV
-        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'LG TV') }}"
-        turn_on:
-            service: remote.turn_on
-            data:
-                entity_id: remote.living_room
-                activity: 'LG TV'
-        turn_off:
-            service: remote.turn_on
-            data:
-                entity_id: remote.living_room
-                activity: 'PowerOff'
+# switch:
+#   - platform: template
+#     switches:
+#       lg_tv_button:
+#         friendly_name: LG TV
+#         value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'LG TV') }}"
+#         turn_on:
+#             service: remote.turn_on
+#             data:
+#                 entity_id: remote.living_room
+#                 activity: 'LG TV'
+#         turn_off:
+#             service: remote.turn_on
+#             data:
+#                 entity_id: remote.living_room
+#                 activity: 'PowerOff'
 
-      whizz_button:
-        friendly_name: Xtreamer Whizz
-        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Whizz') }}"
-        turn_on:
-            service: remote.turn_on
-            data:
-                entity_id: remote.living_room
-                activity: 'Whizz'
-        turn_off:
-            service: remote.turn_on
-            data:
-                entity_id: remote.living_room
-                activity: 'PowerOff'
+    #   whizz_button:
+    #     friendly_name: Xtreamer Whizz
+    #     value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Whizz') }}"
+    #     turn_on:
+    #         service: remote.turn_on
+    #         data:
+    #             entity_id: remote.living_room
+    #             activity: 'Whizz'
+    #     turn_off:
+    #         service: remote.turn_on
+    #         data:
+    #             entity_id: remote.living_room
+    #             activity: 'PowerOff'
            
-      yes_dvr_button:
-        friendly_name: Yes
-        value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'YES') }}"
-        turn_on:
-            service: remote.turn_on
-            data:
-                entity_id: remote.living_room
-                activity: 'YES'
-        turn_off:
-            service: remote.turn_on
-            data:
-                entity_id: remote.living_room
-                activity: 'PowerOff'    
+    #   yes_dvr_button:
+    #     friendly_name: Yes
+    #     value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'YES') }}"
+    #     turn_on:
+    #         service: remote.turn_on
+    #         data:
+    #             entity_id: remote.living_room
+    #             activity: 'YES'
+    #     turn_off:
+    #         service: remote.turn_on
+    #         data:
+    #             entity_id: remote.living_room
+    #             activity: 'PowerOff'    
 
 #################################################################
 #                          Parents Bedroom                      #

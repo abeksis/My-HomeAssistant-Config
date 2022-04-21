@@ -1,0 +1,373 @@
+popup_vacuum:
+  tap_action:
+    action: "fire-dom-event"
+    browser_mod:
+      command: "popup"
+      large: false
+      hide_header: true
+      card:
+        type: custom:layout-card
+        layout_type: vertical
+        cards:
+          ############################################################################
+          #                                                                          #
+          #   Header                                                                 #
+          #                                                                          #
+          ############################################################################
+          - type: "custom:button-card"
+            template: 
+              - "popup_header_vacuum"
+              - "ulm_custom_card_vacuum_language_variables"
+            triggers_update: all
+            entity: '[[[ return variables.ulm_card_vacuum_entity ]]]'
+            variables:
+              ulm_card_vacuum_entity: "[[[ return variables.ulm_card_vacuum_entity ]]]"
+              ulm_card_vacuum_state_input_select: "[[[ return variables.ulm_card_vacuum_state_input_select ]]]"
+
+          ############################################################################
+          #                                                                          #
+          #   Room selection                                                         #
+          #                                                                          #
+          ############################################################################
+          - type: custom:layout-card
+            layout_type: grid
+            triggers_update: all
+            layout_options:
+              grid-template-columns: 1fr 1fr 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+            cards:
+              # Salon
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                entity: input_boolean.vacuum_living_room_selected
+                icon: mdi:sofa
+                name: "[[[ return variables.living_room ]]]"
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - color: "rgba(var(--color-yellow),1)"
+                      img_cell:
+                        - background-color: "rgba(var(--color-yellow), 0.2)"                                        
+
+              # Kitchen
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                entity: input_boolean.vacuum_kitchen_selected
+                icon: mdi:silverware-fork-knife
+                name: "[[[ return variables.kitchen ]]]"
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - color: "rgba(var(--color-yellow),1)"
+                      img_cell:
+                        - background-color: "rgba(var(--color-yellow), 0.2)"  
+
+              # Hall
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                entity: input_boolean.vacuum_hall_selected
+                icon: mdi:stairs
+                name: "[[[ return variables.hall ]]]"
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - color: "rgba(var(--color-yellow),1)"
+                      img_cell:
+                        - background-color: "rgba(var(--color-yellow), 0.2)"    
+              
+              # Chambre
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                entity: input_boolean.vacuum_bedroom_selected
+                icon: mdi:bed-queen
+                name: "[[[ return variables.bedroom ]]]"
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - color: "rgba(var(--color-yellow),1)"
+                      img_cell:
+                        - background-color: "rgba(var(--color-yellow), 0.2)"   
+
+          - type: "custom:button-card"
+            template: spacer
+            variables:
+              height: 20px
+
+          ############################################################################
+          #                                                                          #
+          #   Fan speed set                                                          #
+          #                                                                          #
+          ############################################################################
+          - type: custom:layout-card
+            triggers_update: all
+            layout_type: grid
+            layout_options:
+              grid-template-columns: 1fr 1fr 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+            cards:    
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                entity: '[[[ return variables.ulm_card_vacuum_fan_speed_sensor ]]]'
+                icon: 'mdi:moon-waxing-crescent'
+                name: "[[[ return variables.silent ]]]"
+                tap_action:
+                  action: call-service
+                  service: vacuum.set_fan_speed
+                  service_data:
+                    entity_id: "[[[ return variables.ulm_card_vacuum_entity ]]]"
+                    fan_speed: Silent
+                state:
+                  - value: 'silent'
+                    styles:
+                      img_cell:
+                        - background-color: 'rgba(var(--color-theme), 0.2)'
+
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                entity: '[[[ return variables.ulm_card_vacuum_fan_speed_sensor ]]]'
+                icon: 'mdi:fan-speed-1'
+                name: "[[[ return variables.standard ]]]"
+                tap_action:
+                  action: call-service
+                  service: vacuum.set_fan_speed
+                  service_data:
+                    entity_id: "[[[ return variables.ulm_card_vacuum_entity ]]]"
+                    fan_speed: Standard
+                state:
+                  - value: 'standard'
+                    styles:
+                      img_cell:
+                        - background-color: 'rgba(var(--color-theme), 0.2)'
+
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                entity: '[[[ return variables.ulm_card_vacuum_fan_speed_sensor ]]]'
+                icon: 'mdi:fan-speed-2'
+                name: "[[[ return variables.medium ]]]"
+                tap_action:
+                  action: call-service
+                  service: vacuum.set_fan_speed
+                  service_data:
+                    entity_id: "[[[ return variables.ulm_card_vacuum_entity ]]]"
+                    fan_speed: Medium
+                state:
+                  - value: 'medium'
+                    styles:
+                      img_cell:
+                        - background-color: 'rgba(var(--color-theme), 0.2)'
+
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                entity: '[[[ return variables.ulm_card_vacuum_fan_speed_sensor ]]]'
+                icon: 'mdi:fan-speed-3'
+                name: "[[[ return variables.max ]]]"
+                tap_action:
+                  action: call-service
+                  service: vacuum.set_fan_speed
+                  service_data:
+                    entity_id: "[[[ return variables.ulm_card_vacuum_entity ]]]"
+                    fan_speed: Turbo
+                state:
+                  - value: 'turbo'
+                    styles:
+                      img_cell:
+                        - background-color: 'rgba(var(--color-theme), 0.2)'             
+
+          - type: "custom:button-card"
+            template: spacer
+            variables:
+              height: 40px
+
+          ############################################################################
+          #                                                                          #
+          #   Actions                                                                #
+          #                                                                          #
+          ############################################################################
+          - type: custom:layout-card
+            layout_type: grid
+            triggers_update: all
+            layout_options:
+              grid-template-columns: 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+            cards:
+              - type: "custom:button-card"                
+                entity: '[[[ return variables.ulm_card_vacuum_state_input_select ]]]'
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                name : "Pause"
+                icon: "mdi:pause"
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.start_ou_pause_aspirateur
+                state:
+                  - value: "docked"
+                    name : "[[[ return variables.start ]]]"
+                    icon: 'mdi:play'
+                  - value: "charging"
+                    name : "[[[ return variables.start ]]]"
+                    icon: 'mdi:play'
+                  - value: "paused"
+                    name : "[[[ return variables.start ]]]"
+                    icon: 'mdi:play'
+                  - value: "idle"
+                    name : "[[[ return variables.start ]]]"
+                    icon: 'mdi:play'  
+                  - operator: 'default'
+                    name : "[[[ return variables.pause ]]]"
+                    icon: 'mdi:pause'               
+
+              - type: "custom:button-card"
+                template: 
+                  - "popup_button"
+                  - "ulm_language_variables"
+                name: "[[[ return variables.base ]]]"
+                icon: mdi:home-battery
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  service_data:
+                    entity_id: script.aspirateur_retour_a_la_base
+
+          ############################################################################
+          #                                                                          #
+          #   Footer                                                                 #
+          #                                                                          #
+          ############################################################################
+          - type: custom:layout-card
+            layout_type: grid
+            layout_options:
+              grid-template-columns: 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+            cards:
+              - type: "custom:button-card"
+                template: "popup_button_back"              
+
+popup_header_vacuum:
+  template:
+    - "popup_button"
+  show_name: true
+  show_label: true
+  show_icon: true
+  tap_action:
+    action: "none"
+  styles:
+    grid:
+      - grid-template-areas: "'i' 'n' 'l'"
+      - grid-template-columns: "auto"
+      - grid-template-rows: "min-content min-content min-content"
+    label:
+      - justify-self: "center"
+      - font-weight: "bold"
+      - font-size: "12px"
+      - filter: "opacity(40%)"   
+    icon:
+      - color: |-
+          [[[ 
+            var battery_level = states[variables.ulm_card_vacuum_entity].attributes.battery_level;
+            var vacuum_state = states[variables.ulm_card_vacuum_state_input_select].state;
+            if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level == '100'){
+                return 'rgba(var(--color-theme),1)';
+            }
+            else if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level !== '100'){
+                return  'rgba(var(--color-green),1)';
+            }
+            else if (vacuum_state.toUpperCase() == 'CHARGING'){
+                return  'rgba(var(--color-green),1)';
+            }
+            else if (vacuum_state.toUpperCase() == 'CLEANING'){
+                return  'rgba(var(--color-yellow),1)';
+            }
+            else if (vacuum_state.toUpperCase() == 'RETURNING HOME'){
+                return  'rgba(var(--color-purple),1)';
+            }
+            else if (vacuum_state.toUpperCase() == 'PAUSED' ||
+                     vacuum_state.toUpperCase() == 'IDLE' ){
+                return  'rgba(var(--color-blue),1)';
+            }
+            else{
+                return 'rgba(var(--color-theme),1)';
+            }
+          ]]]
+    img_cell:
+      - background-color: |-
+          [[[ 
+            var battery_level = states[variables.ulm_card_vacuum_entity].attributes.battery_level;
+            var vacuum_state = states[variables.ulm_card_vacuum_state_input_select].state;
+            if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level == '100'){
+                return 'rgba(var(--color-theme),0.2)';
+            }
+            else if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level !== '100'){
+                return  'rgba(var(--color-green),0.2)';
+            }
+            else if (vacuum_state.toUpperCase() == 'CHARGING'){
+                return  'rgba(var(--color-green),0.2)';
+            }
+            else if (vacuum_state.toUpperCase() == 'CLEANING'){
+                return  'rgba(var(--color-yellow),0.2)';
+            }
+            else if (vacuum_state.toUpperCase() == 'RETURNING HOME'){
+                return  'rgba(var(--color-purple),0.2)';
+            }
+            else if (vacuum_state.toUpperCase() == 'PAUSED' ||
+                     vacuum_state.toUpperCase() == 'IDLE'){
+                return  'rgba(var(--color-blue),0.2)';
+            }
+            else{
+                return 'rgba(var(--color-theme),0.2)';
+            }
+          ]]]
+  label: |-
+    [[[ 
+      var battery_level = states[variables.ulm_card_vacuum_entity].attributes.battery_level;
+      var status =  variables.unknown;
+      var vacuum_state = states[variables.ulm_card_vacuum_state_input_select].state;
+      if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level == '100'){
+          status = variables.docked;
+      }
+      else if (vacuum_state.toUpperCase() == 'DOCKED' && battery_level !== '100'){
+          status =  variables.charging;
+      }
+      else if (vacuum_state.toUpperCase() == 'CHARGING'){
+          status =  variables.charging;
+      }
+      else if (vacuum_state.toUpperCase() == 'CLEANING'){
+          status =  variables.cleaning;;
+      }
+      else if (vacuum_state.toUpperCase() == 'RETURNING HOME'){
+          status =  variables.returning_home;
+      }
+      else if (vacuum_state.toUpperCase() == 'PAUSED'){
+          status =  variables.paused;
+      }
+      else if (vacuum_state.toUpperCase() == 'IDLE'){
+          status =  variables.idle;
+      }
+      return status + ' • ' + battery_level + '%';      
+    ]]]

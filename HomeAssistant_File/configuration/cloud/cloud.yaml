@@ -1,156 +1,299 @@
 alexa:
   filter:
     include_entities: ## להציג ##
-      - light.computer_room
+      - light.living_room
+      - light.dining_room
+      - light.door_light
+      - light.gateway_light
+      - light.kids_shower_light
+      - light.laundry_room_light
+      - light.garden
+      - light.island
       - light.kitchen
-      - light.kitchen_strip_lamp
-      - light.laundry_room_lighting
-      - light.gateway_light_34ce008d4e2e
       - light.liran_room
-      - light.miklahat
-      - light.parents_shower
-      - light.bedroom_parents
-      - light.prozdor
-      - light.room_area_light_1
-      - light.room_area_light_2
-      - light.room_area_light_3
-      - light.room_area_light_4
-      - light.service_balcony
-      - light.smoking_balcony
-      - light.stairs
-      - light.tradfri_remote_control_35
-      - light.yeelight_poop
-      - switch.tami_4
-      - switch.fan
-      - switch.power_tv
-      - switch.lg_tv_button
-      - switch.whizz_button
+      - light.outdoor_light
+      - light.parents_light_mirror
+      - light.closets
+      - light.philips_1
+      - light.philips_2  
+      - light.philips_toilet_lobby      
+      - light.rotem_room
+      - light.shower_parents_light
+      - light.sing_family
+      - light.warehouse
+      - light.guests_bathroom
+      - climate.living_room
+      - switch.washing_machine
+      - switch.johnson
+      - switch.switcher_mini
+      - media_player.lg_webos_smart_tv
     include_domains:
       - switch
       - media_player
       - lights
       - sensor
     exclude_entities: ## לא להציג ##
-      - switch.shutters3
-      - media_player.cfa4e7d8_db286a06
-      - media_player.living_room_tv
-      - sensor.sensibo_temp
-      - sensor.stairs_am2301_temperature
+      # - switch.island
+      - switch.light_garden
+      - switch.liran_room
+      - switch.yakir_room
+      # - switch.dining
+      # - switch.light_living_room
+      # - switch.outdoor_light_shelly
+      # - switch.avi_s_sonos_one_second_edition_do_not_disturb_switch
+      # - switch.avi_s_sonos_one_second_edition_shuffle_switch
+      - switch.schedule_hdlqt_hvr_by
+      # - switch.schedule_kybvy_vr_by
+      # - sensor.avi_phone_battery_temperature
+      # - switch.avi_echo_dot_repeat_switch
+      # - switch.echo_show_do_not_disturb_switch
+      # - switch.everywhere_repeat_switch
+      # - switch.living_room_repeat_switch
+      - switch.living_room_do_not_disturb_switch
+      - switch.blueiris_profile_work_hours 
+      - switch.blueiris_profile_inactive
+      - switch.blueiris_schedule_default
+      - switch.blueiris_profile_active
+      - switch.blueiris_profile_profile_3
+      - switch.blueiris_profile_profile_4
+      - switch.blueiris_profile_profile_5
+      - switch.blueiris_profile_profile_6
+      - switch.blueiris_profile_profile_7      
+      - switch.this_device_do_not_disturb_switch
+      - switch.dishwasher
+      - switch.washing_machine
+      # - switch.shelly_liran_socket_2
+      - switch.shelly_liran_socket
+      # - switch.avi_s_sonos_one_second_edition_repeat_switch
+      # - switch.tasmota
+      # - switch.sonos_alarm_1      
+      - switch.schedule_kybvy_htvrh_bmtbkh_kl_sh_h
+      - switch.schedule_kybvy_htvrh_bmtbkh
+      - switch.everywhere_do_not_disturb_switch
+      # - switch.everywhere_shuffle_switch
+      # - switch.avi_echo_dot_do_not_disturb_switch
+      # - switch.fan_guests_bathroom
+      # - switch.kitchen
+      - switch.closets_room
+      - switch.sensibo_living_room_fan
+      - switch.guests_bathroom
+      - switch.entrance_localtuya
+      # - switch.shellyswitch25_c45bbe782214_channel_1
+      - switch.sensibo_living_room_swing_mode
+      - switch.schedule_vvnth_shyrvty_vrkhym
+      - switch.schedule_kybvy_vvnth_shyrvty_vrkhym
+      - switch.children_shower_localtuya
       - sensor.sensibo_target_temp
-      - sensor.stairs_am2301_dewpoint
-      - switch.power_server_room
-      - climate.living_room
+      - media_player.this_device
+      - media_player.everywhere
+      # - media_player.avi_echo_dot
+      # - sensor.kids_shower_motion_sensor_temperature
+      - sensor.sm_t500_battery_temperature
+      # - sensor.laundry_motion_sensor_temperature
 
   entity_config:
     light.living_room:
-      name: אור בסלון
-      description: להדליק את האור בסלון
+      name: סלון
+      description: תאורה בסלון
 
     light.kitchen:
-      name: תאורה
+      name: מטבח
       description: תאורה במטבח
 
-    light.kitchen_strip_lamp:
-      name: לד במטבח
-      description: תאורה לדים במטבח
+    light.island:
+      name: אי
+      description: תאורה באי
 
-    light.gateway_light_34ce008d4e2e:
-      name: אור של שיאומי
-      description:  תאורת שיאומי במטבח
+    light.dining_room:
+      name: פינת אוכל
+      description:  תאורה בפינת אוכל
 
-    light.yeelight_poop:
-      name: שירותי אורחים
-      description: תאורת שירותי אורחים
+    light.garden:
+      name: פינת ישיבה - גינה
+      description: תאורה בפינת ישיבה בגינה
 
-    light.seating_area:
-      name: פינת ישיבה
-      description: תאורת בפינת ישיבה בסלון
-
-    light.room_area_light_1:
-      name: אזור חדרים תאורה 1
-      description: תאורת איקאה 1
-
-    light.room_area_light_2:
-      name: אזור חדרים תאורה 2
-      description: תאורת איקאה 2
+    light.outdoor_light:
+      name: תאורה דלת כניסה
+      description: תאורה דלת כניסה
     
-    light.room_area_light_3:
-      name: אזור חדרים תאורה 3
-      description: תאורת איקאה 3
-      
-    light.room_area_light_4:
-      name: אזור חדדרים תאורה 4
-      description: תאורת איקאה 4
- 
-    light.tradfri_remote_control_35:
-      name: תאורה איקאה
-      description: כפתור תאורה לאיקאה
-
-    light.smoking_balcony:
-      name: מרפסת עישון
-      description: תאורת מרפסת עישון
-      
-    light.miklahat:
-      name: מקלחת 
-      description: תאורה במקלחת ראשית
-     
-    light.laundry_room_lighting:
-      name: חדר כביסה
-      description: תאורה בחדר כביסה
-      
-    light.stairs:
-      name: מדרגות
-      description: תאורה מדרגות
-    
-    light.computer_room:
-      name: חדר שרתים
-      description: תאורה בחדר שרתים
-     
-    light.bedroom_parents:
-      name: חדר הורים
-      description: תאורה בחדר הורים
-    
-    light.parents_shower:
-      name: מקלחת הורים
-      description: תאורה במקלחת הורים
-    
-    light.service_balcony:
-      name: מרפסת שירות
-      description: תאורה מרפסת שירות
+    light.warehouse:
+      name: מחסן
+      description: תאורה במחסן   
 
     light.liran_room:
       name: לירן
-      description: תאורה בחדר לירן
+      description: תאורה חדר לירן    
+
+    light.yakir_room:
+      name: יקיר
+      description: תאורה חדר יקיר
+
+    light.rotem_room:
+      name: רותם
+      description: תאורה חדר רותם   
+
+    light.door_light:      
+      name: לובי דלת
+      description: לובי דלת
+
+    light.gateway_light:
+      name: רכזת
+      description: תאורת רכזת שיאומי
+
+    light.kids_shower_light:      
+      name: מקלחת ילדים
+      description: תאורה במקלחת ילדים
+
+    light.parents_light_mirror:
+      name: פינת איפור
+      description: תאורה בפינת איפור
+
+    light.philips_1:
+      name: תאורת לובי 1
+      description: תאורה לובי 1
+
+    light.philips_2:
+      name: תאורת לובי 2
+      description: תאורה לובי 2
+
+
+    light.philips_toilet_lobby:
+      name: לובי שירותים
+      description: תאורת לובי שירותים
+      
+    sensor.sensibo_temp:
+      name: טמפ בסלון
+      description: טמפ בסלון  
+
+    switch.washing_machine:
+      name: מכונת כביסה
+      description: שלי מכונת כביסה 
+      
+    switch.johnson: 
+      name: מפיץ ריח
+      description: מפיץ ריח בשירותים
+
+    switch.switcher_mini:
+      name: Boiiler
+      description: Boiiler
+    
+    light.closets:
+      name: חדר ארונות
+      description: חדר ארונות
+    
+    light.guests_bathroom:
+      name: שירותי אורחים
+      description: תאורה בשירותי אורחים
+
+    light.shower_parents_light:
+      name: מקלחת הורים
+      description: תאורה מקלחת הורים
+
+    light.sing_family:
+      name: שלט משפחה
+      description: תאורה שלט משפחה
+
+    climate.living_room:
+      name: מזגן
+      description: מזגן בסלון
+      
+    media_player.lg_webos_smart_tv:
+      name: טלוויזיה בסלון 
+      description: טלוויזיה בסלון
+
+#####++++++ לא להוסיף ++++++######
+    # light.room_area_light_2:
+    #   name: אזור חדרים תאורה 2
+    #   description: תאורת איקאה 2
+    
+    # light.room_area_light_3:
+    #   name: אזור חדרים תאורה 3
+    #   description: תאורת איקאה 3
+      
+    # light.room_area_light_4:
+    #   name: אזור חדדרים תאורה 4
+    #   description: תאורת איקאה 4
+ 
+    # light.tradfri_remote_control:
+    #   name: תאורה איקאה
+    #   description: כפתור תאורה לאיקאה
+
+    # light.smoking_balcony:
+    #   name: מרפסת עישון
+    #   description: תאורת מרפסת עישון
+      
+    # light.shower:
+    #   name: מקלחת 
+    #   description: תאורה במקלחת ראשית
+     
+    # light.laundry_room_lighting:
+    #   name: חדר כביסה
+    #   description: תאורה בחדר כביסה
+      
+    # light.stairs:
+    #   name: מדרגות
+    #   description: תאורה מדרגות
+    
+    # light.computer_room:
+    #   name: חדר שרתים
+    #   description: תאורה בחדר שרתים
+     
+    # light.bedroom_parents:
+    #   name: חדר הורים
+    #   description: תאורה בחדר הורים
+    
+    # light.parents_shower:
+    #   name: מקלחת הורים
+    #   description: תאורה במקלחת הורים
+    
+    # light.service_balcony:
+    #   name: מרפסת שירות
+    #   description: תאורה מרפסת שירות
+
+    # light.liran_room:
+    #   name: לירן
+    #   description: תאורה בחדר לירן
    
-    light.prozdor:
-      name: פרוזור
-      description: תאורה בפרזודור
+    # light.prozdor:
+    #   name: פרוזור
+    #   description: תאורה בפרזודור
     
-    switch.tami_4: 
-      name: להפעיל את תמי 4
-      description: להפעיל את תמי 4 או לכבות
+    # switch.tami_4: 
+    #   name: להפעיל את תמי 4
+    #   description: להפעיל את תמי 4 או לכבות
     
-    switch.fan:
-      name: מאוורר בחדר מחשבים
-      description: שליטה על מאוורר בחדר מחשבים
+    # switch.fan:
+    #   name: מאוורר בחדר מחשבים
+    #   description: שליטה על מאוורר בחדר מחשבים
     
-    switch.power_tv:
-      name: שקע חשמל טלוויזיה
-      description: שקע חשמל
+    # switch.power_tv:
+    #   name: שקע חשמל טלוויזיה
+    #   description: שקע חשמל
 
-    switch.lg_tv_button:
-      name: LG מעבר
-      description: מעבר דרך ארמוני לטלוויזיה
+    # switch.lg_tv_button:
+    #   name: LG מעבר
+    #   description: מעבר דרך ארמוני לטלוויזיה
       
-    switch.whizz_button:
-      name: xiaomi
-      description: לעבורי לסטרימר      
+    # switch.whizz_button:
+    #   name: xiaomi
+    #   description: לעבורי לסטרימר      
 
-    switch.yes_dvr_button:
-       name: הפעלת TV
-       description: הפעלת טלוויזיה ישירות ליס
+    # switch.yes_dvr_button:
+    #   name: הפעלת TV
+    #   description: הפעלת טלוויזיה ישירות ליס
     
-    media_player.spotify_avi_abeksis:
-      name: ספוטיפיי
-      description: שליטת ספוטיפיי
+    # media_player.spotify:
+    #   name: ספוטיפיי
+    #   description: שליטת ספוטיפיי
       
+    # switch.switcher_mini:
+    #   name: Boiiler
+    #   description: Boiiler
+    
+    # switch.bedroom_watch_tv:
+    #   name: tv nurit
+    #   description: tv nurit avi
+    
+    # light.group_59128:
+    #   name: מסדרון חדרים
+    #   description: קבוצת תאורה מסדרון חדרים

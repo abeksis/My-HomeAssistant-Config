@@ -1,0 +1,357 @@
+title: Rooms
+icon: 'mdi:bed'
+path: rooms
+type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr
+  grid-template-rows: auto
+  mediaquery:
+    "(min-width: 800px)":
+      grid-template-columns: 700px
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: edge
+
+      # Home Back    
+      - type: 'custom:button-card'
+        template: chip_back
+        variables:
+          ulm_chip_back_path: /lovelace-minimalist/home
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: edge
+
+      - type: custom:layout-card
+        layout_type: grid
+        cards:
+          - type: 'custom:button-card'
+            template: card_graph
+            variables:
+              ulm_card_graph_color: "var(--google-blue)"
+              ulm_card_graph_name: Gateway
+              ulm_card_graph_entity: 'sensor.illumination_gateway'
+              ulm_card_graph_type: fill
+              ulm_card_graph_hours: 24
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: title
+            name: Devices
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+        cards:
+          - type: 'custom:button-card'
+            template: card_light
+            entity: light.liran_room
+            variables: 
+              ulm_card_light_name: Liran
+
+          - type: 'custom:button-card'
+            template: card_light
+            entity: light.yakir_room
+            variables: 
+              ulm_card_light_name: Yakir
+
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+            
+            layout_options:
+              grid-template-columns: 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+              mediaquery:
+                "(max-width: 450px)":
+                  grid-template-columns: 1fr 1fr
+            cards:
+              - type: "custom:button-card"
+                template: card_light
+                entity: light.laundry_room_light
+                variables:
+                  ulm_card_light_enable_slider: true
+                  ulm_card_light_enable_color: true               
+                  ulm_card_light_name: Laundry
+                  ulm_card_light_force_background_color: true
+
+              - type: "custom:button-card"
+                template: card_light
+                entity: light.yeelight_stripe_light
+                variables:
+                  ulm_card_light_enable_slider: true
+                  ulm_card_light_enable_color: true
+                  ulm_card_light_enable_popup: true
+                  ulm_card_light_name: Bed Light
+                  ulm_card_light_force_background_color: true
+
+              - type: "custom:button-card"
+                template: card_light
+                entity: light.gateway_light
+                variables:
+                  ulm_card_light_enable_slider: true
+                  ulm_card_light_enable_color: true
+                  ulm_card_light_enable_popup: true
+                  ulm_card_light_name: Gateway
+                  ulm_card_light_force_background_color: true
+
+              - type: 'custom:button-card'
+                template: card_power_outlet
+                variables:
+                  ulm_card_power_outlet_consumption_sensor: sensor.shelly_liran_socket_power
+                entity: sensor.shelly_liran_socket_power
+                name: AC Liran
+
+      - type: custom:layout-card
+        layout_type: grid
+
+        layout_options:
+          grid-template-columns: 1fr 1fr
+          grid-template-rows: auto
+          grid-gap: 0px 4px
+          mediaquery:
+            "(max-width: 450px)":
+              grid-template-columns: 1fr 1fr
+        cards:
+          - type: 'custom:button-card'
+            template: card_light
+            entity: light.parents
+            variables: 
+              ulm_card_light_name: Parents
+
+          - type: 'custom:button-card'
+            template: card_light
+            entity: light.parents_light_mirror
+            variables: 
+              ulm_card_light_name: Mirror
+
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+
+            layout_options:
+              grid-template-columns: 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+              mediaquery:
+                "(max-width: 450px)":
+                  grid-template-columns: 1fr
+            cards:
+              - type: "custom:button-card"
+                template: card_cover
+                entity: cover.shutter_in_parents
+                variables:
+                  ulm_card_cover_enable_controls: true
+                  ulm_card_cover_enable_slider: true
+
+
+      # - type: vertical-stack
+      #   cards:
+      #     - type: custom:layout-card
+      #       layout_type: grid
+
+      #       layout_options:
+      #         grid-template-columns: 1fr 1fr
+      #         grid-template-rows: auto
+      #         grid-gap: 0px 4px
+      #         mediaquery:
+      #           "(max-width: 450px)":
+      #             grid-template-columns: 1fr 1fr
+      #       cards:
+      #         - type: 'custom:button-card'
+      #           template: card_power_outlet
+      #           variables:
+      #             ulm_card_power_outlet_consumption_sensor: sensor.shelly_liran_socket_power
+      #           entity: sensor.shelly_liran_socket_power
+      #           name: AC
+
+              # - type: "custom:button-card"
+              #   template: "custom_card_vncntdev_device_tracker"
+              #   entity: binary_sensor.dishwasher
+              #   variables:
+              #     custom_card_vncntdev_device_tracker_name: "Dishwasher State"
+
+              # - type: "custom:button-card"
+              #   template: "custom_card_vncntdev_device_tracker"
+              #   entity: switch.dishwasher
+              #   variables:
+              #     custom_card_vncntdev_device_tracker_name: "on/off Dishwasher"
+
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: title
+                name: Washing Machine & Dryer
+
+          - type: custom:layout-card
+            layout_type: grid
+
+            # layout_options:
+            #   grid-template-columns: 1fr 1fr
+            #   grid-template-rows: auto
+            #   grid-gap: 0px 4px
+            #   mediaquery:
+            #     "(max-width: 450px)":
+            #       grid-template-columns: 1fr
+            cards:
+              - type: "custom:button-card"
+                template: "custom_card_apexcharts"
+                variables:
+                  chart_type: "radialBar"
+                  graph_span: "1d"
+                  entity_1:
+                    entity_id: "sensor.washing_machine_energy_today"
+                    icon: 'mdi:washing-machine'
+                    name: "Today"
+                    color: "blue"
+                    max_value: 1
+                  entity_2:
+                    entity_id: "sensor.washing_machine_energy_yesterday"
+                    icon: 'mdi:washing-machine-alert'
+                    name: "Yesterday"
+                    color: "yellow"
+                    max_value: 6
+                  entity_3:
+                    entity_id: "sensor.washing_machine_energy_total"
+                    icon: 'mdi:washing-machine-off'
+                    name: "Total"
+                    color: "green"
+                    max_value: 10
+
+      - type: vertical-stack
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+
+            layout_options:
+              grid-template-columns: 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+              mediaquery:
+                "(max-width: 450px)":
+                  grid-template-columns: 1fr 1fr
+            cards:
+              - type: "custom:button-card"
+                template: "custom_card_vncntdev_device_tracker"
+                entity: switch.laundry_dryer
+                variables:
+                  custom_card_vncntdev_device_tracker_icon: mdi:tumble-dryer
+                  custom_card_vncntdev_device_tracker_name: "Dryer"
+                  custom_card_vncntdev_device_tracker_color_offline: "var(--google-red)"                  
+                  custom_card_vncntdev_device_tracker_status_as_name: true
+
+              - type: "custom:button-card"
+                template: "custom_card_vncntdev_device_tracker"
+                entity: switch.washing_machine
+                variables:
+                  custom_card_vncntdev_device_tracker_icon: mdi:washing-machine
+                  custom_card_vncntdev_device_tracker_name: "Washing M"
+                  custom_card_vncntdev_device_tracker_color_offline: "var(--google-red)"
+                  custom_card_vncntdev_device_tracker_status_as_name: true
+
+              - type: "custom:button-card"
+                template: "custom_card_vncntdev_device_tracker"
+                entity: binary_sensor.washing_machine
+                variables:
+                  custom_card_vncntdev_device_tracker_name: "Washing State"
+
+
+              - type: "custom:button-card"
+                template: "custom_card_vncntdev_device_tracker"
+                entity: binary_sensor.laundry_dryer
+                variables:
+                  custom_card_vncntdev_device_tracker_name: "Dryer State"
+
+          - type: custom:layout-card
+            layout_type: grid
+
+            # layout_options:
+            #   grid-template-columns: 1fr 1fr
+            #   grid-template-rows: auto
+            #   grid-gap: 0px 4px
+            #   mediaquery:
+            #     "(max-width: 450px)":
+            #       grid-template-columns: 1fr
+            cards:
+              - type: "custom:button-card"
+                template: "custom_card_apexcharts"
+                variables:
+                  chart_type: "radialBar"
+                  graph_span: "1d"
+                  entity_1:
+                    entity_id: "sensor.laundry_dryer_energy_today"
+                    icon: 'mdi:tumble-dryer'
+                    name: "Today"
+                    color: "blue"
+                    max_value: 5
+                  entity_2:
+                    entity_id: "sensor.laundry_dryer_energy_yesterday"
+                    icon: 'mdi:tumble-dryer-alert'
+                    name: "Yesterday"
+                    color: "yellow"
+                    max_value: 10
+                  entity_3:
+                    entity_id: "sensor.laundry_dryer_energy_total"
+                    icon: 'mdi:tumble-dryer-off'
+                    name: "Total"
+                    color: "green"
+                    max_value: 80
+
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: title
+                name: Sensors
+
+          - type: custom:layout-card
+            layout_type: grid
+
+            layout_options:
+              grid-template-columns: 1fr 1fr 1fr
+              grid-template-rows: auto
+              grid-gap: 0px 4px
+              mediaquery:
+                "(max-width: 450px)":
+                  grid-template-columns: 1fr 1fr
+            cards:
+
+              - type: 'custom:button-card'
+                template: card_binary_sensor
+                variables:
+                  - ulm_card_binary_sensor_alert: true
+                entity: binary_sensor.laundry_room_motion
+                show_last_changed: true
+                name: Laundry
+
+              - type: 'custom:button-card'
+                template: card_battery
+                entity: sensor.laundry_room_motion_battery
+                variables:
+                    ulm_card_battery_charger_type_entity_id: sensor.laundry_room_motion_battery
+                    ulm_card_battery_battery_level_danger: 30
+                    ulm_card_battery_battery_level_warning: 80
+                name: Battery

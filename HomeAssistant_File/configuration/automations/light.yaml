@@ -1,197 +1,284 @@
 #################################################################
-#       הדלקה/כיבוי תאורה במדרגות בהתאם לשקיעה וזריחת השמש        #
+#       הדלקה/כיבוי תאורה במדרגות בהתאם לשקיעה וזריחת השמש      #
 #################################################################
+  # עבר לממשק ויזואלי - UI
+  # 01/9/21
 
-  - alias: 'Lighting the light after sunset at eleven oclock'
-    initial_state: 'on'  
-    trigger:
-      platform: time
-      at: '22:00:00'
-    action:
-    - service: light.turn_on
-      data_template:
-        entity_id: 
-        - light.stairs
+  # - alias: 'Lighting the light after sunset at eleven oclock'
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: time
+  #     at: '22:00:00'
+  #   action:
+  #   - service: light.turn_on
+  #     data_template:
+  #       entity_id: 
+  #       - light.stairs
 
-  - alias: 'Lights off after sunset'
-    initial_state: 'on'  
-    trigger:
-      platform: time
-      at: '06:00:00'
-    action:
-    - service: light.turn_off
-      data_template:
-        entity_id: 
-        - light.stairs
-
-#################################################################
-#                    לחצן הפעלה מרפסת עישון                      #
-#################################################################
-
-  - alias: 'Turn on lighting on the Smoking Balcony'
-    initial_state: 'on'
-    trigger:
-      platform: event
-      event_type: deconz_event
-      event_data:
-        id: smoking_balcony
-        event: 1002
-    action:
-      service: light.toggle
-      entity_id: light.smoking_balcony    
+  # - alias: 'Lights off after sunset'
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: time
+  #     at: '06:00:00'
+  #   action:
+  #   - service: light.turn_off
+  #     data_template:
+  #       entity_id: 
+  #       - light.stairs
 
 #################################################################
-#             כיבוי תאורה במרפסת עישון במידה ואין תנועה              #
+#                    לחצן הפעלה תאורת מחסן                      #
+#################################################################
+  # עבר לממשק ויזואלי - UI
+  # 28/8/21
+  
+  
+  # - alias: 'Turn on lighting on the Warehouse'
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: switch_warehouse_light
+  #       event: 1002
+  #   action:
+  #     service: light.toggle
+  #     entity_id: light.warehouse
+      
+
+#################################################################
+#                    חיישן תנועה מחסן/חדר מחשבים                #
+#################################################################
+  # עבר לממשק ויזואלי - UI
+  # 28/8/21
+
+  
+  # - alias: "Turn on lights Warehouse based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #   - entity_id: binary_sensor.warehouse_motion_sensor
+  #     platform: state
+  #     to: 'on'
+  #   action:
+  #   - service: light.turn_on
+  #     entity_id: light.warehouse
+  #     data:
+  #       brightness_pct: 100
+  #       kelvin: 6000  
+  #   - service: switch.turn_on ## הפעלה שקע מאוורר חכם
+  #     entity_id: switch.tasmota
+
+  # עבר לממשק ויזואלי - UI
+  # 28/8/21
+
+  # - alias: "Turn off lights Warehouse based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.warehouse_motion_sensor
+  #     to: 'off'
+  #     for:
+  #       seconds: 30
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.warehouse
+
+  #   - service: switch.turn_off ## כיבוי שקע מאוורר חכם
+  #     entity_id: switch.tasmota 
+
+#################################################################
+#                   כיבוי כל האורות ביציאה                      #
+#################################################################
+  # עבר לממשק ויזואלי - UI
+  # 28/8/21
+
+
+  # - alias: "Turn lights off when we leave"
+  #   trigger:
+  #   - platform: state
+  #     entity_id: device_tracker.life360_avi_abeksis
+  #     from: "`Home"
+  #     to: "not_home"
+  #   - platform: state
+  #     entity_id: device_tracker.life360_nurit
+  #     from: "Home"
+  #     to: "not_home"
+  #   condition:
+  #     - condition: state
+  #       entity_id: device_tracker.life360_avi_abeksis
+  #       state: "not_home"
+  #     - condition: state
+  #       entity_id: device_tracker.life360_nurit
+  #       state: "not_home"
+  #   action:
+  #     - service: light.turn_off
+  #       data_template:
+  #         entity_id: 
+  #         - light.warehouse
+  #         # - light.kitchen
+  #         # - light.kitchen_strip_lamp
+  #         # - light.prozdor
+  #         # - light.stairs
+  #         # - light.yeelight_poop
+  #         # - light.smoking_balcony
+  #         # - light.service_balcony
+  #     - service: notify.avi_telegram
+  #       data:
+  #         title: "lights"
+  #         message: 'כל התאורה בבית כבויה'      
+
+#################################################################
+#             כיבוי תאורה במרפסת עישון במידה ואין תנועה         #
 ################################################################# 
 
-  - alias: "Turn off lights Smoking Balcony on montion" 
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: binary_sensor.sensor_light_balcony
-      to: 'off'
-      for:
-        seconds: 120
-    action:
-    - service: light.turn_off
-      entity_id: light.smoking_balcony              
+  # - alias: "Turn off lights Smoking Balcony on montion" 
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.sensor_light_balcony
+  #     to: 'off'
+  #     for:
+  #       seconds: 120
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.smoking_balcony              
 
 
 #################################################################
 #                    לחצן הפעלה מרפסת שירות                      #
 #################################################################   
 
-  - alias: 'Turn on lighting on the Service balcony'
-    initial_state: 'on'
-    trigger:
-      platform: event
-      event_type: deconz_event
-      event_data:
-        id: balcony_laundry_switch
-        event: 1002
-    action:
-      service: light.toggle
-      entity_id: light.service_balcony   
+  # - alias: 'Turn on lighting on the Service balcony'
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: switch_balcony_laundry
+  #       event: 1002
+  #   action:
+  #     service: light.toggle
+  #     entity_id: light.service_balcony   
 
 
 ##################################################################
-#     הדלקת סטריפ תאורה במטבח ביחד עם הדלקת האור במטבח            #
+#     הדלקת סטריפ תאורה במטבח ביחד עם הדלקת האור במטבח           #
 ##################################################################
 
-  - alias: "light the kitchen on and strip light sync when on"
-    trigger:
-      - platform: state
-        entity_id: light.kitchen
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: or
-      conditions:
-        - condition: time
-          before: '13:30:00'
-          after: '19:00:00'
-          weekday:
-            - fri
-        - condition: time
-          weekday:
-            - sun
-            - mon
-            - tue
-            - wed
-            - thu
-            - sat
-    action:
-    - service: light.turn_on
-      data:
-        entity_id: light.kitchen_strip_lamp
-        brightness: 255
-        color_name: cornsilk
+  # - alias: "light the kitchen on and strip light sync when on"
+  #   trigger:
+  #     - platform: state
+  #       entity_id: light.kitchen
+  #       from: 'off'
+  #       to: 'on'
+  #   condition:
+  #     condition: or
+  #     conditions:
+  #       - condition: time
+  #         before: '13:30:00'
+  #         after: '19:00:00'
+  #         weekday:
+  #           - fri
+  #       - condition: time
+  #         weekday:
+  #           - sun
+  #           - mon
+  #           - tue
+  #           - wed
+  #           - thu
+  #           - sat
+  #   action:
+  #   - service: light.turn_on
+  #     data:
+  #       entity_id: light.kitchen_strip_lamp
+  #       brightness: 255
+  #       color_name: cornsilk
 
 
-  - alias: "light the kitchen on and strip light sync when off"
-    trigger:
-      - platform: state
-        entity_id: light.kitchen
-        from: 'on'
-        to: 'off'
-    condition:
-      condition: or
-      conditions:
-        - condition: time
-          before: '13:30:00'
-          after: '19:00:00'
-          weekday:
-            - fri
-        - condition: time
-          weekday:
-            - sun
-            - mon
-            - tue
-            - wed
-            - thu
-            - sat
-    action:
-    - service: light.turn_off
-      entity_id: light.kitchen_strip_lamp   
-
-
-
-#################################################################
-#                      חיישן תנועה חדר הורים                      #     
-#################################################################
-
-  - alias: "Turn on lights parents based on montion"
-    initial_state: 'on'
-    trigger:
-    - entity_id: binary_sensor.parents_shower_sensor
-      platform: state
-      to: 'on'
-    action:
-    - service: light.turn_on
-      entity_id: light.parents_shower
-
-  - alias: "Turn off lights parents based on montion"
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: binary_sensor.parents_shower_sensor
-      to: 'off'
-      for:
-        seconds: 30
-    action:
-    - service: light.turn_off
-      entity_id: light.parents_shower
+  # - alias: "light the kitchen on and strip light sync when off"
+  #   trigger:
+  #     - platform: state
+  #       entity_id: light.kitchen
+  #       from: 'on'
+  #       to: 'off'
+  #   condition:
+  #     condition: or
+  #     conditions:
+  #       - condition: time
+  #         before: '13:30:00'
+  #         after: '19:00:00'
+  #         weekday:
+  #           - fri
+  #       - condition: time
+  #         weekday:
+  #           - sun
+  #           - mon
+  #           - tue
+  #           - wed
+  #           - thu
+  #           - sat
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.kitchen_strip_lamp   
 
 
 
 #################################################################
-#                        חיישן תנועה שירותי אורחים                 #
+#                      חיישן תנועה חדר הורים                    #     
 #################################################################
 
-  - alias: "Turn on lights poop based on montion"
-    initial_state: 'on'  
-    trigger:
-    - entity_id: binary_sensor.bathroom_motion_sensor
-      platform: state
-      to: 'on'
-    action:
-    - service: light.turn_on
-      entity_id: light.yeelight_poop
-      data:
-        brightness_pct: 100
-        kelvin: 5500    
+  # - alias: "Turn on lights parents based on montion"
+  #   initial_state: 'on'
+  #   trigger:
+  #   - entity_id: binary_sensor.presence_shower_motion
+  #     platform: state
+  #     to: 'on'
+  #   action:
+  #   - service: light.turn_on
+  #     entity_id: light.parents_shower
 
-  - alias: "Turn off lights poop based on montion"
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: binary_sensor.bathroom_motion_sensor
-      to: 'off'
-      for:
-        seconds: 30
-    action:
-    - service: light.turn_off
-      entity_id: light.yeelight_poop
+  # - alias: "Turn off lights parents based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.presence_shower_motion
+  #     to: 'off'
+  #     for:
+  #       seconds: 30
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.parents_shower
+
+
+
+#################################################################
+#                        חיישן תנועה שירותי אורחים              #
+#################################################################
+
+  # - alias: "Turn on lights poop based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #   - entity_id: binary_sensor.bathroom_motion_sensor
+  #     platform: state
+  #     to: 'on'
+  #   action:
+  #   - service: light.turn_on
+  #     entity_id: light.yeelight_poop
+  #     data:
+  #       brightness_pct: 100
+  #       kelvin: 5500    
+
+  # - alias: "Turn off lights poop based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.bathroom_motion_sensor
+  #     to: 'off'
+  #     for:
+  #       seconds: 30
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.yeelight_poop
 
 
 
@@ -199,237 +286,172 @@
 #                    חיישן תנועה מקלחת ראשית                     # 
 #################################################################
 
-  - alias: "Turn on lights miklahat based on montion"
-    initial_state: 'on'  
-    trigger:
-    - entity_id: binary_sensor.main_shower_sensor
-      platform: state
-      to: 'on'
-    action:
-    - service: light.turn_on
-      entity_id: light.miklahat
+  # - alias: "Turn on lights miklahat based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #   - entity_id: binary_sensor.main_shower_sensor
+  #     platform: state
+  #     to: 'on'
+  #   action:
+  #   - service: light.turn_on
+  #     entity_id: light.shower
 
-  - alias: "Turn off lights miklahat based on montion"
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: binary_sensor.main_shower_sensor
-      to: 'off'
-      for:
-        minutes: 2
-    action:
-    - service: light.turn_off
-      entity_id: light.miklahat
+  # - alias: "Turn off lights miklahat based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.main_shower_sensor
+  #     to: 'off'
+  #     for:
+  #       minutes: 2
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.shower
 
 
 #################################################################
-#                    אור כחול במטבח בימי שישי בלבד                 #
+#                    אור כחול במטבח בימי שישי בלבד              #
 ################################################################# 
 
-  - alias: "blue srtip light every Friday on" 
-    initial_state: 'on'  
-    trigger:
-      platform: time
-      at: '13:30:00'
-    condition:
-    - condition: and
-      conditions:
-      - condition: time
-        weekday:
-        - fri     
-    action:
-    - service: light.turn_on
-      data:
-        entity_id: light.kitchen_strip_lamp
-        brightness: 255
-        color_name: blue
+  # - alias: "blue srtip light every Friday on" 
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: time
+  #     at: '14:00:00'
+  #   condition:
+  #   - condition: and
+  #     conditions:
+  #     - condition: time
+  #       weekday:
+  #       - fri     
+  #   action:
+  #   - service: light.turn_on
+  #     data:
+  #       entity_id: light.kitchen_strip_lamp
+  #       brightness: 255
+  #       color_name: blue
 
-  - alias: "blue srtip light every Friday off" 
-    initial_state: 'on'  
-    trigger:
-      platform: time
-      at: '19:00:00'
-    condition:
-    - condition: and
-      conditions:
-      - condition: time
-        weekday:
-        - fri 
-    action:
-    - service: light.turn_off
-      data_template:
-        entity_id: 
-        - light.kitchen_strip_lamp
+  # - alias: "blue srtip light every Friday off" 
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: time
+  #     at: '19:30:00'
+  #   condition:
+  #   - condition: and
+  #     conditions:
+  #     - condition: time
+  #       weekday:
+  #       - fri 
+  #   action:
+  #   - service: light.turn_off
+  #     data_template:
+  #       entity_id: 
+  #       - light.kitchen_strip_lamp
 
 #################################################################
-#        כיבוי תאורת במטבח החל מהשעה 12 בלילה במידה ואין תנועה     #
+#        כיבוי תאורת במטבח החל מהשעה 12 בלילה במידה ואין תנועה   #
 ################################################################# 
 
-  - alias: "Switching off the kitchen lighting from 12am" 
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: binary_sensor.kitchen_motion_sensor
-      to: 'off'
-      for:
-        seconds: 120
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          before: '06:00:00'
-          after: '00:01:00'   
-    action:
-    - service: light.turn_off
-      entity_id: light.kitchen       
+  # - alias: "Switching off the kitchen lighting from 12am" 
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.kitchen_motion_sensor
+  #     to: 'off'
+  #     for:
+  #       seconds: 120
+  #   condition:
+  #     condition: and
+  #     conditions:
+  #       - condition: time
+  #         before: '06:00:00'
+  #         after: '00:01:00'   
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.kitchen       
 
-#################################################################
-#                      חיישן תנועה חדר מחשבים                    #
-#################################################################
-
-  - alias: "Turn on lights pc room based on montion"
-    initial_state: 'on'  
-    trigger:
-    - entity_id: binary_sensor.server_room_motion_sensor
-      platform: state
-      to: 'on'
-    action:
-    - service: light.turn_on
-      entity_id: light.computer_room
-      data:
-        brightness_pct: 100
-        kelvin: 6000        
-
-  - alias: "Turn off lights pc room based on montion"
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: binary_sensor.server_room_motion_sensor
-      to: 'off'
-      for:
-        seconds: 30
-    action:
-    - service: light.turn_off
-      entity_id: light.computer_room
             
 #################################################################
 #                       חיישן תנועה חדר כביסה                     #
 #################################################################
  
-  - alias: "Turn on lights laundry based on montion"
-    initial_state: 'on'  
-    trigger:
-    - entity_id: binary_sensor.laundry_room_motion
-      platform: state
-      to: 'on'
-    action:
-    - service: light.turn_on
-      entity_id: light.laundry_room_lighting
-      data:
-        brightness_pct: 100
-        kelvin: 5500   
+  # - alias: "Turn on lights laundry based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #   - entity_id: binary_sensor.laundry_room_motion
+  #     platform: state
+  #     to: 'on'
+  #   action:
+  #   - service: light.turn_on
+  #     entity_id: light.laundry_room_lighting
+  #     data:
+  #       brightness_pct: 100
+  #       kelvin: 5500   
 
-  - alias: "Turn off lights laundry based on montion"
-    initial_state: 'on'  
-    trigger:
-      platform: state
-      entity_id: binary_sensor.laundry_room_motion
-      to: 'off'
-      for:
-        seconds: 30
-    action:
-    - service: light.turn_off
-      entity_id: light.laundry_room_lighting             
-
-#################################################################
-#                   כיבוי כל האורות ביציאה                         #
-#################################################################
-
-  - alias: "Turn lights off when we leave"
-    trigger:
-    - platform: state
-      entity_id: device_tracker.life360_avi_abeksis
-      from: "בית"
-      to: "not_home"
-    - platform: state
-      entity_id: device_tracker.life360_nurit
-      from: "בית"
-      to: "not_home"
-    condition:
-      - condition: state
-        entity_id: device_tracker.life360_avi_abeksis
-        state: "not_home"
-      - condition: state
-        entity_id: device_tracker.life360_nurit
-        state: "not_home"
-    action:
-      - service: light.turn_off
-        data_template:
-          entity_id: 
-          - light.kitchen
-          - light.kitchen_strip_lamp
-          - light.prozdor
-          - light.stairs
-          - light.yeelight_poop
-          - light.smoking_balcony
-          - light.service_balcony
-      - service: notify.avi_telegram
-        data:
-          title: "lights"
-          message: 'כל התאורה בבית כבויה'
+  # - alias: "Turn off lights laundry based on montion"
+  #   initial_state: 'on'  
+  #   trigger:
+  #     platform: state
+  #     entity_id: binary_sensor.laundry_room_motion
+  #     to: 'off'
+  #     for:
+  #       seconds: 30
+  #   action:
+  #   - service: light.turn_off
+  #     entity_id: light.laundry_room_lighting             
           
 #################################################################
 #                   הדלקת תאורת מדרגות שלט איקיאה                #
 #################################################################
 # event: 4002 - שמאלה # event: 5002 - ימינה   # event: 2002 - למעלה # event: 3002 - למטה
 
-  - alias: 'Turn on stairs light IKEA Remote'
-    initial_state: 'on'
-    trigger:
-      platform: event
-      event_type: deconz_event
-      event_data:
-        id: tradfri_remote_control
-        event: 3002 # (למטה))
-    action:
-      service: light.toggle
-      entity_id: light.stairs      
+  # - alias: 'Turn on stairs light IKEA Remote'
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: tradfri_remote_control
+  #       event: 3002 # (למטה))
+  #   action:
+  #     service: light.toggle
+  #     entity_id: light.stairs      
       
 #################################################################
 #                   הדלקת תאורה מנורות איקיאה                     #
 #################################################################
 
-  - alias: 'Turn on all IKEA light IKEA Remote'
-    initial_state: 'on'
-    trigger:
-      platform: event
-      event_type: deconz_event
-      event_data:
-        id: tradfri_remote_control
-        event: 2002 # (למעלה)
-    action:
-      - service: light.toggle
-        data_template:
-          entity_id: 
-          - light.room_area_light_1
-          - light.room_area_light_2
-          - light.room_area_light_3
-          - light.room_area_light_4
+  # - alias: 'Turn on all IKEA light IKEA Remote'
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: tradfri_remote_control
+  #       event: 2002 # (למעלה)
+  #   action:
+  #     - service: light.toggle
+  #       data_template:
+  #         entity_id: 
+  #         - light.room_area_light_1
+  #         - light.room_area_light_2
+  #         - light.room_area_light_3
+  #         - light.room_area_light_4
 
 
 #################################################################
 #             הפסקת שואב אבק בעזרת לחצן שליטה איקיאה             #
 #################################################################
 
-  - alias: 'Stop Vacuum By IKEA Remote'
-    initial_state: 'on'
-    trigger:
-      platform: event
-      event_type: deconz_event
-      event_data:
-        id: tradfri_remote_control
-        event: 1002 # (מרכז)
-    action:
-      service: vacuum.return_to_base
-      entity_id: vacuum.rockrobo
+  # - alias: 'Stop Vacuum By IKEA Remote'
+  #   initial_state: 'on'
+  #   trigger:
+  #     platform: event
+  #     event_type: deconz_event
+  #     event_data:
+  #       id: tradfri_remote_control
+  #       event: 1002 # (מרכז)
+  #   action:
+  #     service: vacuum.return_to_base
+  #     entity_id: vacuum.rockrobo_vacuum_v1
           

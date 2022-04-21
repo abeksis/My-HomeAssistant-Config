@@ -1,0 +1,114 @@
+---
+### התווסף על ידי אבי ###
+  ventilo:
+    tap_action:
+      action: more-info
+    icon: mdi:fan
+    template: bleu_spin
+    label: >-
+      [[[ 
+          return entity.state
+      ]]]
+################################################################################
+  ventilo_buttons:
+    variables:
+      entity: ""
+      name: "Ventilateur"
+    styles:
+      card:
+        - border-radius: 20px
+        - box-shadow: var(--box-shadow)
+        - padding: 12px
+      grid:
+        - grid-template-areas: '"item1" "item2"'
+        - grid-template-columns: 1fr
+        - grid-template-rows: min-content  min-content
+        - row-gap: 12px
+    custom_fields:
+      item1:
+        card:
+          entity: '[[[ return variables.entity ]]]'
+          name: '[[[ return variables.name ]]]'
+          tap_action:
+            action: toggle
+          hold_action:
+            action: more-info
+          template:
+            - icon_info
+            - ventilo
+          type: 'custom:button-card'
+      item2:
+        card:
+          template: list_items
+          type: 'custom:button-card'
+          custom_fields:
+            # item1:
+            #   card:
+            #     icon: 'mdi:fan'
+            #     styles:
+            #       icon:
+            #         - transform: scale(0.625)
+            #     tap_action:
+            #       action: call-service
+            #       service: fan.decrease_speed
+            #       service_data:
+            #         entity_id: 'switch.shower_parents_fan'
+            #         percentage_step: 10
+            #     type: 'custom:button-card'
+            #     template: widget_icon
+            # item2:
+            #   card:
+            #     icon: 'mdi:leaf'
+            #     tap_action:
+            #       action: call-service
+            #       service: switch.toggle
+            #       service_data:
+            #         entity_id: 'switch.shower_parents_fan'
+            #     type: 'custom:button-card'
+            #     entity: 'switch.shower_parents_fan'
+            #     template: 
+            #       - bleu
+            #       - widget_icon
+            # item3:
+            #   card:
+            #     icon: 'mdi:rotate-3d-variant'
+            #     tap_action:
+            #       action: call-service
+            #       service: switch.toggle
+            #       service_data:
+            #         entity_id: 'switch.shower_parents_fan'
+            #     type: 'custom:button-card'
+            #     entity: 'switch.shower_parents_fan'
+            #     template:
+            #       - bleu
+            #       - widget_icon
+            # item4:
+            #   card:
+            #     icon: 'mdi:fan'
+            #     tap_action:
+            #       action: call-service
+            #       service: fan.increase_speed
+            #       service_data:
+            #         entity_id: 'fswitch.shower_parents_fan'
+            #         percentage_step: 10
+            #     type: 'custom:button-card'
+            #     template: widget_icon
+################################################################################
+  bleu_spin:
+    state:
+      - value: 'on'
+        spin: true
+        styles:
+          icon:
+            - color: "rgba(var(--color-black),0.7)"
+          label:
+            # - align-self: "center"
+            # - justify-self: "start"
+            - font-weight: "bold"
+            # - font-size: "14px"
+            # - margin-left: "12px"
+            # - filter: "opacity(100%)"
+          img_cell:
+            - background-color: "rgba(var(--color-yellow), 0.2)"
+      - value: 'off'
+        spin: false

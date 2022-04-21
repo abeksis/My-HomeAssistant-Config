@@ -1,0 +1,192 @@
+group:
+
+############################################################################
+#                                                                          #
+#   All Climate Entities                                                   #
+#                                                                          #
+############################################################################
+
+  all_climate_entities:
+    name: All Climate Entities
+    entities:
+      - climate.living_room
+
+
+
+############################################################################
+#                                                                          #
+#   All Light Entities                                                     #
+#                                                                          #
+############################################################################
+
+  all_light_entities:
+    name: All Light Entities
+    entities:
+      - light.closets
+      - light.guests_bathroom
+      - light.dining_room
+      - light.garden
+      - light.door_light
+      - light.island
+      - light.kitchen
+      - light.liran_room
+      - light.living_room
+      - light.outdoor_light
+      - light.rotem_room
+      - light.yakir_room
+      - light.warehouse
+      - light.kids_shower_light
+      - light.laundry_room_light
+      - light.parents_light_mirror
+      - light.philips_1
+      - light.philips_2
+      - light.philips_toilet_lobby
+      - light.shower_parents_light
+      - light.sing_family
+      - light.gateway_light
+      - light.mi_control_hub_light
+
+
+############################################################################
+#                                                                          #
+#   All Camera Entities                                                    #
+#                                                                          #
+############################################################################
+
+  all_|camera_entities:
+    name: All Camera Entities
+    entities:
+      - camera.blueiris_electric_gate
+      - camera.blueiris_front_gate
+      
+############################################################################
+#                                                                          #
+#   All Shutter Entities                                                    #
+#                                                                          #
+############################################################################
+
+  all_cover_entities:
+    name: All Cover Entities
+    entities:
+      - cover.shutter_dining_room
+      - cover.shutter_in_parents
+  
+
+
+
+############################################################################
+#                                                                          #
+#   All Tablets Is Charging Entities                                       #
+#                                                                          #
+############################################################################
+
+  # all_tablets_is_charging_entities:
+  #   name: All Tablets Is Charging Entities
+  #   entities:
+  #     - binary_sensor.ronen_tab_is_charging
+  #     - binary_sensor.kfir_tab_is_charging
+  #     - binary_sensor.ipadminidima_is_charging
+
+
+############################################################################
+#                                                                          #
+#   All Tablets Batteries                                                  #
+#                                                                          #
+############################################################################
+
+  # all_tablets_battery_entities:
+  #   name: All Tablets Battery Entities
+  #   entities:
+  #     - sensor.ronen_tab_battery_level
+  #     - sensor.kfir_tab_battery_level
+  #     - sensor.ipadminidima_battery_level
+
+
+
+############################################################################
+#                                                                          #
+#   All Motion Sensors Entities                                            #
+#                                                                          #
+############################################################################
+
+  all_motion_sensor_entities:
+    name: All Motion Sensor Entities
+    entities:
+      - binary_sensor.kids_shower_motion_ikea
+      - binary_sensor.warehouse_motion_sensor
+      - binary_sensor.guests_bathroom
+      - binary_sensor.motion_sensor_second_floor_lobby
+      - binary_sensor.laundry_room_motion
+      - binary_sensor.closet_room
+
+############################################################################
+#                                                                          #
+#   All Motion Sensors Entities                                            #
+#                                                                          #
+############################################################################
+
+  all_bathroom_motion_sensor_entities:
+    name: All Bathroom Motion Sensor Entities
+    entities:
+      - binary_sensor.guests_bathroom
+      - binary_sensor.kids_shower_motion_ikea
+
+
+############################################################################
+#                                                                          #
+#   All Batteries Sensor Entities                                          #
+#                                                                          #
+############################################################################
+
+  all_batteries_sensor_entities:
+    name: All Batteries Sensor Entities
+    entities:
+      - sensor.kids_shower_motion_ikea_battery
+      - sensor.front_door_battery
+      - sensor.guests_bathroom_battery
+      - sensor.lumi_lumi_sensor_motion_aq2_1e775104_power
+      - sensor.kids_shower_motion_ikea_battery
+      - sensor.warehouse_motion_battery
+      - sensor.nurit_iphone_battery_level
+      - sensor.samsung_battery_level
+
+############################################################################
+#                                                                          #
+#   All Media Entities                                                     #
+#                                                                          #
+############################################################################
+
+  # all_media_entities:
+  #   name: All Media Entities
+  #   entities:
+      
+
+############################################################################
+#                                                                          #
+#   All Persons Entities                                                   #
+#                                                                          #
+############################################################################
+
+  all_person_entities:
+    name: All Persons Entities
+    entities:
+      - person.avi
+      - person.nurit
+      - person.yakir
+
+
+
+############################################################################
+#                                                                          #
+#   All Tasmota Versions                                                   #
+#                                                                          #
+############################################################################
+
+  all_tasmota_versions:
+    name: All Tasmota Versions
+    entities:
+      - sensor.tasmota_closets_room_light_version
+      - sensor.tasmota_living_room_light_version
+      - sensor.tasmota_yakir_room_light_version
+      - sensor.tasmota_rotem_room_light_version
+      - sensor.tasmota_guests_bathroom_light_version

@@ -1,0 +1,458 @@
+title: nas
+icon: 'mdi:nas'
+path: nas
+type: custom:grid-layout
+layout:
+  grid-template-columns: 1fr
+  grid-template-rows: auto
+  mediaquery:
+    "(min-width: 800px)":
+      grid-template-columns: 700px
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        template: edge
+
+      # Home Back    
+      - type: 'custom:button-card'
+        template: chip_back
+        variables:
+          ulm_chip_back_path: /lovelace-minimalist/home
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+
+        cards:
+          - type: custom:layout-card
+            layout_type: grid
+
+            # layout_options:
+            #   grid-template-columns: 1fr 1fr
+            #   grid-template-rows: auto
+            #   grid-gap: 0px 4px
+            #   mediaquery:
+            #     "(max-width: 450px)":
+            #       grid-template-columns: 1fr
+            cards:
+              - type: custom:button-card
+                show_icon: false
+                show_name: false
+                show_label: false
+                styles:
+                  grid:
+                    - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3' 'item4 item4' 'item5 item5'"
+                    - grid-template-columns: 1fr 1fr
+                    - grid-template-rows: "min-content min-content min-content"
+                    - row-gap: 0px
+                  card:
+                    - border-radius: var(--border-radius)
+                    - box-shadow: var(--box-shadow)
+                    - padding: 10px
+                custom_fields:
+                  item1:
+                    card:
+                      type: custom:button-card
+                      template: card_title
+                      name: Unraid Tower
+                      label: '[[[ return "Uptime: " + states["sensor.unraid_server_uptime"].state + "" ]]]'
+                      # label: 'AMD Ryzen 7 1700 Eight-Core Processor'
+                  item2:
+                    card:
+                      type: horizontal-stack
+                      cards:
+                        # - type: 'custom:button-card'
+                        #   template: card_graph
+                        #   variables:
+                        #     ulm_card_graph_color: "var(--google-green)"
+                        #     ulm_card_graph_entity: sensor.glances_unraid_tctl_temperature
+                        #     ulm_card_graph_hours: 24
+                        #     ulm_card_graph_name: Temp
+                        #   styles:
+                        #     card:
+                        #       - box-shadow: "none"
+
+                        - type: 'custom:button-card'
+                          template: custom_card_bar_card_unraid
+                          variables:
+                            ulm_custom_card_bar_card_entity: sensor.glances_unraid_ram_used_percent
+                            ulm_custom_card_bar_card_name: Memory Usage
+                            ulm_custom_card_bar_card_value: true
+                            ulm_custom_card_bar_card_indicator: false
+                            ulm_custom_card_bar_card_color: "var(--google-green)"
+                            ulm_custom_card_bar_card_min: 10
+                            ulm_custom_card_bar_card_max: 100
+
+                        - type: 'custom:button-card'
+                          template: custom_card_bar_card_unraid
+                          variables:
+                            ulm_custom_card_bar_card_entity: sensor.glances_unraid_used_percent
+                            ulm_custom_card_bar_card_name: Disk Usage
+                            ulm_custom_card_bar_card_value: true
+                            ulm_custom_card_bar_card_indicator: false
+                            ulm_custom_card_bar_card_color: "var(--google-blue)"
+                            ulm_custom_card_bar_card_min: 8
+                            ulm_custom_card_bar_card_max: 35
+                  item3:
+                    card:
+                      type: horizontal-stack
+                      cards:
+                        - type: custom:button-card
+                          template: custom_card_irmajavi_disk
+                          variables:
+                            ulm_custom_card_irmajavi_entities_entity_1: sensor.glances_unraid_mnt_disk1_used
+                            ulm_custom_card_irmajavi_entities_entity_2: sensor.glances_unraid_mnt_disk2_used
+                            ulm_custom_card_irmajavi_entities_entity_3: sensor.glances_unraid_mnt_disk3_used
+                            ulm_custom_card_irmajavi_entities_entity_4: sensor.glances_unraid_mnt_disk4_used
+                            ulm_custom_card_irmajavi_entities_name_1: Disk 1
+                            ulm_custom_card_irmajavi_entities_name_2: Disk 2
+                            ulm_custom_card_irmajavi_entities_name_3: Disk 3
+                            ulm_custom_card_irmajavi_entities_name_4: Disk 4
+                            # ulm_custom_card_irmajavi_entities_name: Disk 55
+                            ulm_custom_card_bar_card_color: "var(--google-green)"
+                            # ulm_custom_card_irmajavi_entities: sensor.glances_unraid_mnt_disk1_used
+                  item4:
+                    # card:
+                    #   type: horizontal-stack
+                    #   cards:
+                    #     - type: custom:button-card
+                    #       template: custom_card_irmajavi_speedtest
+                    #       variables:
+                    #         ulm_custom_card_irmajavi_speedtest_download_speed_entity: sensor.speedtest_download
+                    #         ulm_custom_card_irmajavi_speedtest_upload_speed_entity: sensor.speedtest_upload
+                    #         ulm_custom_card_irmajavi_speedtest_color: blue
+                    #         ulm_custom_card_irmajavi_speedtest_router_name: router_name
+                    #         ulm_custom_card_irmajavi_speedtest_router_model: router_model
+                    card:
+                      type: horizontal-stack
+                      cards:
+                        # - type: custom:button-card
+                        #   template: custom_card_graph_pi4
+                        #   variables:
+                        #     ulm_card_graph_color: "var(--google-green)"
+                        #     ulm_card_graph_entity: sensor.speedtest_upload
+                        #     ulm_card_graph_hours: 24
+                        #     ulm_card_graph_name: Upload
+                        #     ulm_card_graph_type: Ram Percent
+                        #   styles:
+                        #     card:
+                        #       - box-shadow: "none"
+
+                        - type: 'custom:button-card'
+                          template: card_graph_speedtest
+                          variables:
+                            ulm_card_graph_color: "var(--google-blue)"
+                            ulm_card_graph_name: SpeedTest
+                            ulm_card_graph_entity: sensor.speedtest_download
+                            ulm_card_graph_color2: "var(--google-green)"
+                            ulm_card_graph_entity2: sensor.speedtest_upload
+                            ulm_card_graph_type: Ram Percent
+                            ulm_card_graph_hours: 24
+
+
+                  item5:
+                    card:
+                      type: horizontal-stack
+                      cards:
+                        - type: 'custom:button-card'
+                          template: custom_card_bar_card_unraid
+                          variables:
+                            ulm_custom_card_bar_card_entity: sensor.glances_unraid_mnt_cache_ssd_used
+                            ulm_custom_card_bar_card_name: SSD Used
+                            ulm_custom_card_bar_card_value: true
+                            ulm_custom_card_bar_card_indicator: true
+                            ulm_custom_card_bar_card_color: "var(--google-green)"
+                            ulm_custom_card_bar_card_min: 100
+                            ulm_custom_card_bar_card_max: 800
+
+                        - type: 'custom:button-card'
+                          template: custom_card_bar_card_unraid
+                          variables:
+                            ulm_custom_card_bar_card_entity: sensor.glances_unraid_cpu_used
+                            ulm_custom_card_bar_card_name: Cpu Used
+                            ulm_custom_card_bar_card_value: true
+                            ulm_custom_card_bar_card_indicator: false
+                            ulm_custom_card_bar_card_color: "var(--google-blue)"
+                            ulm_custom_card_bar_card_min: 8
+                            ulm_custom_card_bar_card_max: 35
+
+
+
+      # - type: vertical-stack
+      #   cards:
+      #     - type: horizontal-stack
+      #       cards:
+      #         - type: custom:button-card
+      #           template: title
+      #           name: Unraid Backup
+
+
+  - type: vertical-stack
+    cards:
+      - type: custom:layout-card
+        layout_type: grid
+        cards:
+        ###-- Unraid Backup --###
+          - type: custom:button-card
+            show_icon: false
+            show_name: false
+            show_label: false
+            styles:
+              grid:
+                - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3' 'item4 item4' 'item5 item5'"
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: "min-content min-content min-content"
+                - row-gap: 5px
+              card:
+                - border-radius: var(--border-radius)
+                - box-shadow: var(--box-shadow)
+                - padding: 10px
+            custom_fields:
+              item1:
+                card:
+                  type: custom:hui-element
+                  card_type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: picture
+                          style: |
+                            ha-card { 
+                                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                                --ha-card-box-shadow: 'none';
+                                --width: '70px';
+                            }
+                          image:  /local/HP_N54L_2.png
+
+                        - type: custom:button-card
+                          name: Unraid Backup                        
+                          layout: icon_name_state2nd
+                          entity: sensor.unraid_backup_uptime_glances
+                          show_icon: false
+                          show_state: true
+                          styles:
+                            grid:
+                              - grid-template-columns: 10px auto
+                            card:
+                              - box-shadow: "none" 
+                            state:
+                              - padding: 10px 0px
+                              - justify-self: left
+                              - font-size: 16px
+                            name:
+                              - padding: 0px 0px
+                              - font-weight: "bold"
+                              - justify-self: left
+                              - button-card-light-color: var(--primary-text-color);
+                              - font-family: var(--paper-font-body1_-_font-family);
+                              - font-size: var(--paper-font-body1_-_font-size);
+              # item2:
+              #   card:               
+              #     type: custom:button-card
+              #     template: card_title
+              #     name: Unraid Backup
+              #     label: '[[[ return "Uptime: " + states["sensor.unraid_backup_uptime_glances"].state + " " ]]]'
+              item2:
+                card:
+                  type: horizontal-stack
+                  cards:                       
+                    - type: 'custom:button-card'
+                      template: custom_card_bar_card_unraid
+                      variables:
+                        ulm_custom_card_bar_card_entity: sensor.unraid_backup_glances_cpu_used
+                        ulm_custom_card_bar_card_name: CPU Used
+                        ulm_custom_card_bar_card_value: true
+                        ulm_custom_card_bar_card_indicator: false
+                        ulm_custom_card_bar_card_color: "var(--google-green)"
+                        ulm_custom_card_bar_card_min: 2
+                        ulm_custom_card_bar_card_max: 80
+
+                    - type: 'custom:button-card'
+                      template: custom_card_bar_card_unraid
+                      variables:
+                        ulm_custom_card_bar_card_entity: sensor.unraid_backup_glances_ram_used_percent
+                        ulm_custom_card_bar_card_name: RAM Used
+                        ulm_custom_card_bar_card_value: true
+                        ulm_custom_card_bar_card_indicator: false
+                        ulm_custom_card_bar_card_color: "var(--google-blue)"
+                        ulm_custom_card_bar_card_min: 0
+                        ulm_custom_card_bar_card_max: 100
+              # item3:
+              #   card:
+              #     type: horizontal-stack
+              #     cards:
+              #       - type: custom:button-card
+              #         template: custom_card_bar_card_unraid
+              #         variables:
+              #           ulm_custom_card_bar_card_entity: sensor.unraid_backup_glances_ram_used_percent
+              #           ulm_custom_card_bar_card_name: Memory Usage1
+              #           ulm_custom_card_bar_card_value: true
+              #           ulm_custom_card_bar_card_indicator: false
+              #           ulm_custom_card_bar_card_color: "var(--google-green)"
+              #           ulm_custom_card_bar_card_min: 10
+              #           ulm_custom_card_bar_card_max: 100
+
+              item3:
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: 'custom:button-card'
+                      template: custom_card_bar_card_unraid
+                      variables:
+                        ulm_custom_card_bar_card_entity: sensor.unraid_backup_glances_mnt_disks_samsung_ssd_used_percent
+                        ulm_custom_card_bar_card_name: SSD Used
+                        ulm_custom_card_bar_card_value: true
+                        ulm_custom_card_bar_card_indicator: true
+                        ulm_custom_card_bar_card_color: "var(--google-yellow)"
+                        ulm_custom_card_bar_card_min: 0
+                        ulm_custom_card_bar_card_max: 100
+
+                    - type: 'custom:button-card'
+                      template: custom_card_bar_card_unraid
+                      variables:
+                        ulm_custom_card_bar_card_entity: sensor.unraid_backup_glances_k10temp_1_temperature
+                        ulm_custom_card_bar_card_name: Cpu Temp
+                        ulm_custom_card_bar_card_value: true
+                        ulm_custom_card_bar_card_indicator: false
+                        ulm_custom_card_bar_card_color: "var(--google-red)"
+                        ulm_custom_card_bar_card_min: 0
+                        ulm_custom_card_bar_card_max: 60
+
+
+  ###--pi4---###
+  - type: vertical-stack
+    cards:
+      - type: custom:layout-card
+        layout_type: grid
+        cards:
+        ###-- Unraid Backup --###
+          - type: custom:button-card
+            show_icon: false
+            show_name: false
+            show_label: false
+            styles:
+              grid:
+                - grid-template-areas: "'item1 item1' 'item2 item2' 'item3 item3' 'item4 item4' 'item5 item5'"
+                - grid-template-columns: 1fr 1fr
+                - grid-template-rows: "min-content min-content min-content"
+                - row-gap: 5px
+              card:
+                - border-radius: var(--border-radius)
+                - box-shadow: var(--box-shadow)
+                - padding: 10px
+            custom_fields:
+              item1:
+                card:
+                  type: custom:hui-element
+                  card_type: vertical-stack
+                  cards:
+                    - type: horizontal-stack
+                      cards:
+                        - type: picture
+                          style: |
+                            ha-card { 
+                                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                                --ha-card-box-shadow: 'none';
+                                --width: '70px';
+                            }
+                          image:  /local/raspberry-pi-3.png
+
+                        - type: custom:button-card
+                          name: Raspberry Pi-4          
+                          layout: icon_name_state2nd
+                          entity: sensor.pi_4_uptime_glances
+                          show_icon: false
+                          show_state: true
+                          styles:
+                            grid:
+                              - grid-template-columns: 10px auto
+                            card:
+                              - box-shadow: "none" 
+                            state:
+                              - padding: 10px 0px
+                              - justify-self: left
+                              - font-size: 16px
+                            name:
+                              - padding: 0px 0px
+                              - font-weight: "bold"
+                              - justify-self: left
+                              - button-card-light-color: var(--primary-text-color);
+                              - font-family: var(--paper-font-body1_-_font-family);
+                              - font-size: var(--paper-font-body1_-_font-size);
+              # item2:
+              #   card:               
+              #     type: custom:button-card
+              #     template: card_title
+              #     name: Unraid Backup
+              #     label: '[[[ return "Uptime: " + states["sensor.unraid_backup_uptime_glances"].state + " " ]]]'
+              item2:
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: 'custom:button-card'
+                      template: custom_card_bar_avi
+                      variables:
+                        ulm_custom_card_bar_card_entity: sensor.pi_4_glances_free
+                        ulm_custom_card_bar_card_name: Disk Usage
+                        ulm_custom_card_bar_card_value: true
+                        ulm_custom_card_bar_card_indicator: false
+                        ulm_custom_card_bar_card_color: "var(--google-blue)"
+                        ulm_custom_card_bar_card_min: 8
+                        ulm_custom_card_bar_card_max: 150
+
+                    - type: custom:button-card
+                      template: custom_card_bar_avi
+                      variables:
+                        ulm_custom_card_bar_card_entity: sensor.pi_4_glances_ram_used
+                        ulm_custom_card_bar_card_name: Memory Usage
+                        ulm_custom_card_bar_card_value: false
+                        ulm_custom_card_bar_card_indicator: false
+                        ulm_custom_card_bar_card_color: "var(--google-green)"
+                        ulm_custom_card_bar_card_min: 10
+                        ulm_custom_card_bar_card_max: 300 
+
+              item3:
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      template: custom_card_graph_pi4
+                      variables:
+                        ulm_card_graph_color: "var(--google-green)"
+                        ulm_card_graph_entity: sensor.pi_4_glances_ram_used_percent
+                        ulm_card_graph_hours: 24
+                        ulm_card_graph_name: RAM Used Percent
+                        ulm_card_graph_type: Ram Percent
+                      styles:
+                        card:
+                          - box-shadow: "none"                        
+
+
+              item4:
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: 'custom:button-card'
+                      template: custom_card_bar_card_unraid
+                      variables:
+                        ulm_custom_card_bar_card_entity: sensor.pi_4_glances_cpu_used
+                        ulm_custom_card_bar_card_name: CPU Used
+                        ulm_custom_card_bar_card_value: true
+                        ulm_custom_card_bar_card_indicator: false
+                        ulm_custom_card_bar_card_color: "var(--google-green)"
+                        ulm_custom_card_bar_card_min: 0
+                        ulm_custom_card_bar_card_max: 15
+
+                    - type: 'custom:button-card'
+                      template: custom_card_bar_card_unraid
+                      variables:
+                        ulm_custom_card_bar_card_entity: sensor.pi_4_glances_cpu_load
+                        ulm_custom_card_bar_card_name: Cpu Load
+                        ulm_custom_card_bar_card_value: true
+                        ulm_custom_card_bar_card_indicator: false
+                        ulm_custom_card_bar_card_color: "var(--google-blue)"
+                        ulm_custom_card_bar_card_min: 0.01
+                        ulm_custom_card_bar_card_max: 0.20

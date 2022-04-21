@@ -1,0 +1,149 @@
+---
+### התווסף על ידי אבי ###
+card_camera:
+  triggers_update: "all"
+  variables:
+    camera_title: '[[[ return entity.attributes.friendly_name ]]]'
+    camera_show_rec: false
+    camera_show_lastmotion_time: false
+  show_label: false
+  show_icon: false
+  show_name: false
+  styles:
+    grid:
+      - grid-template-areas: "'rec rec rec' 'cam cam cam' '. info .'"
+      - grid-template-columns: "auto min-content auto"
+      - grid-template-rows: "auto"
+    card:
+      - padding: 0
+      - position: "relative"
+      - border-radius: "20px"
+      - justify-items: stretch
+  custom_fields:
+    cam:
+      card:
+        type: "picture-elements"
+        aspect_ratio: "16:9"
+        show_name: false
+        show_state: false
+        image: "/local/image/frontdoor.jpg"
+        elements:
+           - type: image
+             camera_image: "[[[ return variables.camera_image ]]]"
+             camera_view: "live"
+             style:
+               left: "50%"
+               top: "50%"
+               width: "100%"
+               height: "100%"
+        styles:
+          card:
+            - z-index: 1
+    rec:
+      card:
+        type: "custom:button-card"
+        show_name: false
+        show_icon: >
+          [[[ 
+            if( entity.state == 'recording' ) 
+              return true;
+            else
+              return false;
+          ]]]
+        styles:
+          card:
+            - display: >
+                [[[
+                  if ( variables.camera_show_rec == true )
+                    return 'block';
+                  else
+                    return 'none';
+                ]]]
+            - background-color: transparent
+            - position: absolute
+            - height: 80px
+            - padding: 0
+            - box-shadow: none
+          icon:
+            - width: 25px
+            - height: 25px
+            - color:  "rgba(245, 68, 54, 0.8)"
+            - position: absolute
+            - right: 5px
+            - top: 5px
+        icon: "mdi:record"
+
+    info:
+      card:
+        type: "custom:button-card"
+        name: "[[[ return variables.camera_title ]]]"
+        show_name: true
+        show_icon: true
+        icon: "mdi:motion-sensor"
+        custom_fields:
+          motion: >
+            [[[
+              var motiontime = states[variables.camera_motion].last_changed;
+              var formatedtime = new Date(motiontime).toLocaleTimeString();
+              return "Last motion : "+formatedtime;
+            ]]]
+        styles:
+          grid:
+            - grid-template-areas: "'i n' 'motion motion'"
+            - grid-template-columns: "30px min-content"
+            - grid-template-rows: >
+                  [[[
+                    if ( variables.camera_show_lastmotion_time == true )
+                      return '60% 40%';
+                    else
+                      return '100% 0';
+                  ]]]
+          card:
+            - border-radius: "30px"
+            - margin-top: >
+                [[[
+                  if ( variables.camera_show_lastmotion_time == true )
+                    return '-55px';
+                  else
+                    return '-40px';
+                ]]]
+            - z-index: 2
+            - height: >
+                [[[
+                  if ( variables.camera_show_lastmotion_time == true )
+                    return '45px';
+                  else
+                    return '30px';
+                ]]] 
+            - background-color: "rgba(0,0,0,.5)"
+            - color: "white"
+            - padding: "5px"
+          icon:
+            - color: >
+                    [[[
+                      if(states[variables.camera_motion].state === 'on'){
+                        return "red";
+                      } else {
+                        return "grey";
+                      }
+                    ]]]
+            - width: "18px"
+            - justify-self: "center"
+          name:
+            - margin-right: "12px"
+            - font-size: "14px"
+            - font-weight: "bold"
+            - filter: "opacity(80%)"          
+          custom_fields:
+            motion:
+              - font-size: "11px"
+              - margin: "0 5px"
+              - display: >
+                  [[[
+                    if ( variables.camera_show_lastmotion_time == true )
+                      return 'block';
+                    else
+                      return 'none';
+                  ]]]
+  tap_action:
+    action: "more-info"

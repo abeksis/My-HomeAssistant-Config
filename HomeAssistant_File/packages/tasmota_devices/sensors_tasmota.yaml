@@ -1,0 +1,598 @@
+sensor:
+
+############################################################################
+#                                                                          #
+#   Latest Tasmota Firmware                                                #
+#                                                                          #
+############################################################################
+
+  - platform: command_line
+    name: "Tasmota Latest"
+    command: "curl -s https://github.com/arendst/Tasmota/releases/latest | cut -d'\"' -f2 | rev | cut -d'/' -f1 | rev"
+    scan_interval: 600
+
+
+############################################################################
+#                                                                          #
+#   Light Switches                                                         #
+#                                                                          #
+############################################################################
+
+  # Closets Room Light Switch Version
+  - platform: mqtt
+    name: "Tasmota Closets Room Light Version"
+    state_topic: "stat/closets_room/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/closets_room/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Closets Room Light Switch Uptime
+  - platform: mqtt
+    name: "Tasmota Closets Room Light Uptime"
+    state_topic: "tele/closets_room/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Closets Room Light Wi-Fi signal
+  - platform: mqtt
+    name: "Tasmota Closets Room Wi Fi Light Quality"
+    state_topic: "tele/closets_room/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/closets_room/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength
+
+  # Living Room Light Switch Version
+  - platform: mqtt
+    name: "Tasmota Living Room Light Version"
+    state_topic: "stat/tasmota_6D6245/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/tasmota_6D6245/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Living Room Light Switch Uptime
+  - platform: mqtt
+    name: "Tasmota Living Room Light Uptime"
+    state_topic: "tele/tasmota_6D6245/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Living Room Light Wi-Fi signal
+  - platform: mqtt
+    name: "Tasmota Living Room Wi Fi Light Quality"
+    state_topic: "tele/tasmota_6D6245/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/tasmota_6D6245/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength
+
+
+  # Yakir Room Light Switch Version
+  - platform: mqtt
+    name: "Tasmota Yakir Room Light Version"
+    state_topic: "stat/yakir_room/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/yakir_room/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Yakir Room Light Uptime
+  - platform: mqtt
+    name: "Tasmota Yakir Room Light Uptime"
+    state_topic: "tele/yakir_room/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Yakir Room Light Wi-Fi signal   
+  - platform: mqtt
+    name: "Tasmota Yakir Room Wi Fi Light Quality"
+    state_topic: "tele/yakir_room/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/yakir_room/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength
+
+  # Guests Bathroom Light Switch Version
+  - platform: mqtt
+    name: "Tasmota Guests Bathroom Light Version"
+    state_topic: "stat/guests_bathroom/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/guests_bathroom/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  #  Guests Bathroom Light Uptime
+  - platform: mqtt
+    name: "Tasmota Guests Bathroom Light Uptime"
+    state_topic: "tele/guests_bathroom/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Guests Bathroom Wi-Fi signal   
+  - platform: mqtt
+    name: "Tasmota Guests Bathroom Wi Fi Light Quality"
+    state_topic: "tele/guests_bathroom/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/guests_bathroom/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength
+    
+
+  # Rotem Room Light Switch Version
+  - platform: mqtt
+    name: "Tasmota Rotem Room Light Version"
+    state_topic: "stat/rotem_room/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/rotem_room/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Rotem Room Light Uptime
+  - platform: mqtt
+    name: "Tasmota Rotem Room Light Uptime"
+    state_topic: "tele/rotem_room/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Rotem Room Wi-Fi signal   
+  - platform: mqtt
+    name: "Tasmota Rotem Room Wi Fi Light Quality"
+    state_topic: "tele/rotem_room/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/rotem_room/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength 
+
+
+  # Liran Room Light Switch Version
+  - platform: mqtt
+    name: "Tasmota Liran Room Light Version"
+    state_topic: "stat/liran_room/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/liran_room/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Liran Room Light Uptime
+  - platform: mqtt
+    name: "Tasmota Liran Room Light Uptime"
+    state_topic: "tele/liran_room/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Liran Room Wi-Fi signal   
+  - platform: mqtt
+    name: "Tasmota Liran Room Wi Fi Light Quality"
+    state_topic: "tele/liran_room/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/liran_room/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength 
+
+
+#### Johnson Clean ###
+
+  # Johnson Switch Version
+  - platform: mqtt
+    name: "Tasmota Johnson Switch Version"
+    state_topic: "stat/johnson_clean/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/johnson_clean/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Johnson Switch Uptime
+  - platform: mqtt
+    name: "Tasmota Johnson Switch Uptime"
+    state_topic: "tele/johnson_clean/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Johnson Switch signal   
+  - platform: mqtt
+    name: "Tasmota Johnson Switch Wi Fi Quality"
+    state_topic: "tele/johnson_clean/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/johnson_clean/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength 
+
+
+  # Garden Light Version
+  - platform: mqtt
+    name: "Tasmota Garden Light Version"
+    state_topic: "stat/light_garden/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/light_garden/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Garden Light Uptime
+  - platform: mqtt
+    name: "Tasmota Garden Light Uptime"
+    state_topic: "tele/light_garden/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Garden Light Wi-Fi signal   
+  - platform: mqtt
+    name: "Tasmota Garden Wi Fi Light Quality"
+    state_topic: "tele/light_garden/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/light_garden/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength
+
+############################################################################
+#                                                                          #
+#   Dishwasher Power Socket                                                #
+#                                                                          #
+############################################################################
+
+  #Dishwasher Power Socket Version
+  - platform: mqtt
+    name: "Tasmota Dishwasher Version"
+    state_topic: "stat/dishwasher/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/dishwasher/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+
+  # Dishwasher Power Socket Uptime
+  - platform: mqtt
+    name: "Tasmota Dishwasher Power Socket Uptime"
+    state_topic: "tele/dishwasher/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Dishwasher Power Socket Wi-Fi signal
+  - platform: mqtt
+    name: "Tasmota Dishwasher Power Socket Wi-Fi Quality"
+    state_topic: "tele/dishwasher/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/dishwasher/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength 
+    
+  # Dishwasher Energy Today
+  - platform: mqtt
+    name: "MQTT Dishwasher Energy Today"
+    state_topic: "tele/dishwasher/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+ 
+  # MQTT Dishwasher Power
+  - platform: mqtt
+    name: "MQTT Dishwasher Power"
+    state_topic: "tele/dishwasher/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+
+  # MQTT Dishwasher Voltage
+  - platform: mqtt
+    name: "MQTT Dishwasher Voltage"
+    state_topic: "tele/dishwasher/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  
+  # MQTT Dishwasher Current
+  - platform: mqtt
+    name: "MQTT Dishwasher Current"
+    state_topic: "tele/dishwasher/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+
+
+############################################################################
+#                                                                          #
+#   Washing Machine Shelly                                                 #
+#                                                                          #
+############################################################################
+
+  # Washing Machine Power Socket Version
+  - platform: mqtt
+    name: "Tasmota Washing Machine Version"
+    state_topic: "stat/Washing_machine/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/dishwasher/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Washing Machine Power Socket Uptime
+  - platform: mqtt
+    name: "Tasmota Washing Machine Uptime"
+    state_topic: "tele/Washing_machine/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Washing Machine Wi-Fi Signal
+  - platform: mqtt
+    name: "Tasmota Washing Machine Wi-Fi Quality"
+    state_topic: "tele/Washing_machine/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/Washing_machine/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength 
+    
+  # MQTT Washing Machine Energy Today
+  - platform: mqtt
+    name: "MQTT Washing Machine Energy Today"
+    state_topic: "tele/Washing_machine/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+ 
+  # MQTT Washing Machine Power
+  - platform: mqtt
+    name: "MQTT Washing Machine Power"
+    state_topic: "tele/Washing_machine/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+
+  # MQTT Washing Machine Voltage
+  - platform: mqtt
+    name: "MQTT Washing Machine Voltage"
+    state_topic: "tele/Washing_machine/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  
+  # MQTT Washing Machine Current
+  - platform: mqtt
+    name: "MQTT Washing Machine Current"
+    state_topic: "tele/Washing_machine/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+
+############################################################################
+#                                                                          #
+#   Laundry Dryer Shelly                                                   #
+#                                                                          #
+############################################################################
+
+  # Laundry DryerPower Socket Version
+  - platform: mqtt
+    name: "Tasmota Laundry Dryer Version"
+    state_topic: "stat/laundry_dryer/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/laundry_dryer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+  # Laundry Dryer Power Socket Uptime
+  - platform: mqtt
+    name: "Tasmota Laundry Dryer Uptime"
+    state_topic: "tele/laundry_dryer/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Laundry Dryer Wi-Fi Signal
+  - platform: mqtt
+    name: "Tasmota Laundry Dryer Wi-Fi Quality"
+    state_topic: "tele/laundry_dryer/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/laundry_dryer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength 
+    
+  # MQTT Laundry Dryer Energy Today
+  - platform: mqtt
+    name: "MQTT Laundry Dryer Energy Today"
+    state_topic: "tele/laundry_dryer/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+ 
+  # MQTT Laundry Dryer Power
+  - platform: mqtt
+    name: "MQTT Laundry Dryer Power"
+    state_topic: "tele/laundry_dryer/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+
+  # MQTT Laundry Dryer Voltage
+  - platform: mqtt
+    name: "MQTT Laundry Dryer Voltage"
+    state_topic: "tele/laundry_dryer/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  
+  # MQTT Laundry Dryer Current
+  - platform: mqtt
+    name: "MQTT Laundry Dryer Current"
+    state_topic: "tele/laundry_dryer/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+
+######----
+
+############################################################################
+#                                                                          #
+#   Steam Collector Power Socket                                           #
+#                                                                          #
+############################################################################
+
+  #Steam Power Socket Version
+  - platform: mqtt
+    name: "Tasmota Steam Version"
+    state_topic: "stat/steam/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/steam/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+
+  # Steam Power Socket Uptime
+  - platform: mqtt
+    name: "Tasmota Steam Uptime"
+    state_topic: "tele/steam/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Steam Power Socket Wi-Fi signal
+  - platform: mqtt
+    name: "Tasmota Steam Wi-Fi Quality"
+    state_topic: "tele/steam/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/steam/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength 
+    
+  # Steam Energy Today
+  - platform: mqtt
+    name: "MQTT Steam Energy Today"
+    state_topic: "tele/steam/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+ 
+  # MQTT Steam Power
+  - platform: mqtt
+    name: "MQTT Steam Power"
+    state_topic: "tele/steam/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+
+  # MQTT Steam Voltage
+  - platform: mqtt
+    name: "MQTT Steam Voltage"
+    state_topic: "tele/steam/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  
+  # MQTT Steam Current
+  - platform: mqtt
+    name: "MQTT Steam Current"
+    state_topic: "tele/steam/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
+
+######----
+
+  - platform: template
+    sensors:
+
+############################################################################
+#                                                                          #
+#   Number of Tasmota Versions old                                         #
+#                                                                          #
+############################################################################
+
+      number_of_tasmota_versions_old:
+        friendly_name: "Number of Tasmota Versions old"
+        icon_template: mdi:thermometer
+        value_template: >-
+          {% set count = namespace(value=0) %}
+          {% for entity_id in state_attr('group.all_tasmota_versions','entity_id') %}
+            {% if ( states(entity_id).split('(')[0] != states('sensor.tasmota_latest').split('v')[1] ) %}
+              {% set count.value = count.value + 1 %}
+            {% endif %}
+          {% endfor %}
+          {{ count.value }}

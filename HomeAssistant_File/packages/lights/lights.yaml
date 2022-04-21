@@ -1,0 +1,83 @@
+light:
+
+############################################################################
+#                                                                          #
+#   From Switches                                                          #
+#                                                                          #
+############################################################################
+
+  - platform: switch
+    name: Garden
+    entity_id: switch.light_garden
+
+  - platform: switch
+    name: island
+    entity_id: switch.island_localtuya
+
+  - platform: switch
+    name: kitchen
+    entity_id: switch.kitchen_localtuya
+
+  - platform: switch
+    name: Dining Room
+    entity_id: switch.dining_room_localtuya
+
+  - platform: switch
+    name: Living Room
+    entity_id: switch.living_room
+
+  - platform: switch
+    name: Outdoor Light
+    entity_id: switch.entrance_2_localtuya
+
+  - platform: switch
+    name: Rotem Room   
+    entity_id: switch.rotem_room
+
+  - platform: switch
+    name: Liran Room   
+    entity_id: switch.liran_room
+
+  - platform: switch
+    name: Yakir Room   
+    entity_id: switch.yakir_room
+
+  - platform: switch
+    name: Guests Bathroom    
+    entity_id: switch.guests_bathroom
+
+  - platform: switch
+    name: closets
+    entity_id: switch.closets_room
+
+  - platform: switch
+    name: kids Shower Light
+    entity_id: switch.children_shower_localtuya
+
+  - platform: switch
+    name: Laundry Room Light
+    entity_id: switch.laundry_room_localtuya
+ 
+#   - platform: switch
+#     name: Shower Parents Light    
+#     entity_id: switch.shower_parents_light_localtuya   
+ 
+  - platform: switch
+    name: Shower Parents Light    
+    entity_id: switch.shower_parents_light
+    
+  - platform: switch
+    name: Parents Light Mirror   
+    entity_id: switch.makeup_stand_local_tuya
+ 
+  - platform: switch
+    name: Sing family  
+    entity_id: switch.family_sign_localtuya
+
+  - platform: switch
+    name: Door light 
+    entity_id: switch.entrance_localtuya
+
+  - platform: switch
+    name: Fan Guests Bathroom
+    entity_id: switch.fan_guests_bathroom

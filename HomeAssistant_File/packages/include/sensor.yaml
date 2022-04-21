@@ -1,0 +1,295 @@
+##-- Designing a Lovelace UI--##
+sensor:
+  - platform: version
+    name: hass_version_installed
+    source: local
+
+  - platform: version
+    name: hass_version_latest
+    source: container
+
+  - platform: version
+    name: hass_version_latest_beta
+    source: container
+    beta: true
+
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant.log
+
+  - platform: uptime
+
+
+  # - platform: sql
+  #   db_url: !secret db_homeassistant
+  #   queries:
+  #     - name: Databas
+  #       query: >
+  #         SELECT table_schema "database", Round(Sum(data_length + index_length) / POWER(1024,2), 1) 
+  #         "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;
+  #       column: value
+  #       unit_of_measurement: MB
+
+  # - platform: systemmonitor
+  #   resources:
+  #     - type: disk_use_percent
+  #       arg: /
+  #     - type: memory_use_percent
+  #     - type: processor_use
+  #     - type: last_boot
+  #   scan_interval: 120
+  
+  # - platform: time_date
+  #   display_options:
+  #     - time
+  #     - date
+
+  # - platform: command_line
+  #   name: udm_unifios
+  #   command: !secret udm_unifios
+  #   value_template: |-
+  #     {% set json = value_json.data[0] %}
+  #     {{ json["system-stats"].cpu }}|
+  #     {{ json.temperatures[1].value | round(1) }}|
+  #     {{ json["system-stats"].mem }}|
+  #     {{ ((json.storage[1].used / json.storage[1].size) * 100) | round(1) }}|
+  #     {{ json.internet }}|
+  #     {{ json.startup_timestamp | timestamp_custom('%Y-%m-%dT%H:%M:%S') }}|
+  #     {{ json.displayable_version }}|
+  #     {{ json.upgradable }}
+  #   scan_interval: 120
+
+  # - platform: rest
+  #   name: esphome_version_latest
+  #   resource: https://api.github.com/repos/esphome/esphome/releases/latest
+  #   authentication: basic
+  #   username: !secret github_username
+  #   password: !secret github_access_token
+  #   value_template: >
+  #     {{ value_json.tag_name }}
+  #   scan_interval: 86400
+
+  # - platform: scrape
+  #   name: synology_dsm_latest
+  #   resource: https://www.synology.com/en-global/releaseNote/DSM
+  #   select: >
+  #     #release_notes_content > div:first-child > h3
+  #   value_template: >
+  #     {{ value.split(' ')[1] }}
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: kemper_version
+  #   command: !secret kemper_version
+  #   value_template: >
+  #     {{ value_json.profiler_installed == value_json.profiler_latest and 
+  #     value_json.rigmanager_latest == value_json.rigmanager_installed }}
+  #   json_attributes:
+  #     - profiler_latest
+  #     - profiler_installed
+  #     - rigmanager_latest
+  #     - rigmanager_installed
+  #   scan_interval: 86400
+
+  # - platform: rest
+  #   name: playactor_version_latest
+  #   resource: https://api.github.com/repos/dhleong/playactor/releases/latest
+  #   value_template: >
+  #     {{ value_json.tag_name }}
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: playactor_version_installed
+  #   scan_interval: 86400
+  #   command: !secret playactor_version_installed
+  #   value_template: >
+  #     {{ value.split(' ')[1].split('v')[1] }}
+
+  - platform: rest
+    name: covid_19_folkhalsomyndigheten
+    resource: https://www.arcgis.com/sharing/rest/content/items/2dc63e26f509468f896ec69476b0dab3/data
+    value_template: >
+      {{ 'Inaccessible' if value_json.embedCode == '' else 'Available' }}
+    json_attributes_path: $.widgets.widget_1.config
+    json_attributes:
+      - embedCode
+    scan_interval: 21600
+
+  ##-- קווי אוטובוס --##
+  # - platform: rest
+  #   name: skane traffic
+  #   resource: !secret skane traffic
+  #   value_template: >
+  #     {% if value_json is defined %}
+  #       {% set ns = namespace(found=false) %}
+  #       {% for i in range(value_json.Trip | length) %}
+  #         {% set json = value_json.Trip[i].LegList.Leg[1].Origin %}
+  #         {% set name = json.name.split()[1] %}
+  #         {% set timestamp = json.date + 'T' + json.time %}
+  #         {% set offset = 60 * 15 %}
+  #         {% if (as_timestamp(timestamp) - as_timestamp(now())) > offset and not ns.found %}
+  #           {% set ns.found = true %}
+  #           {% set ns.timestamp = as_timestamp(timestamp) | timestamp_custom('%H:%M') %}
+  #           {% set ns.name = name %}
+  #         {% endif %}
+  #       {% endfor %}
+  #       {% if ns.timestamp != null and ns.name != null %}
+  #         Nästa buss går {{ ns.timestamp }} från {{ ns.name }}
+  #       {% endif %}
+  #     {% else %}
+  #       false
+  #     {% endif %}
+  #   scan_interval: 86400
+
+  - platform: rest
+    name: hass_release_notes
+    resource: https://api.github.com/repos/home-assistant/core/releases/latest
+    value_template: >
+     {{ value_json.name | default }}
+    json_attributes:
+      - body
+    scan_interval: 21600
+  
+
+  - platform: rest
+    name: hass_release_notes_rc
+    resource: https://api.github.com/repos/home-assistant/core/releases?per_page=1
+    value_template: >
+     {{ value_jsons.name | default }}
+    json_attributes:
+      - body
+    scan_interval: 21600
+
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    language: sv
+    monitored_conditions:
+      - temperature
+      - apparent_temperature
+      - precip_probability
+
+
+  - platform: plex_recently_added
+    token: !secret plex_token
+    host: !secret plex_host
+    port: !secret plex_port
+    max: 1
+    img_dir: /
+    image_resolution: 500
+
+  # - platform: dnsip
+
+  # - platform: rest
+  #   name: docker_cpu
+  #   resource: !secret ha_dockermon_cpu
+  #   value_template: >
+  #     {% set cpuDelta = value_json.cpu_stats.cpu_usage.total_usage - value_json.precpu_stats.cpu_usage.total_usage %}
+  #     {% set systemDelta = value_json.cpu_stats.system_cpu_usage - value_json.precpu_stats.system_cpu_usage %}
+  #     {{ (cpuDelta / systemDelta * value_json.cpu_stats.cpu_usage.percpu_usage | length * 100) | round(1) }}
+  #   json_attributes:
+  #     - cpu_stats
+  #     - precpu_stats
+  #     - memory_stats
+  #   scan_interval: 120
+
+  # - platform: waste_collection_schedule
+  #   name: Garbage collection
+  #   value_template: >
+  #     {{ value.daysTo }}
+
+  # - platform: mqtt
+  #   name: switchbot_battery
+  #   state_topic: !secret switchbot_mqtt_battery
+  #   unit_of_measurement: '%'
+
+  # - platform: mqtt
+  #   name: matte_last_changed
+  #   state_topic: homeassistant/persistence/matte
+  #   value_template: >
+  #     {{ value | replace(' ', 'T') }}
+
+  # - platform: mqtt
+  #   name: sanja_last_changed
+  #   state_topic: homeassistant/persistence/sanja
+  #   value_template: >
+  #     {{ value | replace(' ', 'T') }}
+
+  # - platform: mqtt
+  #   name: mailbox
+  #   state_topic: homeassistant/persistence/mailbox
+
+  # - platform: command_line
+  #   name: imac_ip
+  #   command: !secret imac_ip
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: monitors_volume
+  #   command: !secret monitors_update_volume
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: imac_system_ssd
+  #   command: !secret imac_system_ssd
+  #   unit_of_measurement: '%'
+  #   value_template: >
+  #     {{ value[:-1] }}
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: imac_macintosh_hd
+  #   command: !secret imac_macintosh_hd
+  #   unit_of_measurement: '%'
+  #   value_template: >
+  #     {{ value[:-1] }}
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: imac_cpu
+  #   command: !secret imac_cpu
+  #   unit_of_measurement: '%'
+  #   value_template: >
+  #     {{ (100 - value[:-1] | float(default=0)) | round(1) }}
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: imac_mem
+  #   command: !secret imac_mem
+  #   unit_of_measurement: '%'
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: imac_uptime
+  #   command: !secret imac_uptime
+  #   value_template: >
+  #     {{ value[:-1] | int(default=0) | timestamp_custom('%Y-%m-%dT%H:%M:%S') }}
+  #   scan_interval: 86400
+
+  # - platform: command_line
+  #   name: rpi_sd
+  #   command: !secret rpi_sd
+  #   unit_of_measurement: '%'
+  #   value_template: >
+  #     {{ value[:-1] }}
+  #   scan_interval: 300
+
+  # - platform: command_line
+  #   name: rpi_cpu
+  #   command: !secret rpi_cpu
+  #   unit_of_measurement: '%'
+  #   scan_interval: 300
+
+  # - platform: command_line
+  #   name: rpi_mem
+  #   command: !secret rpi_mem
+  #   unit_of_measurement: '%'
+  #   value_template: >
+  #     {{ value | round(1) }}
+  #   scan_interval: 300
+
+  # - platform: command_line
+  #   name: rpi_uptime
+  #   command: !secret rpi_uptime
+  #   value_template: >
+  #     {{ value | replace(' ', 'T') }}
+  #   scan_interval: 300

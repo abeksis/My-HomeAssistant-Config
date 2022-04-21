@@ -1,0 +1,51 @@
+light:
+
+############################################################################
+#                                                                          #
+#   From Switches                                                          #
+#                                                                          #
+############################################################################
+
+  - platform: switch
+    name: Garden
+    entity_id: switch.light_garden
+
+  # - platform: switch
+  #   name: island
+  #   entity_id: switch.island
+
+  # - platform: switch
+  #   name: kitchen
+  #   entity_id: switch.kitchen
+
+  # - platform: switch
+  #   name: Dining Room
+  #   entity_id: switch.dining 
+
+  # - platform: switch
+  #   name: Living Room
+  #   entity_id: switch.light_living_room
+
+  # - platform: switch
+  #   name: Outdoor Light    
+  #   entity_id: switch.outdoor_light_shelly 
+
+  - platform: switch
+    name: Rotem Room   
+    entity_id: switch.rotem_room
+
+  - platform: switch
+    name: Liran Room   
+    entity_id: switch.liran_room
+
+  - platform: switch
+    name: Yakir Room   
+    entity_id: switch.yakir_room
+
+  # - platform: switch
+  #   name: Guests Bathroom    
+  #   entity_id: switch.light_guests_bathroom
+
+  # - platform: switch
+  #   name: closets
+  #   entity_id: switch.closets

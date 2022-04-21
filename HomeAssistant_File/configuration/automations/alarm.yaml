@@ -1,22 +1,22 @@
 #######################################################
 #   Alarm - Front Door Open                           #
 #######################################################
-- alias:  home door open for more then 1 min
-  initial_state: 'on'  
-  trigger:
-    platform: state
-    entity_id: sensor.sensibo_temp
-    from: 'off'
-    to: 'on'
-    for:
-      minutes: 1
-  action:
-  - service: notify.avi_telegram
-    data:
-      title: "בית חכם"
-      message: 'דלת הבית פתוחה יותר מדקה'
+# - alias:  home door open for more then 1 min
+#   initial_state: 'on'  
+#   trigger:
+#     platform: state
+#     entity_id: sensor.sensibo_temp
+#     from: 'off'
+#     to: 'on'
+#     for:
+#       minutes: 1
+#   action:
+#   - service: notify.avi_telegram
+#     data:
+#       title: "בית חכם"
+#       message: 'דלת הבית פתוחה יותר מדקה'
           
-  - service: notify.nurit_telegram
-    data:
-      title: "בית חכם"
-      message: 'דלת הבית פתוחה יותר מדקה'   
+#   - service: notify.nurit_telegram
+#     data:
+#       title: "בית חכם"
+#       message: 'דלת הבית פתוחה יותר מדקה'   

@@ -1,0 +1,836 @@
+button_card_templates: !include button_card_templates.yaml
+kiosk_mode:
+  kiosk: true
+views:
+  - type: custom:grid-layout
+    path: 0
+    layout:
+      #default
+      grid-gap: var(--custom-layout-card-padding)
+      grid-template-columns: repeat(4, 1fr) 0
+      grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
+      grid-template-areas: |
+        "sidebar  .           .       .       ."
+        "sidebar  home  living-room  second-floor  ."
+        "sidebar  media       showers  bedroom   ."
+        "sidebar  footer      footer  footer  ."
+      mediaquery:
+        #phone
+        "(max-width: 800px)":
+          grid-gap: calc(var(--custom-layout-card-padding) * 1.7)
+          grid-template-columns: 0 repeat(2, 1fr) 0
+          grid-template-rows: 0 repeat(5, fit-content(100%)) 0fr
+          grid-template-areas: |
+            ".  .           .        ."
+            ".  sidebar     sidebar  ."
+            ".  home  bedroom   ."
+            ".  second-floor      showers   ."
+            ".  media       living-room    ."
+            ".  footer      footer   ."
+            ".  .           .        ."
+        #portrait
+        "(max-width: 1200px)":
+          grid-gap: var(--custom-layout-card-padding)
+          grid-template-columns: repeat(3, 1fr) 0
+          grid-template-rows: 0 repeat(3, fit-content(100%)) 0fr
+          grid-template-areas: |
+            "sidebar  .           .       ."
+            "sidebar  home  bedroom  ."
+            "sidebar  studio      showers  ."
+            "sidebar  media       living-room   ."
+            "sidebar  footer      footer  ."
+            "sidebar  .           .       ."
+    cards:
+
+      - type: custom:button-card
+        styles: #extra_styles fix
+          card:
+            - display: none
+
+      #################################################
+      #                                               #
+      #                    SIDEBAR                    #
+      #                                               #
+      #################################################
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: sidebar
+        cards:
+          - type: custom:button-card
+            entity: sensor.template_sidebar
+            template: sidebar_template
+
+          # - type: "custom:hui-element"
+          #   card_type: weather-forecast
+          #   entity: weather.dark_sky
+          #   show_forecast: false 
+
+          - type: grid
+            cards:
+              - type: button
+                icon: custom:roborock-vacuum
+                tap_action:
+                  !include popup/sidebar_vacuum.yaml
+                hold_action:
+                  action: none
+
+              - type: button
+                icon: mdi:information-outline
+                tap_action:
+                  !include popup/sidebar_information.yaml
+                hold_action:
+                  action: none
+
+              - type: button
+                icon: mdi:arrow-up-bold-circle-outline
+                tap_action:
+                  !include popup/sidebar_update.yaml
+                hold_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.hacs
+
+              # - type: button
+              #   icon: mdi:power-settings     
+              #   tap_action:
+              #      !include popup/sidebar_information.yaml
+              #   hold_action:
+              #     action: none
+
+      #################################################
+      #                                               #
+      #                  Living Room                  #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: קומה ראשונה
+        view_layout:
+          grid-area: living-room
+        columns: 1
+        cards:
+
+          - type: custom:swipe-card      
+            start_card: 1
+            parameters:
+              roundLengths: true
+              effect: coverflow
+              speed: 650
+              spaceBetween: 20
+              threshold: 7
+              coverflowEffect:
+                rotate: 80
+                depth: 300
+            cards:
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: media_player.lg_webos_smart_tv
+                    name: Tv
+                    state_display: >
+                      [[[
+                        if (variables.state == 'playing') {
+                          return 'On';
+                        }
+                      ]]]
+                    tap_action:
+                      !include popup/vardagsrum_tv.yaml
+                    template:
+                      - base
+                      - icon_tv
+                      - loader
+
+                  - type: custom:button-card
+                    entity: climate.living_room
+                    name: Climate
+                    tap_action:
+                      !include popup/living_room_climate.yaml
+                    template:
+                      - base
+                      - icon_climate
+                      - climate
+                    variables:
+                      circle_input: >
+                        [[[
+                          if (entity) {
+                            return entity.state == 'cool' ?
+                              entity.attributes.temperature :
+                              entity.attributes.current_temperature;
+                          }
+                        ]]]
+
+                  - type: custom:button-card
+                    entity: light.living_room
+                    name: סלון
+                    template:
+                      - base                    
+                      # - light
+                      - icon_hue             
+                      # - icon_shade A different lamp
+
+                  - type: custom:button-card
+                    entity: light.dining_room #hue_group
+                    name: פינת אוכל
+                    template:
+                      - base                    
+                      # - light
+                      - icon_hue
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: light.door_light
+                    name: לובי דלת
+                    # hold_action:
+                    #   !include popup/vardagsrum_balkong.yaml
+                    template:
+                      - base
+                      - icon_hue
+
+                  - type: custom:button-card
+                    entity: light.sing_family
+                    name: שלט
+                    template:
+                      - base
+                      - icon_hue
+
+                  - type: custom:button-card
+                    entity: light.outdoor_light
+                    name: אור אורחים
+                    template:
+                      - base
+                      - icon_hue
+
+                  - type: custom:button-card
+                    entity: light.rotem_room
+                    name: רותם
+                    template:
+                      - base
+                      - icon_hue  
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: light.kitchen
+                    name: מטבח
+                    template:
+                      - base
+                      - icon_hue
+
+                  - type: custom:button-card
+                    entity: light.island #hue_group
+                    name: אי
+                    template:
+                      - base
+                      - icon_spot
+
+                  - type: custom:button-card
+                    entity: cover.shutter_dining_room
+                    name: פינת אוכל
+                    template:
+                      - base
+                      - icon_cover
+                      - cover_circle
+                    variables:
+                      circle_input: >
+                        [[[
+                          if (entity) {
+                            let real_position = entity.attributes.current_position*100/(100-25)-35;
+                            return (real_position < 0) ? 0 : (real_position > 100) ? 100 : real_position;
+                          }
+                        ]]]
+                      close_position: 0
+                      quarter1_position: 25
+                      middle_position: 75
+                      quarter3_position: 100          
+
+                  - type: custom:button-card
+                    entity: sensor.sensibo_temp
+                    name: סלון
+                    tap_action: !include popup/temperature.yaml
+                    hold_action:
+                      action: none
+                    custom_fields:
+                      graph:
+                        card:
+                          entities:
+                            - sensor.sensibo_temp
+                    template:
+                      - temperature
+                      - icon_temp
+                    variables:
+                      popup_name: Woonkamer 
+
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: light.warehouse #hue_group
+                    name: מחסן
+                    template:
+                      - base
+                      - icon_hue   
+
+      #################################################
+      #                                               #
+      #                    Second Floor               #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: קומה שניה
+        view_layout:
+          grid-area: second-floor
+        columns: 1
+        cards:
+ 
+          - type: custom:swipe-card      
+            start_card: 1
+            parameters:
+              roundLengths: true
+              effect: coverflow
+              speed: 650
+              spaceBetween: 20
+              threshold: 7
+              coverflowEffect:
+                rotate: 80
+                depth: 300
+            cards:
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: light.liran_room
+                    name: לירן
+                    template:
+                      - base
+                      - icon_hue
+
+                  - type: custom:button-card
+                    entity: light.yakir_room #hue_group
+                    name: יקיר
+                    template:
+                      - base
+                      - icon_hue
+
+                  - type: custom:button-card
+                    entity: light.closets #hue_group
+                    name: ארונות
+                    template:
+                      - base
+                      - icon_hue
+
+                  - type: custom:button-card
+                    entity: light.gateway_light
+                    name: רכזת
+                    template:
+                      - base
+                      - icon_spot
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: light.philips_1 #hue_group
+                    name: ספוט 1
+                    template:
+                      - base
+                      - icon_spot
+
+                  - type: custom:button-card
+                    entity: light.philips_2 #hue_group
+                    name: ספוט 2
+                    template:
+                      - base
+                      - icon_spot
+
+
+      #################################################
+      #                                               #
+      #                    חדר שינה                   #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: חדר שינה
+        view_layout:
+          grid-area: bedroom
+        columns: 2
+        cards:
+
+          - type: custom:button-card
+            entity: light.parents_light_mirror
+            name: פינת איפור
+            template:
+              - base
+              - icon_spot
+
+          - type: custom:button-card
+            entity: switch.parents
+            name: חדר שינה
+            template:
+                - base
+                - icon_hue
+                
+          - type: custom:button-card
+            entity: cover.shutter_in_parents
+            name: הורים
+            template:
+              - base
+              - icon_cover
+              - cover_circle
+            variables:
+              circle_input: >
+                [[[
+                  if (entity) {
+                    let real_position = entity.attributes.current_position*100/(100-25)-35;
+                    return (real_position < 0) ? 0 : (real_position > 100) ? 100 : real_position;
+                  }
+                ]]]
+              close_position: 0
+              quarter1_position: 25
+              middle_position: 75
+              quarter3_position: 100  
+
+          - type: custom:button-card
+            entity: light.yeelight_stripe_light
+            name: מיטה
+            style:
+              top: 37.9%
+              left: 66.18%
+              width: 10%
+            custom_fields:
+              icon_wled: &wled >
+                [[[ const state = entity.state === 'on' ? 'animate' : null;
+                return `<svg viewBox="0 0 24 24"><style>@keyframes animate{0%{transform: scale(0.85);}20%{transform: scale(1.1);}40%{transform: scale(0.95);}60%{transform: scale(1.03);}80%{transform: scale(0.97);}100%{transform: scale(1);}}.animate{animation: animate 0.8s; transform-origin: center;}</style>
+                <path class="${state}" fill="var(--button-card-light-color-no-temperature)" d="M2.95 3L2 6.91L19.34 11.25L20.29 7.34L2.95 3M6.09 6.89L4.16 6.41L4.64 4.46L6.57 4.94L6.09 6.89M9.94 7.86L8 7.38L8.5 5.42L10.42 5.91L9.94 7.86M13.8 8.82L11.87 8.34L12.35 6.39L14.27 6.87L13.8 8.82M17.65 9.79L15.72 9.31L16.2 7.35L18.13 7.84L17.65 9.79M4.66 12.75L3.71 16.66L21.05 21L22 17.1L4.66 12.75M7.8 16.65L5.88 16.16L6.35 14.21L8.28 14.69L7.8 16.65M11.65 17.61L9.73 17.13L10.2 15.18L12.13 15.66L11.65 17.61M15.5 18.58L13.58 18.09L14.06 16.14L16 16.62L15.5 18.58M19.36 19.54L17.43 19.06L17.91 17.11L19.84 17.59L19.36 19.54M6.25 12.11L11 10.2L17.75 11.89L13 13.8L6.25 12.11Z"/></svg>`; ]]]
+            styles: &icon_wled_styles
+              custom_fields:
+                icon_wled:
+                  [top: 10%, left: 4.7%, width: 3.6vw, position: absolute]
+            template:
+              - base             
+
+      #################################################
+      #                                               #
+      #                     Showers                   #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: שירותים
+        view_layout:
+          grid-area: showers
+        columns: 1
+        cards:
+
+          - type: custom:swipe-card
+            start_card: 1
+            parameters:
+              roundLengths: true
+              effect: coverflow
+              speed: 650
+              spaceBetween: 20
+              threshold: 7
+              coverflowEffect:
+                rotate: 80
+                depth: 300
+            cards:
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: light.guests_bathroom #hue_group
+                    name: אורחים
+                    template:
+                      - base            
+                      # - light
+                      - motion_guests
+                      - icon_bathroom
+
+                  - type: custom:button-card
+                    entity: light.fan_guests_bathroom
+                    name: אורחים
+                    hold_action:
+                      !include popup/studio_flakt.yaml
+                    template:
+                      - base
+                      - icon_fan2
+                      - loader
+
+                  - type: custom:button-card
+                    entity: light.kids_shower_light
+                    name: ילדים
+                    template:
+                      - base            
+                      # - light
+                      - motion_kids_shower                  
+                      - icon_bathroom
+
+                  - type: custom:button-card
+                    entity: light.shower_parents_light
+                    name: הורים
+                    template:
+                      - base            
+                      # - light
+                      - motion_parents                    
+                      - icon_bathroom
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: switch.shower_parents_fan
+                    name: "וונטה הורים"
+                    hold_action:
+                      !include popup/studio_flakt.yaml
+                    template:
+                      - base
+                      - icon_fan2
+                      - loader
+
+                  # - type: custom:button-card
+                  #   name: Sovrum
+                  #   entity: media_player.sovrum
+                  #   template:
+                  #     - media
+                  #     - icon_apple_tv
+
+                  # - type: custom:button-card
+                  #   entity: media_player.spotify
+                  #   name: Spotify
+                  #   template:
+                  #     - media
+                  #     - icon_spotify
+
+                  # - type: custom:button-card
+                  #   entity: media_player.kok
+                  #   name: Nest Mini
+                  #   template:
+                  #     - media
+                  #     - icon_nest_mini
+
+      #################################################
+      #                                               #
+      #                     MEDIA                     #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: אבטחה
+        view_layout:
+          grid-area: media
+        columns: 1
+        cards:
+
+          - type: custom:swipe-card
+            start_card: 2
+            parameters:
+              roundLengths: true
+              effect: coverflow
+              speed: 650
+              spaceBetween: 20
+              threshold: 7
+              coverflowEffect:
+                rotate: 80
+                depth: 300
+            cards:
+
+              - type: horizontal-stack
+                cards:
+
+                  # - type: conditional
+                  #   conditions:
+                  #     - entity: input_select.conditional_media
+                  #       state: Last downloaded
+                  #   card:
+                  #     type: custom:button-card
+                  #     entity: sensor.plex_recently_added
+                  #     tap_action:
+                  #       action: none
+                  #     template:
+                  #       - conditional_media
+                  #       - recently_downloaded
+                  #       - icon_plex
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.conditional_media
+                        state: Living room
+                    card:
+                      type: custom:button-card
+                      entity: media_player.lg_webos_smart_tv
+                      template:
+                        - conditional_media
+                        - icon_apple_tv
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.conditional_media
+                        state: Bedroom
+                    card:
+                      type: custom:button-card
+                      entity: media_player.lg_webos_smart_tv
+                      template:
+                        - conditional_media
+                        - icon_apple_tv
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.conditional_media
+                        state: Spotify
+                    card:
+                      type: custom:button-card
+                      entity: media_player.spotify
+                      template:
+                        - conditional_media
+                        - icon_spotify
+
+                  - type: conditional
+                    conditions:
+                      - entity: input_select.conditional_media
+                        state: Google Nest Mini
+                    card:
+                      type: custom:button-card
+                      entity: media_player.spotify
+                      template:
+                        - conditional_media
+                        - icon_nest_mini
+
+              - type: grid
+                columns: 2
+                cards:
+                  ###-- גינה --###
+                  - type: custom:button-card
+                    entity: camera.blueiris_a_garden
+                    show_live_stream: true
+                    show_name: false
+                    template:
+                      - card_camera
+                      # - icon_camera
+
+                  ###-- שער --###
+                  - type: custom:button-card
+                    entity: camera.blueiris_front_gate
+                    show_live_stream: true
+                    show_name: false
+                    template:
+                      - card_camera
+
+
+                  ###-- שער חשמלי --###
+                  - type: custom:button-card
+                    entity: camera.blueiris_electric_gate
+                    show_live_stream: true
+                    show_name: false
+                    template:
+                      - card_camera
+
+                  ###-- מחסן --###
+                  - type: custom:button-card
+                    entity: camera.blueiris_warehouse
+                    show_live_stream: true
+                    show_name: false
+                    template:
+                      - card_camera                 
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: media_player.spotify
+                    name: Spotify
+                    template:
+                      - media
+                      - icon_spotify                
+              # לבדוק את הנושא
+              # - type: custom:button-card
+              #   entity: media_player.lg_webos_smart_tv
+              #   name: TV
+              #   lock:
+              #     enabled: true
+              #   state_display: >
+              #     [[[
+              #       if (states['media_player.lg_webos_smart_tv4j'].state === 'playing') {
+              #         return states['media_player.lg_webos_smart_tvj'].attributes.app_name;
+              #       }
+              #     ]]]
+              #   custom_fields:
+              #     c1: >
+              #       [[[ return states['media_player.lg_webos_smart_tvj'].attributes.app_name === 'Netflix' ? `<ha-icon icon='mdi:netflix'></ha-icon>` : ' '; ]]]
+              #   styles:
+              #     custom_fields:
+              #       c1:
+              #         - position: absolute
+              #         - left: 60%
+              #         - bottom: 50%
+              #         - margin-right: 15px
+              #     hold_action:
+              #       !include popup/vardagsrum_tv.yaml                    
+              #   template:
+              #     - base
+              #     - icon_tv
+              #     - loader
+
+      #################################################
+      #                                               #
+      #                     Home                      #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: בית
+        view_layout:
+          grid-area: home
+        columns: 1
+        cards:
+
+          - type: custom:swipe-card      
+            start_card: 1
+            parameters:
+              roundLengths: true
+              effect: coverflow
+              speed: 650
+              spaceBetween: 20
+              threshold: 7
+              coverflowEffect:
+                rotate: 80
+                depth: 300
+            cards:
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: person.nurit
+                    name: נורית
+                    triggers_update:
+                      - sensor.sanja_last_changed
+                    tap_action:
+                      !include popup/home_nurit.yaml
+                    hold_action:
+                      action: none
+                    variables:
+                      retain: sensor.sanja_last_changed
+                    template: person
+
+                  - type: custom:button-card
+                    entity: person.avi
+                    name: אבי
+                    triggers_update:
+                      - sensor.matte_last_changed
+                    tap_action:
+                      !include popup/home_avi.yaml
+                    hold_action:
+                      action: none
+                    variables:
+                      retain: sensor.matte_last_changed
+                    template: person
+
+                  - type: custom:button-card
+                    entity: person.yakir
+                    name: יקיר
+                    triggers_update:
+                      - sensor.sanja_last_changed
+                    tap_action:
+                      !include popup/home_yakir.yaml
+                    hold_action:
+                      action: none
+                    variables:
+                      retain: sensor.sanja_last_changed
+                    template: person
+
+
+                  # Image
+                  - type: 'custom:button-card'
+                    card:
+                    template: card_image
+                    variables: 
+                      card_image_image: '/local/images/qr/openwrt.png'
+
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: script.lights_off
+                    name: יציאה    
+                    lock:
+                      enabled: true                                    
+                    hold_action:
+                      action: none
+                    template:
+                      - base
+                      - icon_away
+
+                  - type: custom:button-card
+                    entity: sensor.energy_total_next_bill_cost
+                    name: חשמל
+                    tap_action: !include popup/electrical_home.yaml
+                    hold_action:
+                      action: none
+                    custom_fields:
+                      graph:
+                        card:
+                          entities:
+                            - sensor.energy_total_next_bill_cost
+                    template:
+                      - electricity
+                      - icon_nis
+                    variables:
+                      popup_name: Woonkamer
+
+                  - type: custom:button-card
+                    entity: switch.switcher_mini
+                    name: Switcher
+                    variables:
+                      ulm_card_power_outlet_consumption_sensor: sensor.switcher_mini_power 
+                    template: 
+                      - base 
+                      - icon_osram-plug  
+
+              - type: grid
+                columns: 2
+                cards:
+                  - type: custom:button-card
+                    entity: sensor.dishwasher_energy_power
+                    name: מכונת כביסה
+                    variables:
+                      ulm_card_power_outlet_consumption_sensor: sensor.dishwasher_energy_power
+                    template: 
+                      - base 
+                      - icon_washing
+
+                  - type: custom:button-card
+                    entity: sensor.dishwasher_energy_power
+                    name: מדיח כלים
+                    variables:
+                      ulm_card_power_outlet_consumption_sensor: sensor.dishwasher_energy_power
+                    template: 
+                      - base 
+                      - icon_dishwasher
+
+      #################################################
+      #                                               #
+      #                    FOOTER                     #
+      #                                               #
+      #################################################
+
+      # - type: custom:button-card
+      #   view_layout:
+      #     grid-area: footer
+      #   entity: sensor.ynet_feed
+      #   template: coronavirus
