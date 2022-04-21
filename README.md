@@ -17,9 +17,10 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 - Docker Container
 
  ## Credits
- - [Minimalist](https://discord.gg/TPXg9b7GfR){target="_blank"} Everything Smart Home Community Discord. 
- - [Everything Smart Home](https://www.youtube.com/channel/UCrVLgIniVg6jW38uVqDRIiQ){target="_blank"} Thanks for your assistance and ideas on this :)
- - [Everything Smart](https://discord.com/invite/Bgfvy2f){target="_blank"} Everything Smart Home Community 
+ - [Minimalist] (https://discord.gg/TPXg9b7GfR target="_blank) Everything Smart Home Community Discord. 
+ - [Everything Smart Home] (https://www.youtube.com/channel/UCrVLgIniVg6jW38uVqDRIiQ target="_blank) Thanks for your assistance and ideas on this :)
+ - [Everything Smart] (https://discord.com/invite/Bgfvy2f target="_blank) Everything Smart Home Community Discord.
+ 
 <!-- ## Lovelace Minimalist Documentation can be found here
 [Documentation](https://ui-lovelace-minimalist.github.io/UI/) -->
 
