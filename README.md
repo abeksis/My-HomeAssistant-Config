@@ -15,17 +15,16 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 ## Home Assistant Configuration
 - Unraid Server
 - Docker Container
-- [Home Kit Infused](https://github.com/jimz011/homekit-infused)
 
  ## Credits
- - [Jimz011](https://github.com/jimz011) Thanks for your assistance and ideas on this :)
- - [Noodlemctwoodle](https://github.com/noodlemctwoodle) Did a perfect job of bringing unraid server to the home assistant interface, and helped me in discord when I needed.
- 
-## HKI Documentation can be found here
-[Documentation](https://jimz011.github.io/homekit-infused/)
+ - [Minimalist](https://discord.gg/TPXg9b7GfR) Everything Smart Home Community Discord. 
+ - [Everything Smart Home](https://www.youtube.com/channel/UCrVLgIniVg6jW38uVqDRIiQ) Thanks for your assistance and ideas on this :)
+ - [Everything Smart](https://discord.com/invite/Bgfvy2f) Everything Smart Home Community Discord.
+## Lovelace Minimalist Documentation can be found here
+[Documentation](https://ui-lovelace-minimalist.github.io/UI/)
 
 
-## Video
+<!-- ## Video
 
 <table>
 <thead>
@@ -38,7 +37,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 <td><a href="https://www.youtube.com/watch?v=CoiW0YjCO8g"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Smart_home_mobile_interface.png" style="max-width:100%;"></a></td>
 </tr>
 </tbody>
-</table>
+</table> -->
 
 
 
@@ -72,7 +71,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 
 <hr --- </hr> 
 
-<table>
+<!-- <table>
 <thead>
 <tr>
 <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HomeAssistant_File/ui-lovelace.yaml">Lovelace UI</a></th>
@@ -95,7 +94,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 <td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/new/lovelace-11.jpg" style="max-width:100%;"></a></td>
 </tr></tbody></table> -->
 
-<table>
+<!-- <table>
 <thead>
 <tr>
 <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots">Pictures - Mobile Display</a></th>
@@ -103,5 +102,13 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Mobile-display.jpg" style="max-width:100%;"></a></td>
-</tr></tbody></table>
+<td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Lovelace.jpg" style="max-width:100%;"></a></td>
+</tr></tbody></table> -->
+
+### Screens
+
+Mobile:    
+![alt text](https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/Lovelace.jpg "Mobile")
+
+Wallpanel:     
+![alt text](https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/Wallpanel.jpg "Wallpanel")
