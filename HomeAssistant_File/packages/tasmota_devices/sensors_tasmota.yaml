@@ -503,8 +503,6 @@ sensor:
     value_template: '{{ value_json["ENERGY"]["Current"] }}'
     unit_of_measurement: "A"
 
-######----
-
 ############################################################################
 #                                                                          #
 #   Steam Collector Power Socket                                           #
@@ -574,7 +572,75 @@ sensor:
     value_template: '{{ value_json["ENERGY"]["Current"] }}'
     unit_of_measurement: "A"
 
-######----
+####
+############################################################################
+#                                                                          #
+#   Oven Collector Power Socket                                           #
+#                                                                          #
+############################################################################
+
+  #Oven Power Socket Version
+  - platform: mqtt
+    name: "Tasmota Oven Version"
+    state_topic: "stat/oven/STATUS2"
+    value_template: "{{value_json['StatusFWR'].Version }}"
+    availability_topic: "tele/oven/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 0
+
+
+  # Oven Power Socket Uptime
+  - platform: mqtt
+    name: "Tasmota Oven Uptime"
+    state_topic: "tele/oven/STATE"
+    value_template: >-
+      {% set uptime = value_json["Uptime"]  %}
+      {% set days  = uptime.split('T')[0] %}
+      {% set time  = uptime.split('T')[1] %}
+      {% set hours  = time.split(':')[0] %}
+      {% set mins  = time.split(':')[1] %}
+      {% set secs  = time.split(':')[2] %}
+      {{ days | int }}d {{ hours | int }}h {{ mins | int }}m {{ secs | int }}s
+
+  # Oven Power Socket Wi-Fi signal
+  - platform: mqtt
+    name: "Tasmota Oven Wi-Fi Quality"
+    state_topic: "tele/oven/STATE"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/oven/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    device_class: signal_strength 
+    
+  # Oven Energy Today
+  - platform: mqtt
+    name: "MQTT Oven Energy Today"
+    state_topic: "tele/oven/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Today"] }}'
+    unit_of_measurement: "kWh"
+ 
+  # MQTT Oven Power
+  - platform: mqtt
+    name: "MQTT Oven Power"
+    state_topic: "tele/oven/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: "W"
+
+  # MQTT Oven Voltage
+  - platform: mqtt
+    name: "MQTT Oven Voltage"
+    state_topic: "tele/oven/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
+    unit_of_measurement: "V"
+  
+  # MQTT Oven Current
+  - platform: mqtt
+    name: "MQTT Oven Current"
+    state_topic: "tele/oven/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Current"] }}'
+    unit_of_measurement: "A"
 
   - platform: template
     sensors:
