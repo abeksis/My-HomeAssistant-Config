@@ -109,7 +109,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 ### Screens
 
 Mobile:    
-![alt text](https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Github_Pictures/Lovelace.jpg "Mobile")
+![alt text](https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Github_Pictures/Lovelace.png "Mobile")
 
 Wallpanel:     
 ![alt text](https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Github_Pictures/Wallpanel.jpg "Wallpanel")
