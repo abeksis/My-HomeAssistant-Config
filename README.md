@@ -17,7 +17,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 - Docker Container
 
  ## Credits
- - [Minimalist](https://discord.gg/TPXg9b7GfR) Everything Smart Home Community Discord. 
+ - [minimalist](https://discord.gg/TPXg9b7GfR) Everything Smart Home Community Discord. 
  - [Everything Smart Home](https://www.youtube.com/channel/UCrVLgIniVg6jW38uVqDRIiQ) Thanks for your assistance and ideas on this :)
  - [Everything Smart](https://discord.com/invite/Bgfvy2f) Everything Smart Home Community Discord.
 ## Lovelace Minimalist Documentation can be found here
@@ -94,7 +94,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 <td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/new/lovelace-11.jpg" style="max-width:100%;"></a></td>
 </tr></tbody></table> -->
 
-<table>
+<!-- <table>
 <thead>
 <tr>
 <th><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots">Pictures - Mobile Display</a></th>
@@ -103,4 +103,12 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 <tbody>
 <tr>
 <td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Lovelace.jpg" style="max-width:100%;"></a></td>
-</tr></tbody></table>
+</tr></tbody></table> -->
+
+### Screens
+
+Mobile:    
+![alt text](https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/Lovelace.jpg "Mobile")
+
+Wallpanel:     
+![alt text](https://github.com/dmatik/homeassistant-config/blob/master/images/screens/view_kiosk.png "Wallpanel")
