@@ -18,6 +18,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 
  ## Credits
  - [Minimalist](https://discord.gg/TPXg9b7GfR) Everything Smart Home Community Discord. 
+ - [minimalist](https://discord.gg/TPXg9b7GfR) Everything Smart Home Community Discord. 
  - [Everything Smart Home](https://www.youtube.com/channel/UCrVLgIniVg6jW38uVqDRIiQ) Thanks for your assistance and ideas on this :)
  - [Everything Smart](https://discord.com/invite/Bgfvy2f) Everything Smart Home Community Discord.
 ## Lovelace Minimalist Documentation can be found here
