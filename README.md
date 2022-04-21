@@ -17,7 +17,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 - Docker Container
 
  ## Credits
- - [Minimalist](https://discord.gg/TPXg9b7GfR) Everything Smart Home Community Discord. 
+ - [Minimalist](https://discord.gg/TPXg9b7GfR) Minimalist UI Community Discord. 
  - [Mattias](https://github.com/matt8707/hass-config) Thanks for the idea. Moon changes from my side to suit my needs.
  - [Everything Smart Home](https://www.youtube.com/channel/UCrVLgIniVg6jW38uVqDRIiQ) Thanks for your assistance and ideas on this :)
  - [Everything Smart](https://discord.com/invite/Bgfvy2f) Everything Smart Home Community Discord.
