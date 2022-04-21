@@ -111,4 +111,4 @@ Mobile:
 ![alt text](https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/Lovelace.jpg "Mobile")
 
 Wallpanel:     
-![alt text](https://github.com/dmatik/homeassistant-config/blob/master/images/screens/view_kiosk.png "Wallpanel")
+![alt text](https://github.com/abeksis/My-HomeAssistant-Config/blob/master/HA_Pictures/Lovelace_Screenshots/Wallpanel.jpg "Wallpanel")
