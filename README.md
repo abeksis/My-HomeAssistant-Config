@@ -15,14 +15,14 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 ## Home Assistant Configuration
 - Unraid Server
 - Docker Container
-- [Home Kit Infused](https://github.com/jimz011/homekit-infused)
+- [lovelace minimalist](https://ui-lovelace-minimalist.github.io/UI/)
 
  ## Credits
- - [Jimz011](https://github.com/jimz011) Thanks for your assistance and ideas on this :)
- - [Noodlemctwoodle](https://github.com/noodlemctwoodle) Did a perfect job of bringing unraid server to the home assistant interface, and helped me in discord when I needed.
- 
-## HKI Documentation can be found here
-[Documentation](https://jimz011.github.io/homekit-infused/)
+ - [minimalist](https://discord.gg/TPXg9b7GfR) Everything Smart Home Community Discord. 
+ - [Everything Smart Home](https://www.youtube.com/channel/UCrVLgIniVg6jW38uVqDRIiQ) Thanks for your assistance and ideas on this :)
+ - [Everything Smart](https://discord.com/invite/Bgfvy2f) Everything Smart Home Community Discord.
+## Lovelace Minimalist Documentation can be found here
+[Documentation](https://ui-lovelace-minimalist.github.io/UI/)
 
 
 ## Video
