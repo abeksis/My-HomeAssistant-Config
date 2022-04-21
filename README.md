@@ -24,7 +24,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 [Documentation](https://ui-lovelace-minimalist.github.io/UI/)
 
 
-## Video
+<!-- ## Video
 
 <table>
 <thead>
@@ -37,7 +37,7 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 <td><a href="https://www.youtube.com/watch?v=CoiW0YjCO8g"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Smart_home_mobile_interface.png" style="max-width:100%;"></a></td>
 </tr>
 </tbody>
-</table>
+</table> -->
 
 
 
