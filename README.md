@@ -102,5 +102,5 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Mobile-display.jpg" style="max-width:100%;"></a></td>
+<td><a href="https://github.com/abeksis/My-HomeAssistant-Config/tree/master/HA_Pictures/Lovelace_Screenshots"><img src="https://raw.githubusercontent.com/abeksis/My-HomeAssistant-Config/master/HA_Pictures/Github_Pictures/Lovelace.jpg" style="max-width:100%;"></a></td>
 </tr></tbody></table>
