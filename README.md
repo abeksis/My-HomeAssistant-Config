@@ -15,7 +15,6 @@ I am in discord under the following [link](https://discord.gg/ayZ3Kkg), welcome 
 ## Home Assistant Configuration
 - Unraid Server
 - Docker Container
-- [lovelace minimalist](https://ui-lovelace-minimalist.github.io/UI/)
 
  ## Credits
  - [minimalist](https://discord.gg/TPXg9b7GfR) Everything Smart Home Community Discord. 
