@@ -117,7 +117,6 @@ cards:
               ulm_card_tasmota_power: sensor.mqtt_laundry_dryer_power
               ulm_card_tasmota_latest_voltage: sensor.mqtt_laundry_dryer_voltage
 
-
           - type: 'custom:button-card'
             template: card_tasmota_with_power
             variables:
@@ -132,7 +131,6 @@ cards:
               ulm_card_tasmota_energy_today: sensor.mqtt_steam_energy_today
               ulm_card_tasmota_power: sensor.mqtt_steam_power
               ulm_card_tasmota_latest_voltage: sensor.mqtt_steam_voltage
-
 
   - type: vertical-stack
     cards:
